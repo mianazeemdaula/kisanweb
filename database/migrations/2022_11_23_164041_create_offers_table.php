@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('seller_id');
+            $table->unsignedBigInteger('packing_id');
+            $table->unsignedInteger('demand');
+            $table->unsignedInteger('qty');
+            $table->point('location');
+            $table->string('status');
+            $table->unsignedBigInteger('accept_bid_id')->nullable();
             $table->timestamps();
         });
     }
