@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('social_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('path');
-            $table->string('blursh');
-            $table->char('ext',4);
-            $table->morphs('mediaable');
+            $table->unsingedBigInteger('user_id');
+            $table->string('provider');
+            $table->string('uid');
+            $table->string('username');
             $table->timestamps();
+            $table->unique(['user_id', 'uid', 'provider']);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('social_accounts');
     }
 };

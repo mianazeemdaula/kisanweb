@@ -16,7 +16,7 @@ class CropController extends Controller
      */
     public function index()
     {
-        return response()->json(Crop::with('types.offers.bids')->get(), 200);
+        return response()->json(Crop::with(['types.offers.bids', 'types.offers.media'])->get(), 200);
     }
 
     /**

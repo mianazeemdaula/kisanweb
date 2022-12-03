@@ -20,11 +20,12 @@ return new class extends Migration
             $table->string('mobile')->unique();
             $table->string('cnic')->unique();
             $table->string('image')->nullable();
-            $table->string('address');
-            $table->point('location');
+            $table->string('address')->nullable();
+            $table->point('location')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->char('type',10)->default('user');
+            $table->string('fcm_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
