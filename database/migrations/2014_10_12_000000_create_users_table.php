@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('mobile')->unique();
-            $table->string('cnic')->unique();
+            $table->string('mobile')->unique()->nullable();
+            $table->string('cnic')->unique()->nullable();
             $table->string('image')->nullable();
             $table->string('address')->nullable();
             $table->point('location')->nullable();
