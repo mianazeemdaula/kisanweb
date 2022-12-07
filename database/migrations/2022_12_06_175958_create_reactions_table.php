@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('offer_id');
-            $table->integer('type')->unsigned()->default(1);
+            $table->tinyInteger('type')->unsigned()->default(1);
             $table->timestamps();
         });
     }

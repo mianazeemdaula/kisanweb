@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\CropController;
 use App\Http\Controllers\Api\V1\CropTypeController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\MediaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,3 +28,5 @@ Route::post('/login', [AuthController::class,'login']);
 Route::resource('crop', CropController::class);
 Route::resource('crop.type', CropTypeController::class);
 Route::resource('crop.type.offer', OfferController::class);
+
+Route::resource('media', MediaController::class);

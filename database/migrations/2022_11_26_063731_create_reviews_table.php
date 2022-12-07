@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('review_by');
             $table->string('content');
+            $table->tinyInteger('type')->default(0); // 0 as seller 1 as buyer
             $table->float('rating');
             $table->timestamps();
         });
