@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f61c435e5d5c7769da4601c46e8bca2a",
+    "content-hash": "aa516e8b0429d44dff4b295027750d6c",
     "packages": [
         {
             "name": "brick/math",
@@ -1022,6 +1022,67 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "jordanmiguel/laravel-popular",
+            "version": "1.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jordanmiguel/laravel-popular.git",
+                "reference": "2c17423f9842c856e91ceb2fad9f3ac8d2ea112d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jordanmiguel/laravel-popular/zipball/2c17423f9842c856e91ceb2fad9f3ac8d2ea112d",
+                "reference": "2c17423f9842c856e91ceb2fad9f3ac8d2ea112d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "php": "~5.6|^7.2|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.4.3",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JordanMiguel\\LaravelPopular\\LaravelPopularServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JordanMiguel\\LaravelPopular\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordan Miguel",
+                    "homepage": "https://github.com/JordanMiguel",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package to track popularity of entries(by Models) in a website at a certain time.",
+            "homepage": "https://github.com/jordanmiguel/laravel-popular",
+            "keywords": [
+                "JordanMiguel",
+                "Laravel Popular",
+                "laravel",
+                "laravel-popular",
+                "popular"
+            ],
+            "support": {
+                "issues": "https://github.com/jordanmiguel/laravel-popular/issues",
+                "source": "https://github.com/jordanmiguel/laravel-popular/tree/1.0.10"
+            },
+            "time": "2022-03-16T14:08:49+00:00"
         },
         {
             "name": "kornrunner/blurhash",

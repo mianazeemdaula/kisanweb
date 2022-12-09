@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('social_accounts', function (Blueprint $table) {
             $table->id();
-            $table->unsingedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('provider');
             $table->string('uid');
-            $table->string('username');
             $table->timestamps();
             $table->unique(['user_id', 'uid', 'provider']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

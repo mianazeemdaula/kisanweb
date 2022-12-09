@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('crops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_ur');
             $table->string('icon');
-            $table->string('color');
+            $table->char('color',7);
             $table->timestamps();
         });
     }

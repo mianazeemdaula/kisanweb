@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
+        "jordanmiguel/laravel-popular": "^1.0",
         "kornrunner/blurhash": "^1.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",

@@ -59,7 +59,7 @@ class AuthController extends Controller
             'provider' => $provider,
             'ui' => $socialUser->getId(),
         ], [
-            'username' => $socialUser->getName,
+            'username' => $socialUser->name,
         ]);
         if(!$social->user){
             $user = new User();

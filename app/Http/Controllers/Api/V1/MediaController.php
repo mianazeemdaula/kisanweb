@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use kornrunner\Blurhash\Blurhash;
 use App\Models\Media;
+use App\Models\Deal;
+use App\Helper\MediaHelper;
 use Image;
 
 
@@ -42,6 +44,8 @@ class MediaController extends Controller
         $this->validate($request, [
             'file' => 'required|image|mimes:jpg,jpeg,png,mp4|max:2048',
         ]);
+
+        return MediaHelper::save($request->file('file'), Deal::find(5));
         $image = $request->file('file');
         $ext = $image->getClientOriginalExtension();
         $input['file'] = time().'.'.$ext;

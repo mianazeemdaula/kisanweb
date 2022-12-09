@@ -8,7 +8,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Offer>
  */
-class OfferFactory extends Factory
+class DealFactory extends Factory
 {
     /**
      * Define the model's default state.

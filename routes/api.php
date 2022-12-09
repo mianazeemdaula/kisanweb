@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\V1\HomeController;
 use App\Http\Controllers\Api\V1\CropController;
 use App\Http\Controllers\Api\V1\CropTypeController;
 use App\Http\Controllers\Api\V1\OfferController;
@@ -30,3 +31,7 @@ Route::resource('crop.type', CropTypeController::class);
 Route::resource('crop.type.offer', OfferController::class);
 
 Route::resource('media', MediaController::class);
+
+Route::get('crops', [HomeController::class,'crops']);
+Route::get('popular', [HomeController::class,'popular']);
+Route::get('latest', [HomeController::class,'latest']);

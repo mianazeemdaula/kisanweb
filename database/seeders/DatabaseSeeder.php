@@ -20,13 +20,12 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->state(new Sequence(fn ($se) => ['email' => "buyer{$se->index}@gmail.com", 'type' => 'buyer'],
         ))->create();
         \App\Models\Crop::insert([
-            ['name' => 'wheat'],
-            ['name' => 'maize'],
-            ['name' => 'rice'],
-            ['name' => 'cotton'],
-            ['name' => 'sugarcane'],
-            ['name' => 'mango'],
-            ['name' => 'dates'],
+            ['color'=>'#FFF6E4','icon'=>'wheat','name' => 'wheat'],
+            ['color'=>'#E4F3EA','icon'=>'wheat','name' => 'maize'],
+            ['color'=>'#F3E4E4','icon'=>'wheat','name' => 'rice'],
+            ['color'=>'blue','icon'=>'wheat','name' => 'cotton'],
+            ['color'=>'blue','icon'=>'wheat','name' => 'sugarcane'],
+            ['color'=>'blue','icon'=>'wheat','name' => 'sorghum'],
         ]);
         \App\Models\CropType::factory(50)->create();
         \App\Models\Packing::insert([
@@ -35,7 +34,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'jali'],
             ['name' => 'bori'],
         ]);
-        \App\Models\Offer::factory(150)->create();
+        \App\Models\Deal::factory(150)->create();
         \App\Models\Bid::factory(300)->create();
         \App\Models\Media::factory(1000)->create();
     }
