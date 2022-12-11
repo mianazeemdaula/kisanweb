@@ -20,19 +20,19 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->state(new Sequence(fn ($se) => ['email' => "buyer{$se->index}@gmail.com", 'type' => 'buyer'],
         ))->create();
         \App\Models\Crop::insert([
-            ['color'=>'#FFF6E4','icon'=>'wheat','name' => 'wheat'],
-            ['color'=>'#E4F3EA','icon'=>'wheat','name' => 'maize'],
-            ['color'=>'#F3E4E4','icon'=>'wheat','name' => 'rice'],
-            ['color'=>'blue','icon'=>'wheat','name' => 'cotton'],
-            ['color'=>'blue','icon'=>'wheat','name' => 'sugarcane'],
-            ['color'=>'blue','icon'=>'wheat','name' => 'sorghum'],
+            ['name_ur'=>'what','color'=>'#FFF6E4','icon'=>'wheat','name' => 'wheat'],
+            ['name_ur'=>'what','color'=>'#E4F3EA','icon'=>'wheat','name' => 'maize'],
+            ['name_ur'=>'what','color'=>'#F3E4E4','icon'=>'wheat','name' => 'rice'],
+            ['name_ur'=>'what','color'=>'blue','icon'=>'wheat','name' => 'cotton'],
+            ['name_ur'=>'what','color'=>'blue','icon'=>'wheat','name' => 'sugarcane'],
+            ['name_ur'=>'what','color'=>'blue','icon'=>'wheat','name' => 'sorghum'],
         ]);
         \App\Models\CropType::factory(50)->create();
         \App\Models\Packing::insert([
-            ['name' => 'open'],
-            ['name' => 'tora'],
-            ['name' => 'jali'],
-            ['name' => 'bori'],
+            ['name' => 'open','key'=>'wheat','name_ur'=>'توڑا'],
+            ['name' => 'tora','key'=>'wheat','name_ur'=>'توڑا'],
+            ['name' => 'jali','key'=>'wheat','name_ur'=>'توڑا'],
+            ['name' => 'bori','key'=>'wheat','name_ur'=>'توڑا'],
         ]);
         \App\Models\Deal::factory(150)->create();
         \App\Models\Bid::factory(300)->create();
