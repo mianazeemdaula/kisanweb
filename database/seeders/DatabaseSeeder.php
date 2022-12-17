@@ -20,19 +20,20 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->state(new Sequence(fn ($se) => ['email' => "buyer{$se->index}@gmail.com",'mobile' => "032111223".sprintf('%02d',$se->index)],
         ))->create();
         \App\Models\Crop::insert([
-            ['name_ur'=>'what','color'=>'#FFF6E4','icon'=>'wheat','name' => 'Wheat'],
-            ['name_ur'=>'what','color'=>'#E4F3EA','icon'=>'wheat','name' => 'Maize'],
-            ['name_ur'=>'what','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Rice'],
-            ['name_ur'=>'what','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Cotton'],
-            ['name_ur'=>'what','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Sugarcane'],
-            ['name_ur'=>'what','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Sorghum'],
+            ['name_ur'=>'آلو','color'=>'#FFF6E4','icon'=>'wheat','name' => 'Potato'],
+            ['name_ur'=>'مکئی','color'=>'#E4F3EA','icon'=>'wheat','name' => 'Maize'],
+            ['name_ur'=>'چاول','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Rice'],
+            ['name_ur'=>'گندم','color'=>'#FFF6E4','icon'=>'wheat','name' => 'Wheat'],
+            ['name_ur'=>'گنا','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Sugarcane'],
+            ['name_ur'=>'روئی','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Cotton'],
+            ['name_ur'=>'جوار','color'=>'#F3E4E4','icon'=>'wheat','name' => 'Sorghum'],
         ]);
         \App\Models\CropType::factory(50)->create();
         \App\Models\Packing::insert([
-            ['name' => 'open','key'=>'wheat','name_ur'=>'توڑا'],
+            ['name' => 'open','key'=>'wheat','name_ur'=>'کھولی'],
             ['name' => 'tora','key'=>'wheat','name_ur'=>'توڑا'],
-            ['name' => 'jali','key'=>'wheat','name_ur'=>'توڑا'],
-            ['name' => 'bori','key'=>'wheat','name_ur'=>'توڑا'],
+            ['name' => 'jali','key'=>'wheat','name_ur'=>'بوری'],
+            ['name' => 'bori','key'=>'wheat','name_ur'=>'بوری'],
         ]);
         \App\Models\Deal::factory(150)->create();
         \App\Models\Bid::factory(300)->create();
