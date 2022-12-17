@@ -20,13 +20,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->state(new Sequence(fn ($se) => ['email' => "buyer{$se->index}@gmail.com",'mobile' => "032111223".sprintf('%02d',$se->index)],
         ))->create();
         \App\Models\Crop::insert([
-            ['name_ur'=>'آلو','color'=>'#E0947F','icon'=>'wheat','name' => 'Potato'],
-            ['name_ur'=>'مکئی','color'=>'#CE8919','icon'=>'wheat','name' => 'Maize'],
-            ['name_ur'=>'چاول','color'=>'#9DAC4F','icon'=>'wheat','name' => 'Rice'],
+            ['name_ur'=>'آلو','color'=>'#E0947F','icon'=>'potato','name' => 'Potato'],
+            ['name_ur'=>'مکئی','color'=>'#CE8919','icon'=>'maize','name' => 'Maize'],
+            ['name_ur'=>'چاول','color'=>'#9DAC4F','icon'=>'rice','name' => 'Rice'],
             ['name_ur'=>'گندم','color'=>'#DCAB65','icon'=>'wheat','name' => 'Wheat'],
-            ['name_ur'=>'گنا','color'=>'#A89E22','icon'=>'wheat','name' => 'Sugarcane'],
-            ['name_ur'=>'روئی','color'=>'#8B5321','icon'=>'wheat','name' => 'Cotton'],
-            ['name_ur'=>'جوار','color'=>'#ECD392','icon'=>'wheat','name' => 'Sorghum'],
+            ['name_ur'=>'گنا','color'=>'#A89E22','icon'=>'sugarcane','name' => 'Sugarcane'],
+            ['name_ur'=>'روئی','color'=>'#8B5321','icon'=>'cotton','name' => 'Cotton'],
+            ['name_ur'=>'جوار','color'=>'#ECD392','icon'=>'sorghum','name' => 'Sorghum'],
         ]);
         \App\Models\CropType::factory(50)->create();
         \App\Models\Packing::insert([
