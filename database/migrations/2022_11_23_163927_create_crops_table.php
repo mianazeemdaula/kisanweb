@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name_ur');
             $table->string('icon');
             $table->char('color',7);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

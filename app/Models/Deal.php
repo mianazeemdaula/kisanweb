@@ -35,6 +35,16 @@ class Deal extends Model
     }
 
     /**
+     * Get the user that owns the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function packing()
+    {
+        return $this->belongsTo(Packing::class, 'packing_id');
+    }
+
+    /**
      * Get all of the comments for the Offer
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

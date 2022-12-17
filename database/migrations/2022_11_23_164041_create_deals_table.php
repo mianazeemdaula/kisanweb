@@ -23,8 +23,6 @@ return new class extends Migration
             $table->point('location');
             $table->string('status')->default('open');
             $table->unsignedBigInteger('accept_bid_id')->nullable();
-            $table->unsignedBigInteger('impressions')->default(0);
-            $table->unsignedBigInteger('clicks')->default(0);
             $table->timestamps();
         });
     }

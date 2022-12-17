@@ -18,7 +18,9 @@ class HomeController extends Controller
 
     public function popular()
     {
-        $data = Deal::with(['bids'])->get();
+        $data = Deal::with(['bids' => function($q){
+            $q->with(['buyer']);
+        }, 'seller', 'packing', 'media'])->get();
         foreach ($data as $deal) {
             $deal->visit();
         }
