@@ -10,6 +10,10 @@ class CropType extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'crop_id' => 'integer',
+    ];
+
     /**
      * Get all of the comments for the CropType
      *
