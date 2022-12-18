@@ -22,7 +22,7 @@ class CropType extends Model
      */
     public function crop()
     {
-        return $this->belongsTo(User::class, 'seller_id');
+        return $this->belongsTo(Crop::class, 'crop_id');
     }
 
     /**
