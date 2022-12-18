@@ -50,6 +50,16 @@ class Deal extends Model
     }
 
     /**
+     * Get the user that owns the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo(CropType::class, 'crop_type_id');
+    }
+    
+    /**
      * Get all of the comments for the Offer
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

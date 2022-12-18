@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'media'])->get();
+        }, 'seller', 'packing', 'media', 'type'])->paginate();
         // foreach ($data as $deal) {
         //     $deal->visit();
         // }
