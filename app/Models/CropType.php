@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CropType extends Model
 {
@@ -13,6 +14,16 @@ class CropType extends Model
     protected $casts = [
         'crop_id' => 'integer',
     ];
+
+    /**
+     * Get the user that owns the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function crop()
+    {
+        return $this->belongsTo(User::class, 'seller_id');
+    }
 
     /**
      * Get all of the comments for the CropType
