@@ -21,9 +21,9 @@ class HomeController extends Controller
         $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
         }, 'seller', 'packing', 'media'])->get();
-        foreach ($data as $deal) {
-            $deal->visit();
-        }
+        // foreach ($data as $deal) {
+        //     $deal->visit();
+        // }
         return response()->json($data, 200);
     }
 

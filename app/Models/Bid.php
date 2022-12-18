@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Bid extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'deal_id' => 'interger',
+        'buyer_id' => 'interger',
+        'bid_price' => 'interger',
+    ];
 
     /**
      * Get the user that owns the Offer
