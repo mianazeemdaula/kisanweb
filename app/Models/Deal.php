@@ -17,11 +17,11 @@ class Deal extends Model
     
     protected $casts = [
         'location' => Point::class,
-        'crop_type_id' => 'interger',
-        'seller_id' => 'interger',
-        'packing_id' => 'interger',
-        'demand' => 'interger',
-        'qty' => 'interger',
+        'crop_type_id' => 'integer',
+        'seller_id' => 'integer',
+        'packing_id' => 'integer',
+        'demand' => 'integer',
+        'qty' => 'integer',
     ];
 
     public function newEloquentBuilder($query): SpatialBuilder

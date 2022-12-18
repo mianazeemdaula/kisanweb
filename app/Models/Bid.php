@@ -10,9 +10,9 @@ class Bid extends Model
 {
     use HasFactory;
     protected $casts = [
-        'deal_id' => 'interger',
-        'buyer_id' => 'interger',
-        'bid_price' => 'interger',
+        'deal_id' => 'integer',
+        'buyer_id' => 'integer',
+        'bid_price' => 'integer',
     ];
 
     /**
