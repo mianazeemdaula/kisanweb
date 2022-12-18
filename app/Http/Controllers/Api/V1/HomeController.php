@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function crops()
     {
-        $data = Crop::all();
+        $data = Crop::with('types')->get();
         return response()->json($data, 200);
     }
 
