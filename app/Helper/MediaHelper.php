@@ -11,7 +11,7 @@ class MediaHelper {
     {
         $ext = $file->getClientOriginalExtension();
         $fileName = time().'.'.$ext;
-        $path = public_path("/$path")."/".$fileName;
+        $path = "$path/".$fileName;
         if(in_array($ext, ['mp4'])){
             $file->store('videos', $path);
         }else{
