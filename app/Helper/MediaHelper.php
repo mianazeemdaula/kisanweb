@@ -12,6 +12,7 @@ class MediaHelper {
         $ext = $file->getClientOriginalExtension();
         $fileName = time().'.'.$ext;
         $path = "$path/".$fileName;
+        $blurhash = "LrJaflIUENE1_2RjRQR*?wM{V?ad";
         if(in_array($ext, ['mp4'])){
             $file->store('videos', $path);
         }else{
@@ -24,20 +25,20 @@ class MediaHelper {
             // $image->move($destinationPath, $input['file']);
             
             // blurHash
-            $width = $image->width();
-            $height = $image->height();
-            $pixels = [];
-            for ($y = 0; $y < $height; ++$y) {
-                $row = [];
-                for ($x = 0; $x < $width; ++$x) {
-                    $colors = $image->pickColor($x, $y);
-                    $row[] = [$colors[0], $colors[1], $colors[2]];
-                }
-                $pixels[] = $row;
-            }
-            $components_x = 4;
-            $components_y = 3;
-            $blurhash = Blurhash::encode($pixels, $components_x, $components_y);
+            // $width = $image->width();
+            // $height = $image->height();
+            // $pixels = [];
+            // for ($y = 0; $y < $height; ++$y) {
+            //     $row = [];
+            //     for ($x = 0; $x < $width; ++$x) {
+            //         $colors = $image->pickColor($x, $y);
+            //         $row[] = [$colors[0], $colors[1], $colors[2]];
+            //     }
+            //     $pixels[] = $row;
+            // }
+            // $components_x = 4;
+            // $components_y = 3;
+            // $blurhash = Blurhash::encode($pixels, $components_x, $components_y);
         }
         $media = new Media([
             'path' => $path,
