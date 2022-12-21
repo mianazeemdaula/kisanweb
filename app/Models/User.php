@@ -17,6 +17,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $appends = ['rating'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -45,6 +47,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'rating' => 'float',
         'location' => Point::class,
     ];
 
@@ -71,5 +74,15 @@ class User extends Authenticatable
     public function followers()
     {
         return $this->belongsToMany(User::class, 'followers', 'following_id', 'follower_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getRatingAttribute()
+    {
+        return $this->reviews()->avg('rating') ?? 0;
     }
 }

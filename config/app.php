@@ -195,6 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
+        Appy\FcmHttpV1\FcmProvider::class,
 
     ],
 

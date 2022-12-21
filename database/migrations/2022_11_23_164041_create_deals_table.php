@@ -18,8 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('crop_type_id');
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('packing_id');
-            $table->unsignedInteger('demand');
+            $table->string('note');
+            $table->float('demand');
             $table->unsignedInteger('qty');
+            $table->string('weight_scale')->default('mann');
             $table->point('location');
             $table->string('status')->default('open');
             $table->unsignedBigInteger('accept_bid_id')->nullable();

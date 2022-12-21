@@ -4,19 +4,20 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Offer;
 
-class OfferController extends Controller
+// Models
+use App\Models\Bid;
+
+class BidController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($cropId, $typeId)
+    public function index()
     {
-        $data = Offer::where('crop_type_id', $typeId)->with(['seller'])->get();
-        return response()->json($data, 200,);
+        //
     }
 
     /**
@@ -37,7 +38,22 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'deal_id' => 'required',
+            'bid_price' => 'required',
+        ]);
+        $bid = Bid::where('deal_id', $request->deal_id)->where('buyer_id',$request->user()->id)->first();
+        if(!$bid){
+            $bid = new Bid();
+            $bid->deal_id = $request->deal_id;
+            $bid->buyer_id = $request->user()->id;
+            $bid->bid_price = $request->bid_price;
+            $bid->save();
+            return response()->json($bid, 200);
+        }else{
+            return response()->json(['message'=> 'You have already bid'], 409);
+        }
+        
     }
 
     /**

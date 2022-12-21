@@ -66,7 +66,7 @@ class AuthController extends Controller
             $user->name = $socialUser->name;
             $user->email = $socialUser->getEmail();
             $user->image = $socialUser->getAvatar();
-            $user->password = bcrypt($request->password);
+            // $user->password = bcrypt($request->password);
             $user->save();
         }else{
             $user = $social->user;
@@ -74,5 +74,14 @@ class AuthController extends Controller
         $data['token'] = $user->createToken('login')->plainTextToken;
         $data['user'] = $user;
         return response()->json($data, 200);
+    }
+
+    public function mobileRegister(Request $request)
+    {
+        $user = User::where('mobile', $request->mobile)->first();
+        if($user){
+            return response()->json(['register'=> true], 200);
+        }
+        return response()->json(['register'=> false], 200);
     }
 }

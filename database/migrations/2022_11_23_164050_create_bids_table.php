@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('deal_id');
             $table->unsignedBigInteger('buyer_id');
-            $table->unsignedInteger('bid_price');
+            $table->float('bid_price');
             $table->timestamps();
         });
     }

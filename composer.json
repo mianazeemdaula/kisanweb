@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "appy/fcmhttpv1": "dev-master",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "jordanmiguel/laravel-popular": "^1.0",
