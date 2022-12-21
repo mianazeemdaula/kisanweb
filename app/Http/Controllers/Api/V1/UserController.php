@@ -45,7 +45,7 @@ class UserController extends Controller
                 $file = $request->image;
                 $ext = $file->getClientOriginalExtension();
                 $fileName = time().'.'.$ext;
-                $path = "profile/".$fileName;
+                $path = "/public/profile/".$fileName;
                 $image = Image::make($file->getRealPath());
                 $image->save($path);
                 $user->image = $path;
