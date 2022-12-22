@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->id();
             $table->string('path');
-            $table->string('blursh');
+            $table->string('blursh')->nullable();
             $table->char('ext',4);
             $table->morphs('mediaable');
             $table->timestamps();

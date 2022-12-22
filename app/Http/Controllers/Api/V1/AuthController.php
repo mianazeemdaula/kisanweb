@@ -46,7 +46,7 @@ class AuthController extends Controller
         return response()->json($data, 200);
     }
 
-    public function loginFromSocail(Request $request)
+    public function loginFromSocial(Request $request)
     {
         $request->validate([
             'token' => 'required',
@@ -83,5 +83,10 @@ class AuthController extends Controller
             return response()->json(['register'=> true], 200);
         }
         return response()->json(['register'=> false], 200);
+    }
+
+    public function socialcallback(Request $request)
+    {
+        return $request->all();
     }
 }
