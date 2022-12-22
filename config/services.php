@@ -32,14 +32,14 @@ return [
     ],
 
     'google' => [
-        'client_id'     => "914671792586-8p095jpijd0nsof8kr9f7m1i5cl62u7s.apps.googleusercontent.com",
-        'client_secret' => "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",
+        'client_id'     => env("GOOGLE_CLIENT_ID"),
+        'client_secret' => env("GOOGLE_CLIENT_SECRET"),
         'redirect'      => 'https://kisanstock.com/api/auth/google/callback'
     ],
 
     'facebook' => [
-        'client_id'     => "1294329974749099",
-        'client_secret' => "634e25e269d96fe36b3d9fdfdaccb18a",
+        'client_id'     => env("FACEBOOK_CLIENT_ID"),
+        'client_secret' => env("FACEBOOK_CLIENT_SECRET"),
         'redirect'      => 'https://kisanstock.com/api/auth/facebook/callback'
     ],
 ];
