@@ -10,6 +10,12 @@ class SocialAccount extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'provider',
+        'uid',
+    ];    
+
     /**
      * Get the user that owns the SocialAccount
      *
