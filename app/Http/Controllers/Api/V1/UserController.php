@@ -51,7 +51,7 @@ class UserController extends Controller
                 $user->image = $path;
             }
             $user->save();
-            $data = User::with([])->find($user->id);
+            $data = $user;
             return response()->json($data, 200);
         } catch (\Throwable $th) {
             throw $th;

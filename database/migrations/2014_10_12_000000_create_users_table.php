@@ -22,11 +22,12 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('address')->nullable();
             $table->point('location')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->char('type',10)->default('user');
             $table->string('fcm_token')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('mobile_verified_at')->nullable();
+            $table->timestamp('cnic_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
