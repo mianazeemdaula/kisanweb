@@ -57,7 +57,7 @@ class AuthController extends Controller
         $socialUser = Socialite::driver($provider)->userFromToken($token);
         $social = SocialAccount::updateOrCreate([
             'provider' => $provider,
-            'ui' => $socialUser->getId(),
+            'uid' => $socialUser->getId(),
         ], [
             'username' => $socialUser->name,
         ]);
