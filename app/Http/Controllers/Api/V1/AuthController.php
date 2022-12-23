@@ -71,6 +71,8 @@ class AuthController extends Controller
         }else{
             $user = $social->user;
         }
+        $social->user_id = $user->id;
+        $social->save();
         $data['token'] = $user->createToken('login')->plainTextToken;
         $data['user'] = $user;
         return response()->json($data, 200);
