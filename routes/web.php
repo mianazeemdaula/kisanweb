@@ -25,3 +25,9 @@ Route::get('app/terms-and-conditions', function () {
 Route::get('app/privacy-policy', function () {
     return view('app.privacy');
 });
+
+Route::get('app/fb-delete-data', function () {
+    return ['email' => 'abc@gmail.com'];
+});
+
+
