@@ -27,7 +27,7 @@ Route::get('app/privacy-policy', function () {
 });
 
 Route::get('app/fb-delete-data', function () {
-    return ['email' => 'abc@gmail.com'];
+    return response()->json(['email' => 'abc@gmail.com'], 200);
 });
 
 
