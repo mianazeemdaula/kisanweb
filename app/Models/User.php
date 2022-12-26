@@ -66,6 +66,12 @@ class User extends Authenticatable
         return $this->hasMany(SocailAccount::class);
     }
 
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
+    
+
     public function following()
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');

@@ -10,12 +10,15 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 use Image;
 // Models
 use App\Models\User;
+use App\Models\Address;
 
 class UserController extends Controller
 {
     public function profile()
     {
-        $data = User::find(auth()->id());
+        $data = [];
+        $data['user'] = User::find(auth()->id());;
+        $data['addresses'] = $user->addresses;
         return response()->json($data, 200);
     }
 
@@ -30,10 +33,14 @@ class UserController extends Controller
                 $user->email = $request->email;
             }
             if($request->has('lat') && $request->has('lng')){
-                $user->location = new Point($request->lat, $request->lng);
-            }
-            if($request->has('address')){
-                $user->address = $request->address;
+                if($user->addresses == null){
+                    $address = new Address();
+                    $address->user_id = $user->id;
+                    $address->name = 'Default';
+                    $address->address = $request->address;
+                    $address->location = new Point($request->lat, $request->lng);
+                    $address->save();
+                }
             }
             if($request->has('cnic')){
                 $user->cnic = $request->cnic;

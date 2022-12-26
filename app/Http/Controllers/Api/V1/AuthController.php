@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Address;
 use App\Models\SocialAccount;
 use \Hash;
+use Carbon\Carbon;
 use Laravel\Socialite\Facades\Socialite;
 
+
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
 class AuthController extends Controller
 {
@@ -25,6 +29,7 @@ class AuthController extends Controller
         $token = $user->createToken('login')->plainTextToken;
         $data['token'] = $token;
         $data['user'] = $user;
+        $data['addresses'] = $user->addresses;
         return response()->json($data, 200);
     }
 
@@ -33,16 +38,39 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'mobile' => 'required|unique:users',
-            'password' => 'required',
+            'cnic' => 'sometimes|min:13',
+            'email' => 'sometimes|unique:users|email',
+            'lat' => 'required',
+            'lng' => 'required',
+            'address' => 'required',
         ]);
         $user = new User();
         $user->name = $request->name;
         $user->mobile = $request->mobile;
-        $user->password = bcrypt($request->name);
+        $user->mobile_verified_at = Carbon::now();
+        if($request->has('cnic')){
+            $user->cnic = $request->cnic;
+        }if($request->has('email')){
+            $user->email = $request->email;
+        }
+        // if($request->has('lat') && $request->has('lng')){
+        //     $user->location = new Point($request->lat, $request->lng);
+        // }if($request->has('address')){
+        //     $user->address = $request->address;
+        // }
         $user->save();
+        if($request->has('lat') && $request->has('lng')){
+            $address = new Address();
+            $address->user_id = $user->id;
+            $address->name = 'Default';
+            $address->address = $request->address;
+            $address->location = new Point($request->lat, $request->lng);
+            $address->save();
+        }
         $token = $user->createToken('login')->plainTextToken;
         $data['token'] = $token;
         $data['user'] = $user;
+        $data['addresses'] = $user->addresses;
         return response()->json($data, 200);
     }
 
@@ -66,6 +94,7 @@ class AuthController extends Controller
             $user->name = $socialUser->name;
             $user->email = $socialUser->getEmail();
             $user->image = $socialUser->getAvatar();
+            $user->email_verified_at = Carbon::now();
             // $user->password = bcrypt($request->password);
             $user->save();
         }else{
@@ -75,6 +104,7 @@ class AuthController extends Controller
         $social->save();
         $data['token'] = $user->createToken('login')->plainTextToken;
         $data['user'] = $user;
+        $data['addresses'] = $user->addresses;
         return response()->json($data, 200);
     }
 

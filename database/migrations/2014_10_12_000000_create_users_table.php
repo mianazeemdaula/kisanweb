@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('mobile')->unique()->nullable();
             $table->string('cnic')->unique()->nullable();
             $table->string('image')->nullable();
-            $table->string('address')->nullable();
-            $table->point('location')->nullable();
             $table->string('password')->nullable();
             $table->char('type',10)->default('user');
             $table->string('fcm_token')->nullable();

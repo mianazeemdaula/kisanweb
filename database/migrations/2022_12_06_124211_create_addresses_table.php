@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->string('address');
             $table->point('location');
             $table->boolean('default')->default(true);
             $table->timestamps();
