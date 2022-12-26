@@ -16,8 +16,8 @@ class UserController extends Controller
 {
     public function profile()
     {
-        $data = [];
-        $data['user'] = User::find(auth()->id());;
+        $user = User::find(auth()->id());
+        $data['user'] = $user;
         $data['addresses'] = $user->addresses;
         return response()->json($data, 200);
     }
@@ -33,7 +33,7 @@ class UserController extends Controller
                 $user->email = $request->email;
             }
             if($request->has('lat') && $request->has('lng')){
-                if($user->addresses == null){
+                if(count($user->addresses) == 0){
                     $address = new Address();
                     $address->user_id = $user->id;
                     $address->name = 'Default';

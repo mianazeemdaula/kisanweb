@@ -20,10 +20,11 @@ class AuthController extends Controller
     {
         $request->validate([
             'mobile' => 'required',
-            'password' => 'required',
+            'phone_uid' => 'required',
         ]);
-        $user = User::where('mobile', $request->mobile)->first();
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        $user = User::where('mobile', $request->mobile, 'phone_uid', $request->phone_uid)->first();
+        // if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (! $user) {
             return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
         }
         $token = $user->createToken('login')->plainTextToken;
@@ -33,7 +34,7 @@ class AuthController extends Controller
         return response()->json($data, 200);
     }
 
-    public function signup(Request $request)
+    public function phoneSignup(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -43,6 +44,7 @@ class AuthController extends Controller
             'lat' => 'required',
             'lng' => 'required',
             'address' => 'required',
+            'phone_uid' => 'required',
         ]);
         $user = new User();
         $user->name = $request->name;
@@ -53,11 +55,6 @@ class AuthController extends Controller
         }if($request->has('email')){
             $user->email = $request->email;
         }
-        // if($request->has('lat') && $request->has('lng')){
-        //     $user->location = new Point($request->lat, $request->lng);
-        // }if($request->has('address')){
-        //     $user->address = $request->address;
-        // }
         $user->save();
         if($request->has('lat') && $request->has('lng')){
             $address = new Address();
