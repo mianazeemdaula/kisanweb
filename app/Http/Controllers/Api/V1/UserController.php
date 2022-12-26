@@ -58,7 +58,8 @@ class UserController extends Controller
                 $user->image = $path;
             }
             $user->save();
-            $data = $user;
+            $data['user'] = $user;
+            $data['addresses'] = $user->addresses;
             return response()->json($data, 200);
         } catch (\Throwable $th) {
             throw $th;
