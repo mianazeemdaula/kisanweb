@@ -16,14 +16,11 @@ class HomeController extends Controller
         return response()->json($data, 200);
     }
 
-    public function popular()
+    public function popular(Reqeust $reqeust)
     {
         $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
         }, 'seller', 'packing', 'media', 'type.crop'])->paginate();
-        // foreach ($data as $deal) {
-        //     $deal->visit();
-        // }
         return response()->json($data, 200);
     }
 

@@ -38,7 +38,7 @@ Route::resource('crop.type', CropTypeController::class);
 Route::resource('media', MediaController::class);
 
 Route::get('crops', [HomeController::class,'crops']);
-Route::get('popular', [HomeController::class,'popular']);
+Route::post('popular', [HomeController::class,'popular']);
 Route::get('latest', [HomeController::class,'latest']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
