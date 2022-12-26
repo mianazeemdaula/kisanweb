@@ -31,6 +31,8 @@ class UserController extends Controller
             }
             if($request->has('email')){
                 $user->email = $request->email;
+            }if($request->has('mobile')){
+                $user->mobile = $request->mobile;
             }
             if($request->has('lat') && $request->has('lng')){
                 if(count($user->addresses) == 0){
