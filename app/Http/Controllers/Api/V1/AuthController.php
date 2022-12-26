@@ -20,9 +20,9 @@ class AuthController extends Controller
     {
         $request->validate([
             'mobile' => 'required',
-            'phone_uid' => 'required',
+            'firebase_uid' => 'required',
         ]);
-        $user = User::where('mobile', $request->mobile, 'phone_uid', $request->phone_uid)->first();
+        $user = User::where('mobile', $request->mobile, 'firebase_uid', $request->firebase_uid)->first();
         // if (! $user || ! Hash::check($request->password, $user->password)) {
         if (! $user) {
             return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
@@ -44,11 +44,12 @@ class AuthController extends Controller
             'lat' => 'required',
             'lng' => 'required',
             'address' => 'required',
-            'phone_uid' => 'required',
+            'firebase_uid' => 'required',
         ]);
         $user = new User();
         $user->name = $request->name;
         $user->mobile = $request->mobile;
+        $user->firebase_uid = $request->firebase_uid;
         $user->mobile_verified_at = Carbon::now();
         if($request->has('cnic')){
             $user->cnic = $request->cnic;
