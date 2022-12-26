@@ -16,7 +16,7 @@ class HomeController extends Controller
         return response()->json($data, 200);
     }
 
-    public function popular(Reqeust $reqeust)
+    public function popular(Request $reqeust)
     {
         $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
