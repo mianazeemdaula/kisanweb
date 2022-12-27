@@ -77,7 +77,6 @@ class AuthController extends Controller
         $request->validate([
             'token' => 'required',
             'provider' => 'required',
-            'email' => 'required|unique:users|email',
         ]);
         $provider = $request->provider;
         $token = $request->token;
@@ -89,6 +88,9 @@ class AuthController extends Controller
             'username' => $socialUser->name,
         ]);
         if(!$social->user){
+            $request->validate([
+                'email' => 'required|unique:users|email',
+            ]);
             $user = new User();
             $user->name = $socialUser->name;
             $user->email = $socialUser->getEmail();
