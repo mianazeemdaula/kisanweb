@@ -88,10 +88,13 @@ class AuthController extends Controller
             'username' => $socialUser->name,
         ]);
         if(!$social->user){
-            $mail = $socialUser->getEmail();
-            if(!User::where('email',$mail)->first()){
-                return response()->json(['message'=> 'The email is already register'], 422);
-            }
+            // $mail = $socialUser->getEmail();
+            // if(!User::where('email',$mail)->first()){
+            //     return response()->json(['message'=> 'The email is already register'], 422);
+            // }
+            $request->validate([
+                'email' => 'required|unique:users|email',
+            ]);
             $user = new User();
             $user->name = $socialUser->name;
             $user->email = $socialUser->getEmail();
