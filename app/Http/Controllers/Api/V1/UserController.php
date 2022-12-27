@@ -28,6 +28,7 @@ class UserController extends Controller
             $user= $request->user();
             $this->validate($request, [
                 'mobile'=> "sometimes|unique:users,mobile,{$user->mobile}",
+                'email'=> "sometimes|unique:users,email,{$user->email}",
             ]);
             if($request->has('fcm_token')){
                 $user->fcm_token = $request->fcm_token;
