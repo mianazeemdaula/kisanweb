@@ -18,6 +18,7 @@
         "matanyadaev/laravel-eloquent-spatial": "^2.7",
         "mll-lab/laravel-graphiql": "^1.0",
         "nuwave/lighthouse": "^5.67",
+        "staudenmeir/belongs-to-through": "^2.12",
         "symfony/filesystem": "^6.2"
     },
     "require-dev": {

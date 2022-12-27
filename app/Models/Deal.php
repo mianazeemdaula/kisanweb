@@ -14,6 +14,8 @@ use \JordanMiguel\LaravelPopular\Traits\Visitable;
 class Deal extends Model
 {
     use HasFactory, Visitable;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
+
     
     protected $casts = [
         'location' => Point::class,
@@ -57,6 +59,11 @@ class Deal extends Model
     public function type()
     {
         return $this->belongsTo(CropType::class, 'crop_type_id');
+    }
+
+    public function crops()
+    {
+        return $this->belongsToThrough(Crop::class,CropType::class);
     }
     
     /**
