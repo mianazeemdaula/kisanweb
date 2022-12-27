@@ -97,7 +97,6 @@ class AuthController extends Controller
             $user->email = $socialUser->getEmail();
             $user->image = $socialUser->getAvatar();
             $user->email_verified_at = Carbon::now();
-            // $user->password = bcrypt($request->password);
             $user->save();
         }else{
             $user = $social->user;
