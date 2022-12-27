@@ -22,7 +22,7 @@ class AuthController extends Controller
             'mobile' => 'required',
             'firebase_uid' => 'required',
         ]);
-        $user = User::where('mobile', $request->mobile, 'firebase_uid', $request->firebase_uid)->first();
+        $user = User::where('mobile', $request->mobile)->where('firebase_uid', $request->firebase_uid)->first();
         // if (! $user || ! Hash::check($request->password, $user->password)) {
         if (! $user) {
             return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
