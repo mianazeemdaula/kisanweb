@@ -35,8 +35,10 @@ class UserController extends Controller
             }
             if($request->has('email')){
                 $user->email = $request->email;
+                $user->email_verified_at = null;
             }if($request->has('mobile')){
                 $user->mobile = $request->mobile;
+                $user->mobile_verified_at = null;
             }
             if($request->has('lat') && $request->has('lng')){
                 if(count($user->addresses) == 0){
@@ -50,6 +52,7 @@ class UserController extends Controller
             }
             if($request->has('cnic')){
                 $user->cnic = $request->cnic;
+                $user->cnic_verified_at = null;
             }
             if($request->has('name')){
                 $user->name = $request->name;
