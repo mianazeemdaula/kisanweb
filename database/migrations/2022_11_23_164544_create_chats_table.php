@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('deal_id');
             $table->unsignedBigInteger('buyer_id');
             $table->timestamps();
+            $table->foreign('deal_id')->references('id')->on('deals')->onDelete('cascade');
+            $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

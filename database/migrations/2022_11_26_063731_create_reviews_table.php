@@ -21,6 +21,8 @@ return new class extends Migration
             $table->tinyInteger('type')->default(0); // 0 as seller 1 as buyer
             $table->float('rating');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('review_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('status')->default('open');
             $table->unsignedBigInteger('accept_bid_id')->nullable();
             $table->timestamps();
+            $table->foreign('crop_type_id')->references('id')->on('crop_types')->onDelete('cascade');
+            $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('packing_id')->references('id')->on('packings')->onDelete('cascade');
         });
     }
 

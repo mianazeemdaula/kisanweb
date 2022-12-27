@@ -21,6 +21,7 @@ return new class extends Migration
             $table->point('location');
             $table->boolean('default')->default(true);
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
