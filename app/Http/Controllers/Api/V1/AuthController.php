@@ -39,7 +39,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'mobile' => 'required|unique:users',
-            'cnic' => 'sometimes|min:13',
+            'cnic' => 'sometimes|unique:users|min:13',
             'email' => 'sometimes|unique:users|email',
             'lat' => 'required',
             'lng' => 'required',
