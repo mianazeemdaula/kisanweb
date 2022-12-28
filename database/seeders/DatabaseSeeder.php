@@ -32,8 +32,17 @@ class DatabaseSeeder extends Seeder
         \App\Models\Packing::insert([
             ['name' => 'open','key'=>'wheat','name_ur'=>'کھولی'],
             ['name' => 'tora','key'=>'wheat','name_ur'=>'توڑا'],
-            ['name' => 'jali','key'=>'wheat','name_ur'=>'بوری'],
+            ['name' => 'jali','key'=>'wheat','name_ur'=>'جالی'],
             ['name' => 'bori','key'=>'wheat','name_ur'=>'بوری'],
+        ]);
+
+        \App\Models\WeightType::insert([
+            ['name' => 'kg','key'=>'kg','name_ur'=>'کلوگرام'],
+            ['name' => 'mund','key'=>'mund','name_ur'=>'من'],
+            ['name' => 'tora','key'=>'tora','name_ur'=>'توڑا'],
+            ['name' => 'jali','key'=>'jali','name_ur'=>'جالی'],
+            ['name' => 'bori','key'=>'bori','name_ur'=>'بوری'],
+            ['name' => 'acre','key'=>'acre','name_ur'=>'ایکٹر'],
         ]);
         \App\Models\Deal::factory(150)->create();
         \App\Models\Bid::factory(300)->create();

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('crop_type_id');
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('packing_id');
+            $table->unsignedBigInteger('weight_type_id');
             $table->string('note');
             $table->float('demand');
             $table->unsignedInteger('qty');
-            $table->string('weight_scale')->default('mann');
             $table->point('location');
             $table->string('status')->default('open');
             $table->unsignedBigInteger('accept_bid_id')->nullable();
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreign('crop_type_id')->references('id')->on('crop_types')->onDelete('cascade');
             $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('packing_id')->references('id')->on('packings')->onDelete('cascade');
+            $table->foreign('weight_type_id')->references('id')->on('weight_types')->onDelete('cascade');
         });
     }
 

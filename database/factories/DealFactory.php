@@ -21,6 +21,7 @@ class DealFactory extends Factory
             'crop_type_id' => fake()->numberBetween(1,50),
             'seller_id' => fake()->numberBetween(1,50),
             'packing_id' => fake()->numberBetween(1,4),
+            'weight_type_id' => fake()->numberBetween(1,6),
             'demand' => fake()->numberBetween(100000,20000),
             'qty' => fake()->numberBetween(50,999),
             'note' => fake()->word(15),

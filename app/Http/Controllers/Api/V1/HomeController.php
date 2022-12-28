@@ -37,7 +37,7 @@ class HomeController extends Controller
         }
         $data = $query->with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'media', 'type.crop'])->paginate();
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])->paginate();
         return response()->json($data, 200);
     }
 
@@ -46,7 +46,7 @@ class HomeController extends Controller
         $user = auth()->user();
         $data = Deal::with(['bids' => function($q) use($user) {
             $q->with(['buyer'])->where('buyer_id', $user->id);
-        }, 'seller', 'packing', 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
+        }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
         return response()->json($data, 200);
     }
 }
