@@ -99,6 +99,6 @@ class User extends Authenticatable
 
     public function getRatingAttribute()
     {
-        return $this->reviews()->avg('rating') ?? 0;
+        return number_format($this->reviews()->avg('rating') ?? 0, 1);
     }
 }
