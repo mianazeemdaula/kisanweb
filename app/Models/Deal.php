@@ -51,6 +51,11 @@ class Deal extends Model
         return $this->belongsTo(Packing::class, 'packing_id');
     }
 
+    public function weight()
+    {
+        return $this->belongsTo(WeightType::class, 'packing_id');
+    }
+
     /**
      * Get the user that owns the Offer
      *
