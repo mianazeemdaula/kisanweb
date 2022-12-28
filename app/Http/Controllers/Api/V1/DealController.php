@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use MatanYadaev\EloquentSpatial\Objects\Point;
+use App\Helper\MediaHelper;
 
 // Models
 use App\Models\Deal;
@@ -50,6 +51,7 @@ class DealController extends Controller
             'qty' => 'required',
             'lat' => 'required',
             'lng' => 'required',
+            'images[]' => 'required',
         ]);
         $deal = new Deal();
         $deal->seller_id = $request->user()->id;
@@ -61,6 +63,9 @@ class DealController extends Controller
         $deal->qty = $request->qty;
         $deal->location = new Point($request->lat,$request->lng);
         $deal->save();
+        foreach ($image as $request->images) {
+            MediaHelper::save($image, $deal);
+        }
         return  response()->json($deal, 200);
     }
 
