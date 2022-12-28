@@ -80,7 +80,7 @@ class DealController extends Controller
     {
         $deal = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'media', 'type.crop'])->find($id);
+        }, 'seller', 'packing', 'weight' ,'media', 'type.crop'])->find($id);
         $deal->visit();
         return response()->json($deal, 200);
     }
