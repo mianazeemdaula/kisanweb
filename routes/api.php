@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\BidController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\MediaController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\DataController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,7 +46,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Author Profile
     Route::get('user/profile',[UserController::class,'profile']);
     Route::post('user/update',[UserController::class,'updateUser']);
-    // 
+    
+    // Data
+    Route::get('data/create-deal', [DataController::class,'getCreateDealData']);
     
     Route::post('user-deals', [HomeController::class,'userDeals']);
     // Rest

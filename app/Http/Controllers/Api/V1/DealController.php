@@ -44,9 +44,9 @@ class DealController extends Controller
             'crop_id' => 'required|integer',
             'crop_type_id' => 'required|integer',
             'packing_id' => 'required|integer',
+            'weight_type_id' => 'required',
             'demand' => 'required',
-            'weight_scale' => 'required',
-            'description' => 'required',
+            'note' => 'required',
             'qty' => 'required',
             'lat' => 'required',
             'lng' => 'required',
@@ -56,12 +56,12 @@ class DealController extends Controller
         $deal->crop_type_id = $request->crop_type_id;
         $deal->packing_id = $request->packing_id;
         $deal->demand = $request->demand;
-        $deal->weight_scale = $request->weight_scale;
-        $deal->note = $request->description;
+        $deal->weight_type_id = $request->weight_type_id;
+        $deal->note = $request->note;
         $deal->qty = $request->qty;
         $deal->location = new Point($request->lat,$request->lng);
         $deal->save();
-        return  response()->json($deal, 200,);
+        return  response()->json($deal, 200);
     }
 
     /**
