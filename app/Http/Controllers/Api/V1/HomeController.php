@@ -28,7 +28,12 @@ class HomeController extends Controller
         }
         if($reqeust->lat && $reqeust->lng){
             $point = new Point($reqeust->lat, $reqeust->lng, 4326);
-          return  $query->whereDistance('location', $point , '<', 10)->count();
+            $query->whereDistance('location', $point , '<', 10)->count();
+        }
+        if($reqeust->sortype){
+            // $query->orderBy();
+        }else{
+            $query->orderBy('id', 'desc');
         }
         $data = $query->with(['bids' => function($q){
             $q->with(['buyer']);
