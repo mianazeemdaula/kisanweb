@@ -15,4 +15,11 @@ class Media extends Model
     {
         return $this->morphTo();
     }
+
+    protected function path(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Str::startsWith($value, "http") ? $value :  url($value),
+        );
+    }
 }
