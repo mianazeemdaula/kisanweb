@@ -41,9 +41,12 @@ class HomeController extends Controller
         return response()->json($data, 200);
     }
 
-    public function latest()
+    public function userDeals()
     {
-        $data = Deal::with(['bids'])->orderBy('id','desc')->paginate();
+        $user = auth()->user();
+        $data = $query->with(['bids' => function($q) use($user) {
+            $q->with(['buyer'])->where('buyer_id', $user->id);
+        }, 'seller', 'packing', 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
         return response()->json($data, 200);
     }
 }

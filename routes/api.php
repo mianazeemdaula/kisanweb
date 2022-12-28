@@ -45,6 +45,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Author Profile
     Route::get('user/profile',[UserController::class,'profile']);
     Route::post('user/update',[UserController::class,'updateUser']);
+    // 
+    
+    Route::post('user-deals', [HomeController::class,'userDeals']);
     // Rest
     Route::resource('deal', DealController::class);
     Route::resource('bid', BidController::class);
