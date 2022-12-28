@@ -44,7 +44,7 @@ class HomeController extends Controller
     public function userDeals()
     {
         $user = auth()->user();
-        $data = $query->with(['bids' => function($q) use($user) {
+        $data = Deal::with(['bids' => function($q) use($user) {
             $q->with(['buyer'])->where('buyer_id', $user->id);
         }, 'seller', 'packing', 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
         return response()->json($data, 200);
