@@ -17,7 +17,7 @@ class MediaFactory extends Factory
     public function definition()
     {
         return [
-            'path' => fake()->imageUrl(576, 720, 'animals', true, 'cats'),
+            'path' => "https://picsum.photos/250?image=".fake()->numberBetween(20,200),
             'ext' => 'jpg',
             'blursh' => 'LENBb?%2}@.5R$InIA%M?btBk-xc',
             'mediaable_id' =>fake()->numberBetween(1,300),
