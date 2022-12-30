@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Events\ChatMessage;
 // Models
 use App\Models\Chat;
 
@@ -44,7 +45,23 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $this->validate($request,[
+                'chat_id' => 'required',
+                'message' => 'required',
+                'type' => 'required'
+            ]);
+            $user = $request->user();
+            $message = new Message();
+            $message->chat_id = $request->chat_id;
+            $message->user_id = $request->user_id;
+            $message->message = $request->message;
+            $message->type = $request->type;
+            $message->save();
+            ChatMessageEvent::disptach($message);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
@@ -55,7 +72,9 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Message::with(['sender'])->where('chat_id',$id)->paginate();
+        return response()->json($data, 200);
+
     }
 
     /**
