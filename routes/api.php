@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\BidController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\MediaController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\InboxController;
 use App\Http\Controllers\Api\V1\DataController;
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +55,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Rest
     Route::resource('deal', DealController::class);
     Route::resource('bid', BidController::class);
+    Route::resource('inbox', InboxController::class);
 });
