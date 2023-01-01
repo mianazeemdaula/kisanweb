@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\MediaController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\InboxController;
+use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\DataController;
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Author Profile
     Route::get('user/profile',[UserController::class,'profile']);
     Route::post('user/update',[UserController::class,'updateUser']);
+    Route::post('user/delete',[UserController::class,'deleteAccount']);
     
     // Data
     Route::get('data/create-deal', [DataController::class,'getCreateDealData']);
@@ -56,4 +58,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('deal', DealController::class);
     Route::resource('bid', BidController::class);
     Route::resource('inbox', InboxController::class);
+    Route::resource('chat', ChatController::class);
 });

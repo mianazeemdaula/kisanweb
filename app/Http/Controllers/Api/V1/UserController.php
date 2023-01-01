@@ -74,4 +74,11 @@ class UserController extends Controller
             throw $th;
         }
     }
+
+    public function deleteAccount(Request $request)
+    {
+        $user = $request->user();
+        $user->delete();
+        return response()->json($data, 200);
+    }
 }

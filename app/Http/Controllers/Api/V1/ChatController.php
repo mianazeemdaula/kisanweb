@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Events\ChatMessage;
+use App\Events\ChatMessageEvent;
 // Models
-use App\Models\Chat;
+use App\Models\Message;
 
 class ChatController extends Controller
 {
@@ -54,13 +54,15 @@ class ChatController extends Controller
             $user = $request->user();
             $message = new Message();
             $message->chat_id = $request->chat_id;
-            $message->user_id = $request->user_id;
+            $message->sender_id = $user->id;
             $message->message = $request->message;
             $message->type = $request->type;
             $message->save();
-            ChatMessageEvent::disptach($message);
+            // return $request->all();
+            ChatMessageEvent::dispatch($message);
+            return response()->json($message, 200);
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
     }
 
