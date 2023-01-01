@@ -25,11 +25,14 @@ class InboxController extends Controller
             'deal_id' => 'required',
             'buyer_id' => 'required',
         ]);
-        $data = Chat::updateOrCreate([
-            'deal_id' => $request->deal_id,
-            'buyer_id' => $request->buyer_id
-        ]);
-        $data = $data->with(['deal','buyer']);
+        $chat = Chat::where('deal_id', $request->deal_id)->where('buyer_id', $buyer_id)->first();
+        if(!$chat){
+            $chat = new Chat();
+            $chat->deal_id = $request->deal_id;
+            $chat->deal_id = $request->deal_id;
+            $chat->save();
+        }
+        $data = Chat::with(['deal','buyer'])->find($chat->id);
         return response()->json($data, 200);
     }
 }
