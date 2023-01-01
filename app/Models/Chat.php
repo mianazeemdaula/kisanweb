@@ -12,6 +12,10 @@ class Chat extends Model
     use HasFactory;
 
     protected $fillable = ['deal_id','buyer_id'];
+    protected $casts = [
+        'deal_id' => 'integer',
+        'buyer_id' => 'integer',
+    ];
 
     public function deal(): BelongsTo
     {
