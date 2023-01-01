@@ -58,6 +58,7 @@ class ChatController extends Controller
             $message->message = $request->message;
             $message->type = $request->type;
             $message->save();
+            $message = $message->with('sender')->first();
             // return $request->all();
             ChatMessageEvent::dispatch($message);
             return response()->json($message, 200);
