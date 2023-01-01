@@ -25,7 +25,7 @@ class InboxController extends Controller
             'deal_id' => 'required',
             'buyer_id' => 'required',
         ]);
-        $chat = Chat::where('deal_id', $request->deal_id)->where('buyer_id', $buyer_id)->first();
+        $chat = Chat::where('deal_id', $request->deal_id)->where('buyer_id', $request->buyer_id)->first();
         if(!$chat){
             $chat = new Chat();
             $chat->deal_id = $request->deal_id;
