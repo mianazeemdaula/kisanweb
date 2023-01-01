@@ -10,6 +10,12 @@ class Message extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'chat_id' => 'integer',
+        'sender_id' => 'integer',
+        'type' => 'integer',
+    ];
+
     public function sender(): BelongsTo
     {
         return $this->belongsTo(User::class, 'sender_id');
