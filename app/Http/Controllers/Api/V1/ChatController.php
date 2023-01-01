@@ -75,7 +75,7 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        $data = Message::with(['sender'])->where('chat_id',$id)->orderBy('id','desc')->paginate();
+        $data = Message::where('chat_id',$id)->orderBy('id','desc')->paginate();
         return response()->json($data, 200);
 
     }
