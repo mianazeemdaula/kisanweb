@@ -29,7 +29,7 @@ class InboxController extends Controller
         if(!$chat){
             $chat = new Chat();
             $chat->deal_id = $request->deal_id;
-            $chat->deal_id = $request->deal_id;
+            $chat->buyer_id = $request->buyer_id;
             $chat->save();
         }
         $data = Chat::with(['deal','buyer'])->find($chat->id);
