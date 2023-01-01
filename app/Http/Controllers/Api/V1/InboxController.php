@@ -29,7 +29,7 @@ class InboxController extends Controller
             'deal_id' => $request->deal_id,
             'buyer_id' => $request->buyer_id
         ]);
-        $data = $data->with(['deal','buyer'])->first();
+        $data = $data->with(['deal','buyer']);
         return response()->json($data, 200);
     }
 }
