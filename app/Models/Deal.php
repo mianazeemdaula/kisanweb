@@ -21,6 +21,7 @@ class Deal extends Model
         'location' => Point::class,
         'crop_type_id' => 'integer',
         'seller_id' => 'integer',
+        'accept_bid_id' => 'integer',
         'packing_id' => 'integer',
         'demand' => 'integer',
         'qty' => 'integer',
