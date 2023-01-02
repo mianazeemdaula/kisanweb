@@ -87,7 +87,14 @@ class BidController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'bid_id' => 'required'
+        ]);
+        $bid = Bid::find($request->bid_id);
+        $bid->status = 'accepted';
+        $bid->accept_bid_id = $id;
+        $bid->save();
+        return response()->json($bid, 200);
     }
 
     /**
