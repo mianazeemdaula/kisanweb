@@ -123,4 +123,13 @@ class DealController extends Controller
     {
         //
     }
+
+    public function history()
+    {
+        $user = auth()->user();
+        $data = Deal::with(['bids' => function($q){
+            $q->with(['buyer']);
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
+        return response()->json($data, 200);
+    }
 }
