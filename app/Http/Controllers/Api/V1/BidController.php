@@ -52,11 +52,13 @@ class BidController extends Controller
             $bid->buyer_id = $request->user()->id;
             $bid->bid_price = $request->bid_price;
             $bid->save();
-            DealUpdateEvent::dispatch($request->deal_id);
-            return response()->json($bid, 200);
         }else{
-            return response()->json(['message'=> 'You have already bid'], 409);
+            $bid->bid_price = $request->bid_price;
+            $bid->save();
         }
+        DealUpdateEvent::dispatch($request->deal_id);
+        return response()->json($bid, 200);
+        
         
     }
 
