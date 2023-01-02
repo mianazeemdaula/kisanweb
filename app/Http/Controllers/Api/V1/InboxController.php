@@ -17,7 +17,7 @@ class InboxController extends Controller
             $q->with(['buyer']);
         }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])
         ->whereHas('chats')
-        ->whereHas('buyer',function($q) use($user){
+        ->whereHas('bids',function($q) use($user){
             $q->where('buyer_id', $user->id);
         })
         ->orWhere('seller_id', $user->id)->paginate();
