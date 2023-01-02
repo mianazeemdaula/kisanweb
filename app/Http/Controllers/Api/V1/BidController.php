@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 // Models
 use App\Models\Bid;
+use App\Models\Deal;
 
 class BidController extends Controller
 {
@@ -88,9 +89,9 @@ class BidController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'bid_id' => 'required'
+            'deal_id' => 'required'
         ]);
-        $bid = Bid::find($request->bid_id);
+        $bid = Deal::find($request->deal_id);
         $bid->status = 'accepted';
         $bid->accept_bid_id = $id;
         $bid->save();
