@@ -81,6 +81,11 @@ class Deal extends Model
         return $this->hasMany(Bid::class);
     }
 
+    public function chats(): HasMany
+    {
+        return $this->hasMany(Chat::class);
+    }
+
     public function media()
     {
         return $this->morphMany(Media::class, 'mediaable');
