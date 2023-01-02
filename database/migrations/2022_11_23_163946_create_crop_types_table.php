@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('crop_id');
             $table->string('name');
             $table->string('code')->nullable();
+            $table->smallInteger('sort')->default(1);
             $table->timestamps();
+            $table->foreign('crop_id')->references('id')->on('crops')->onDelete('cascade');
         });
     }
 
