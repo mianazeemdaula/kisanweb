@@ -57,6 +57,10 @@ class UserController extends Controller
             if($request->has('name')){
                 $user->name = $request->name;
             }
+
+            if($request->has('type')){
+                $user->type = $request->type;
+            }
             if($request->has('image')){
                 $file = $request->image;
                 $ext = $file->getClientOriginalExtension();

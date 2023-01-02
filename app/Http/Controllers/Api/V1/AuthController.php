@@ -45,11 +45,13 @@ class AuthController extends Controller
             'lng' => 'required',
             'address' => 'required',
             'firebase_uid' => 'required',
+            'type' => 'required',
         ]);
         $user = new User();
         $user->name = $request->name;
         $user->mobile = $request->mobile;
         $user->firebase_uid = $request->firebase_uid;
+        $user->type = $request->type;
         $user->mobile_verified_at = Carbon::now();
         if($request->has('cnic')){
             $user->cnic = $request->cnic;
