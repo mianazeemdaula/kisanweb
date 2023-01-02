@@ -92,6 +92,9 @@ class BidController extends Controller
             'deal_id' => 'required'
         ]);
         $bid = Deal::find($request->deal_id);
+        if($bid->accept_bid_id != null){
+            return response()->json($bid, 409);
+        }
         $bid->status = 'accepted';
         $bid->accept_bid_id = $id;
         $bid->save();
