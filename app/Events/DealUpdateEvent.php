@@ -42,6 +42,6 @@ class DealUpdateEvent implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'deal.created';
+        return 'deal.updated';
     }
 }
