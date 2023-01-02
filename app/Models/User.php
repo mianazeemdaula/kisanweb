@@ -63,7 +63,7 @@ class User extends Authenticatable
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => Str::startsWith($value, "http") ? ($value ?? null) :  url($value),
+            get: fn ($value) => Str::startsWith($value, "http") ? $value : ( $value == null ? "https://ui-avatars.com/api/?name=A+B" : url($value)),
         );
     }
 
