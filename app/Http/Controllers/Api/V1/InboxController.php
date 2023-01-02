@@ -14,9 +14,13 @@ class InboxController extends Controller
     {
         $user = auth()->user();
         $data = Deal::with(['bids' => function($q) use($user) {
-            $q->with(['buyer'])->where('buyer_id', $user->id);
+            $q->with(['buyer']);
         }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])
-        ->whereHas('chats')->where('seller_id', $user->id)->paginate();
+        ->whereHas('chats')
+        ->whereHas('buyer',function($q) use($user){
+            $q->where('buyer_id', $user->id);
+        })
+        ->orWhere('seller_id', $user->id)->paginate();
         return response()->json($data, 200);
     }
 
