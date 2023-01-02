@@ -98,7 +98,7 @@ class BidController extends Controller
         ]);
         $bid = Deal::find($request->deal_id);
         if($bid->accept_bid_id != null){
-            return response()->json($bid, 409);
+            return response()->json(['message'=>'You have already accepted'], 409);
         }
         $bid->status = 'accepted';
         $bid->accept_bid_id = $id;
