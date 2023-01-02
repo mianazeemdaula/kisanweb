@@ -16,7 +16,9 @@ class InboxController extends Controller
         $data = Deal::with(['bids' => function($q) use($user) {
             $q->with(['buyer']);
         }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])
-        ->whereHas('chats')
+        ->orWhereHas('chats', function($q) use($user) {
+            $q->where('buyer_id', $user->id);
+        })
         ->where('seller_id', $user->id)->paginate();
         return response()->json($data, 200);
     }
