@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+use App\Events\DealUpdateEvent;
 // Models
 use App\Models\Bid;
 use App\Models\Deal;
@@ -50,6 +52,7 @@ class BidController extends Controller
             $bid->buyer_id = $request->user()->id;
             $bid->bid_price = $request->bid_price;
             $bid->save();
+            DealUpdateEvent::dispatch($request->deal_id);
             return response()->json($bid, 200);
         }else{
             return response()->json(['message'=> 'You have already bid'], 409);
@@ -98,6 +101,7 @@ class BidController extends Controller
         $bid->status = 'accepted';
         $bid->accept_bid_id = $id;
         $bid->save();
+        DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($bid, 200);
     }
 

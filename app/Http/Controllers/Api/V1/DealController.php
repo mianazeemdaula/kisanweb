@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use App\Helper\MediaHelper;
+use App\Events\DealUpdateEvent;
 
 // Models
 use App\Models\Deal;
@@ -70,6 +71,7 @@ class DealController extends Controller
         foreach ($request->file('images') as $image) {
             MediaHelper::save($image, $deal);
         }
+        DealUpdateEvent::dispatch($deal->id);
         return  response()->json($deal, 200);
     }
 
