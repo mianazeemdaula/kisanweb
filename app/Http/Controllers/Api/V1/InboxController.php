@@ -38,4 +38,10 @@ class InboxController extends Controller
         $data = Chat::with(['deal','buyer'])->find($chat->id);
         return response()->json($data, 200);
     }
+
+    public function show($id)
+    {
+        $data = Chat::with(['deal','buyer'])->where('deal_id',$id)->paginate();
+        return response()->json($data, 200);
+    }
 }
