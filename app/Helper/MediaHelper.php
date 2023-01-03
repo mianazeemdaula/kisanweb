@@ -1,16 +1,18 @@
 <?php
 namespace App\Helper;
 
+use Illuminate\Support\Str;
 
 use kornrunner\Blurhash\Blurhash;
 use App\Models\Media;
+
 use Image;
 
 class MediaHelper {
     static public function save($file, $model,$path = 'offers')
     {
         $ext = $file->getClientOriginalExtension();
-        $fileName = $model->id."_".time().'.'.$ext;
+        $fileName = $model->id."_".Str::random(10).'.'.$ext;
         $path = "$path/".$fileName;
         $blurhash = "LrJaflIUENE1_2RjRQR*?wM{V?ad";
         if(in_array($ext, ['mp4'])){

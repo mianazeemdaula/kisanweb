@@ -68,8 +68,8 @@ class DealController extends Controller
         $deal->qty = $request->qty;
         $deal->location = new Point($request->lat,$request->lng);
         $deal->save();
-        foreach ($request->file('images') as $key => $image) {
-            MediaHelper::save($image, $deal);
+        foreach ($request->file('images') as $key => $file) {
+            MediaHelper::save($file, $deal);
         }
         DealUpdateEvent::dispatch($deal->id);
         return  response()->json($deal, 200);
