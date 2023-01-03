@@ -10,7 +10,7 @@ class MediaHelper {
     static public function save($file, $model,$path = 'offers')
     {
         $ext = $file->getClientOriginalExtension();
-        $fileName = time().'.'.$ext;
+        $fileName = $model->id."_".time().'.'.$ext;
         $path = "$path/".$fileName;
         $blurhash = "LrJaflIUENE1_2RjRQR*?wM{V?ad";
         if(in_array($ext, ['mp4'])){
