@@ -83,6 +83,6 @@ class UserController extends Controller
     {
         $user = $request->user();
         $user->delete();
-        return response()->json($data, 200);
+        return response()->json(['message'=>'Account deleted successfully'], 200);
     }
 }
