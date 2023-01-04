@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('crop_type_id');
             $table->unsignedBigInteger('seller_id');
-            $table->unsignedBigInteger('packing_id');
+            $table->unsignedBigInteger('packing_id')->nullable();
             $table->unsignedBigInteger('weight_type_id');
             $table->string('note');
             $table->float('demand');
