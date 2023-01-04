@@ -11,6 +11,8 @@ class Review extends Model
 {
     use HasFactory;
 
+    protected $with = ['user', 'reviewer'];
+
     /**
      * Get the user that owns the Review
      *
