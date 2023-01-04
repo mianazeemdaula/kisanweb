@@ -72,43 +72,39 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $this->validate($request,[
-                'deal_id' => $request->deal_id,
-                'content' => $request->content,
-                'rating' => $request->rating,
-            ]);
-            $user = auth()->user();
-            $deal = Deal::find($request->deal_id);
-            if($deal->accept_bid_id){
-                $type = 0;
-                $review = new Review();
-                // seller to buyer review
-                if($user->id == $deal->seller_id){
-                    $review->user_id = $deal->acceptedBid->buyer->id;
-                    $review->review_by = $user->id;
-                }else{
-                    $review->user_id = $deal->seller_id;
-                    $review->review_by = $user->id;
-                    $type = 1;
-                }
-                $data = Review::where('user_id',$review->user_id)
-                ->where('review_by', $user->id)
-                ->where('deal_id', $request->deal_id)->first();
-                if($data){
-                    return response()->json(['message'=> 'Review already done'], 409);
-                }
-                $review->content = $request->content;
-                $review->rating = $request->rating;
-                $review->deal_id = $request->deal_id;
-                $review->type = $request->type;
-                $review->save();
-                $request->json($review,200);
+        $this->validate($request,[
+            'deal_id' => $request->deal_id,
+            'content' => $request->content,
+            'rating' => $request->rating,
+        ]);
+        $user = auth()->user();
+        $deal = Deal::find($request->deal_id);
+        if($deal->accept_bid_id){
+            $type = 0;
+            $review = new Review();
+            // seller to buyer review
+            if($user->id == $deal->seller_id){
+                $review->user_id = $deal->acceptedBid->buyer->id;
+                $review->review_by = $user->id;
             }else{
-                return response()->json(['message'=> 'Deal not accepted'], 409);
+                $review->user_id = $deal->seller_id;
+                $review->review_by = $user->id;
+                $type = 1;
             }
-        } catch (\Throwable $th) {
-            throw $th;
+            $data = Review::where('user_id',$review->user_id)
+            ->where('review_by', $user->id)
+            ->where('deal_id', $request->deal_id)->first();
+            if($data){
+                return response()->json(['message'=> 'Review already done'], 409);
+            }
+            $review->content = $request->content;
+            $review->rating = $request->rating;
+            $review->deal_id = $request->deal_id;
+            $review->type = $request->type;
+            $review->save();
+            $request->json($review,200);
+        }else{
+            return response()->json(['message'=> 'Deal not accepted'], 409);
         }
     }
 
