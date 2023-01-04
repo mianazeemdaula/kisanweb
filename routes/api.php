@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\MediaController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\InboxController;
 use App\Http\Controllers\Api\V1\ChatController;
+use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\DataController;
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +61,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('bid', BidController::class);
     Route::resource('inbox', InboxController::class);
     Route::resource('chat', ChatController::class);
+    Route::resource('review', ReviewController::class);
 });
