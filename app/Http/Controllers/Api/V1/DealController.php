@@ -127,9 +127,13 @@ class DealController extends Controller
     public function history()
     {
         $user = auth()->user();
+        $bidsDealIds = Bid::where('buyer_id', $user->id)->pluck('deal_id');
         $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reviews'])
+        ->where('seller_id', $user->id)
+        ->orWhereIn('id', $bidsDealIds)
+        ->paginate();
         return response()->json($data, 200);
     }
 }

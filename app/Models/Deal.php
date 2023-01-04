@@ -83,6 +83,11 @@ class Deal extends Model
         return $this->hasMany(Bid::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+    
     public function acceptedBid(): HasOne
     {
         return $this->hasOne(Bid::class, 'id','accept_bid_id');
