@@ -55,7 +55,7 @@ class Deal extends Model
 
     public function weight()
     {
-        return $this->belongsTo(WeightType::class, 'packing_id');
+        return $this->belongsTo(WeightType::class, 'weight_type_id');
     }
 
     /**
