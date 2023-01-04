@@ -39,9 +39,9 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'deal_id' => $request->deal_id,
-            'content' => $request->content,
-            'rating' => $request->rating,
+            'deal_id' =>'required',
+            'content' => 'required',
+            'rating' => 'required',
         ]);
         $user = auth()->user();
         $deal = Deal::find($request->deal_id);
