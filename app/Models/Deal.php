@@ -85,7 +85,7 @@ class Deal extends Model
 
     public function acceptedBid(): HasOne
     {
-        return $this->hasOne(Bid::class, 'accept_bid_id');
+        return $this->hasOne(Bid::class, 'id','accept_bid_id');
     }
 
     public function chats(): HasMany
