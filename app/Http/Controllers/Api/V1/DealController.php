@@ -56,7 +56,7 @@ class DealController extends Controller
             'qty' => 'required',
             'lat' => 'required',
             'lng' => 'required',
-            'address' => 'address',
+            'address' => 'required',
             'images' => 'required',
             'images.*' => 'required|mimes:jpg,jpeg,png',
         ]);
