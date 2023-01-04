@@ -66,7 +66,7 @@ class ReviewController extends Controller
             $review->content = $request->content;
             $review->rating = $request->rating;
             $review->deal_id = $request->deal_id;
-            $review->type = $request->type;
+            $review->type = $type;
             $review->save();
             $request->json($review,200);
         }else{
