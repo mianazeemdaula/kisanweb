@@ -44,7 +44,7 @@ class ReviewController extends Controller
             'rating' => 'required',
         ]);
         $user = auth()->user();
-        $deal = Deal::find($request->deal_id);
+        $deal = Deal::findOrFail($request->deal_id);
         if($deal->accept_bid_id){
             $type = 0;
             $review = new Review();
