@@ -8,6 +8,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use \JordanMiguel\LaravelPopular\Traits\Visitable;
 
 
@@ -80,6 +81,11 @@ class Deal extends Model
     public function bids(): HasMany
     {
         return $this->hasMany(Bid::class);
+    }
+
+    public function acceptedBid(): HasOne
+    {
+        return $this->hasOne(Bid::class, 'accept_bid_id');
     }
 
     public function chats(): HasMany
