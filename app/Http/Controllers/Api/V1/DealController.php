@@ -11,6 +11,7 @@ use App\Events\DealUpdateEvent;
 
 // Models
 use App\Models\Deal;
+use App\Models\Bid;
 
 class DealController extends Controller
 {
