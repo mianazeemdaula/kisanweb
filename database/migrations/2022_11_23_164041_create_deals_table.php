@@ -23,6 +23,7 @@ return new class extends Migration
             $table->float('demand');
             $table->unsignedInteger('qty');
             $table->point('location');
+            $table->string('address');
             $table->string('status')->default('open');
             $table->unsignedBigInteger('accept_bid_id')->nullable();
             $table->timestamps();

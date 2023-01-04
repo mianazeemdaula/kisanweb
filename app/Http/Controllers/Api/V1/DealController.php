@@ -55,6 +55,7 @@ class DealController extends Controller
             'qty' => 'required',
             'lat' => 'required',
             'lng' => 'required',
+            'address' => 'address',
             'images' => 'required',
             'images.*' => 'required|mimes:jpg,jpeg,png',
         ]);
@@ -67,6 +68,7 @@ class DealController extends Controller
         $deal->note = $request->note;
         $deal->qty = $request->qty;
         $deal->location = new Point($request->lat,$request->lng);
+        $deal->address = $request->address;
         $deal->save();
         foreach ($request->file('images') as $key => $file) {
             MediaHelper::save($file, $deal);

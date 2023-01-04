@@ -17,7 +17,9 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+        $data =  Review::where('user_id', $user->id)->orWhere('review_by', $user->id)->paginate();
+        return response()->json($data, 200);
     }
 
     /**
