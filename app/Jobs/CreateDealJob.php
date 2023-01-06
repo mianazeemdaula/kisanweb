@@ -50,7 +50,7 @@ class CreateDealJob implements ShouldQueue
                 'body' => "New Deal for ".$deal->type->crop->name,
                 'data' => json_encode(['id' => $deal->id, 'type' => 'deal', 'data'=> $deal]),
             ]);
-            $fcm = new FcmNotification();
+            // $fcm = new FcmNotification();
             // $fcm->setTitle($notif->title)->setBody($notif->body)->setIcon("icon.png")->setToken($user->fcm_token)->send();
         }
     }
