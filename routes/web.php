@@ -31,3 +31,7 @@ Route::get('app/fb-delete-data', function () {
 });
 
 
+Route::get('/test/{id}', function($id){
+ \App\Jobs\CreateDealJob::dispatch($id);
+});
+

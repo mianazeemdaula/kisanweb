@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use App\Helper\MediaHelper;
 use App\Events\DealUpdateEvent;
-
+use App\Jobs\CreateDealJob;
 // Models
 use App\Models\Deal;
 use App\Models\Bid;
+use App\Models\Notification;
 
 class DealController extends Controller
 {
@@ -75,6 +76,7 @@ class DealController extends Controller
             MediaHelper::save($file, $deal);
         }
         DealUpdateEvent::dispatch($deal->id);
+        CreateDealJob::dispatch($deal->id);
         return  response()->json($deal, 200);
     }
 

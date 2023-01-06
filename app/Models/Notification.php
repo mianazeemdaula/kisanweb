@@ -14,6 +14,8 @@ class Notification extends Model
         'data' => 'json',
     ];
 
+    protected $fillable = ['user_id', 'title', 'body', 'data'];
+
     /**
      * Get the user that owns the Offer
      *
