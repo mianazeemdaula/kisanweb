@@ -27,6 +27,10 @@ class AuthController extends Controller
         if (! $user) {
             return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
         }
+        if($request->has('fcm_token')){
+            $user->fcm_token = $request->fcm_token;
+            $user->save();
+        }
         $token = $user->createToken('login')->plainTextToken;
         $data['token'] = $token;
         $data['user'] = $user;
