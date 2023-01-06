@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-use Appy\FcmHttpV1\FcmNotification;
+use App\Helper\FCM;
 
 
 use App\Models\User;
@@ -50,8 +50,9 @@ class CreateDealJob implements ShouldQueue
                 'body' => "New Deal for ".$deal->type->crop->name,
                 'data' => json_encode(['id' => $deal->id, 'type' => 'deal', 'data'=> $deal]),
             ]);
-            $fcm = new FcmNotification();
-            $fcm->setTitle($notif->title)->setBody($notif->body)->setToken($user->fcm_token)->send();
+            FCM::sendNotification($notif);
+            // $fcm = new FcmNotification();
+            // $fcm->setTitle($notif->title)->setBody($notif->body)->setToken($user->fcm_token)->send();
         }
     }
 }
