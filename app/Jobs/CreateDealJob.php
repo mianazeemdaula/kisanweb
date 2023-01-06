@@ -42,7 +42,7 @@ class CreateDealJob implements ShouldQueue
             $q->with(['buyer']);
         }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
         ->find($this->dealId);
-        $users = User::where('id','!=',$deal->seller_id)->get();
+        $users = User::where('id','!=',$deal->seller_id)->whereNotNull('fcm_token')->get();
         foreach ($users as $user) {
             $notif =  Notification::create([
                 'user_id' => $user->id,
