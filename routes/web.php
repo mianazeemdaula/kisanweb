@@ -36,7 +36,7 @@ Route::get('/test/{id}', function($id){
 //  \App\Jobs\CreateDealJob::dispatch($id);
 $data = \App\Models\Notification::all();
 foreach ($data as $value) {
-    return \App\Helper\FCM::sendNotification($value);
+    \App\Helper\FCM::sendNotification($value);
 }
  return;
 $token = "eb50Ms5bSO-TMcouiXHC21:APA91bHBZau81GnRuYSy8FzG_9DEmd4y2KtWCh4aUKMUWgXDFGK48G3cugXuR82AscF77Nv93ky55zK4k7Tm9vOlv6ZmwlNXMRs8LZo8MHWSKWi0Or82LgfegF1CFI5HpbJG4xBy04FV";
