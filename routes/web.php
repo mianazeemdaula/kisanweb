@@ -34,7 +34,8 @@ Route::get('app/fb-delete-data', function () {
 
 Route::get('/test/{id}', function($id){
 //  \App\Jobs\CreateDealJob::dispatch($id);
-$data = \App\Models\Notification::all();
+$data = \App\Models\Notification::find($id);
+return \App\Helper\FCM::sendNotification($data);
 $res = [];
 foreach ($data as $value) {
     $res[] = \App\Helper\FCM::sendNotification($value);
