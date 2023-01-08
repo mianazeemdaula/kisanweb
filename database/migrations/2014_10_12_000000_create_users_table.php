@@ -28,6 +28,7 @@ return new class extends Migration
             $table->timestamp('cnic_verified_at')->nullable();
             $table->string('firebase_uid')->nullable();
             $table->string('status')->default('active');
+            $table->string('lang')->default('en');
             $table->rememberToken();
             $table->timestamps();
         });

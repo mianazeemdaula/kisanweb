@@ -24,7 +24,7 @@ class Deal extends Model
         'seller_id' => 'integer',
         'accept_bid_id' => 'integer',
         'packing_id' => 'integer',
-        'demand' => 'integer',
+        'demand' => 'float',
         'qty' => 'integer',
     ];
 
