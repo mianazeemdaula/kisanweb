@@ -12,6 +12,7 @@ class Notification extends Model
     
     protected $casts = [
         'data' => 'json',
+        'is_read '=> 'boolean',
     ];
 
     protected $fillable = ['user_id', 'title', 'body', 'data'];
