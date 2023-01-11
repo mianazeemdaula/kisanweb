@@ -56,7 +56,7 @@ class AuthController extends Controller
         $user->mobile = $request->mobile;
         $user->firebase_uid = $request->firebase_uid;
         $user->type = $request->type;
-        $user->image = null;
+        $user->image = "https://ui-avatars.com/api/?name=".str_replace(' ', '+', $request->name);
         $user->mobile_verified_at = Carbon::now();
         if($request->has('cnic')){
             $user->cnic = $request->cnic;
