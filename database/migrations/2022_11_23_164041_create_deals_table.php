@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('packing_id')->nullable();
             $table->unsignedBigInteger('weight_type_id');
             $table->string('note');
-            $table->float('demand');
+            $table->decimal('demand',12,2);
             $table->unsignedInteger('qty');
             $table->point('location');
             $table->string('address');

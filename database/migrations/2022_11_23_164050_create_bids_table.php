@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('deal_id');
             $table->unsignedBigInteger('buyer_id');
-            $table->float('bid_price');
+            $table->decimal('bid_price',12,2);
             $table->timestamps();
             $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('deal_id')->references('id')->on('deals')->onDelete('cascade');
