@@ -129,16 +129,19 @@ class DealController extends Controller
         //
     }
 
-    public function history()
+    public function history(Request $request)
     {
         $user = auth()->user();
-        $bidsDealIds = Bid::where('buyer_id', $user->id)->pluck('deal_id');
-        $data = Deal::with(['bids' => function($q){
+        $query = $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reviews'])
-        ->where('seller_id', $user->id)
-        ->orWhereIn('id', $bidsDealIds)
-        ->paginate();
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reviews']);
+        if($request->type && $request->type == 1){
+            $bidsDealIds = Bid::where('buyer_id', $user->id)->pluck('deal_id');
+            $query->where('seller_id', $user->id);
+        }else{
+            $query->orWhereIn('id', $bidsDealIds);
+        }
+        $data = $query->paginate();
         return response()->json($data, 200);
     }
 }

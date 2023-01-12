@@ -58,7 +58,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('user-deals', [HomeController::class,'userDeals']);
     // Rest
     Route::resource('deal', DealController::class);
-    Route::get('deals-history', [DealController::class, 'history']);
+    Route::post('deals-history', [DealController::class, 'history']);
     Route::resource('bid', BidController::class);
     Route::resource('inbox', InboxController::class);
     Route::resource('chat', ChatController::class);
