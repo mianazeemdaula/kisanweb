@@ -50,7 +50,7 @@ class DealController extends Controller
         $this->validate($request,[
             'crop_id' => 'required|integer',
             'crop_type_id' => 'required|integer',
-            'packing_id' => 'required|integer',
+            'packing_id' => 'sometimes|integer',
             'weight_type_id' => 'required',
             'demand' => 'required',
             'note' => 'required',
