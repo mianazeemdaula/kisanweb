@@ -120,4 +120,17 @@ class ReviewController extends Controller
     {
         //
     }
+
+    public function history(Request $request)
+    {
+        $user = auth()->user();
+        $query =  Review::with(['reviewer', 'user']);
+        if($request->type && $request->type == 1){
+            $query->where('user_id', $user->id);
+        }else{
+            $query->where('review_by', $user->id);
+        }
+        $data = $query->paginate();
+        return response()->json($data, 200);
+    }
 }
