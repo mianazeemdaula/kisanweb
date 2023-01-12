@@ -137,9 +137,9 @@ class DealController extends Controller
         }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reviews']);
         if($request->type && $request->type == 1){
             $bidsDealIds = Bid::where('buyer_id', $user->id)->pluck('deal_id');
-            $query->where('seller_id', $user->id);
+            $query->whereIn('id', $bidsDealIds);
         }else{
-            $query->orWhereIn('id', $bidsDealIds);
+            $query->where('seller_id', $user->id);
         }
         $data = $query->paginate();
         return response()->json($data, 200);
