@@ -27,7 +27,7 @@ class DealUpdateEvent implements ShouldBroadcast
     {
         $this->deal = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop','reactionsIds'])->find($id);
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])->find($id);
     }
 
     /**

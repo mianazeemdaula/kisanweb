@@ -17,6 +17,8 @@ class Deal extends Model
     use HasFactory, Visitable;
     use \Znck\Eloquent\Traits\BelongsToThrough;
 
+    protected $appends = ['reactionsIds'];
+
     
     protected $casts = [
         'location' => Point::class,
