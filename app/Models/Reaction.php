@@ -10,6 +10,10 @@ class Reaction extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'user_id' => 'int',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
