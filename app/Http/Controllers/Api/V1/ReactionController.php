@@ -40,8 +40,8 @@ class ReactionController extends Controller
     {
         $user = $request->user();
         $reaction = Reaction::where('user_id', $user->id)->where('deal_id', $request->deal_id)->first();
-        if($count){
-            $count->delete();
+        if($reaction){
+            $reaction->delete();
         }else{
             $reaction = new Reaction;
             $reaction->user_id = $user->id;
