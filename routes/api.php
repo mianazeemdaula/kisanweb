@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\InboxController;
 use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\ReviewController;
+use App\Http\Controllers\Api\V1\ReactionController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\DataController;
 /*
@@ -65,4 +66,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('review', ReviewController::class);
     Route::post('review-history', [ReviewController::class,'history']);
     Route::resource('notification', NotificationController::class);
+    Route::resource('reaction', ReactionController::class);
 });

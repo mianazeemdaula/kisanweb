@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Reaction;
+use App\Events\DealUpdateEvent;
+
 class ReactionController extends Controller
 {
     /**
@@ -14,7 +17,7 @@ class ReactionController extends Controller
      */
     public function index()
     {
-        return auth()->user()->favouriteTutors->pluck('id');
+        return auth()->user()->reactions->pluck('id');
     }
 
     /**
@@ -36,14 +39,17 @@ class ReactionController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        $count = $user->favouriteTutors()->wherePivot('tutor_id', $request->tutor)->count();
-
-        if ($count > 0)
-            $user->favouriteTutors()->detach($request->tutor);
-        else
-            $user->favouriteTutors()->attach($request->tutor);
-
-        return $user->favouriteTutors->pluck('id');
+        $reaction = Reaction::where('user_id', $user->id)->where('deal_id', $request->deal_id)->first();
+        if($count){
+            $count->delete();
+        }else{
+            $reaction = new Reaction;
+            $reaction->user_id = $user->id;
+            $reaction->deal_id = $request->deal_id;
+            $reaction->save();
+        }
+        DealUpdateEvent::dispatch($request->deal_id);
+        return response()->json($reaction, 200,);
     }
 
     /**
