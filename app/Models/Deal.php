@@ -105,7 +105,7 @@ class Deal extends Model
         return $this->hasMany(Reaction::class);
     }
 
-    public function reactionsIds()
+    public function getReactionIdsAttribute()
     {
         return $this->reactions()->pluck('user_id');
     }
