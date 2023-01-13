@@ -98,6 +98,11 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function reactions(): HasMany
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
     public function getRatingAttribute()
     {
         return number_format($this->reviews()->avg('rating') ?? 0, 1);

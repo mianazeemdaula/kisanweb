@@ -98,6 +98,16 @@ class Deal extends Model
         return $this->hasMany(Chat::class);
     }
 
+    public function reactions(): HasMany
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
+    public function reactionsIds()
+    {
+        return $this->reactions()->pluck('user_id');
+    }
+
     public function media()
     {
         return $this->morphMany(Media::class, 'mediaable');
