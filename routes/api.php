@@ -43,11 +43,13 @@ Route::resource('crop.type', CropTypeController::class);
 
 Route::resource('media', MediaController::class);
 
-Route::get('crops', [HomeController::class,'crops']);
-Route::post('popular', [HomeController::class,'popular']);
-Route::get('latest', [HomeController::class,'latest']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    
+    Route::get('crops', [HomeController::class,'crops']);
+    Route::post('popular', [HomeController::class,'popular']);
+    Route::get('latest', [HomeController::class,'latest']);
+
     // Author Profile
     Route::get('user/profile',[UserController::class,'profile']);
     Route::post('user/update',[UserController::class,'updateUser']);
