@@ -10,6 +10,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 use Image;
 // Models
 use App\Models\User;
+use App\Models\Review;
 use App\Models\Address;
 
 class UserController extends Controller
@@ -84,5 +85,18 @@ class UserController extends Controller
         $user = $request->user();
         $user->delete();
         return response()->json(['message'=>'Account deleted successfully'], 200);
+    }
+
+    public function reviews(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $query =  Review::with(['reviewer', 'user']);
+        if($request->type && $request->type == 1){
+            $query->where('review_by', $user->id);
+        }else{
+            $query->where('user_id', $user->id);
+        }
+        $data = $query->paginate();
+        return response()->json($data, 200);
     }
 }

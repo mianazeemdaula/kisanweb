@@ -52,6 +52,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user/profile',[UserController::class,'profile']);
     Route::post('user/update',[UserController::class,'updateUser']);
     Route::post('user/delete',[UserController::class,'deleteAccount']);
+    Route::post('user/reviews',[UserController::class,'reviews']);
     
     // Data
     Route::get('data/create-deal', [DataController::class,'getCreateDealData']);
