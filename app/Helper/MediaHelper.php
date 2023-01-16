@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 
 use kornrunner\Blurhash\Blurhash;
 use App\Models\Media;
+use App\Jobs\UpdateBlurshJob;
 
 use Image;
 
@@ -48,6 +49,7 @@ class MediaHelper {
             'ext' => $ext
         ]);
         $model->media()->save($media);
+        UpdateBlurshJob::dispatch($media->id);
         return ['hash' => $blurhash, 'image' => $path];
     }
 }
