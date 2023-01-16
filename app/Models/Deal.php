@@ -82,7 +82,7 @@ class Deal extends Model
      */
     public function bids(): HasMany
     {
-        return $this->hasMany(Bid::class);
+        return $this->hasMany(Bid::class)->latest();
     }
 
     public function reviews(): HasMany
