@@ -56,6 +56,7 @@ class BidController extends Controller
             $bid->bid_price = $request->bid_price;
             $bid->save();
         }
+        \App\Jobs\BidNotificationJob::dispatch($bid->deal_id);
         DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($bid, 200);
         
