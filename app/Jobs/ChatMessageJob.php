@@ -43,10 +43,10 @@ class ChatMessageJob implements ShouldQueue
         }else{
             $fcmToken = $msg->chat->buyer->fcm_token;
         }
-        $data = (array) json_decode([
+        $data =  [
             'type' => 'msg',
             'chat_id' => $msg->chat_id,
-        ]);
+        ];
         FCM::send([$fcmToken], 'title', 'body', $data);
     }
 }

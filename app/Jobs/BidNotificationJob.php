@@ -41,10 +41,10 @@ class BidNotificationJob implements ShouldQueue
                 $fcmTokens[] = $bid->buyer->fcm_token;
             }
         }
-        $data = (array) json_decode([
+        $data = [
             'type' => 'deal',
             'deal_id' => $deal->id,
-        ]);
+        ];
         FCM::send($fcmTokens, 'Deal update', 'Another bid', $data);
     }
 }
