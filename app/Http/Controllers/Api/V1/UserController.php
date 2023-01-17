@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyApiEmail;
 // Models
 use App\Models\User;
+use App\Models\PasswordReset;
 use App\Models\Review;
 use App\Models\Address;
 
@@ -107,28 +108,35 @@ class UserController extends Controller
     {
         $user= auth()->user();
         $code = rand(100000,999999);
-        DB::table('password_resets')->insert([
+        $data = PasswordReset::where('email', $user->email)->first();
+        if($data){
+            PasswordReset::where('email', $user->email)->delete();
+        }
+        PasswordReset::insert([
             'email' => $user->email,
             'token' => $code,
             'created_at' => now(),
         ]);
         Mail::to($user)->send(new VerifyApiEmail($code));
-        return response()->json($data, 200);
+        return response()->json(['message' => 'Email sent successfully'], 200);
     }
 
     public function verifyEmailVerifcationCode(Request $request)
     {
         $user= $request->user();
-        $data = DB::table('password_resets')->where('email', $user->email)->first();
+        $request->validate([
+            'token' => 'required|string|exists:password_resets',
+        ]);
+        $data = PasswordReset::where('email', $user->email)->first();
         if($data){
-            if($data->token == $request->token){
-                $user->email_verified_at = now();
-                $user->save();
-                $data->delete();
-                return response()->json($user, 200);
-            }else{
-                return response()->json(['message'=> 'verification code not matched'], 204);
+            if ($data->created_at->addMinutes(1) > now()) {
+                PasswordReset::where('email', $user->email)->delete();
+                return response(['message' => trans('passwords.code_is_expire')], 422);
             }
+            $user->email_verified_at = now();
+            $user->save();
+            PasswordReset::where('email', $user->email)->delete();
+            return response()->json($user, 200);
         }
         return response()->json(['message'=> 'email verification not in process'], 409);
     }
