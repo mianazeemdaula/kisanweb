@@ -55,6 +55,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('user/update',[UserController::class,'updateUser']);
     Route::post('user/delete',[UserController::class,'deleteAccount']);
     Route::post('user/reviews',[UserController::class,'reviews']);
+    Route::post('user/send-email-veri-code',[UserController::class,'sendEmailVerifcationCode']);
+    Route::post('user/verify-email-veri-code',[UserController::class,'verifyEmailVerifcationCode']);
     
     // Data
     Route::get('data/create-deal', [DataController::class,'getCreateDealData']);

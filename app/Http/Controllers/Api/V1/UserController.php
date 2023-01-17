@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use Image;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyApiEmail;
 // Models
 use App\Models\User;
 use App\Models\Review;
@@ -98,5 +101,35 @@ class UserController extends Controller
         }
         $data = $query->paginate();
         return response()->json($data, 200);
+    }
+
+    public function sendEmailVerifcationCode(Request $request)
+    {
+        $user= auth()->user();
+        $code = rand(100000,999999);
+        DB::table('password_resets')->insert([
+            'email' => $user->email,
+            'token' => $code,
+            'created_at' => now(),
+        ]);
+        Mail::to($user)->send(new VerifyApiEmail($code));
+        return response()->json($data, 200);
+    }
+
+    public function verifyEmailVerifcationCode(Request $request)
+    {
+        $user= $request->user();
+        $data = DB::table('password_resets')->where('email', $user->email)->first();
+        if($data){
+            if($data->token == $request->token){
+                $user->email_verified_at = now();
+                $user->save();
+                $data->delete();
+                return response()->json($user, 200);
+            }else{
+                return response()->json(['message'=> 'verification code not matched'], 204);
+            }
+        }
+        return response()->json(['message'=> 'email verification not in process'], 409);
     }
 }

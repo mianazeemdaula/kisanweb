@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Appy\FcmHttpV1\FcmNotification;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyApiEmail;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,17 +35,6 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
-//  \App\Jobs\CreateDealJob::dispatch($id);
-$data = \App\Models\Notification::find($id);
-return \App\Helper\FCM::sendNotification($data);
-$res = [];
-foreach ($data as $value) {
-    $res[] = \App\Helper\FCM::sendNotification($value);
-}
-return $res;
-$token = "eb50Ms5bSO-TMcouiXHC21:APA91bHBZau81GnRuYSy8FzG_9DEmd4y2KtWCh4aUKMUWgXDFGK48G3cugXuR82AscF77Nv93ky55zK4k7Tm9vOlv6ZmwlNXMRs8LZo8MHWSKWi0Or82LgfegF1CFI5HpbJG4xBy04FV";
-$notif = new FcmNotification();
-// return $notif->setTitle("Title")->setBody("Message here")->setToken($token)->setClickAction("/news")->send(); 
-return \App\Helper\FCM::send([$token],"Title of ", "Body of",(array) []);
+ Mail::to("mazeemrehan@gmail.com")->send(new VerifyApiEmail(5656));
 });
 
