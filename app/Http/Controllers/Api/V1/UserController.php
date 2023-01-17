@@ -28,8 +28,8 @@ class UserController extends Controller
         try {
             $user= $request->user();
             $this->validate($request, [
-                'mobile'=> "sometimes|unique:users,mobile,{$user->mobile}",
-                'email'=> "sometimes|unique:users,email,{$user->email}",
+                'mobile'=> "sometimes|unique:users,mobile,".$user->id,
+                'email'=> "sometimes|unique:users,email,".$user->id,
             ]);
             if($request->has('fcm_token')){
                 $user->fcm_token = $request->fcm_token;
@@ -41,6 +41,10 @@ class UserController extends Controller
                 $user->mobile = $request->mobile;
                 $user->mobile_verified_at = null;
             }
+            if($request->has('cnic')){
+                $user->cnic = $request->cnic;
+                $user->cnic_verified_at = null;
+            }
             if($request->has('lat') && $request->has('lng')){
                 if(count($user->addresses) == 0){
                     $address = new Address();
@@ -50,10 +54,6 @@ class UserController extends Controller
                     $address->location = new Point($request->lat, $request->lng);
                     $address->save();
                 }
-            }
-            if($request->has('cnic')){
-                $user->cnic = $request->cnic;
-                $user->cnic_verified_at = null;
             }
             if($request->has('name')){
                 $user->name = $request->name;
