@@ -76,7 +76,7 @@ class DealController extends Controller
             MediaHelper::save($file, $deal);
         }
         DealUpdateEvent::dispatch($deal->id);
-        // CreateDealJob::dispatch($deal->id);
+        CreateDealJob::dispatch($deal->id);
         return  response()->json($deal, 200);
     }
 
