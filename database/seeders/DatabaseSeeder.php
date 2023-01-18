@@ -69,6 +69,27 @@ class DatabaseSeeder extends Seeder
         CropType::create(['crop_id'=>3, 'name' => 'CPF-251', 'code' =>'CF-185']);
         CropType::create(['crop_id'=>3, 'name' => 'CPF-252', 'code' =>'CF-185']);
         CropType::create(['crop_id'=>3, 'name' => 'CPF-253', 'code' =>'CF-185']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 9108', 'code' =>'DK 9108']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 7024', 'code' =>'DK 7024']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 8022', 'code' =>'DK 8022']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 6317', 'code' =>'DK 6317']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 8148', 'code' =>'DK 8148']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 6724', 'code' =>'DK 6724']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 6103', 'code' =>'DK 6103']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 6714', 'code' =>'DK 6714']);
+        CropType::create(['crop_id'=>4, 'name' => 'DK 6789', 'code' =>'DK 6789']);
+        CropType::create(['crop_id'=>4, 'name' => 'GARANON', 'code' =>'GARANON']);
+        CropType::create(['crop_id'=>4, 'name' => 'GORILA', 'code' =>'GORILA']);
+        CropType::create(['crop_id'=>4, 'name' => 'P1429', 'code' =>'P1429']);
+        CropType::create(['crop_id'=>4, 'name' => '31P41', 'code' =>'31P41']);
+        CropType::create(['crop_id'=>4, 'name' => 'P1543', 'code' =>'P1543']);
+        CropType::create(['crop_id'=>4, 'name' => 'P4040', 'code' =>'P4040']);
+        CropType::create(['crop_id'=>4, 'name' => '30T60', 'code' =>'30T60']);
+        CropType::create(['crop_id'=>4, 'name' => '30Y87', 'code' =>'30Y87']);
+        CropType::create(['crop_id'=>4, 'name' => 'P3939', 'code' =>'P3939']);
+        CropType::create(['crop_id'=>4, 'name' => '30K08', 'code' =>'30K08']);
+        CropType::create(['crop_id'=>4, 'name' => '3025', 'code' =>'3025']);
+        CropType::create(['crop_id'=>4, 'name' => '30Y87', 'code' =>'30Y87']);
         
         \App\Models\Packing::insert([
             ['name' => 'open','key'=>'wheat','name_ur'=>'کھولی'],
