@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('crop_rates', function (Blueprint $table) {
+        Schema::create('report_deals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('crop_type_id');
-            $table->decimal('price',12,2);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('deal_id');
+            $table->string('comment');
             $table->timestamps();
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
-            $table->foreign('crop_type_id')->references('id')->on('crop_types')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('deal_id')->references('id')->on('deals')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('crop_rates');
+        Schema::dropIfExists('report_deals');
     }
 };
