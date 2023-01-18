@@ -143,4 +143,12 @@ class UserController extends Controller
         }
         return response()->json(['message'=> 'email verification not in process'], 409);
     }
+
+    public function verifyPhone(Request $request)
+    {
+        $user= $request->user();
+        $user->mobile_verified_at = now();
+        $user->save();
+        return response()->json($user, 200);
+    }
 }
