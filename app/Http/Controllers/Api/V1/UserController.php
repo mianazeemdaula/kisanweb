@@ -45,6 +45,9 @@ class UserController extends Controller
                 $user->mobile = $request->mobile;
                 $user->mobile_verified_at = null;
             }
+            if($request->has('mobile_verified_at')){
+                $user->mobile_verified_at = now();
+            }
             if($request->has('cnic')){
                 $user->cnic = $request->cnic;
                 $user->cnic_verified_at = null;
@@ -129,7 +132,7 @@ class UserController extends Controller
         ]);
         $data = PasswordReset::where('email', $user->email)->first();
         if($data){
-            if ($data->created_at->addMinutes(1) > now()) {
+            if ($data->created_at->addMinutes(15) > now()) {
                 PasswordReset::where('email', $user->email)->delete();
                 return response(['message' => trans('passwords.code_is_expire')], 422);
             }
