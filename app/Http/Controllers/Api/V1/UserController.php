@@ -132,7 +132,7 @@ class UserController extends Controller
         ]);
         $data = PasswordReset::where('email', $user->email)->first();
         if($data){
-            if ($data->created_at->addMinutes(15) > now()) {
+            if ($data->created_at->addMinutes(15) < now()) {
                 PasswordReset::where('email', $user->email)->delete();
                 return response(['message' => trans('passwords.code_is_expire')], 422);
             }
