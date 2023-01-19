@@ -17,7 +17,7 @@ use App\Mail\VerifyApiEmail;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.index');
 });
 
 
