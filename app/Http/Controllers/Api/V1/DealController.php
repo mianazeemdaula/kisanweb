@@ -126,7 +126,8 @@ class DealController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Deal::find($id)->delete();
+        return response()->json(['message'=>'deleted', 'status'=>true], 200, []);
     }
 
     public function history(Request $request)
