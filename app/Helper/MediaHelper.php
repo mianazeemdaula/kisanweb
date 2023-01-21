@@ -49,7 +49,7 @@ class MediaHelper {
             'ext' => $ext
         ]);
         $model->media()->save($media);
-        UpdateBlurshJob::dispatchAfterResponse($media->id);
+        // UpdateBlurshJob::dispatchAfterResponse($media->id);
         return ['hash' => $blurhash, 'image' => $path];
     }
 }

@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
+
 
 use App\Helper\FCM;
 
@@ -44,9 +46,12 @@ class CreateDealJob implements ShouldQueue
         ->find($this->dealId);
         $users = User::where('id','!=',$deal->seller_id)->whereNotNull('fcm_token')->get();
         foreach ($users as $user) {
+            $phone = Str::replaceFirst('03','+923',$user->mobile);
+            $title = "Hurry Up!";
+            // $body = $deal->type->crop->name." ($deal->qty * )".")";
             $notif =  Notification::create([
                 'user_id' => $user->id,
-                'title' => "Hurry Up!",
+                'title' => $title,
                 'body' => "New Deal for ".$deal->type->crop->name,
                 'data' => json_encode(['id' => $deal->id, 'type' => 'deal']),
             ]);
