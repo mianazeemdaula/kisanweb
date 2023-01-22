@@ -142,7 +142,7 @@ class DealController extends Controller
         }else{
             $query->where('seller_id', $user->id);
         }
-        $data = $query->paginate();
+        $data = $query->orderBy('id','desc')->paginate();
         return response()->json($data, 200);
     }
 }

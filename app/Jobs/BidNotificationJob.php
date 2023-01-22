@@ -22,9 +22,11 @@ class BidNotificationJob implements ShouldQueue
      * @return void
      */
     public $id;
-    public function __construct($id)
+    public $bidderId;
+    public function __construct($id,$bidder)
     {
         $this->id = $id;
+        $this->bidderId = $bidder;
     }
 
     /**
@@ -37,12 +39,12 @@ class BidNotificationJob implements ShouldQueue
         $deal = Deal::find($this->id);
         $fcmTokens = [];
         foreach ($deal->bids as $bid) {
-            if($bid->buyer->fcm_token!=null){
+            if($bid->buyer->fcm_token!=null && $bid->buyer != $bidderId){
                 $fcmTokens[] = $bid->buyer->fcm_token;
             }
         }
         $data = [
-            'type' => 'deal',
+            'type' => 'bid',
             'deal_id' => $deal->id,
         ];
         FCM::send($fcmTokens, 'Deal update', 'Another bid', $data);

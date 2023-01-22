@@ -45,18 +45,19 @@ class BidController extends Controller
             'deal_id' => 'required',
             'bid_price' => 'required',
         ]);
-        $bid = Bid::where('deal_id', $request->deal_id)->where('buyer_id',$request->user()->id)->first();
+        $user = $request->user();
+        $bid = Bid::where('deal_id', $request->deal_id)->where('buyer_id',$user->id)->first();
         if(!$bid){
             $bid = new Bid();
             $bid->deal_id = $request->deal_id;
-            $bid->buyer_id = $request->user()->id;
+            $bid->buyer_id = $user->id;
             $bid->bid_price = $request->bid_price;
             $bid->save();
         }else{
             $bid->bid_price = $request->bid_price;
             $bid->save();
         }
-        \App\Jobs\BidNotificationJob::dispatch($bid->deal_id);
+        \App\Jobs\BidNotificationJob::dispatch($bid->deal_id, $user->id);
         DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($bid, 200);
         
