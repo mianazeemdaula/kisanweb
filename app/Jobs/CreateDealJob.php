@@ -40,13 +40,11 @@ class CreateDealJob implements ShouldQueue
      */
     public function handle()
     {
-        $deal = Deal::with(['bids' => function($q){
-            $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+        $deal = Deal::with(['seller', 'packing', 'weight', 'media', 'type.crop'])
         ->find($this->dealId);
         $users = User::where('id','!=',$deal->seller_id)->whereNotNull('fcm_token')->get();
         foreach ($users as $user) {
-            $phone = Str::replaceFirst('03','+923',$user->mobile);
+            $phone = Str::replaceFirst('03','923',$user->mobile);
             $title = "Hurry Up!";
             // $body = $deal->type->crop->name." ($deal->qty * )".")";
             $notif =  Notification::create([
