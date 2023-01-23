@@ -91,8 +91,11 @@ class DealController extends Controller
         $deal = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
         }, 'seller', 'packing', 'weight' ,'media', 'type.crop'])->find($id);
-        $deal->visit();
-        return response()->json($deal, 200);
+        if($deal){
+            $deal->visit();
+            return response()->json($deal, 200);
+        }
+        return response()->json(['message' => 'Deal is removed'], 204);
     }
 
     /**
