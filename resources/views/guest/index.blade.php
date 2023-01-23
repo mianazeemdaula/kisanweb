@@ -1,135 +1,42 @@
 @extends('layouts.guest')
-@section('body')
-<!-- Container for demo purpose -->
-<div class="container my-24 px-6 mx-auto">
-
-  <!-- Section: Design Block -->
-  <section class="mb-32 text-gray-800 text-center lg:text-left">
-    <style>
-      @media (min-width: 992px) {
-        .rotate-lg-6 {
-          transform: rotate(6deg);
-        }
-      }
-    </style>
-
-    <div class="md:px-6 py-12 md:px-12">
-      <div class="container mx-auto xl:px-32">
-        <div class="grid lg:grid-cols-2 flex items-center">
-          <div class="md:mt-12 lg:mt-0 mb-12 lg:mb-0">
-            <div class="relative block rounded-lg shadow-lg px-6 pt-12 pb-6 md:px-12 lg:-mr-14" style="
-                  background: hsla(0, 0%, 100%, 0.55);
-                  backdrop-filter: blur(30px);
-                  z-index: 1;
-                ">
-              <h2 class="text-3xl font-bold mb-6">Why is it so great?</h2>
-              <p class="text-gray-500 mb-6">
-                Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis
-                malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna
-                diam.
-              </p>
-
-              <div class="grid md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-6">
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Support 24/7
-                  </p>
-                </div>
-
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Analytics
-                  </p>
-                </div>
-
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Components
-                  </p>
-                </div>
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Updates
-                  </p>
-                </div>
-
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Reports
-                  </p>
-                </div>
-
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Mobile
-                  </p>
-                </div>
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Modules
-                  </p>
-                </div>
-
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Blocks
-                  </p>
-                </div>
-
-                <div class="mb-6">
-                  <p class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor"
-                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                      </path>
-                    </svg>Templates
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="md:mb-12 lg:mb-0">
-            <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/121.jpg"
-              class="w-full rounded-lg shadow-lg rotate-lg-6" alt="" />
-          </div>
+@section('body')<!-- component -->
+<div class="flex items-center justify-center h-screen bg-gray-200">
+  <div class="container">
+    <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
+      <div class="text-center">
+        <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+          Kisan<span class="text-indigo-600">Stock</span>
+        </h2>
+        <h3 class='text-xl md:text-3xl mt-10'>Coming Soon</h3>
+        <p class="text-md md:text-xl mt-10"><a class="hover:underline" href="https://www.kisanstock.com">kisanstock</a> is a website help you provide buying and selling facilities for crops.</p>
+      </div>
+      <div class="flex flex-wrap mt-10 justify-center">
+        <div class="m-3">
+          <a href="https://www.facebook.com/kisanstock" title="KisanStock On Facebook"
+             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <span class="mx-auto">Facebook</span>
+          </a>
+        </div>
+        <div class="m-3">
+          <a href="https://tiktok.com/@kisanstock" title="Quicktoolz On TikTok"
+             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-500 hover:border-blue-500 hover:bg-blue-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <span class="mx-auto">TikTok</span>
+          </a>
+        </div>
+        <div class="m-3">
+          <a href="https://youtube.com/@kisanstock/" title="KisanStock On Youtube"
+             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-red-600 hover:border-red-600 hover:bg-red-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <span class="mx-auto">Youtube</span>
+          </a>
+        </div>
+        <div class="m-3">
+          <a href="https://play.google.com/store/apps/details?id=com.kisanstock.app" title="KisanStock On Playstore"
+             class="md:w-64 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-orange-500 hover:border-orange-500 hover:bg-orange-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <span class="mx-auto">Download App</span>
+          </a>
         </div>
       </div>
     </div>
-  </section>
-  <!-- Section: Design Block -->
-
+  </div>
 </div>
-<!-- Container for demo purpose -->
 @endsection
