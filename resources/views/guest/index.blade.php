@@ -4,8 +4,8 @@
   <div class="container">
     <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
       <div class="text-center">
-        <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-          Kisan<span class="text-indigo-600">Stock</span>
+        <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl ">
+          Kisan<span class="text-green-600">Stock</span>
         </h2>
         <h3 class='text-xl md:text-3xl mt-10'>Coming Soon</h3>
         <p class="text-md md:text-xl mt-10"><a class="hover:underline" href="https://www.kisanstock.com">kisanstock</a> is a website help you provide buying and selling facilities for crops.</p>
