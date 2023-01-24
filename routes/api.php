@@ -43,7 +43,7 @@ Route::resource('crop.type', CropTypeController::class);
 
 Route::resource('media', MediaController::class);
 
-Route::post('wa-message', [HomeController::class,'wamessage']);
+Route::get('wa-message', [HomeController::class,'wamessage']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     
