@@ -39,7 +39,7 @@ class BidNotificationJob implements ShouldQueue
         $deal = Deal::find($this->id);
         $fcmTokens = [];
         foreach ($deal->bids as $bid) {
-            if($bid->buyer->fcm_token!=null && $bid->buyer != $this->bidderId){
+            if($bid->buyer->fcm_token!=null && $bid->buyer->id != $this->bidderId){
                 $fcmTokens[] = $bid->buyer->fcm_token;
             }
         }
