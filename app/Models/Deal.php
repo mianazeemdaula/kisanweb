@@ -97,7 +97,7 @@ class Deal extends Model
 
     public function chats(): HasMany
     {
-        return $this->hasMany(Chat::class);
+        return $this->hasMany(Chat::class)->latest();
     }
 
     public function reactions(): HasMany
