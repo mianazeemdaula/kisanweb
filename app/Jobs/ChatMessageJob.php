@@ -38,15 +38,18 @@ class ChatMessageJob implements ShouldQueue
         $msg = Message::find($this->id);
         $senderId = $msg->sender_id;
         $fcmToken = null;
+        $user  = "";
         if($msg->chat->buyer_id == $senderId){
             $fcmToken = $msg->chat->deal->seller->fcm_token;
+            $user = $msg->chat->deal->seller;
         }else{
+            $user = $msg->chat->buyer;
             $fcmToken = $msg->chat->buyer->fcm_token;
         }
         $data =  [
             'type' => 'msg',
             'chat_id' => $msg->chat_id,
         ];
-        FCM::send([$fcmToken], 'title', 'body', $data);
+        FCM::send([$fcmToken], $user->name, $msg->message, $data);
     }
 }
