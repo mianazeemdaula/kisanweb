@@ -51,6 +51,6 @@ class ChatMessageJob implements ShouldQueue
             'chat_id' => $msg->chat_id,
             'seller_id' => $msg->chat->deal->seller_id,
         ];
-        FCM::send([$fcmToken], $user->name, $msg->message, $data);
+        return FCM::send([$fcmToken], $user->name, $msg->message, $data);
     }
 }
