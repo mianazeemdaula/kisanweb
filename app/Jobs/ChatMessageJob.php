@@ -41,9 +41,9 @@ class ChatMessageJob implements ShouldQueue
         $user  = "";
         if($msg->chat->buyer_id == $senderId){
             $fcmToken = $msg->chat->deal->seller->fcm_token;
-            $user = $msg->chat->deal->seller;
-        }else{
             $user = $msg->chat->buyer;
+        }else{
+            $user = $msg->chat->deal->seller;
             $fcmToken = $msg->chat->buyer->fcm_token;
         }
         $data =  [
