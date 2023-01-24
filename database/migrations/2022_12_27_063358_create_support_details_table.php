@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('support_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('support_id');
             $table->mediumText('content');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('support_id')->references('id')->on('supports')->onDelete('cascade');
         });
     }
 
