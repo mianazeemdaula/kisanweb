@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 use MatanYadaev\EloquentSpatial\Objects\Point;
 // Models
@@ -50,5 +52,10 @@ class HomeController extends Controller
             $q->with(['buyer'])->where('buyer_id', $user->id);
         }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
         return response()->json($data, 200);
+    }
+
+    public function wamessage(Request $request)
+    {   Log::debug($request->all());
+        return  response()->json(['message'=>'success'], 200);
     }
 }
