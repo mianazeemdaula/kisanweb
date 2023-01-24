@@ -56,6 +56,6 @@ class HomeController extends Controller
 
     public function wamessage(Request $request)
     {   Log::debug($request->all());
-        echo $reqeust->hub_challenge;
+        return true;
     }
 }
