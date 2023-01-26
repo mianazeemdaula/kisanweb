@@ -46,6 +46,7 @@ class InboxController extends Controller
             $join->on('messages.chat_id', '=', 'chats.id')
             ->on('messages.id', '=', \DB::raw("(SELECT max(id) from messages WHERE messages.chat_id = chats.id)"));
         })
+        ->orderBy('messages.created_at','desc')
         ->where('chats.deal_id',$id)->paginate();
         return response()->json($data, 200);
     }
