@@ -41,7 +41,10 @@ class InboxController extends Controller
 
     public function show($id)
     {
-        $data = Chat::with(['deal','buyer','lastmsg'])->where('deal_id',$id)->paginate();
+        $data = Chat::with(['deal','buyer','lastmsg'])
+        ->join('messages','messages.chat_id','chats.id')
+        ->orderBy('messages.created_at','desc')
+        ->where('deal_id',$id)->paginate();
         return response()->json($data, 200);
     }
 
