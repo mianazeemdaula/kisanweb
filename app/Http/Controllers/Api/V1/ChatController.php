@@ -21,8 +21,11 @@ class ChatController extends Controller
         $auth = auth()->user();
         $dealIds = Deal::where('seller_id', $auth->id)->modelKeys();
         $data = Chat::where('buyer_id',$auth->id)
-        ->orWhereIn('deal_id', $dealIds)->orderBy('id','desc')
+        ->orWhereIn('deal_id', $dealIds)
         ->with(['deal'])
+        ->join('messages','messages.chat_id','chats.id')
+        ->orderBy('messages.created_at','desc')
+        // ->groupBy('conversations.conversation_id')
         ->paginate();
         return $data;
     }
