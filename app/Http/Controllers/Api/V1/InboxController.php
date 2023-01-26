@@ -51,6 +51,7 @@ class InboxController extends Controller
         })
         ->orderBy('messages.created_at','desc')
         ->select('chats.*')
+        ->whereHas('lastmsg')
         ->where('chats.deal_id',$id)->paginate();
         //select * from ( SELECT chat_id, max(id) as latest FROM `messages` group by chat_id ) as t order by latest;
         return response()->json($data, 200);
