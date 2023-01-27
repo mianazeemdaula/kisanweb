@@ -52,6 +52,10 @@ class UserController extends Controller
                 $user->cnic = $request->cnic;
                 $user->cnic_verified_at = null;
             }
+            if($request->has('whatsapp')){
+                $user->whatsapp = $request->whatsapp;
+                $user->whatsapp_verified_at = null;
+            }
             if($request->has('lat') && $request->has('lng')){
                 if(count($user->addresses) == 0){
                     $address = new Address();
