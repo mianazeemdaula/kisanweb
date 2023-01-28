@@ -47,6 +47,12 @@ class ReactionController extends Controller
             $reaction->user_id = $user->id;
             $reaction->deal_id = $request->deal_id;
             $reaction->save();
+            $fcmToken = Deal::find($request->deal_id)->seller->fcm_token;    
+            $data =  [
+                'type' => 'deal',
+                'deal_id' => $request->deal_id,
+            ];
+            FCM::send([$fcmToken],"Reaction", "$user->name react to your deal", $data);
         }
         DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($reaction, 200,);
