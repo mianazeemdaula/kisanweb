@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Reaction;
 use App\Events\DealUpdateEvent;
 
+use App\Helper\FCM;
+
 class ReactionController extends Controller
 {
     /**
