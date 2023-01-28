@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Reaction;
+use App\Models\Deal;
 use App\Events\DealUpdateEvent;
 
 use App\Helper\FCM;
