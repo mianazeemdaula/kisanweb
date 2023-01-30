@@ -75,4 +75,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('review-history', [ReviewController::class,'history']);
     Route::resource('notification', NotificationController::class);
     Route::resource('reaction', ReactionController::class);
+    Route::resource('address', ReactionController::class);
 });

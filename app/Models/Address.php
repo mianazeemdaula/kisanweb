@@ -11,6 +11,7 @@ use MatanYadaev\EloquentSpatial\SpatialBuilder;
 class Address extends Model
 {
     use HasFactory;
+    protected $fillable = ['default'];
 
     protected $casts = [
         'location' => Point::class,
