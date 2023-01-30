@@ -50,6 +50,7 @@ class AddressController extends Controller
         $user->addresses()->update(['default' => false]);
         $address = new Address;
         $address->name = $request->name;
+        $address->user_id = $user->id;
         $address->address = $request->address;
         $address->location = new Point($request->lat, $request->lng);
         $address->save();
