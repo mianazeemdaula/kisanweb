@@ -90,7 +90,11 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = $request->user();
+        $user->addresses()->update(['default' => false]);
+        Address::find($id)->update(['default' => true]);
+        $data = $user->addresses;
+        return response()->json($data, 200);
     }
 
     /**
