@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->char('whatsapp',13)->nullable();
-            $table->timestamp('whatsapp_verified_at')->nullable();
-            $table->softDeletes();
+        Schema::create('provinces', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->string('name_ur')->nullable();
+            $table->string('code')->unique()->nullable();
+            $table->polygon('area')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['whatsapp','whatsapp_verified_at','deleted_at']);
-        });
+        Schema::dropIfExists('provinces');
     }
 };

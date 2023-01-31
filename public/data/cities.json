@@ -1,0 +1,4618 @@
+[
+ {
+  "name": "Bagh",
+  "code": "PK10101",
+  "district": "Bagh",
+  "distric_code": "PK101",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Dhir Kot",
+  "code": "PK10102",
+  "district": "Bagh",
+  "distric_code": "PK101",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Harighel",
+  "code": "PK10103",
+  "district": "Bagh",
+  "distric_code": "PK101",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Barnala",
+  "code": "PK10201",
+  "district": "Bhimber",
+  "distric_code": "PK102",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Bhimber",
+  "code": "PK10202",
+  "district": "Bhimber",
+  "distric_code": "PK102",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Samahni",
+  "code": "PK10203",
+  "district": "Bhimber",
+  "distric_code": "PK102",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Chikar",
+  "code": "PK10301",
+  "district": "Jhelum Valley",
+  "distric_code": "PK103",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Hattian",
+  "code": "PK10302",
+  "district": "Jhelum Valley",
+  "distric_code": "PK103",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Leepa",
+  "code": "PK10303",
+  "district": "Jhelum Valley",
+  "distric_code": "PK103",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Haveli",
+  "code": "PK10401",
+  "district": "Haveli",
+  "distric_code": "PK104",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Khurshid Abad",
+  "code": "PK10402",
+  "district": "Haveli",
+  "distric_code": "PK104",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Mumtazabad",
+  "code": "PK10403",
+  "district": "Haveli",
+  "distric_code": "PK104",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Charhoi",
+  "code": "PK10501",
+  "district": "Kotli",
+  "distric_code": "PK105",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Dulliya Jattan",
+  "code": "PK10502",
+  "district": "Kotli",
+  "distric_code": "PK105",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Fatehpur Thakiala",
+  "code": "PK10503",
+  "district": "Kotli",
+  "distric_code": "PK105",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Khui Ratta",
+  "code": "PK10504",
+  "district": "Kotli",
+  "distric_code": "PK105",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Kotli",
+  "code": "PK10505",
+  "district": "Kotli",
+  "distric_code": "PK105",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Sehnsa",
+  "code": "PK10506",
+  "district": "Kotli",
+  "distric_code": "PK105",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Dadyal",
+  "code": "PK10601",
+  "district": "Mirpur",
+  "distric_code": "PK106",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Mirpur",
+  "code": "PK10602",
+  "district": "Mirpur",
+  "distric_code": "PK106",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Muzaffarabad",
+  "code": "PK10701",
+  "district": "Muzaffarabad",
+  "distric_code": "PK107",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Naseerabad",
+  "code": "PK10702",
+  "district": "Muzaffarabad",
+  "distric_code": "PK107",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Athmuqam",
+  "code": "PK10801",
+  "district": "Neelum",
+  "distric_code": "PK108",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Sharda",
+  "code": "PK10802",
+  "district": "Neelum",
+  "distric_code": "PK108",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Abbaspur",
+  "code": "PK10901",
+  "district": "Poonch",
+  "distric_code": "PK109",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Hajira",
+  "code": "PK10902",
+  "district": "Poonch",
+  "distric_code": "PK109",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Rawalakot",
+  "code": "PK10903",
+  "district": "Poonch",
+  "distric_code": "PK109",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Thorar",
+  "code": "PK10904",
+  "district": "Poonch",
+  "distric_code": "PK109",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Baluch",
+  "code": "PK11001",
+  "district": "Sudhnoti",
+  "distric_code": "PK110",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Mong",
+  "code": "PK11002",
+  "district": "Sudhnoti",
+  "distric_code": "PK110",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Pallandari",
+  "code": "PK11003",
+  "district": "Sudhnoti",
+  "distric_code": "PK110",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Tarar Khal",
+  "code": "PK11004",
+  "district": "Sudhnoti",
+  "distric_code": "PK110",
+  "province": "Azad Kashmir",
+  "province_code": "PK1"
+ },
+ {
+  "name": "Awaran",
+  "code": "PK20101",
+  "district": "Awaran",
+  "distric_code": "PK201",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Jhal Jhao",
+  "code": "PK20102",
+  "district": "Awaran",
+  "distric_code": "PK201",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mashkai",
+  "code": "PK20103",
+  "district": "Awaran",
+  "distric_code": "PK201",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gishekore",
+  "code": "PK20104",
+  "district": "Awaran",
+  "distric_code": "PK201",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Barkhan",
+  "code": "PK20201",
+  "district": "Barkhan",
+  "distric_code": "PK202",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Rakhni",
+  "code": "PK20202",
+  "district": "Barkhan",
+  "distric_code": "PK202",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dalbandin",
+  "code": "PK20301",
+  "district": "Chagai",
+  "distric_code": "PK203",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Nokkundi",
+  "code": "PK20302",
+  "district": "Chagai",
+  "distric_code": "PK203",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Taftan",
+  "code": "PK20303",
+  "district": "Chagai",
+  "distric_code": "PK203",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Chagai",
+  "code": "PK20304",
+  "district": "Chagai",
+  "distric_code": "PK203",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dera Bugti",
+  "code": "PK20401",
+  "district": "Dera Bugti",
+  "distric_code": "PK204",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Phelawagh",
+  "code": "PK20402",
+  "district": "Dera Bugti",
+  "distric_code": "PK204",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sui",
+  "code": "PK20403",
+  "district": "Dera Bugti",
+  "distric_code": "PK204",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gwadar",
+  "code": "PK20501",
+  "district": "Gwadar",
+  "distric_code": "PK205",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Jiwani",
+  "code": "PK20502",
+  "district": "Gwadar",
+  "distric_code": "PK205",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Ormara",
+  "code": "PK20503",
+  "district": "Gwadar",
+  "distric_code": "PK205",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Pasni",
+  "code": "PK20504",
+  "district": "Gwadar",
+  "distric_code": "PK205",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sunster",
+  "code": "PK20505",
+  "district": "Gwadar",
+  "distric_code": "PK205",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Harnai",
+  "code": "PK20601",
+  "district": "Harnai",
+  "distric_code": "PK206",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Shahrigh",
+  "code": "PK20602",
+  "district": "Harnai",
+  "distric_code": "PK206",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gandakha",
+  "code": "PK20701",
+  "district": "Jaffarabad",
+  "distric_code": "PK207",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Jhat Pat",
+  "code": "PK20702",
+  "district": "Jaffarabad",
+  "distric_code": "PK207",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Usta Mohammad",
+  "code": "PK20703",
+  "district": "Jaffarabad",
+  "distric_code": "PK207",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gandawa",
+  "code": "PK20801",
+  "district": "Jhal Magsi",
+  "distric_code": "PK208",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Jhal Magsi",
+  "code": "PK20802",
+  "district": "Jhal Magsi",
+  "distric_code": "PK208",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dhadar",
+  "code": "PK20901",
+  "district": "Kachhi",
+  "distric_code": "PK209",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mach",
+  "code": "PK20902",
+  "district": "Kachhi",
+  "distric_code": "PK209",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sanni",
+  "code": "PK20903",
+  "district": "Kachhi",
+  "distric_code": "PK209",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Balanari",
+  "code": "PK20904",
+  "district": "Kachhi",
+  "distric_code": "PK209",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Khattan",
+  "code": "PK20905",
+  "district": "Kachhi",
+  "distric_code": "PK209",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kalat",
+  "code": "PK21001",
+  "district": "Kalat",
+  "distric_code": "PK210",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Khaliqabad",
+  "code": "PK21002",
+  "district": "Kalat",
+  "distric_code": "PK210",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Buleda",
+  "code": "PK21101",
+  "district": "Kech",
+  "distric_code": "PK211",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dasht",
+  "code": "PK21102",
+  "district": "Kech",
+  "distric_code": "PK211",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kech (Turbat)",
+  "code": "PK21103",
+  "district": "Kech",
+  "distric_code": "PK211",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mand",
+  "code": "PK21104",
+  "district": "Kech",
+  "distric_code": "PK211",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Tump",
+  "code": "PK21105",
+  "district": "Kech",
+  "distric_code": "PK211",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kharan",
+  "code": "PK21201",
+  "district": "Kharan",
+  "distric_code": "PK212",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sar Kharan",
+  "code": "PK21202",
+  "district": "Kharan",
+  "distric_code": "PK212",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Tomulk",
+  "code": "PK21203",
+  "district": "Kharan",
+  "distric_code": "PK212",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Khuzdar",
+  "code": "PK21301",
+  "district": "Khuzdar",
+  "distric_code": "PK213",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mola",
+  "code": "PK21302",
+  "district": "Khuzdar",
+  "distric_code": "PK213",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Naal",
+  "code": "PK21303",
+  "district": "Khuzdar",
+  "distric_code": "PK213",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Wadh",
+  "code": "PK21304",
+  "district": "Khuzdar",
+  "distric_code": "PK213",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Zehri",
+  "code": "PK21305",
+  "district": "Khuzdar",
+  "distric_code": "PK213",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dobandi",
+  "code": "PK21402",
+  "district": "Killa Abdullah",
+  "distric_code": "PK214",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gulistan",
+  "code": "PK21403",
+  "district": "Killa Abdullah",
+  "distric_code": "PK214",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Killa Abdullah",
+  "code": "PK21404",
+  "district": "Killa Abdullah",
+  "distric_code": "PK214",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Killa Saifullah",
+  "code": "PK21501",
+  "district": "Killa Saifullah",
+  "distric_code": "PK215",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Muslim Bagh",
+  "code": "PK21502",
+  "district": "Killa Saifullah",
+  "distric_code": "PK215",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kahan",
+  "code": "PK21601",
+  "district": "Kohlu",
+  "distric_code": "PK216",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kohlu",
+  "code": "PK21602",
+  "district": "Kohlu",
+  "distric_code": "PK216",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mawand",
+  "code": "PK21603",
+  "district": "Kohlu",
+  "distric_code": "PK216",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Bela",
+  "code": "PK21701",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dureji",
+  "code": "PK21702",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gaddani",
+  "code": "PK21703",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Hub",
+  "code": "PK21704",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kanraj",
+  "code": "PK21705",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sonmiani",
+  "code": "PK21706",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Uthal",
+  "code": "PK21707",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Lakhra",
+  "code": "PK21708",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Lairi",
+  "code": "PK21709",
+  "district": "Lasbela",
+  "distric_code": "PK217",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Bhag",
+  "code": "PK21801",
+  "district": "Lehri",
+  "distric_code": "PK218",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Lehri",
+  "code": "PK21802",
+  "district": "Lehri",
+  "distric_code": "PK218",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Loralai",
+  "code": "PK21901",
+  "district": "Loralai",
+  "distric_code": "PK219",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mekhtar",
+  "code": "PK21902",
+  "district": "Loralai",
+  "distric_code": "PK219",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dasht Spenzend",
+  "code": "PK22001",
+  "district": "Mastung",
+  "distric_code": "PK220",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kirdgap",
+  "code": "PK22002",
+  "district": "Mastung",
+  "distric_code": "PK220",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mastung",
+  "code": "PK22003",
+  "district": "Mastung",
+  "distric_code": "PK220",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Drug",
+  "code": "PK22101",
+  "district": "Musakhel",
+  "distric_code": "PK221",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kingri",
+  "code": "PK22102",
+  "district": "Musakhel",
+  "distric_code": "PK221",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Musakhel",
+  "code": "PK22103",
+  "district": "Musakhel",
+  "distric_code": "PK221",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Chattar",
+  "code": "PK22201",
+  "district": "Nasirabad",
+  "distric_code": "PK222",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Dera Murad Jamali",
+  "code": "PK22202",
+  "district": "Nasirabad",
+  "distric_code": "PK222",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Tamboo",
+  "code": "PK22203",
+  "district": "Nasirabad",
+  "distric_code": "PK222",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Nushki",
+  "code": "PK22301",
+  "district": "Nushki",
+  "distric_code": "PK223",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gowargo",
+  "code": "PK22401",
+  "district": "Panjgur",
+  "distric_code": "PK224",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Jaheen Parome",
+  "code": "PK22402",
+  "district": "Panjgur",
+  "distric_code": "PK224",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Panjgur",
+  "code": "PK22403",
+  "district": "Panjgur",
+  "distric_code": "PK224",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Gichk",
+  "code": "PK22404",
+  "district": "Panjgur",
+  "distric_code": "PK224",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Barshore",
+  "code": "PK22501",
+  "district": "Pishin",
+  "distric_code": "PK225",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Huramzai",
+  "code": "PK22502",
+  "district": "Pishin",
+  "distric_code": "PK225",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Karezat",
+  "code": "PK22503",
+  "district": "Pishin",
+  "distric_code": "PK225",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Pishin",
+  "code": "PK22504",
+  "district": "Pishin",
+  "distric_code": "PK225",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Saranan",
+  "code": "PK22505",
+  "district": "Pishin",
+  "distric_code": "PK225",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Panjpai",
+  "code": "PK22601",
+  "district": "Quetta",
+  "distric_code": "PK226",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Quetta City",
+  "code": "PK22602",
+  "district": "Quetta",
+  "distric_code": "PK226",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Quetta Saddar",
+  "code": "PK22603",
+  "district": "Quetta",
+  "distric_code": "PK226",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sherani",
+  "code": "PK22701",
+  "district": "Sherani",
+  "distric_code": "PK227",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sibi",
+  "code": "PK22801",
+  "district": "Sibi",
+  "distric_code": "PK228",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sohbatpur",
+  "code": "PK22901",
+  "district": "Sohbatpur",
+  "distric_code": "PK229",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Mashkhel",
+  "code": "PK23001",
+  "district": "Washuk",
+  "distric_code": "PK230",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Basima",
+  "code": "PK23002",
+  "district": "Washuk",
+  "distric_code": "PK230",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Washuk",
+  "code": "PK23003",
+  "district": "Washuk",
+  "distric_code": "PK230",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Nag",
+  "code": "PK23004",
+  "district": "Washuk",
+  "distric_code": "PK230",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Shaogari",
+  "code": "PK23005",
+  "district": "Washuk",
+  "distric_code": "PK230",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Kakar Khurasan",
+  "code": "PK23101",
+  "district": "Zhob",
+  "distric_code": "PK231",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Zhob",
+  "code": "PK23102",
+  "district": "Zhob",
+  "distric_code": "PK231",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Sinjawi",
+  "code": "PK23201",
+  "district": "Ziarat",
+  "distric_code": "PK232",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Ziarat",
+  "code": "PK23202",
+  "district": "Ziarat",
+  "distric_code": "PK232",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Surab",
+  "code": "PK23301",
+  "district": "Shaheed Sikandarabad",
+  "distric_code": "PK233",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Duki",
+  "code": "PK23401",
+  "district": "Duki",
+  "distric_code": "PK234",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Chaman",
+  "code": "PK23501",
+  "district": "Chaman",
+  "distric_code": "PK235",
+  "province": "Balochistan",
+  "province_code": "PK2"
+ },
+ {
+  "name": "Astore",
+  "code": "PK30101",
+  "district": "Astore",
+  "distric_code": "PK301",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Shounter",
+  "code": "PK30102",
+  "district": "Astore",
+  "distric_code": "PK301",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Chilas",
+  "code": "PK30201",
+  "district": "Diamir",
+  "distric_code": "PK302",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Daghoni",
+  "code": "PK30301",
+  "district": "Ghanche",
+  "distric_code": "PK303",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Khaplu",
+  "code": "PK30302",
+  "district": "Ghanche",
+  "distric_code": "PK303",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Mashabbrum",
+  "code": "PK30303",
+  "district": "Ghanche",
+  "distric_code": "PK303",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Ishkoman",
+  "code": "PK30401",
+  "district": "Ghizer",
+  "distric_code": "PK304",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Punial",
+  "code": "PK30402",
+  "district": "Ghizer",
+  "distric_code": "PK304",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Gilgit",
+  "code": "PK30501",
+  "district": "Gilgit",
+  "distric_code": "PK305",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Ali Abad",
+  "code": "PK30601",
+  "district": "Hunza",
+  "distric_code": "PK306",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Gojal",
+  "code": "PK30602",
+  "district": "Hunza",
+  "distric_code": "PK306",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Gamba",
+  "code": "PK30701",
+  "district": "Skardu",
+  "distric_code": "PK307",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Skardu",
+  "code": "PK30702",
+  "district": "Skardu",
+  "distric_code": "PK307",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Nagar",
+  "code": "PK30801",
+  "district": "Nagar",
+  "distric_code": "PK308",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Sikandar Abad",
+  "code": "PK30802",
+  "district": "Nagar",
+  "distric_code": "PK308",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Gultari",
+  "code": "PK30901",
+  "district": "Kharmang",
+  "distric_code": "PK309",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Kharmang",
+  "code": "PK30902",
+  "district": "Kharmang",
+  "distric_code": "PK309",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Shigar",
+  "code": "PK31001",
+  "district": "Shigar",
+  "distric_code": "PK310",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Darel",
+  "code": "PK31101",
+  "district": "Darel",
+  "distric_code": "PK311",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Tangir",
+  "code": "PK31201",
+  "district": "Tangir",
+  "distric_code": "PK312",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Gupis",
+  "code": "PK31301",
+  "district": "Gupis-Yasin",
+  "distric_code": "PK313",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Phandar",
+  "code": "PK31302",
+  "district": "Gupis-Yasin",
+  "distric_code": "PK313",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Yasin",
+  "code": "PK31303",
+  "district": "Gupis-Yasin",
+  "distric_code": "PK313",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Rondu",
+  "code": "PK31401",
+  "district": "Rondu",
+  "distric_code": "PK314",
+  "province": "Gilgit Baltistan",
+  "province_code": "PK3"
+ },
+ {
+  "name": "Islamabad",
+  "code": "PK40101",
+  "district": "Islamabad",
+  "distric_code": "PK401",
+  "province": "Islamabad",
+  "province_code": "PK4"
+ },
+ {
+  "name": "Abbottabad",
+  "code": "PK50101",
+  "district": "Abbottabad",
+  "distric_code": "PK501",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Havelian",
+  "code": "PK50102",
+  "district": "Abbottabad",
+  "distric_code": "PK501",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lora",
+  "code": "PK50103",
+  "district": "Abbottabad",
+  "distric_code": "PK501",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lower Tanawal",
+  "code": "PK50104",
+  "district": "Abbottabad",
+  "distric_code": "PK501",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bar Chamarkand",
+  "code": "PK50201",
+  "district": "Bajaur",
+  "distric_code": "PK502",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Barang",
+  "code": "PK50202",
+  "district": "Bajaur",
+  "distric_code": "PK502",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Khar",
+  "code": "PK50203",
+  "district": "Bajaur",
+  "distric_code": "PK502",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mamund",
+  "code": "PK50204",
+  "district": "Bajaur",
+  "distric_code": "PK502",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Nawagai",
+  "code": "PK50205",
+  "district": "Bajaur",
+  "distric_code": "PK502",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Salarzai",
+  "code": "PK50206",
+  "district": "Bajaur",
+  "distric_code": "PK502",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Utman Khel",
+  "code": "PK50207",
+  "district": "Bajaur",
+  "distric_code": "PK502",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bannu",
+  "code": "PK50301",
+  "district": "Bannu",
+  "distric_code": "PK503",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Baka Khel",
+  "code": "PK50302",
+  "district": "Bannu",
+  "distric_code": "PK503",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Domel",
+  "code": "PK50303",
+  "district": "Bannu",
+  "distric_code": "PK503",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Kakki",
+  "code": "PK50304",
+  "district": "Bannu",
+  "distric_code": "PK503",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Miryan",
+  "code": "PK50305",
+  "district": "Bannu",
+  "distric_code": "PK503",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Wazir",
+  "code": "PK50306",
+  "district": "Bannu",
+  "distric_code": "PK503",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Allai",
+  "code": "PK50401",
+  "district": "Batagram",
+  "distric_code": "PK504",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Batagram",
+  "code": "PK50402",
+  "district": "Batagram",
+  "distric_code": "PK504",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Daggar",
+  "code": "PK50501",
+  "district": "Buner",
+  "distric_code": "PK505",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Gagra",
+  "code": "PK50502",
+  "district": "Buner",
+  "distric_code": "PK505",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Khado Khel",
+  "code": "PK50503",
+  "district": "Buner",
+  "distric_code": "PK505",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mandanr",
+  "code": "PK50504",
+  "district": "Buner",
+  "distric_code": "PK505",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Charsadda",
+  "code": "PK50601",
+  "district": "Charsadda",
+  "distric_code": "PK506",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Shabqadar",
+  "code": "PK50602",
+  "district": "Charsadda",
+  "distric_code": "PK506",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Tangi",
+  "code": "PK50603",
+  "district": "Charsadda",
+  "distric_code": "PK506",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Chitral",
+  "code": "PK50701",
+  "district": "Chitral Lower",
+  "distric_code": "PK507",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Drosh",
+  "code": "PK50702",
+  "district": "Chitral Lower",
+  "distric_code": "PK507",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lotkoh",
+  "code": "PK50703",
+  "district": "Chitral Lower",
+  "distric_code": "PK507",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mastuj",
+  "code": "PK50801",
+  "district": "Chitral Upper",
+  "distric_code": "PK508",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mulkhow",
+  "code": "PK50802",
+  "district": "Chitral Upper",
+  "distric_code": "PK508",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "D. I. Khan",
+  "code": "PK50901",
+  "district": "D. I. Khan",
+  "distric_code": "PK509",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Daraban",
+  "code": "PK50902",
+  "district": "D. I. Khan",
+  "distric_code": "PK509",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Kulachi",
+  "code": "PK50903",
+  "district": "D. I. Khan",
+  "distric_code": "PK509",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Paharpur",
+  "code": "PK50904",
+  "district": "D. I. Khan",
+  "distric_code": "PK509",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Paroa",
+  "code": "PK50905",
+  "district": "D. I. Khan",
+  "distric_code": "PK509",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Darazinda",
+  "code": "PK50906",
+  "district": "D. I. Khan",
+  "distric_code": "PK509",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Hangu",
+  "code": "PK51001",
+  "district": "Hangu",
+  "distric_code": "PK510",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Tall",
+  "code": "PK51002",
+  "district": "Hangu",
+  "distric_code": "PK510",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Ghazi",
+  "code": "PK51101",
+  "district": "Haripur",
+  "distric_code": "PK511",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Haripur",
+  "code": "PK51102",
+  "district": "Haripur",
+  "distric_code": "PK511",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Khanpur",
+  "code": "PK51103",
+  "district": "Haripur",
+  "distric_code": "PK511",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Banda Daud Shah",
+  "code": "PK51201",
+  "district": "Karak",
+  "distric_code": "PK512",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Karak",
+  "code": "PK51202",
+  "district": "Karak",
+  "distric_code": "PK512",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Takht-E-Nasrati",
+  "code": "PK51203",
+  "district": "Karak",
+  "distric_code": "PK512",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bara",
+  "code": "PK51301",
+  "district": "Khyber",
+  "distric_code": "PK513",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Jamrud",
+  "code": "PK51302",
+  "district": "Khyber",
+  "distric_code": "PK513",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Landi Kotal",
+  "code": "PK51303",
+  "district": "Khyber",
+  "distric_code": "PK513",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mulagori",
+  "code": "PK51304",
+  "district": "Khyber",
+  "distric_code": "PK513",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Kohat",
+  "code": "PK51401",
+  "district": "Kohat",
+  "distric_code": "PK514",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lachi",
+  "code": "PK51402",
+  "district": "Kohat",
+  "distric_code": "PK514",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Gumbat",
+  "code": "PK51403",
+  "district": "Kohat",
+  "distric_code": "PK514",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Darra Adam Khel",
+  "code": "PK51404",
+  "district": "Kohat",
+  "distric_code": "PK514",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Pattan",
+  "code": "PK51501",
+  "district": "Kohistan Lower",
+  "distric_code": "PK515",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bankad",
+  "code": "PK51502",
+  "district": "Kohistan Lower",
+  "distric_code": "PK515",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Dassu",
+  "code": "PK51601",
+  "district": "Kohistan Upper",
+  "distric_code": "PK516",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Kandia",
+  "code": "PK51602",
+  "district": "Kohistan Upper",
+  "distric_code": "PK516",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Harban Basha",
+  "code": "PK51603",
+  "district": "Kohistan Upper",
+  "distric_code": "PK516",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Seo",
+  "code": "PK51604",
+  "district": "Kohistan Upper",
+  "distric_code": "PK516",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Palas",
+  "code": "PK51701",
+  "district": "Kolai Palas Kohistan",
+  "distric_code": "PK517",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Battera Kolai",
+  "code": "PK51702",
+  "district": "Kolai Palas Kohistan",
+  "distric_code": "PK517",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Central Kurram",
+  "code": "PK51801",
+  "district": "Kurram",
+  "distric_code": "PK518",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lower Kurram",
+  "code": "PK51802",
+  "district": "Kurram",
+  "distric_code": "PK518",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Upper Kurram",
+  "code": "PK51803",
+  "district": "Kurram",
+  "distric_code": "PK518",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lakki Marwat",
+  "code": "PK51901",
+  "district": "Lakki Marwat",
+  "distric_code": "PK519",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Sarai Naurang",
+  "code": "PK51902",
+  "district": "Lakki Marwat",
+  "distric_code": "PK519",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bettani",
+  "code": "PK51903",
+  "district": "Lakki Marwat",
+  "distric_code": "PK519",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Adenzai",
+  "code": "PK52001",
+  "district": "Lower Dir",
+  "distric_code": "PK520",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Balambat",
+  "code": "PK52002",
+  "district": "Lower Dir",
+  "distric_code": "PK520",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lalqila",
+  "code": "PK52003",
+  "district": "Lower Dir",
+  "distric_code": "PK520",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Munda",
+  "code": "PK52004",
+  "district": "Lower Dir",
+  "distric_code": "PK520",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Samarbagh",
+  "code": "PK52005",
+  "district": "Lower Dir",
+  "distric_code": "PK520",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Timergara",
+  "code": "PK52006",
+  "district": "Lower Dir",
+  "distric_code": "PK520",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bat Khela",
+  "code": "PK52101",
+  "district": "Malakand",
+  "distric_code": "PK521",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Dargai",
+  "code": "PK52102",
+  "district": "Malakand",
+  "distric_code": "PK521",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bala Kot",
+  "code": "PK52201",
+  "district": "Mansehra",
+  "distric_code": "PK522",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mansehra",
+  "code": "PK52202",
+  "district": "Mansehra",
+  "distric_code": "PK522",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Oghi",
+  "code": "PK52203",
+  "district": "Mansehra",
+  "distric_code": "PK522",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Baffa Pakhal",
+  "code": "PK52204",
+  "district": "Mansehra",
+  "distric_code": "PK522",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Darband",
+  "code": "PK52205",
+  "district": "Mansehra",
+  "distric_code": "PK522",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Katlang",
+  "code": "PK52301",
+  "district": "Mardan",
+  "distric_code": "PK523",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mardan",
+  "code": "PK52302",
+  "district": "Mardan",
+  "distric_code": "PK523",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Takht Bhai",
+  "code": "PK52303",
+  "district": "Mardan",
+  "distric_code": "PK523",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Rustam",
+  "code": "PK52304",
+  "district": "Mardan",
+  "distric_code": "PK523",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Garhi Kapura",
+  "code": "PK52305",
+  "district": "Mardan",
+  "distric_code": "PK523",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Ambar",
+  "code": "PK52401",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Baizai",
+  "code": "PK52402",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Halimzai",
+  "code": "PK52403",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Khwazai",
+  "code": "PK52404",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Pandiali",
+  "code": "PK52405",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Prang Ghar",
+  "code": "PK52406",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Safi",
+  "code": "PK52407",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Yaka Ghund",
+  "code": "PK52408",
+  "district": "Mohmand",
+  "distric_code": "PK524",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Data Khel",
+  "code": "PK52501",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Dossali",
+  "code": "PK52502",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Garyum",
+  "code": "PK52503",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Ghulam Khan",
+  "code": "PK52504",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Mir Ali",
+  "code": "PK52505",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Miran Shah",
+  "code": "PK52506",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Razmak",
+  "code": "PK52507",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Shewa",
+  "code": "PK52508",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Spinwam",
+  "code": "PK52509",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Shawal",
+  "code": "PK52510",
+  "district": "North Waziristan",
+  "distric_code": "PK525",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Nowshera",
+  "code": "PK52601",
+  "district": "Nowshera",
+  "distric_code": "PK526",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Pabbi",
+  "code": "PK52602",
+  "district": "Nowshera",
+  "distric_code": "PK526",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Jehangira",
+  "code": "PK52603",
+  "district": "Nowshera",
+  "distric_code": "PK526",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Central Orakzai",
+  "code": "PK52701",
+  "district": "Orakzai",
+  "distric_code": "PK527",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Ismailzai",
+  "code": "PK52702",
+  "district": "Orakzai",
+  "distric_code": "PK527",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lower Orakzai",
+  "code": "PK52703",
+  "district": "Orakzai",
+  "distric_code": "PK527",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Upper Orakzai",
+  "code": "PK52704",
+  "district": "Orakzai",
+  "distric_code": "PK527",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Town-I",
+  "code": "PK52801",
+  "district": "Peshawar",
+  "distric_code": "PK528",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Town-Ii",
+  "code": "PK52802",
+  "district": "Peshawar",
+  "distric_code": "PK528",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Town-Iii",
+  "code": "PK52803",
+  "district": "Peshawar",
+  "distric_code": "PK528",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Town-Iv",
+  "code": "PK52804",
+  "district": "Peshawar",
+  "distric_code": "PK528",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Hassan Khel",
+  "code": "PK52805",
+  "district": "Peshawar",
+  "distric_code": "PK528",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Alpuri",
+  "code": "PK52901",
+  "district": "Shangla",
+  "distric_code": "PK529",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bisham",
+  "code": "PK52902",
+  "district": "Shangla",
+  "distric_code": "PK529",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Chakisar",
+  "code": "PK52903",
+  "district": "Shangla",
+  "distric_code": "PK529",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Makhuzai",
+  "code": "PK52904",
+  "district": "Shangla",
+  "distric_code": "PK529",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Martoong",
+  "code": "PK52905",
+  "district": "Shangla",
+  "distric_code": "PK529",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Puran",
+  "code": "PK52906",
+  "district": "Shangla",
+  "distric_code": "PK529",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Birmal",
+  "code": "PK53001",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Ladha",
+  "code": "PK53002",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Makin",
+  "code": "PK53003",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Sararogha",
+  "code": "PK53004",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Serwakai",
+  "code": "PK53005",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Tiarza",
+  "code": "PK53006",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Toi Khulla",
+  "code": "PK53007",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Wana",
+  "code": "PK53008",
+  "district": "South Waziristan",
+  "distric_code": "PK530",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Lahor",
+  "code": "PK53101",
+  "district": "Swabi",
+  "distric_code": "PK531",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Swabi",
+  "code": "PK53102",
+  "district": "Swabi",
+  "distric_code": "PK531",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Topi",
+  "code": "PK53103",
+  "district": "Swabi",
+  "distric_code": "PK531",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Razar",
+  "code": "PK53104",
+  "district": "Swabi",
+  "distric_code": "PK531",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Babuzai",
+  "code": "PK53201",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Bahrain",
+  "code": "PK53202",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Barikot",
+  "code": "PK53203",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Charbagh",
+  "code": "PK53204",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Kabal",
+  "code": "PK53205",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Kalam",
+  "code": "PK53206",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Khwaza Khela",
+  "code": "PK53207",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Matta Kharirai",
+  "code": "PK53208",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Matta Sebujni",
+  "code": "PK53209",
+  "district": "Swat",
+  "distric_code": "PK532",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Tank",
+  "code": "PK53301",
+  "district": "Tank",
+  "distric_code": "PK533",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Jandola",
+  "code": "PK53302",
+  "district": "Tank",
+  "distric_code": "PK533",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Judba",
+  "code": "PK53401",
+  "district": "Tor Ghar",
+  "distric_code": "PK534",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Khander",
+  "code": "PK53402",
+  "district": "Tor Ghar",
+  "distric_code": "PK534",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Barawal",
+  "code": "PK53501",
+  "district": "Upper Dir",
+  "distric_code": "PK535",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Dir",
+  "code": "PK53502",
+  "district": "Upper Dir",
+  "distric_code": "PK535",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Kalkot",
+  "code": "PK53503",
+  "district": "Upper Dir",
+  "distric_code": "PK535",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Khall",
+  "code": "PK53504",
+  "district": "Upper Dir",
+  "distric_code": "PK535",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Shrengal",
+  "code": "PK53505",
+  "district": "Upper Dir",
+  "distric_code": "PK535",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Wari",
+  "code": "PK53506",
+  "district": "Upper Dir",
+  "distric_code": "PK535",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Larjam",
+  "code": "PK53507",
+  "district": "Upper Dir",
+  "distric_code": "PK535",
+  "province": "Khyber Pakhtunkhwa",
+  "province_code": "PK5"
+ },
+ {
+  "name": "Attock",
+  "code": "PK60101",
+  "district": "Attock",
+  "distric_code": "PK601",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Fateh Jang",
+  "code": "PK60102",
+  "district": "Attock",
+  "distric_code": "PK601",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Hasan Abdal",
+  "code": "PK60103",
+  "district": "Attock",
+  "distric_code": "PK601",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Hazro",
+  "code": "PK60104",
+  "district": "Attock",
+  "distric_code": "PK601",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jand",
+  "code": "PK60105",
+  "district": "Attock",
+  "distric_code": "PK601",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Pindi Gheb",
+  "code": "PK60106",
+  "district": "Attock",
+  "distric_code": "PK601",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Bahawalnagar",
+  "code": "PK60201",
+  "district": "Bahawalnagar",
+  "distric_code": "PK602",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Chishtian",
+  "code": "PK60202",
+  "district": "Bahawalnagar",
+  "distric_code": "PK602",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Fort Abbas",
+  "code": "PK60203",
+  "district": "Bahawalnagar",
+  "distric_code": "PK602",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Haroonabad",
+  "code": "PK60204",
+  "district": "Bahawalnagar",
+  "distric_code": "PK602",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Minchinabad",
+  "code": "PK60205",
+  "district": "Bahawalnagar",
+  "distric_code": "PK602",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Ahmadpur East",
+  "code": "PK60301",
+  "district": "Bahawalpur",
+  "distric_code": "PK603",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Bahawalpur",
+  "code": "PK60302",
+  "district": "Bahawalpur",
+  "distric_code": "PK603",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Hasilpur",
+  "code": "PK60303",
+  "district": "Bahawalpur",
+  "distric_code": "PK603",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Khairpur Tamewali",
+  "code": "PK60304",
+  "district": "Bahawalpur",
+  "distric_code": "PK603",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Yazman",
+  "code": "PK60305",
+  "district": "Bahawalpur",
+  "distric_code": "PK603",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Bhakkar",
+  "code": "PK60401",
+  "district": "Bhakkar",
+  "distric_code": "PK604",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Darya Khan",
+  "code": "PK60402",
+  "district": "Bhakkar",
+  "distric_code": "PK604",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kalur Kot",
+  "code": "PK60403",
+  "district": "Bhakkar",
+  "distric_code": "PK604",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Mankera",
+  "code": "PK60404",
+  "district": "Bhakkar",
+  "distric_code": "PK604",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Chakwal",
+  "code": "PK60501",
+  "district": "Chakwal",
+  "distric_code": "PK605",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Choa Saidan Shah",
+  "code": "PK60502",
+  "district": "Chakwal",
+  "distric_code": "PK605",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kallar Kahar",
+  "code": "PK60503",
+  "district": "Chakwal",
+  "distric_code": "PK605",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Tala Gang",
+  "code": "PK60504",
+  "district": "Chakwal",
+  "distric_code": "PK605",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Bhawana",
+  "code": "PK60601",
+  "district": "Chiniot",
+  "distric_code": "PK606",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Chiniot",
+  "code": "PK60602",
+  "district": "Chiniot",
+  "distric_code": "PK606",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Lalian",
+  "code": "PK60603",
+  "district": "Chiniot",
+  "distric_code": "PK606",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "D.G Khan (Tribal Area)",
+  "code": "PK60701",
+  "district": "Dera Ghazi Khan",
+  "distric_code": "PK607",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Dera Ghazi Khan",
+  "code": "PK60702",
+  "district": "Dera Ghazi Khan",
+  "distric_code": "PK607",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kot Chatta",
+  "code": "PK60703",
+  "district": "Dera Ghazi Khan",
+  "distric_code": "PK607",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Taunsa",
+  "code": "PK60704",
+  "district": "Dera Ghazi Khan",
+  "distric_code": "PK607",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Chak Jhumra",
+  "code": "PK60801",
+  "district": "Faisalabad",
+  "distric_code": "PK608",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Faisalabad City",
+  "code": "PK60802",
+  "district": "Faisalabad",
+  "distric_code": "PK608",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Faisalabad Sadar",
+  "code": "PK60803",
+  "district": "Faisalabad",
+  "distric_code": "PK608",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jaranwala",
+  "code": "PK60804",
+  "district": "Faisalabad",
+  "distric_code": "PK608",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Summundri",
+  "code": "PK60805",
+  "district": "Faisalabad",
+  "distric_code": "PK608",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Tandlian Wala",
+  "code": "PK60806",
+  "district": "Faisalabad",
+  "distric_code": "PK608",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Gujranwala",
+  "code": "PK60901",
+  "district": "Gujranwala",
+  "distric_code": "PK609",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kamoke",
+  "code": "PK60902",
+  "district": "Gujranwala",
+  "distric_code": "PK609",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Nowshera Virkan",
+  "code": "PK60903",
+  "district": "Gujranwala",
+  "distric_code": "PK609",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Wazirabad",
+  "code": "PK60904",
+  "district": "Gujranwala",
+  "distric_code": "PK609",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Gujrat",
+  "code": "PK61001",
+  "district": "Gujrat",
+  "distric_code": "PK610",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kharian",
+  "code": "PK61002",
+  "district": "Gujrat",
+  "distric_code": "PK610",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sarai Alamgir",
+  "code": "PK61003",
+  "district": "Gujrat",
+  "distric_code": "PK610",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Hafizabad",
+  "code": "PK61101",
+  "district": "Hafizabad",
+  "distric_code": "PK611",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Pindi Bhattian",
+  "code": "PK61102",
+  "district": "Hafizabad",
+  "distric_code": "PK611",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Ahmadpur Sial",
+  "code": "PK61201",
+  "district": "Jhang",
+  "distric_code": "PK612",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jhang",
+  "code": "PK61202",
+  "district": "Jhang",
+  "distric_code": "PK612",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Shorkot",
+  "code": "PK61203",
+  "district": "Jhang",
+  "distric_code": "PK612",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Athara Hazari",
+  "code": "PK61204",
+  "district": "Jhang",
+  "distric_code": "PK612",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Dina",
+  "code": "PK61301",
+  "district": "Jhelum",
+  "distric_code": "PK613",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jhelum",
+  "code": "PK61302",
+  "district": "Jhelum",
+  "distric_code": "PK613",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Pind Dadan Khan",
+  "code": "PK61303",
+  "district": "Jhelum",
+  "distric_code": "PK613",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sohawa",
+  "code": "PK61304",
+  "district": "Jhelum",
+  "distric_code": "PK613",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Chunian",
+  "code": "PK61401",
+  "district": "Kasur",
+  "distric_code": "PK614",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kasur",
+  "code": "PK61402",
+  "district": "Kasur",
+  "distric_code": "PK614",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kot Radha Kishen",
+  "code": "PK61403",
+  "district": "Kasur",
+  "distric_code": "PK614",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Pattoki",
+  "code": "PK61404",
+  "district": "Kasur",
+  "distric_code": "PK614",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jahanian",
+  "code": "PK61501",
+  "district": "Khanewal",
+  "distric_code": "PK615",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kabirwala",
+  "code": "PK61502",
+  "district": "Khanewal",
+  "distric_code": "PK615",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Khanewal",
+  "code": "PK61503",
+  "district": "Khanewal",
+  "distric_code": "PK615",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Mian Channu",
+  "code": "PK61504",
+  "district": "Khanewal",
+  "distric_code": "PK615",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Khushab",
+  "code": "PK61601",
+  "district": "Khushab",
+  "distric_code": "PK616",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Naushera",
+  "code": "PK61602",
+  "district": "Khushab",
+  "distric_code": "PK616",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Noorpur",
+  "code": "PK61603",
+  "district": "Khushab",
+  "distric_code": "PK616",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Quaidabad",
+  "code": "PK61604",
+  "district": "Khushab",
+  "distric_code": "PK616",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Lahore Cantt",
+  "code": "PK61701",
+  "district": "Lahore",
+  "distric_code": "PK617",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Lahore City",
+  "code": "PK61702",
+  "district": "Lahore",
+  "distric_code": "PK617",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Choubara",
+  "code": "PK61801",
+  "district": "Leiah",
+  "distric_code": "PK618",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Karor Lal Esan",
+  "code": "PK61802",
+  "district": "Leiah",
+  "distric_code": "PK618",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Leiah",
+  "code": "PK61803",
+  "district": "Leiah",
+  "distric_code": "PK618",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Dunyapur",
+  "code": "PK61901",
+  "district": "Lodhran",
+  "distric_code": "PK619",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kahror Pacca",
+  "code": "PK61902",
+  "district": "Lodhran",
+  "distric_code": "PK619",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Lodhran",
+  "code": "PK61903",
+  "district": "Lodhran",
+  "distric_code": "PK619",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Malakwal",
+  "code": "PK62001",
+  "district": "Mandi Bahauddin",
+  "distric_code": "PK620",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Mandi Bahauddin",
+  "code": "PK62002",
+  "district": "Mandi Bahauddin",
+  "distric_code": "PK620",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Phalia",
+  "code": "PK62003",
+  "district": "Mandi Bahauddin",
+  "distric_code": "PK620",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Isakhel",
+  "code": "PK62101",
+  "district": "Mianwali",
+  "distric_code": "PK621",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Mianwali",
+  "code": "PK62102",
+  "district": "Mianwali",
+  "distric_code": "PK621",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Piplan",
+  "code": "PK62103",
+  "district": "Mianwali",
+  "distric_code": "PK621",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jalalpur Pirwala",
+  "code": "PK62201",
+  "district": "Multan",
+  "distric_code": "PK622",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Multan City",
+  "code": "PK62202",
+  "district": "Multan",
+  "distric_code": "PK622",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Multan Saddar",
+  "code": "PK62203",
+  "district": "Multan",
+  "distric_code": "PK622",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Shujabad",
+  "code": "PK62204",
+  "district": "Multan",
+  "distric_code": "PK622",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Alipur",
+  "code": "PK62301",
+  "district": "Muzaffargarh",
+  "distric_code": "PK623",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jatoi",
+  "code": "PK62302",
+  "district": "Muzaffargarh",
+  "distric_code": "PK623",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kot Addu",
+  "code": "PK62303",
+  "district": "Muzaffargarh",
+  "distric_code": "PK623",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Muzaffargarh",
+  "code": "PK62304",
+  "district": "Muzaffargarh",
+  "distric_code": "PK623",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Nankana Sahib",
+  "code": "PK62401",
+  "district": "Nankana Sahib",
+  "distric_code": "PK624",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sangla Hill",
+  "code": "PK62402",
+  "district": "Nankana Sahib",
+  "distric_code": "PK624",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Shah Kot",
+  "code": "PK62403",
+  "district": "Nankana Sahib",
+  "distric_code": "PK624",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Narowal",
+  "code": "PK62501",
+  "district": "Narowal",
+  "distric_code": "PK625",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Shakargarh",
+  "code": "PK62502",
+  "district": "Narowal",
+  "distric_code": "PK625",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Zafarwal",
+  "code": "PK62503",
+  "district": "Narowal",
+  "distric_code": "PK625",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Depalpur",
+  "code": "PK62601",
+  "district": "Okara",
+  "distric_code": "PK626",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Okara",
+  "code": "PK62602",
+  "district": "Okara",
+  "distric_code": "PK626",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Renala Khurd",
+  "code": "PK62603",
+  "district": "Okara",
+  "distric_code": "PK626",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Arif Wala",
+  "code": "PK62701",
+  "district": "Pakpattan",
+  "distric_code": "PK627",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Pakpattan",
+  "code": "PK62702",
+  "district": "Pakpattan",
+  "distric_code": "PK627",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Khanpur",
+  "code": "PK62801",
+  "district": "Rahim Yar Khan",
+  "distric_code": "PK628",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Liaqatpur",
+  "code": "PK62802",
+  "district": "Rahim Yar Khan",
+  "distric_code": "PK628",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Rahim Yar Khan",
+  "code": "PK62803",
+  "district": "Rahim Yar Khan",
+  "distric_code": "PK628",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sadiqabad",
+  "code": "PK62804",
+  "district": "Rahim Yar Khan",
+  "distric_code": "PK628",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Jampur",
+  "code": "PK62901",
+  "district": "Rajanpur",
+  "distric_code": "PK629",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Rajanpur",
+  "code": "PK62902",
+  "district": "Rajanpur",
+  "distric_code": "PK629",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Rajanpur (Tribal Area)",
+  "code": "PK62903",
+  "district": "Rajanpur",
+  "distric_code": "PK629",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Rojhan",
+  "code": "PK62904",
+  "district": "Rajanpur",
+  "distric_code": "PK629",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Gujar Khan",
+  "code": "PK63001",
+  "district": "Rawalpindi",
+  "distric_code": "PK630",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kahuta",
+  "code": "PK63002",
+  "district": "Rawalpindi",
+  "distric_code": "PK630",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kallar Sayaddan",
+  "code": "PK63003",
+  "district": "Rawalpindi",
+  "distric_code": "PK630",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kotli Sattian",
+  "code": "PK63004",
+  "district": "Rawalpindi",
+  "distric_code": "PK630",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Murree",
+  "code": "PK63005",
+  "district": "Rawalpindi",
+  "distric_code": "PK630",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Rawalpindi",
+  "code": "PK63006",
+  "district": "Rawalpindi",
+  "distric_code": "PK630",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Taxila",
+  "code": "PK63007",
+  "district": "Rawalpindi",
+  "distric_code": "PK630",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Chichawatni",
+  "code": "PK63101",
+  "district": "Sahiwal",
+  "distric_code": "PK631",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sahiwal",
+  "code": "PK63102",
+  "district": "Sahiwal",
+  "distric_code": "PK631",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Bhalwal",
+  "code": "PK63201",
+  "district": "Sargodha",
+  "distric_code": "PK632",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kot Momin",
+  "code": "PK63202",
+  "district": "Sargodha",
+  "distric_code": "PK632",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sahiwal",
+  "code": "PK63203",
+  "district": "Sargodha",
+  "distric_code": "PK632",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sargodha",
+  "code": "PK63204",
+  "district": "Sargodha",
+  "distric_code": "PK632",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Shahpur",
+  "code": "PK63205",
+  "district": "Sargodha",
+  "distric_code": "PK632",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sillanwali",
+  "code": "PK63206",
+  "district": "Sargodha",
+  "distric_code": "PK632",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Bhera",
+  "code": "PK63207",
+  "district": "Sargodha",
+  "distric_code": "PK632",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Ferozewala",
+  "code": "PK63301",
+  "district": "Sheikhupura",
+  "distric_code": "PK633",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Muridke",
+  "code": "PK63302",
+  "district": "Sheikhupura",
+  "distric_code": "PK633",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Safdarabad",
+  "code": "PK63303",
+  "district": "Sheikhupura",
+  "distric_code": "PK633",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sharak Pur",
+  "code": "PK63304",
+  "district": "Sheikhupura",
+  "distric_code": "PK633",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sheikhupura",
+  "code": "PK63305",
+  "district": "Sheikhupura",
+  "distric_code": "PK633",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Daska",
+  "code": "PK63401",
+  "district": "Sialkot",
+  "distric_code": "PK634",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Pasrur",
+  "code": "PK63402",
+  "district": "Sialkot",
+  "distric_code": "PK634",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sambrial",
+  "code": "PK63403",
+  "district": "Sialkot",
+  "distric_code": "PK634",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Sialkot",
+  "code": "PK63404",
+  "district": "Sialkot",
+  "distric_code": "PK634",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Gojra",
+  "code": "PK63501",
+  "district": "Toba Tek Singh",
+  "distric_code": "PK635",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Kamalia",
+  "code": "PK63502",
+  "district": "Toba Tek Singh",
+  "distric_code": "PK635",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Toba Tek Singh",
+  "code": "PK63503",
+  "district": "Toba Tek Singh",
+  "distric_code": "PK635",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Pir Mahal",
+  "code": "PK63504",
+  "district": "Toba Tek Singh",
+  "distric_code": "PK635",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Burewala",
+  "code": "PK63601",
+  "district": "Vehari",
+  "distric_code": "PK636",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Mailsi",
+  "code": "PK63602",
+  "district": "Vehari",
+  "distric_code": "PK636",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Vehari",
+  "code": "PK63603",
+  "district": "Vehari",
+  "distric_code": "PK636",
+  "province": "Punjab",
+  "province_code": "PK6"
+ },
+ {
+  "name": "Badin",
+  "code": "PK70101",
+  "district": "Badin",
+  "distric_code": "PK701",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Matli",
+  "code": "PK70102",
+  "district": "Badin",
+  "distric_code": "PK701",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Shaheed Fazil Rahu",
+  "code": "PK70103",
+  "district": "Badin",
+  "distric_code": "PK701",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Talhar",
+  "code": "PK70104",
+  "district": "Badin",
+  "distric_code": "PK701",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Tando Bago",
+  "code": "PK70105",
+  "district": "Badin",
+  "distric_code": "PK701",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Gulberg Town",
+  "code": "PK70201",
+  "district": "Central Karachi",
+  "distric_code": "PK702",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Liaqatabad Town",
+  "code": "PK70202",
+  "district": "Central Karachi",
+  "distric_code": "PK702",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "New Karachi Town",
+  "code": "PK70203",
+  "district": "Central Karachi",
+  "distric_code": "PK702",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "North Nazimabad Town",
+  "code": "PK70204",
+  "district": "Central Karachi",
+  "distric_code": "PK702",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Dadu",
+  "code": "PK70301",
+  "district": "Dadu",
+  "distric_code": "PK703",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Johi",
+  "code": "PK70302",
+  "district": "Dadu",
+  "distric_code": "PK703",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Khairpur Nathan Shah",
+  "code": "PK70303",
+  "district": "Dadu",
+  "distric_code": "PK703",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Mehar",
+  "code": "PK70304",
+  "district": "Dadu",
+  "distric_code": "PK703",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Gulshan Iqbal Town",
+  "code": "PK70401",
+  "district": "East Karachi",
+  "distric_code": "PK704",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Jamshaid Town",
+  "code": "PK70402",
+  "district": "East Karachi",
+  "distric_code": "PK704",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Daharki",
+  "code": "PK70501",
+  "district": "Ghotki",
+  "distric_code": "PK705",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Ghotki",
+  "code": "PK70502",
+  "district": "Ghotki",
+  "distric_code": "PK705",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Khangarh",
+  "code": "PK70503",
+  "district": "Ghotki",
+  "distric_code": "PK705",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Mirpur Mathelo",
+  "code": "PK70504",
+  "district": "Ghotki",
+  "distric_code": "PK705",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Ubauro",
+  "code": "PK70505",
+  "district": "Ghotki",
+  "distric_code": "PK705",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Hyderabad",
+  "code": "PK70601",
+  "district": "Hyderabad",
+  "distric_code": "PK706",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Hyderabad City",
+  "code": "PK70602",
+  "district": "Hyderabad",
+  "distric_code": "PK706",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Latifabad",
+  "code": "PK70603",
+  "district": "Hyderabad",
+  "distric_code": "PK706",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Qasimabad",
+  "code": "PK70604",
+  "district": "Hyderabad",
+  "distric_code": "PK706",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Garhi Khairo",
+  "code": "PK70701",
+  "district": "Jacobabad",
+  "distric_code": "PK707",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Jacobabad",
+  "code": "PK70702",
+  "district": "Jacobabad",
+  "distric_code": "PK707",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Thul",
+  "code": "PK70703",
+  "district": "Jacobabad",
+  "distric_code": "PK707",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kotri",
+  "code": "PK70801",
+  "district": "Jamshoro",
+  "distric_code": "PK708",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Manjhand",
+  "code": "PK70802",
+  "district": "Jamshoro",
+  "distric_code": "PK708",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sehwan Sharif",
+  "code": "PK70803",
+  "district": "Jamshoro",
+  "distric_code": "PK708",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Thano Bula Khan",
+  "code": "PK70804",
+  "district": "Jamshoro",
+  "distric_code": "PK708",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Meero Khan",
+  "code": "PK70901",
+  "district": "Kambar Shahdad Kot",
+  "distric_code": "PK709",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Nasir Abad",
+  "code": "PK70902",
+  "district": "Kambar Shahdad Kot",
+  "distric_code": "PK709",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Qambar Ali Khan",
+  "code": "PK70903",
+  "district": "Kambar Shahdad Kot",
+  "distric_code": "PK709",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Qubo Saeed Khan",
+  "code": "PK70904",
+  "district": "Kambar Shahdad Kot",
+  "distric_code": "PK709",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Shahdad Kot",
+  "code": "PK70905",
+  "district": "Kambar Shahdad Kot",
+  "distric_code": "PK709",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sijawal Junejo",
+  "code": "PK70906",
+  "district": "Kambar Shahdad Kot",
+  "distric_code": "PK709",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Warah",
+  "code": "PK70907",
+  "district": "Kambar Shahdad Kot",
+  "distric_code": "PK709",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kandh Kot",
+  "code": "PK71001",
+  "district": "Kashmore",
+  "distric_code": "PK710",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kashmore",
+  "code": "PK71002",
+  "district": "Kashmore",
+  "distric_code": "PK710",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Tangwani",
+  "code": "PK71003",
+  "district": "Kashmore",
+  "distric_code": "PK710",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Faiz Ganj",
+  "code": "PK71101",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Gambat",
+  "code": "PK71102",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Khairpur",
+  "code": "PK71103",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kingri",
+  "code": "PK71104",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kot Diji",
+  "code": "PK71105",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Nara",
+  "code": "PK71106",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sobho Dero",
+  "code": "PK71107",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Thari Meer Wah",
+  "code": "PK71108",
+  "district": "Khairpur",
+  "distric_code": "PK711",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Korangi Town",
+  "code": "PK71201",
+  "district": "Korangi Karachi",
+  "distric_code": "PK712",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Landhi Town",
+  "code": "PK71202",
+  "district": "Korangi Karachi",
+  "distric_code": "PK712",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Shah Faisal Town",
+  "code": "PK71203",
+  "district": "Korangi Karachi",
+  "distric_code": "PK712",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Baqrani",
+  "code": "PK71301",
+  "district": "Larkana",
+  "distric_code": "PK713",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Dokri",
+  "code": "PK71302",
+  "district": "Larkana",
+  "distric_code": "PK713",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Larkana",
+  "code": "PK71303",
+  "district": "Larkana",
+  "distric_code": "PK713",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Rato Dero",
+  "code": "PK71304",
+  "district": "Larkana",
+  "distric_code": "PK713",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Bin Qasim Town",
+  "code": "PK71401",
+  "district": "Malir Karachi",
+  "distric_code": "PK714",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Gadap Town",
+  "code": "PK71402",
+  "district": "Malir Karachi",
+  "distric_code": "PK714",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Malir Town",
+  "code": "PK71403",
+  "district": "Malir Karachi",
+  "distric_code": "PK714",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Hala",
+  "code": "PK71501",
+  "district": "Matiari",
+  "distric_code": "PK715",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Matiari",
+  "code": "PK71502",
+  "district": "Matiari",
+  "distric_code": "PK715",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Saeedabad",
+  "code": "PK71503",
+  "district": "Matiari",
+  "distric_code": "PK715",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Digri",
+  "code": "PK71601",
+  "district": "Mirpur Khas",
+  "distric_code": "PK716",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Hussain Bux Muree",
+  "code": "PK71602",
+  "district": "Mirpur Khas",
+  "distric_code": "PK716",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Jhudo",
+  "code": "PK71603",
+  "district": "Mirpur Khas",
+  "distric_code": "PK716",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kot Ghulam Muhammad",
+  "code": "PK71604",
+  "district": "Mirpur Khas",
+  "distric_code": "PK716",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Mirpur Khas",
+  "code": "PK71605",
+  "district": "Mirpur Khas",
+  "distric_code": "PK716",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Shuja Abad",
+  "code": "PK71606",
+  "district": "Mirpur Khas",
+  "distric_code": "PK716",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sindhri",
+  "code": "PK71607",
+  "district": "Mirpur Khas",
+  "distric_code": "PK716",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Bhiria",
+  "code": "PK71701",
+  "district": "Naushahro Feroze",
+  "distric_code": "PK717",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kandiaro",
+  "code": "PK71702",
+  "district": "Naushahro Feroze",
+  "distric_code": "PK717",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Mehrab Pur",
+  "code": "PK71703",
+  "district": "Naushahro Feroze",
+  "distric_code": "PK717",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Moro",
+  "code": "PK71704",
+  "district": "Naushahro Feroze",
+  "distric_code": "PK717",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Naushahro Feroze",
+  "code": "PK71705",
+  "district": "Naushahro Feroze",
+  "distric_code": "PK717",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Jam Nawaz Ali",
+  "code": "PK71801",
+  "district": "Sanghar",
+  "distric_code": "PK718",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Khipro",
+  "code": "PK71802",
+  "district": "Sanghar",
+  "distric_code": "PK718",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sanghar",
+  "code": "PK71803",
+  "district": "Sanghar",
+  "distric_code": "PK718",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Shahdadpur",
+  "code": "PK71804",
+  "district": "Sanghar",
+  "distric_code": "PK718",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sinjhoro",
+  "code": "PK71805",
+  "district": "Sanghar",
+  "distric_code": "PK718",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Tando Adam",
+  "code": "PK71806",
+  "district": "Sanghar",
+  "distric_code": "PK718",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Daulat Pur",
+  "code": "PK71901",
+  "district": "Shaheed Benazir Abad",
+  "distric_code": "PK719",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Daur",
+  "code": "PK71902",
+  "district": "Shaheed Benazir Abad",
+  "distric_code": "PK719",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Nawabshah",
+  "code": "PK71903",
+  "district": "Shaheed Benazir Abad",
+  "distric_code": "PK719",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sakrand",
+  "code": "PK71904",
+  "district": "Shaheed Benazir Abad",
+  "distric_code": "PK719",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Garhi Yasin",
+  "code": "PK72001",
+  "district": "Shikarpur",
+  "distric_code": "PK720",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Khanpur",
+  "code": "PK72002",
+  "district": "Shikarpur",
+  "distric_code": "PK720",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Lakhi",
+  "code": "PK72003",
+  "district": "Shikarpur",
+  "distric_code": "PK720",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Shikarpur",
+  "code": "PK72004",
+  "district": "Shikarpur",
+  "distric_code": "PK720",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kemari Town",
+  "code": "PK72101",
+  "district": "South Karachi",
+  "distric_code": "PK721",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Liyari Town",
+  "code": "PK72102",
+  "district": "South Karachi",
+  "distric_code": "PK721",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Saddar Town",
+  "code": "PK72103",
+  "district": "South Karachi",
+  "distric_code": "PK721",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Jati",
+  "code": "PK72201",
+  "district": "Sujawal",
+  "distric_code": "PK722",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kharo Chan",
+  "code": "PK72202",
+  "district": "Sujawal",
+  "distric_code": "PK722",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Mirpur Bathoro",
+  "code": "PK72203",
+  "district": "Sujawal",
+  "distric_code": "PK722",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Shah Bunder",
+  "code": "PK72204",
+  "district": "Sujawal",
+  "distric_code": "PK722",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sujawal",
+  "code": "PK72205",
+  "district": "Sujawal",
+  "distric_code": "PK722",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "New Sukkur",
+  "code": "PK72301",
+  "district": "Sukkur",
+  "distric_code": "PK723",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Pano Aqil",
+  "code": "PK72302",
+  "district": "Sukkur",
+  "distric_code": "PK723",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Rohri",
+  "code": "PK72303",
+  "district": "Sukkur",
+  "distric_code": "PK723",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Salehpat",
+  "code": "PK72304",
+  "district": "Sukkur",
+  "distric_code": "PK723",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Sukkur",
+  "code": "PK72305",
+  "district": "Sukkur",
+  "distric_code": "PK723",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Chamber",
+  "code": "PK72401",
+  "district": "Tando Allahyar",
+  "distric_code": "PK724",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Jhando Mari",
+  "code": "PK72402",
+  "district": "Tando Allahyar",
+  "distric_code": "PK724",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Tando Allahyar",
+  "code": "PK72403",
+  "district": "Tando Allahyar",
+  "distric_code": "PK724",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Bulri Shah Karim",
+  "code": "PK72501",
+  "district": "Tando Muhammad Khan",
+  "distric_code": "PK725",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Tando Ghulam Hyder",
+  "code": "PK72502",
+  "district": "Tando Muhammad Khan",
+  "distric_code": "PK725",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Tando Muhammad Khan",
+  "code": "PK72503",
+  "district": "Tando Muhammad Khan",
+  "distric_code": "PK725",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Chachro",
+  "code": "PK72601",
+  "district": "Tharparkar",
+  "distric_code": "PK726",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Dahli",
+  "code": "PK72602",
+  "district": "Tharparkar",
+  "distric_code": "PK726",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Diplo",
+  "code": "PK72603",
+  "district": "Tharparkar",
+  "distric_code": "PK726",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Islam Kot",
+  "code": "PK72604",
+  "district": "Tharparkar",
+  "distric_code": "PK726",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Mithi",
+  "code": "PK72605",
+  "district": "Tharparkar",
+  "distric_code": "PK726",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Nagar Parkar",
+  "code": "PK72606",
+  "district": "Tharparkar",
+  "distric_code": "PK726",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kaloi",
+  "code": "PK72607",
+  "district": "Tharparkar",
+  "distric_code": "PK726",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Ghorabari",
+  "code": "PK72701",
+  "district": "Thatta",
+  "distric_code": "PK727",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Keti Bunder",
+  "code": "PK72702",
+  "district": "Thatta",
+  "distric_code": "PK727",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Mirpur Sakro",
+  "code": "PK72703",
+  "district": "Thatta",
+  "distric_code": "PK727",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Thatta",
+  "code": "PK72704",
+  "district": "Thatta",
+  "distric_code": "PK727",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Kunri",
+  "code": "PK72801",
+  "district": "Umer Kot",
+  "distric_code": "PK728",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Pithoro",
+  "code": "PK72802",
+  "district": "Umer Kot",
+  "distric_code": "PK728",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Samaro",
+  "code": "PK72803",
+  "district": "Umer Kot",
+  "distric_code": "PK728",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Umer Kot",
+  "code": "PK72804",
+  "district": "Umer Kot",
+  "distric_code": "PK728",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Baldia Town",
+  "code": "PK72901",
+  "district": "West Karachi",
+  "distric_code": "PK729",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Orangi Town",
+  "code": "PK72902",
+  "district": "West Karachi",
+  "distric_code": "PK729",
+  "province": "Sindh",
+  "province_code": "PK7"
+ },
+ {
+  "name": "Site Town",
+  "code": "PK72903",
+  "district": "West Karachi",
+  "distric_code": "PK729",
+  "province": "Sindh",
+  "province_code": "PK7"
+ }
+]
