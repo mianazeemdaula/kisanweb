@@ -95,7 +95,7 @@ class CropRateController extends Controller
                 \DB::raw('cast(max(max_price) as float) as max_rate'),
             )->groupBy('rate_date','crop_type_id')
             ->whereDate('rate_date',Carbon::parse($request->date));
-        }])->where('crop_id', $request->crop)->get();
+        }])->whereHas('rate')->where('crop_id', $request->crop)->get();
         return response()->json($data, 200);
     }
     
