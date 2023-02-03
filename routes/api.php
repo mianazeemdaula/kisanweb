@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\ReactionController;
 use App\Http\Controllers\Api\V1\AddressController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\CityController;
+use App\Http\Controllers\Api\V1\CropRateController;
 use App\Http\Controllers\Api\V1\DataController;
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +81,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('notification', NotificationController::class);
     Route::resource('reaction', ReactionController::class);
     Route::resource('address', AddressController::class);
+    Route::resource('rates', CropRateController::class);
+    Route::post('rates-filter', [CropRateController::class,'filter']);
 });

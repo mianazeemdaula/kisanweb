@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CropType extends Model
@@ -33,5 +34,14 @@ class CropType extends Model
     public function offers(): HasMany
     {
         return $this->hasMany(Offer::class);
+    }
+
+    public function rates(): HasMany
+    {
+        return $this->hasMany(CropRate::class);
+    }
+    public function rate(): HasOne
+    {
+        return $this->hasOne(CropRate::class);
     }
 }

@@ -5,13 +5,25 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
+use App\Models\Crop;
 use App\Models\CropRate;
 
 class CropRateController extends Controller
 {
     public function index()
     {
-        $data = CropRate::where('crop_type_id',1)->get();
+        $data = Crop::with(['types' => function($q){
+            $q->with(['rate' => function($r){
+                $r->select(
+                    'rate_date','crop_type_id',
+                    \DB::raw('cast(min(min_price) as float) as min_rate'),
+                    \DB::raw('cast(max(max_price) as float) as max_rate'),
+                )->groupBy('rate_date','crop_type_id')
+                ->whereDate('rate_date','2023-02-02');
+            }])->whereHas('rate');
+        }])->get();
         return response()->json($data, 200);
     }
 
@@ -64,10 +76,17 @@ class CropRateController extends Controller
 
     public function filter(Reqeust $request)
     {
-        $data = CropRate::where([
-            'city_id' => $request->city,
-            'crop_type_id' => $request->crop_type_id,
-        ])->get();
+        $data = Crop::with(['types' => function($q) use($request) {
+            $q->with(['rate' => function($r) use($request) {
+                $r->select(
+                    'rate_date','crop_type_id',
+                    \DB::raw('cast(min(min_price) as float) as min_rate'),
+                    \DB::raw('cast(max(max_price) as float) as max_rate'),
+                )->groupBy('rate_date','crop_type_id')
+                ->whereDate('rate_date',Carbon::parse($request->date));
+            }]);
+            // ->whereHas('rate');
+        }])->get();
         return response()->json($data, 200);
     }
     
