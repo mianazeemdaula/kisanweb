@@ -9,6 +9,7 @@ use Carbon\Carbon;
 
 use App\Models\Crop;
 use App\Models\CropRate;
+use App\Models\CropType;
 
 class CropRateController extends Controller
 {
@@ -76,17 +77,25 @@ class CropRateController extends Controller
 
     public function filter(Reqeust $request)
     {
-        $data = Crop::with(['types' => function($q) use($request) {
-            $q->with(['rate' => function($r) use($request) {
-                $r->select(
-                    'rate_date','crop_type_id',
-                    \DB::raw('cast(min(min_price) as float) as min_rate'),
-                    \DB::raw('cast(max(max_price) as float) as max_rate'),
-                )->groupBy('rate_date','crop_type_id')
-                ->whereDate('rate_date',Carbon::parse($request->date));
-            }]);
-            // ->whereHas('rate');
-        }])->get();
+        // $data = Crop::with(['types' => function($q) use($request) {
+        //     $q->with(['rate' => function($r) use($request) {
+        //         $r->select(
+        //             'rate_date','crop_type_id',
+        //             \DB::raw('cast(min(min_price) as float) as min_rate'),
+        //             \DB::raw('cast(max(max_price) as float) as max_rate'),
+        //         )->groupBy('rate_date','crop_type_id')
+        //         ->whereDate('rate_date',Carbon::parse($request->date));
+        //     }]);
+        //     // ->whereHas('rate');
+        // }])->get();
+        $data = CropType::with(['rate' => function($r) use($request) {
+            $r->select(
+                'rate_date','crop_type_id',
+                \DB::raw('cast(min(min_price) as float) as min_rate'),
+                \DB::raw('cast(max(max_price) as float) as max_rate'),
+            )->groupBy('rate_date','crop_type_id')
+            ->whereDate('rate_date',Carbon::parse($request->date));
+        }])->where('crop_id', $request->crop)->get();
         return response()->json($data, 200);
     }
     
