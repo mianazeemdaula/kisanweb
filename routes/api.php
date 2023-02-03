@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\ReactionController;
 use App\Http\Controllers\Api\V1\AddressController;
 use App\Http\Controllers\Api\V1\NotificationController;
+use App\Http\Controllers\Api\V1\CityController;
 use App\Http\Controllers\Api\V1\DataController;
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Route::resource('crop.type', CropTypeController::class);
 Route::resource('media', MediaController::class);
 
 Route::get('wa/webhook', [HomeController::class,'wamessage']);
+
+Route::get('/cities',[CityController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     

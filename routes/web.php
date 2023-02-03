@@ -37,6 +37,20 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
+
+    $data = App\Models\CropRate::select(
+        'rate_date','crop_type_id',
+        \DB::raw('cast(min(min_price) as float) as min_rate'),
+        \DB::raw('cast(max(max_price) as float) as max_rate'),
+    )->groupBy('rate_date','crop_type_id')->get();
+    return response()->json($data, 200, [],JSON_PRETTY_PRINT);
+    return App\Models\CropRate::leftJoin('crop_rates', function($join) { 
+            $join->on('crop_rates.id', '=', \DB::raw("(SELECT avg(min_rate) from crop_rates WHERE crop_rates.rate_date = crop_rates.rate_date)"));
+        })
+        // ->orderBy('messages.created_at','desc')
+        ->select('crop_rates.*')
+        // ->whereHas('lastmsg')
+        ->where('crop_rates.crop_type_id',$id)->get();
     return \App\Helper\WhatsApp::sendText("923004103160","This is the message https://kisanstock.com/deal/5");
     return \App\Helper\WhatsApp::sendTemplate("923004103160",'hello_world','en_US',[
         // ['type'=>'text', 'text' => 'Main Azeem']
