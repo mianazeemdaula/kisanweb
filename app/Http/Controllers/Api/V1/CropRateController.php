@@ -75,7 +75,7 @@ class CropRateController extends Controller
         //
     }
 
-    public function filter(Reqeust $request)
+    public function filter(Request $request)
     {
         // $data = Crop::with(['types' => function($q) use($request) {
         //     $q->with(['rate' => function($r) use($request) {
