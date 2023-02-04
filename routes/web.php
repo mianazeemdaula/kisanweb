@@ -45,7 +45,7 @@ Route::get('/test/{id}', function($id){
             \DB::raw('cast(max(max_price) as float) as max_rate'),
         )->groupBy('rate_date','crop_type_id');
     }])->whereHas('rate')->get();
-    dd(\DB::getQueryLog());
+    // dd(\DB::getQueryLog());
     return response()->json($data, 200, [],JSON_PRETTY_PRINT);
     return \App\Helper\WhatsApp::sendText("923004103160","This is the message https://kisanstock.com/deal/5");
     return \App\Helper\WhatsApp::sendTemplate("923004103160",'hello_world','en_US',[
