@@ -39,11 +39,7 @@ Route::get('app/fb-delete-data', function () {
 Route::get('/test/{id}', function($id){
     \DB::enableQueryLog();
     $data = App\Models\CropType::with(['rate' => function($r){
-        $r->select(
-            'rate_date','crop_type_id',
-            \DB::raw('cast(min(min_price) as float) as min_rate'),
-            \DB::raw('cast(max(max_price) as float) as max_rate'),
-        )->groupBy('rate_date','crop_type_id');
+        $r->rate();
     }])->whereHas('rate')->get();
     // dd(\DB::getQueryLog());
     return response()->json($data, 200, [],JSON_PRETTY_PRINT);

@@ -27,6 +27,16 @@ class CropRate extends Model
         'user_id'
     ];
 
+    // Scops
+
+    public function scopeRate($query){
+        return $query->select(
+            'rate_date','crop_type_id',
+            \DB::raw('cast(min(min_price) as float) as min_rate'),
+            \DB::raw('cast(max(max_price) as float) as max_rate'),
+        )->groupBy('rate_date','crop_type_id');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -35,18 +45,6 @@ class CropRate extends Model
     public function cropType(): BelongsTo
     {
         return $this->belongsTo(CropType::class);
-    }
-
-    // attribuates
-
-    /**
-     * Get the user associated with the CropRate
-     *
-     * @return \
-     */
-    public function last(): HasOne
-    {
-        return $this->hasOne(CropRate::class, 'id');
     }
 
     public function getMinPriceLastAttribute()

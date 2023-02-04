@@ -56,7 +56,10 @@ class CropRateController extends Controller
 
     public function show($id)
     {
-        //
+        $data =  CropRate::rate()->where('crop_type_id', $id)
+        ->orderBy('rate_date','desc')
+        ->paginate();
+        return response()->json($data, 200, []);
     }
 
     public function edit($id)
@@ -78,11 +81,7 @@ class CropRateController extends Controller
     public function filter(Request $request)
     {
         $data = CropType::with(['rate' => function($r) use($request) {
-            $r->select(
-                'rate_date','crop_type_id',
-                \DB::raw('cast(min(min_price) as float) as min_rate'),
-                \DB::raw('cast(max(max_price) as float) as max_rate'),
-            )->groupBy('rate_date','crop_type_id');
+            $r->rate();
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
         return response()->json($data, 200);
     }
