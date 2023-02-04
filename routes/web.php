@@ -37,23 +37,15 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
-
-    $data = App\Models\CropRate::select(
-        'rate_date','crop_type_id',
-        \DB::raw('cast(min(min_price) as float) as min_rate'),
-        \DB::raw('cast(max(max_price) as float) as max_rate'),
-    )->groupBy('rate_date','crop_type_id')->get();
-
-    $data = App\Models\Crop::with(['types' => function($q){
-        $q->with(['rate' => function($r){
-            $r->select(
-                'rate_date','crop_type_id',
-                \DB::raw('cast(min(min_price) as float) as min_rate'),
-                \DB::raw('cast(max(max_price) as float) as max_rate'),
-            )->groupBy('rate_date','crop_type_id')
-            ->whereDate('rate_date','2023-02-02');
-        }])->whereHas('rate');
-    }])->get();
+    \DB::enableQueryLog();
+    $data = App\Models\CropType::with(['rate' => function($r){
+        $r->select(
+            'rate_date','crop_type_id',
+            \DB::raw('cast(min(min_price) as float) as min_rate'),
+            \DB::raw('cast(max(max_price) as float) as max_rate'),
+        )->groupBy('rate_date','crop_type_id');
+    }])->whereHas('rate')->get();
+    dd(\DB::getQueryLog());
     return response()->json($data, 200, [],JSON_PRETTY_PRINT);
     return \App\Helper\WhatsApp::sendText("923004103160","This is the message https://kisanstock.com/deal/5");
     return \App\Helper\WhatsApp::sendTemplate("923004103160",'hello_world','en_US',[

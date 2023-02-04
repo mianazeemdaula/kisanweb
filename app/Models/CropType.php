@@ -38,10 +38,10 @@ class CropType extends Model
 
     public function rates(): HasMany
     {
-        return $this->hasMany(CropRate::class);
+        return $this->hasMany(CropRate::class)->orderBy('rate_date','desc');
     }
     public function rate(): HasOne
     {
-        return $this->hasOne(CropRate::class);
+        return $this->hasOne(CropRate::class)->orderBy('rate_date','desc');
     }
 }

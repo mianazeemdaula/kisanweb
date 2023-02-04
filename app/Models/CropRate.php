@@ -51,16 +51,15 @@ class CropRate extends Model
 
     public function getMinPriceLastAttribute()
     {
-        return (double) $this->whereDate('rate_date',\Carbon\Carbon::parse($this->rate_date)->subDays(1))->min('min_price') ?? $this->min_price;
+        return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
+        ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
+        ->orderBy('rate_date','desc')->min('min_price') ?? $this->min_price;
     }
 
     public function getMaxPriceLastAttribute()
     {
-        return (double) $this->whereDate('rate_date',\Carbon\Carbon::parse($this->rate_date)->subDays(1))->max('max_price') ?? $this->max_price;
-    }
-
-    public function phone()
-    {
-        return $this->hasOne(CropRate::class,'id')->whereDate('rate_date',\Carbon\Carbon::parse($this->rate_date)->subDays(1))->latest();
+        return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
+        ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
+        ->orderBy('rate_date','desc')->max('max_price') ?? $this->max_price;
     }
 }
