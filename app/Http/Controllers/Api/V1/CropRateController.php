@@ -43,8 +43,8 @@ class CropRateController extends Controller
             'rate_date' => 'required',
         ]);
         $rate = CropRate::updateOrCreate([
-            'crop_type_id' => $this->crop_type_id,
-            'city_id' => $this->city,
+            'crop_type_id' => $request->crop_type_id,
+            'city_id' => $request->city,
             'user_id' => $request->user()->id,
             'rate_date' => $request->rate_date,
         ],[
