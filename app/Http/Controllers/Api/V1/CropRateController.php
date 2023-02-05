@@ -46,7 +46,7 @@ class CropRateController extends Controller
             'crop_type_id' => $request->crop_type_id,
             'city_id' => $request->city,
             'user_id' => $request->user()->id,
-            'rate_date' => $request->rate_date,
+            'rate_date' => Carbon::parse($request->rate_date)->format('Y-m-d'),
         ],[
             'min_price' => $request->min,
             'max_price' => $request->max,
