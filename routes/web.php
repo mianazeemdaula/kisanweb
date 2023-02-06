@@ -37,7 +37,7 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
-    $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token');
+    $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
     return \App\Helper\FCM::send($tokens, "منڈی ریٹ اپ ڈیٹ","فصلوں کے نئے نرخ اپ ڈیٹ ہو گئے، ابھی چیک کریں۔",['type' => 'mand_rate', 'crop_id' => 2]);
 });
 
