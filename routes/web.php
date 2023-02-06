@@ -37,16 +37,8 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
-    \DB::enableQueryLog();
-    $data = App\Models\CropType::with(['rate' => function($r){
-        $r->rate();
-    }])->whereHas('rate')->get();
-    // dd(\DB::getQueryLog());
-    return response()->json($data, 200, [],JSON_PRETTY_PRINT);
-    return \App\Helper\WhatsApp::sendText("923004103160","This is the message https://kisanstock.com/deal/5");
-    return \App\Helper\WhatsApp::sendTemplate("923004103160",'hello_world','en_US',[
-        // ['type'=>'text', 'text' => 'Main Azeem']
-    ],[]);
- Mail::to("mazeemrehan@gmail.com")->send(new VerifyApiEmail(5656));
+    $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token');
+    return $tokens;
+    return \App\Helper\FCM::send($tokens, "منڈی ریٹ اپ ڈیٹ","فصلوں کے نئے نرخ اپ ڈیٹ ہو گئے، ابھی چیک کریں۔",['type' => 'mand_rate', 'crop_id' => 2]);
 });
 
