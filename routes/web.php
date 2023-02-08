@@ -41,3 +41,7 @@ Route::get('/test/{id}', function($id){
     return \App\Helper\FCM::send($tokens, "منڈی ریٹ اپ ڈیٹ","فصلوں کے نئے نرخ اپ ڈیٹ ہو گئے، ابھی چیک کریں۔",['type' => 'mand_rate', 'crop_id' => 2]);
 });
 
+Route::get('/not/{token}', function($token){
+
+    return \App\Helper\FCM::send([$token], "Title of", "Body of ",['type' => 'mand_rate', 'crop_id' => 2]);
+});

@@ -32,8 +32,8 @@ class CropRate extends Model
     public function scopeRate($query){
         return $query->select(
             'rate_date','crop_type_id',
-            \DB::raw('cast(min(min_price) as float) as min_rate'),
-            \DB::raw('cast(max(max_price) as float) as max_rate'),
+            \DB::raw('cast(avg(min_price) as float) as min_rate'),
+            \DB::raw('cast(avg(max_price) as float) as max_rate'),
         )->groupBy('rate_date','crop_type_id');
     }
 
@@ -51,13 +51,13 @@ class CropRate extends Model
     {
         return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
         ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
-        ->orderBy('rate_date','desc')->min('min_price') ?? $this->min_price;
+        ->orderBy('rate_date','desc')->avg('min_price') ?? $this->min_price;
     }
 
     public function getMaxPriceLastAttribute()
     {
         return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
         ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
-        ->orderBy('rate_date','desc')->max('max_price') ?? $this->max_price;
+        ->orderBy('rate_date','desc')->avg('max_price') ?? $this->max_price;
     }
 }
