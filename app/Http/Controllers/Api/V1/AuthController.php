@@ -89,6 +89,7 @@ class AuthController extends Controller
         $token = $request->token;
         $socialUser = Socialite::driver($provider)->userFromToken($token);
         $social = SocialAccount::where('provider',$provider)->where('uid',$socialUser->getId())->first();
+        $user = null;
         if(!$social){
             // $request->request->add(['email' => $socialUser->getEmail()]);
             // $request->validate([
