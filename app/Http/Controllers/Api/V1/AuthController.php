@@ -88,14 +88,16 @@ class AuthController extends Controller
         $provider = $request->provider;
         $token = $request->token;
         $socialUser = Socialite::driver($provider)->userFromToken($token);
-        $social = SocialAccount::where('provider',$provider)->where('uid',$socialUser->getId())->first();
-        $user = null;
-        if(!$social){
+        $social = SocialAccount::updateOrCreate([
+            'provider' => $provider,
+            'uid' => $socialUser->getId(),
+        ]);
+        if(!$social->user){
             // $request->request->add(['email' => $socialUser->getEmail()]);
             // $request->validate([
             //     'email' => 'required|unique:users|email',
             // ]);
-            $user = User::where('email', $socialUser->getEmail())->first();
+            $user= User::where('email', $socialUser->getEmail())->first();
             if(!$user){
                 $user = new User();
                 $user->name = $socialUser->name;
@@ -104,14 +106,11 @@ class AuthController extends Controller
                 $user->email_verified_at = Carbon::now();
                 $user->save();
             }
-            $social = new SocialAccount();
-            $social->provider = $provider;
-            $social->uid = $socialUser->getId();
-            $social->user_id = $user->id;
-            $social->save();
         }else{
             $user = $social->user;
         }
+        $social->user_id = $user->id;
+        $social->save();
         $data['token'] = $user->createToken('login')->plainTextToken;
         $data['user'] = $user;
         $data['addresses'] = $user->addresses;
