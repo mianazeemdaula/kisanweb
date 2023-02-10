@@ -45,3 +45,10 @@ Route::get('/not/{token}', function($token){
 
     return \App\Helper\FCM::send([$token], "Title of", "Body of ",['type' => 'mand_rate', 'crop_id' => 2]);
 });
+
+Route::get('/statistics', function(){
+    $data['users'] = \App\Models\User::whereHas('addresses')->count();
+    $data['deals'] = \App\Models\Deal::where('status','open')->count();
+    $data['today_users'] = \App\Models\User::whereHas('addresses')->whereDate('created_at',now())->count();
+    return response()->json($data, 200, [], JSON_PRETTY_PRINT);
+});
