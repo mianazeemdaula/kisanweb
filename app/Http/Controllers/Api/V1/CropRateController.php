@@ -82,7 +82,6 @@ class CropRateController extends Controller
     {
         $data['rates'] = CropType::with(['rate' => function($r) use($request) {
             $r->rate();
-            $r->whereDate('rate_date','<=', now());
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
         $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com");
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
