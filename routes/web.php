@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('guest.index');
 });
 
+Route::get('/rates', function () {
+    return view('guest.home');
+});
+
 Route::get('data/cities', [DataController::class,'cities']);
 
 Route::get('app/terms-and-conditions', function () {
