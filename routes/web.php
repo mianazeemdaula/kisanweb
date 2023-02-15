@@ -53,6 +53,8 @@ Route::get('/not/{token}', function($token){
 Route::get('/statistics', function(){
     $data['users'] = \App\Models\User::whereHas('addresses')->count();
     $data['deals'] = \App\Models\Deal::where('status','open')->count();
-    $data['today_users'] = \App\Models\User::whereHas('addresses')->whereDate('created_at',now())->count();
+    $today = \App\Models\User::whereHas('addresses')->whereDate('created_at',now())->get();
+    $data['today'] = $today;
+    $data['today_count'] = $today->count();
     return response()->json($data, 200, [], JSON_PRETTY_PRINT);
 });
