@@ -85,8 +85,9 @@ class CropRateController extends Controller
     {
         $data = CropType::with(['rate' => function($r) use($request) {
             $r->rate();
+            $r->append('min_price_last','max_price_last');
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
-        $data->each->rate->append('min_price_last','max_price_last');
+        // $data->each->;
         $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com");
         $data['data'] = $data;
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
