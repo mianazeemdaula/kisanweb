@@ -56,10 +56,13 @@ class CropRateController extends Controller
 
     public function show($id)
     {
-        $data =  CropRate::rate()->where('crop_type_id', $id)
+        $paginate =  CropRate::rate()->where('crop_type_id', $id)
         ->orderBy('rate_date','desc')
         ->paginate();
-        return response()->json($data, 200, []);
+        $data = collect($paginate->items());
+        $data->each->append('min_price_last','max_price_last');
+        $paginate->setCollection($data);
+        return response()->json($paginate, 200, []);
     }
 
     public function edit($id)
@@ -80,10 +83,12 @@ class CropRateController extends Controller
 
     public function filter(Request $request)
     {
-        $data['rates'] = CropType::with(['rate' => function($r) use($request) {
+        $data = CropType::with(['rate' => function($r) use($request) {
             $r->rate();
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
+        $data->each->append('min_price_last','max_price_last');
         $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com");
+        $data['data'] = $data;
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
     }

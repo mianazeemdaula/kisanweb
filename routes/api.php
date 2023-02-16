@@ -84,3 +84,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('rates', CropRateController::class);
     Route::post('rates-filter', [CropRateController::class,'filter']);
 });
+
+
+
+// Route::resource('rate', CropRateController::class);
