@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class CropRate extends Model
 {
     use HasFactory;
-    // protected $appends = ['min_price_last','max_price_last'];
+    protected $appends = ['min_price_last','max_price_last'];
     // protected $with = ['last'];
     protected $casts = [
         'min_price' => 'double',

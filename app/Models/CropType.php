@@ -42,6 +42,6 @@ class CropType extends Model
     }
     public function rate(): HasOne
     {
-        return $this->hasOne(CropRate::class)->orderBy('rate_date','desc')->append('min_price_last','max_price_last');;
+        return $this->hasOne(CropRate::class)->orderBy('rate_date','desc');
     }
 }
