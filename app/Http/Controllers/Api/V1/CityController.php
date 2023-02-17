@@ -13,7 +13,7 @@ class CityController extends Controller
     public function index()
     {
         $data = City::whereHas('district', function($q){
-            $q->where('province_id', 6);
+            $q->whereIn('province_id', [4,6,7]);
         })->orderBy('name')->select(['id','name'])->get();
         return response()->json($data, 200);
     }

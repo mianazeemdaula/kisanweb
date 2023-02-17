@@ -15,6 +15,7 @@ use MatanYadaev\EloquentSpatial\SpatialBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class User extends Authenticatable
@@ -81,6 +82,11 @@ class User extends Authenticatable
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
+    }
+
+    public function address(): HasOne
+    {
+        return $this->hasOne(Address::class);
     }
     
 
