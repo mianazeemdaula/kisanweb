@@ -41,10 +41,10 @@ class CropRate extends Model
 
     public function scopeCityRate($query){
         return $query->select(
-            'rate_date','crop_type_id', 'city_id',
+            'crop_type_id', 'city_id',
             \DB::raw('cast(avg(min_price) as float) as min_rate'),
             \DB::raw('cast(avg(max_price) as float) as max_rate'),
-        )->groupBy('rate_date','crop_type_id', 'city_id');
+        )->groupBy('crop_type_id', 'city_id');
     }
 
     public function user(): BelongsTo
