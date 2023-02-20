@@ -83,10 +83,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('reaction', ReactionController::class);
     Route::resource('address', AddressController::class);
     Route::resource('rates', CropRateController::class);
-    Route::resource('city-rates', CropCityRateController::class);
+    // Route::resource('city-rates', CropCityRateController::class);
     Route::post('rates-filter', [CropRateController::class,'filter']);
 });
 
-
+Route::resource('city-rates', CropCityRateController::class);
 
 // Route::resource('rate', CropRateController::class);
