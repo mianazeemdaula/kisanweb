@@ -17,7 +17,7 @@ class CropRate extends Model
         'min_price' => 'double',
         'max_price' => 'double',
         'city_id' => 'integer',
-        'crop_type_id' => 'integer'
+        // 'crop_type_id' => 'integer'
     ];
 
     protected $fillable = [
