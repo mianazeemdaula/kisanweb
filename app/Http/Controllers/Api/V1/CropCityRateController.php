@@ -95,6 +95,7 @@ class CropCityRateController extends Controller
         $data = collect($paginate->items());
         $data->each->append('min_price_last','max_price_last');
         $paginate->setCollection($data);
+        return response()->json($paginate, 200, []);
     }
     
 }
