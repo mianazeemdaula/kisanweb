@@ -86,18 +86,15 @@ class CropCityRateController extends Controller
         //
     }
 
-    public function filter(Request $request)
+    public function cityHistory(Request $request)
     {
-        $data['rates'] = CropType::with(['rate' => function($r) use($request) {
-            $r->rate();
-        }])->whereHas('rate')->where('crop_id', $request->crop)->get();
-        $data['rates']->each(function($item) {
-            $item->rate->min_price_last = $item->rate->min_price_last; 
-            $item->rate->max_price_last = $item->rate->max_price_last; 
-         });
-        $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com");
-        $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
-        return response()->json($data, 200);
+        $paginate =  CropRate::rate()->where('crop_type_id', $request->crop)
+        ->where('city_id', $request->city)
+        ->orderBy('rate_date','desc')
+        ->paginate();
+        $data = collect($paginate->items());
+        $data->each->append('min_price_last','max_price_last');
+        $paginate->setCollection($data);
     }
     
 }
