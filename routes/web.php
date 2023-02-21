@@ -58,3 +58,7 @@ Route::get('/statistics', function(){
     $data['today'] = $today;
     return response()->json($data, 200, [], JSON_PRETTY_PRINT);
 });
+
+Route::get('send-notification/{id}', function($id){
+    return \App\Helper\FCM::sendNotification(\App\Models\Notification::find($id));
+});
