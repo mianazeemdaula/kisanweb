@@ -56,13 +56,7 @@ class CropRateController extends Controller
 
     public function show($id)
     {
-        $paginate =  CropRate::select(
-            'crop_type_id',
-            \DB::raw('cast(avg(min_price) as float) as min_rate'),
-            \DB::raw('cast(avg(max_price) as float) as max_rate'),
-        )->groupBy('crop_type_id')
-        ->where('crop_type_id', $id)
-        ->whereDate('rate_date', CropRate::max('rate_date'))
+        $paginate =  CropRate::rate()->where('crop_type_id', $id)
         ->orderBy('rate_date','desc')
         ->paginate();
         $data = collect($paginate->items());
@@ -90,11 +84,7 @@ class CropRateController extends Controller
     public function filter(Request $request)
     {
         $data['rates'] = CropType::with(['rate' => function($r) use($request) {
-            $r->select(
-                'crop_type_id','rate_date',
-                \DB::raw('cast(avg(min_price) as float) as min_rate'),
-                \DB::raw('cast(avg(max_price) as float) as max_rate'),
-            )->groupBy('crop_type_id', 'rate_date');
+            $r->rate();
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
         $data['rates']->each(function($item) {
             $item->rate->min_price_last = $item->rate->min_price_last; 
