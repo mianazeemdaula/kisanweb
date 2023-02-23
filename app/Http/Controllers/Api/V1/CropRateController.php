@@ -63,6 +63,7 @@ class CropRateController extends Controller
             \DB::raw('max(rate_date) as rate_date'),
         )->groupBy('crop_type_id')
         ->where('crop_type_id', $id)
+        ->orderBy('rate_date','desc')
         ->paginate();
         $data = collect($paginate->items());
         $data->each->append('min_price_last','max_price_last');
