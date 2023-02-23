@@ -94,8 +94,7 @@ class CropRateController extends Controller
                 'crop_type_id','rate_date',
                 \DB::raw('cast(avg(min_price) as float) as min_rate'),
                 \DB::raw('cast(avg(max_price) as float) as max_rate'),
-            )->groupBy('crop_type_id', 'rate_date')
-            ->whereDate('rate_date', CropRate::max('rate_date'));
+            )->groupBy('crop_type_id', 'rate_date');
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
         $data['rates']->each(function($item) {
             $item->rate->min_price_last = $item->rate->min_price_last; 
