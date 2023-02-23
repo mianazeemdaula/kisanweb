@@ -82,12 +82,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('notification', NotificationController::class);
     Route::resource('reaction', ReactionController::class);
     Route::resource('address', AddressController::class);
-    Route::resource('rates', CropRateController::class);
-    Route::resource('city-rates', CropCityRateController::class);
-    Route::post('city-rate-history', [CropCityRateController::class,'cityHistory']);
+    // Route::resource('rates', CropRateController::class);
+    // Route::resource('city-rates', CropCityRateController::class);
+    // Route::post('city-rate-history', [CropCityRateController::class,'cityHistory']);
     Route::post('rates-filter', [CropRateController::class,'filter']);
 });
 
-// Route::resource('city-rates', CropCityRateController::class);
+Route::resource('city-rates', CropCityRateController::class);
 
-// Route::resource('rate', CropRateController::class);
+Route::resource('rate', CropRateController::class);
