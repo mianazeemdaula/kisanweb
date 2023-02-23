@@ -57,10 +57,9 @@ class CropRateController extends Controller
     public function show($id)
     {
         $paginate =  CropRate::select(
-            'crop_type_id',
+            'crop_type_id', 'rate_date',
             \DB::raw('cast(avg(min_price) as float) as min_rate'),
             \DB::raw('cast(avg(max_price) as float) as max_rate'),
-            \DB::raw('max(rate_date) as rate_date'),
         )->groupBy('crop_type_id')
         ->where('crop_type_id', $id)
         ->orderBy('rate_date','desc')
