@@ -59,11 +59,6 @@ class CropCityRateController extends Controller
         $paginate =  CropRate::cityRate()->with(['city'])->where('crop_type_id', $id)
         ->orderBy('rate_date','desc')
         ->paginate();
-        // $paginate = \App\Models\City::with(['rate' => function($q) use ($id){
-        //     $q->cityRate()->orderBy('rate_date','desc')
-        //     ->where('crop_type_id', $id);
-        // }])->whereHas('rate')->get();
-        // $paginate = $paginate->whereNotNull('rate');
         $data = collect($paginate->items());
         $data->each->append('min_city_price_last','max_city_price_last');
         $paginate->setCollection($data);
