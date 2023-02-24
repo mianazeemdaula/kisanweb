@@ -87,11 +87,18 @@ class CropRateController extends Controller
             $r->rate();
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
         $data['rates']->each(function($item) {
-            $item->rate->min_price_last = $item->rate->min_price_last; 
-            $item->rate->max_price_last = $item->rate->max_price_last; 
+            $d  = CropRate::select(
+                \DB::raw('max(max_price) as max_last'),
+                \DB::raw('min(min_price) as min_last'),
+            )->whereNotIn('rate_date', [$item->rate_date])
+            ->groupBy('rate_date')
+            ->orderBy('rate_date', 'desc')
+            ->where('crop_type_id', $item->crop_type_id)->first();
+            $item->rate->min_price_last = $d == null ? 0 : $d->min_last; 
+            $item->rate->max_price_last = $d == null ? 0 : $d->max_last; 
          });
         $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com");
-        $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
+        $data['mandi_user'] = (bool) in_array("mazeemrehan@gmail.com", $people);
         return response()->json($data, 200);
     }
     

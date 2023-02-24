@@ -91,3 +91,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 // Route::resource('city-rates', CropCityRateController::class);
 
 // Route::resource('rate', CropRateController::class);
+
+
