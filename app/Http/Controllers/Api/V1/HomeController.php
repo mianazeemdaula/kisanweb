@@ -38,7 +38,7 @@ class HomeController extends Controller
             $query->orderBy('id', 'desc');
         }
         $data = $query->with(['bids' => function($q){
-            $q->with(['buyer']);
+            $q->with(['buyer'])->whereHas('buyer');
         }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
         ->where('status','!=', 'accepted')
         ->paginate();
