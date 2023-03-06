@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function crops()
     {
-        $data = Crop::with('types')->has('types')->get();
+        $data = Crop::with('types')->has('types')->where('active', true)->get();
         return response()->json($data, 200);
     }
 
