@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/rates', function () {
-    return view('guest.home');
+    return view('guest.rates.crops');
 });
 
 Route::get('data/cities', [DataController::class,'cities']);
