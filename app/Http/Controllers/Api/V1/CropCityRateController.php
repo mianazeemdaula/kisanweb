@@ -58,7 +58,7 @@ class CropCityRateController extends Controller
     {
         $paginate =  CropRate::cityRate()->with(['city'])->where('crop_type_id', $id)
         ->leftJoin('city', function($join) { 
-            $join->on('cities.id', '=', 'crop_rate.city_id');
+            $join->on('cities.id', '=', 'crop_rates.city_id');
         })
         ->orderBy('city.name','asc')
         ->orderBy('rate_date','desc')
