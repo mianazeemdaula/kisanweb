@@ -60,7 +60,7 @@ class CropCityRateController extends Controller
         ->leftJoin('cities', function($join) { 
             $join->on('cities.id', '=', 'crop_rates.city_id');
         })
-        ->orderBy('city.name','asc')
+        ->orderBy('cities.name','asc')
         ->orderBy('rate_date','desc')
         ->paginate();
         $data = collect($paginate->items());
