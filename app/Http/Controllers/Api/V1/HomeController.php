@@ -41,6 +41,7 @@ class HomeController extends Controller
         $data = $query->with(['bids' => function($q){
             $q->with(['buyer'])->whereHas('buyer');
         }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+        ->whereHas('seller')
         ->where('status','!=', 'accepted')
         ->paginate();
         return response()->json($data, 200);
