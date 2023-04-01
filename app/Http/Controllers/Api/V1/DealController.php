@@ -25,7 +25,8 @@ class DealController extends Controller
     {
         $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])->paginate();
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+        ->whereHas('seller')->paginate();
         return response()->json($data, 200);
     }
 
