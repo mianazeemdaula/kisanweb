@@ -57,7 +57,8 @@ Route::get('/statistics', function(){
     $today = \App\Models\User::whereHas('addresses')->whereDate('created_at',now())->with(['addresses' => function($e){
         $e->select('id','user_id','address');
     }])
-    ->select('id','name','mobile')->get();
+    ->select('id','name','mobile')
+    ->orderBy('created_at','desc')->get();
     $data['today_count'] = $today->count();
     $data['today'] = $today;
     return response()->json($data, 200, [], JSON_PRETTY_PRINT);
