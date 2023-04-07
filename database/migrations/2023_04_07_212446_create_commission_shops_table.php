@@ -13,20 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('y_t_videos', function (Blueprint $table) {
+        Schema::create('commission_shops', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
-            $table->string('title');
-            $table->string('url');
-            $table->string('type')->default('yt');
-            $table->string('keywords')->nullable();
-            $table->point('location')->nullable();
-            $table->string('address')->nullable();
-            $table->boolean('status')->default(false);
+            $table->unsignedBigInteger('city_id');
+            $table->string('name');
+            $table->text('about')->nullabl();
+            $table->string('address');
+            $table->point('location');
+            $table->string('image')->nullable();
+            $table->boolean('status')->default(true);
+            $table->json('social_links')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('y_t_videos');
+        Schema::dropIfExists('commission_shops');
     }
 };

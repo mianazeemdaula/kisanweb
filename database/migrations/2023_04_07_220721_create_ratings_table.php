@@ -13,20 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('y_t_videos', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
-            $table->string('title');
-            $table->string('url');
-            $table->string('type')->default('yt');
-            $table->string('keywords')->nullable();
-            $table->point('location')->nullable();
-            $table->string('address')->nullable();
-            $table->boolean('status')->default(false);
+            $table->float('rate')->defatul(5.0);
+            $table->string('description');
+            $table->morphs('ratingable');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
@@ -37,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('y_t_videos');
+        Schema::dropIfExists('ratings');
     }
 };
