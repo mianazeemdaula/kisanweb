@@ -55,7 +55,7 @@ Route::get('/statistics', function(){
     $data['last_day'] = \App\Models\User::whereHas('addresses')->whereDate('created_at',now()->subDays(1))->count();
     $data['deals'] = \App\Models\Deal::where('status','open')->count();
     $today = \App\Models\User::whereHas('addresses')->whereDate('created_at',now())->with(['addresses' => function($e){
-        $e->select('id','address');
+        $e->select('id','user_id','address');
     }])->get();
     $data['today_count'] = $today->count();
     $data['today'] = $today;
