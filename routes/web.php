@@ -72,3 +72,7 @@ Route::get('/statistics', function(){
 Route::get('send-notification/{id}', function($id){
     return \App\Helper\FCM::sendNotification(\App\Models\Notification::find($id));
 });
+
+
+Route::get('/news',[HomeController::class,'newsNotification']);
+Route::post('/news-send',[HomeController::class,'sendNewsNotification']);
