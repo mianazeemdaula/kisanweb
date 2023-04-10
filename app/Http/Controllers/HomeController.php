@@ -18,7 +18,6 @@ class HomeController extends Controller
 
     public function sendNewsNotification(Request $request)
     {
-        return $request->all();
         $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token');
         $data = array();
         foreach ($tokens->chunk(1000) as $value) {
