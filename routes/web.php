@@ -41,8 +41,13 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
-    $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
-    return \App\Helper\FCM::send($tokens, "منڈی ریٹ اپ ڈیٹ","فصلوں کے نئے نرخ اپ ڈیٹ ہو گئے، ابھی چیک کریں۔",['type' => 'mand_rate', 'crop_id' => 2]);
+    $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token');
+    $data = array();
+    foreach ($tokens->chunk(1000) as $value) {
+        $keys = $value->toArray();
+        $data[] =  \App\Helper\FCM::send($keys, "منڈی ریٹ اپ ڈیٹ","فصلوں کے نئے نرخ اپ ڈیٹ ہو گئے، ابھی چیک کریں۔",['type' => 'mand_rate', 'crop_id' => 2]);
+    }
+    return response()->json($data, 200);
 });
 
 Route::get('/not/{token}', function($token){
