@@ -9,6 +9,8 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 use App\Helper\MediaHelper;
 use App\Events\DealUpdateEvent;
 use App\Jobs\CreateDealJob;
+use Illuminate\Support\Facades\DB;
+
 // Models
 use App\Models\Deal;
 use App\Models\Bid;
@@ -62,23 +64,30 @@ class DealController extends Controller
             'images' => 'required',
             'images.*' => 'required|mimes:jpg,jpeg,png',
         ]);
-        $deal = new Deal();
-        $deal->seller_id = $request->user()->id;
-        $deal->crop_type_id = $request->crop_type_id;
-        $deal->packing_id = $request->packing_id;
-        $deal->demand = $request->demand;
-        $deal->weight_type_id = $request->weight_type_id;
-        $deal->note = $request->note;
-        $deal->qty = $request->qty;
-        $deal->location = new Point($request->lat,$request->lng);
-        $deal->address = $request->address;
-        $deal->save();
-        foreach ($request->file('images') as $key => $file) {
-            MediaHelper::save($file, $deal);
+        try {
+            DB::beginTransaction();
+            $deal = new Deal();
+            $deal->seller_id = $request->user()->id;
+            $deal->crop_type_id = $request->crop_type_id;
+            $deal->packing_id = $request->packing_id;
+            $deal->demand = $request->demand;
+            $deal->weight_type_id = $request->weight_type_id;
+            $deal->note = $request->note;
+            $deal->qty = $request->qty;
+            $deal->location = new Point($request->lat,$request->lng);
+            $deal->address = $request->address;
+            $deal->save();
+            foreach ($request->file('images') as $key => $file) {
+                MediaHelper::save($file, $deal);
+            }
+            DealUpdateEvent::dispatch($deal->id);
+            CreateDealJob::dispatch($deal->id);
+            DB::commit();
+            return  response()->json($deal, 200);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return  response()->json($deal, 422);
         }
-        DealUpdateEvent::dispatch($deal->id);
-        CreateDealJob::dispatch($deal->id);
-        return  response()->json($deal, 200);
     }
 
     /**
