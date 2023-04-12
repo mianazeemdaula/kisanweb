@@ -13,7 +13,7 @@ class MediaHelper {
     static public function save($file, $model,$path = 'offers')
     {
         $ext = $file->getClientOriginalExtension();
-        $fileName = $model->id."_".Str::random(10).'.'.$ext;
+        $fileName = Str::random(15).'.'.$ext;
         $path = "$path/".$fileName;
         $blurhash = "LrJaflIUENE1_2RjRQR*?wM{V?ad";
         if(in_array($ext, ['mp4'])){
@@ -48,8 +48,9 @@ class MediaHelper {
             'blursh' => $blurhash,
             'ext' => $ext
         ]);
-        $model->media()->save($media);
+        return $media;
+        // $model->media()->save($media);
         // UpdateBlurshJob::dispatchAfterResponse($media->id);
-        return ['hash' => $blurhash, 'image' => $path];
+        // return ['hash' => $blurhash, 'image' => $path];
     }
 }

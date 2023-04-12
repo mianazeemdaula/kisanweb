@@ -83,9 +83,13 @@ class DealController extends Controller
             $deal->qty = $request->qty;
             $deal->location = new Point($request->lat,$request->lng);
             $deal->address = $request->address;
-            $deal->save();
+            $medias = array();
             foreach ($request->file('images') as $key => $file) {
-                MediaHelper::save($file, $deal);
+                $medias[] = MediaHelper::save($file, $deal);
+            }
+            $deal->save();
+            foreach ($medias as $img) {
+                $deal->media()->save($img);
             }
             DealUpdateEvent::dispatch($deal->id);
             CreateDealJob::dispatch($deal->id);
