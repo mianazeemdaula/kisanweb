@@ -64,6 +64,13 @@ class DealController extends Controller
             'images' => 'required',
             'images.*' => 'required|mimes:jpg,jpeg,png',
         ]);
+        $deal = Deal::where('crop_type_id', $request->crop_type_id)
+        ->where('seller_id', $request->user()->id)
+        ->where('qty', $request->qty)
+        ->where('demand', $request->demand)->first();
+        if($deal){
+            return  response()->json(['message' => 'Deal already inprocess'], 422);
+        }
         try {
             DB::beginTransaction();
             $deal = new Deal();
