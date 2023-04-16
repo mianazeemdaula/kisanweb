@@ -91,9 +91,9 @@ class DealController extends Controller
             foreach ($medias as $img) {
                 $deal->media()->save($img);
             }
+            DB::commit();
             DealUpdateEvent::dispatch($deal->id);
             CreateDealJob::dispatch($deal->id);
-            DB::commit();
             return  response()->json($deal, 200);
         } catch (\Throwable $th) {
             DB::rollBack();

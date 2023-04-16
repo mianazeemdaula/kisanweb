@@ -18,10 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('city_id');
             $table->string('name');
-            $table->text('about')->nullabl();
+            $table->text('about')->nullable();
             $table->string('address');
             $table->point('location');
             $table->string('image')->nullable();
+            $table->string('banner')->nullable();
             $table->boolean('status')->default(true);
             $table->json('social_links')->nullable();
             $table->timestamps();
