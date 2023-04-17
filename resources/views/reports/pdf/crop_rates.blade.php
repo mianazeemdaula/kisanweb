@@ -37,7 +37,7 @@
                         <td class="text-center text-2xl font-bold">{{ $type->crop->name_ur }} کے آج کے ریٹس</td>
                     </tr>
                     <tr>
-                        <td class="text-center text-m font-bold">{{ $date->format('d-m-Y') }}</td>
+                        <td class="text-center text-m font-bold">{{ $filterDate->format('d-m-Y') }}</td>
                     </tr>
                 </tbody>
             </table>

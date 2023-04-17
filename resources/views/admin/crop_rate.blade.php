@@ -3,6 +3,9 @@
 <form action="{{ url('/reports/rates/') }}" method="post" class="max-w-lg mx-auto">
     @csrf
   <div class="mb-4">
+    <label for="date" class="block text-gray-700 font-bold mb-2">Date</label>
+    <input type="date" value="{{ now()->format('Y-m-d') }}" name="date" id="date" class="block w-full px-4 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-300">
+
     <label class="block text-gray-700 font-bold mb-2" for="title">
       Title
     </label>
