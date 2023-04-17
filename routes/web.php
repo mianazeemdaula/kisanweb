@@ -9,6 +9,7 @@ use App\Mail\VerifyApiEmail;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/login', [LoginController::class,'show']);
 Route::post('/login', [LoginController::class,'login'])->name('login');
@@ -76,3 +77,6 @@ Route::get('send-notification/{id}', function($id){
 
 Route::get('/news',[HomeController::class,'newsNotification']);
 Route::post('/news-send',[HomeController::class,'sendNewsNotification']);
+
+Route::get('reports/rates', [ReportController::class,'getCropRatePdf']);
+Route::post('reports/rates', [ReportController::class,'cropRatePdf']);
