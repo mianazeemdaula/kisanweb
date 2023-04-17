@@ -37,18 +37,28 @@
                         <td class="text-center text-2xl font-bold">{{ $type->crop->name_ur }} کے آج کے ریٹس</td>
                     </tr>
                     <tr>
-                        <td class="text-center text-m font-bold">{{ $filterDate->format('d-m-Y') }}</td>
+                        <td class="text-center text-m font-bold"> {{  $filterDate->locale('ur')->dayName }}  {{ $filterDate->format('d-m-Y') }}</td>
                     </tr>
                 </tbody>
             </table>
-            <table class="mt-2 mb-2 w-full">
+            <table class="mt-2 mb-4 w-full">
+                <thead class="bg-green-400">
+                   <tr>
+                    <th class="border" >شہر</th>
+                    <th  class="border">کم ازکم</th>
+                    <th class="border" >زیادہ سے زیادہ</th>
+                    <th class="border" >شہر</th>
+                    <th  class="border">کم ازکم</th>
+                    <th  class="border">زیادہ سے زیادہ</th>
+                   </tr>
+                </thead>
                 <tbody>
-                    @foreach($rates->chunk(3) as $rows)
+                    @foreach($rates->chunk(2) as $rows)
                     <tr class="tr border-b text-xs">
                         @foreach($rows as $rate)
-                        <td class="text-center font-bold border">{{$rate->city->name_ur}}</td>
-                        <td class="text-center border pl-1">{{$rate->min_price}}</td>
-                        <td class='text-center border'>{{$rate->max_price}}</td>
+                        <td class="text-center font-bold border text-lg">{{$rate->city->name_ur}}</td>
+                        <td class="text-center border pl-1 text-lg w-24">{{$rate->min_price}}</td>
+                        <td class='text-center border text-lg w-24'>{{$rate->max_price}}</td>
                         @endforeach
                     </tr>
                     @endforeach
@@ -68,7 +78,7 @@
                 </div>
             </div>
             <div class="absolute" style="left:50%; top:50%; transform: translate(-50%, -50%); z-index: -1" >
-                <img alt="logo" src="{{asset('/images/logo.svg')}}" class="w-48" style="opacity: 0.2;">
+                <img alt="logo" src="{{asset('/images/logo.svg')}}" class="w-48" style="opacity: 0.3;">
             </div>
         </div>
     </main>
