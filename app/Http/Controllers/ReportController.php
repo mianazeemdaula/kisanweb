@@ -16,7 +16,7 @@ class ReportController extends Controller
 
     public function cropRatePdf(Request $request)
     {
-        $date =  now()->subDays(1);
+        $date =  now();
         $rates =  \App\Models\CropRate::where('crop_type_id', $request->type_id)
         ->with(['city'])
         ->whereDate('rate_date',$date)->get();
