@@ -113,11 +113,11 @@ class CropRate extends Model
         $query = DB::table('crop_rates as cr')
             ->select(
                 'cr.crop_type_id',
-                DB::raw('AVG(cr.min_price) AS min_rate'),
-                DB::raw('AVG(cr.max_price) AS max_rate'),
+                DB::raw('AVG(cr.min_price) AS avg_min_price'),
+                DB::raw('AVG(cr.max_price) AS avg_max_price'),
                 'cr.rate_date',
-                DB::raw('AVG(prev_cr.min_price) AS min_price_last'),
-                DB::raw('AVG(prev_cr.max_price) AS max_price_last')
+                DB::raw('AVG(prev_cr.min_price) AS prev_avg_min_price'),
+                DB::raw('AVG(prev_cr.max_price) AS prev_avg_max_price')
             )
             ->leftJoin('crop_rates as prev_cr', function($join) {
                 $join->on('cr.crop_type_id', '=', 'prev_cr.crop_type_id')

@@ -83,27 +83,22 @@ class CropRateController extends Controller
 
     public function filter(Request $request)
     {
-        // $data['rates'] = CropType::with(['rate' => function($r) use($request) {
-        //     $r->rate();
-        // }])->whereHas('rate')->where('crop_id', $request->crop)->get();
-        // $data['rates']->each(function($item) {
-        //     $d  = CropRate::select(
-        //         \DB::raw('max(max_price) as max_last'),
-        //         \DB::raw('min(min_price) as min_last'),
-        //     )
-        //     ->whereNotIn('rate_date', [$item->rate_date])
-        //     // ->whereDate('rate_date' ,'<',$item->rate_date)
-        //     ->groupBy('rate_date')
-        //     ->orderBy('rate_date', 'desc')
-        //     ->where('crop_type_id', $item->crop_type_id)->first();
-        //     $item->rate->min_price_last = $d == null ? 0 : $d->min_last; 
-        //     $item->rate->max_price_last = $d == null ? 0 : $d->max_last; 
-        //  });
-        // $data['rates'] = CropRate::getCropRatesByTypeIds($ids);
         $data['rates'] = CropType::with(['rate' => function($r) use($request) {
-            $ids = CropType::where('crop_id',$request->crop)->pluck('id');
-            $r->getCropRatesByTypeIds($ids);
+            $r->rate();
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
+        $data['rates']->each(function($item) {
+            $d  = CropRate::select(
+                \DB::raw('max(max_price) as max_last'),
+                \DB::raw('min(min_price) as min_last'),
+            )
+            ->whereNotIn('rate_date', [$item->rate_date])
+            // ->whereDate('rate_date' ,'<',$item->rate_date)
+            ->groupBy('rate_date')
+            ->orderBy('rate_date', 'desc')
+            ->where('crop_type_id', $item->crop_type_id)->first();
+            $item->rate->min_price_last = $d == null ? 0 : $d->min_last; 
+            $item->rate->max_price_last = $d == null ? 0 : $d->max_last; 
+         });
         $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com");
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
