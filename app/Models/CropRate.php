@@ -34,8 +34,8 @@ class CropRate extends Model
     public function scopeRate($query){
         return $query->select(
             'crop_type_id', 'rate_date',
-            \DB::raw('cast(avg(min_price) as float) as min_rate'),
-            \DB::raw('cast(avg(max_price) as float) as max_rate'),
+            \DB::raw('cast(min(min_price) as float) as min_rate'),
+            \DB::raw('cast(max(max_price) as float) as max_rate'),
         )->groupBy('rate_date','crop_type_id')
         ->whereIn('rate_date', function($q){
             $q->select(\DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
@@ -45,8 +45,8 @@ class CropRate extends Model
     public function scopeCityHistory($query){
         return $query->select(
             'rate_date','crop_type_id','city_id',
-            \DB::raw('cast(avg(min_price) as float) as min_rate'),
-            \DB::raw('cast(avg(max_price) as float) as max_rate'),
+            \DB::raw('cast(min(min_price) as float) as min_rate'),
+            \DB::raw('cast(max(max_price) as float) as max_rate'),
         )->groupBy('rate_date','crop_type_id','city_id');
     }
 
