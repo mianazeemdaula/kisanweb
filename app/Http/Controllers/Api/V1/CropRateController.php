@@ -91,8 +91,8 @@ class CropRateController extends Controller
                 \DB::raw('max(max_price) as max_last'),
                 \DB::raw('min(min_price) as min_last'),
             )
-            // ->whereNotIn('rate_date', [$item->rate_date])
-            ->whereDate('rate_date' ,'<',$item->rate_date)
+            ->whereNotIn('rate_date', [$item->rate_date])
+            // ->whereDate('rate_date' ,'<',$item->rate_date)
             ->groupBy('rate_date')
             ->orderBy('rate_date', 'desc')
             ->where('crop_type_id', $item->crop_type_id)->first();
