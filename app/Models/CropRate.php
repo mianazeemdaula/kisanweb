@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\DB;
+
 
 class CropRate extends Model
 {
@@ -102,5 +104,38 @@ class CropRate extends Model
         ->where('crop_type_id', $this->crop_type_id)
         ->where('city_id', $this->city_id)->groupBy('rate_date')
         ->orderBy('rate_date','desc')->max('max_price') ?? $this->max_price;
+    }
+
+    // 
+
+    public static function getCropRatesByTypeIds($typeIds)
+    {
+        $query = DB::table('crop_rates as cr')
+            ->select(
+                'cr.crop_type_id',
+                DB::raw('AVG(cr.min_price) AS min_rate'),
+                DB::raw('AVG(cr.max_price) AS max_rate'),
+                'cr.rate_date',
+                DB::raw('AVG(prev_cr.min_price) AS min_price_last'),
+                DB::raw('AVG(prev_cr.max_price) AS max_price_last')
+            )
+            ->leftJoin('crop_rates as prev_cr', function($join) {
+                $join->on('cr.crop_type_id', '=', 'prev_cr.crop_type_id')
+                     ->on(DB::raw('prev_cr.rate_date'), '=', DB::raw('(
+                        SELECT MAX(rate_date) FROM crop_rates WHERE crop_type_id = cr.crop_type_id AND rate_date < cr.rate_date
+                     )'));
+            })
+            ->join(DB::raw('(
+                SELECT crop_type_id, MAX(rate_date) AS max_rate_date
+                FROM crop_rates
+                GROUP BY crop_type_id
+            ) as sub'), function($join) {
+                $join->on('cr.crop_type_id', '=', 'sub.crop_type_id')
+                     ->on('cr.rate_date', '=', 'sub.max_rate_date');
+            })
+            ->whereIn('cr.crop_type_id', $typeIds)
+            ->groupBy('cr.crop_type_id', 'cr.rate_date');
+        
+        return $query->get();
     }
 }
