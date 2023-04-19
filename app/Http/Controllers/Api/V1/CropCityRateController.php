@@ -120,13 +120,13 @@ class CropCityRateController extends Controller
 
     public function cityHistory(Request $request)
     {
-        $paginate =  CropRate::rate()->where('crop_type_id', $request->crop)
-        ->where('city_id', $request->city)
-        ->orderBy('rate_date','desc')
+        $paginate =  CropRate::cityRateHistory()
+        ->where('cr.crop_type_id', $request->crop)
+        ->where('cr.city_id', $request->city)
         ->paginate();
-        $data = collect($paginate->items());
-        $data->each->append('min_price_last','max_price_last');
-        $paginate->setCollection($data);
+        // $data = collect($paginate->items());
+        // $data->each->append('min_price_last','max_price_last');
+        // $paginate->setCollection($data);
         return response()->json($paginate, 200, []);
     }
     
