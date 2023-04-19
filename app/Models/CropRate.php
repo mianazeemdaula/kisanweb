@@ -174,8 +174,8 @@ class CropRate extends Model
             DB::raw('MIN(cr.min_price) AS min_rate'),
             DB::raw('MAX(cr.max_price) AS max_rate'),
             DB::raw('MAX(cr.rate_date) AS rate_date'),
-            DB::raw('MIN(prev_cr.min_price) AS min_city_price_last'),
-            DB::raw('MAX(prev_cr.max_price) AS max_city_price_last'),
+            DB::raw('MIN(prev_cr.min_price) AS min_price_last'),
+            DB::raw('MAX(prev_cr.max_price) AS max_price_last'),
         )
         ->leftJoin('crop_rates as prev_cr', function($join) {
             $join->on('cr.crop_type_id', '=', 'prev_cr.crop_type_id');
