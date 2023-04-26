@@ -180,11 +180,10 @@ class CropRate extends Model
         ->leftJoin('crop_rates as prev_cr', function($join) {
             $join->on('cr.crop_type_id', '=', 'prev_cr.crop_type_id');
             $join->on('prev_cr.rate_date', '=', DB::raw('(
-                SELECT MAX(rate_date) FROM crop_rates
+                SELECT MAX(rate_date) FROM crop_rates FORCE INDEX (idx_crop_type_id_rate_date_city_id) 
                 WHERE crop_type_id = cr.crop_type_id AND rate_date < cr.rate_date AND city_id = cr.city_id
             )'));
         })
-        ->join('cities', 'cities.id', '=', 'cr.city_id')
         ->groupBy('cr.city_id', 'cr.crop_type_id', 'cr.rate_date')
         ->orderBy('cr.rate_date', 'desc');
     }
