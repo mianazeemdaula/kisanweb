@@ -115,7 +115,8 @@ class CropRate extends Model
                 'cr.crop_type_id',
                 DB::raw('AVG(cr.min_price) AS avg_min_price'),
                 DB::raw('AVG(cr.max_price) AS avg_max_price'),
-                'cr.rate_date',
+                DB::raw('AVG(cr.max_price) AS avg_max_price'),
+                DB::raw('MAX(cr.rate_date) AS rate_date'),
                 DB::raw('AVG(prev_cr.min_price) AS prev_avg_min_price'),
                 DB::raw('AVG(prev_cr.max_price) AS prev_avg_max_price')
             )
@@ -129,9 +130,10 @@ class CropRate extends Model
                 SELECT crop_type_id, MAX(rate_date) AS max_rate_date
                 FROM crop_rates
                 GROUP BY crop_type_id
-            ) as sub'), function($join) {
+            ) as sub'), function($join) use($typeIds) {
                 $join->on('cr.crop_type_id', '=', 'sub.crop_type_id')
-                     ->on('cr.rate_date', '=', 'sub.max_rate_date');
+                     ->on('cr.rate_date', '=', 'sub.max_rate_date')
+                     ->on('cr.crop_type_id', 'in', $typeIds);
             })
             ->whereIn('cr.crop_type_id', $typeIds)
             ->groupBy('cr.crop_type_id', 'cr.rate_date');
