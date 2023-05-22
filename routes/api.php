@@ -21,6 +21,11 @@ use App\Http\Controllers\Api\V1\CityController;
 use App\Http\Controllers\Api\V1\CropRateController;
 use App\Http\Controllers\Api\V1\CropCityRateController;
 use App\Http\Controllers\Api\V1\DataController;
+use App\Http\Controllers\Api\V1\CommissionShopController;
+use App\Http\Controllers\Api\V1\VideoController;
+use App\Http\Controllers\Api\V1\Feed\FeedController;
+use App\Http\Controllers\Api\V1\Feed\FeedLikeController;
+use App\Http\Controllers\Api\V1\Feed\FeedCommentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -86,6 +91,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('city-rates', CropCityRateController::class);
     Route::post('city-rate-history', [CropCityRateController::class,'cityHistory']);
     Route::post('rates-filter', [CropRateController::class,'filter']);
+
+    // Feed
+    Route::resource('/feeds', FeedController::class);
+    Route::resource('/feeds.likes', FeedLikeController::class);
+    Route::resource('/feeds.comments',FeedCommentController::class);
+    // Like routes
+    Route::resource('commissionshop', CommissionShopController::class);
+    Route::post('commissionshop-crops', [CommissionShopController::class,'cropsUpdate']);
+    Route::post('commissionshop-post-rates', [CommissionShopController::class,'postCropRate']);
+    Route::post('commissionshop-get-nearby', [CommissionShopController::class,'getNearByShop']);
+
+    // Videos
+    Route::resource('/videos', VideoController::class);
+
+    // // Comment routes
+    // Route::delete('/feeds/{feed}/comments/{comment}', [FeedCommentController::class, 'destroy']);
 });
 
 // Route::resource('city-rates', CropCityRateController::class);

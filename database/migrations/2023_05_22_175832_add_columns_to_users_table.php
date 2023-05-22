@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('name_ur');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->boolean('status')->default(true);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('city_id')->after('lang')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 
@@ -30,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_city_id_foreign');
+            $table->dropColumn(['city_id']);
+        });
     }
 };

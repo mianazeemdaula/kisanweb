@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('name_ur');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->boolean('status')->default(true);
+        Schema::create('poll_option_user', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('poll_option_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('poll_option_user');
     }
 };

@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1\Feed;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Feed;
+use App\Models\FeedComment;
+use App\Events\FeedUpdateEvent;
 
-use App\Models\Crop;
-
-class CropController extends Controller
+class FeedCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($feed)
     {
-        $data = Crop::with(['types.offers.bids', 'types.offers.media'])->get();
-        return response()->json($data, 200);
+        $data = FeedComment::with('user')->where('feed_id', $feed)->get(); 
+        return response()->json($data, 200);  
     }
 
     /**
@@ -36,9 +37,19 @@ class CropController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $feed)
     {
-        //
+        $request->validate([
+            'content' => 'required|string|max:255',
+        ]);
+
+        $comment = new FeedComment;
+        $comment->user_id = auth()->user()->id;
+        $comment->feed_id = $feed;
+        $comment->content = $request->content;
+        $comment->save();
+        FeedUpdateEvent::dispatch($feed);
+        return response()->json($comment, 200);
     }
 
     /**
@@ -83,6 +94,8 @@ class CropController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
     }
 }

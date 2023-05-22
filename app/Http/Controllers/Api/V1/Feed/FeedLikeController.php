@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1\Feed;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Feed;
+use App\Models\FeedLike;
+use App\Events\FeedUpdateEvent;
 
-use App\Models\Crop;
-
-class CropController extends Controller
+class FeedLikeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($feed)
     {
-        $data = Crop::with(['types.offers.bids', 'types.offers.media'])->get();
-        return response()->json($data, 200);
+        $data = FeedLike::with('user')->where('feed_id', $feed)->get(); 
+        return response()->json($data, 200);  
     }
 
     /**
@@ -36,9 +37,15 @@ class CropController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $feed)
     {
-        //
+        $like = new FeedLike;
+        $like->user_id = auth()->user()->id;
+        $like->feed_id = $feed;
+        $like->save();
+        // update feed pusher
+        FeedUpdateEvent::dispatch($feed);
+        return response()->json($like, 200);
     }
 
     /**
@@ -83,6 +90,9 @@ class CropController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $like = Like::where('user_id', auth()->user()->id)
+                    ->where('feed_id', $feed->id)
+                    ->firstOrFail();
+
     }
 }

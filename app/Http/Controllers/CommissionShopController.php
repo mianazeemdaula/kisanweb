@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Crop;
-
-class CropController extends Controller
+class CommissionShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +13,7 @@ class CropController extends Controller
      */
     public function index()
     {
-        $data = Crop::with(['types.offers.bids', 'types.offers.media'])->get();
-        return response()->json($data, 200);
+        //
     }
 
     /**

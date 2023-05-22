@@ -103,5 +103,17 @@ class CropRateController extends Controller
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
     }
+
+    public function getRates(Request $request)
+    {
+        if($request->type == 'crops'){
+            $data =  CropType::with(['rate' => function($r) use($request) {
+                $r->rate();
+            }])->whereHas('rate')->where('crop_id', $request->crop)->get();
+        }else if($request->type == 'city'){
+            
+        }
+
+    }
     
 }

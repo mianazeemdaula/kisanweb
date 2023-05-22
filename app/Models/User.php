@@ -89,6 +89,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class);
     }
+
+    public function commissionShop(): HasOne
+    {
+        return $this->hasOne(CommissionShop::class)->latest();
+    }
+    
     
 
     public function following()

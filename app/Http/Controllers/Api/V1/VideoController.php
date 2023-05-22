@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Video;
 
-use App\Models\Crop;
-
-class CropController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class CropController extends Controller
      */
     public function index()
     {
-        $data = Crop::with(['types.offers.bids', 'types.offers.media'])->get();
+        $data =  Video::with('category')->latest()->paginate();
         return response()->json($data, 200);
     }
 
@@ -38,7 +37,20 @@ class CropController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category' => 'required',
+            'title' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
+        ]);
+
+        $video = new Video;
+        $video->user_id = auth()->user()->id;
+        $video->category_id = $request->category;
+        $video->title = $request->title;
+        $video->url = $request->url;
+        $video->keywords = $request->keywords;
+        $video->save();
+        return response()->json($video, 200);
     }
 
     /**

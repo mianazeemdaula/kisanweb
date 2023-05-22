@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('name_ur');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->boolean('status')->default(true);
-            $table->timestamps();
+        Schema::create('commission_shop_crop', function (Blueprint $table) {
+            $table->foreignId('commission_shop_id')->constrained()->onDelete('cascade');
+            $table->foreignId('crop_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('commission_shop_crop');
     }
 };

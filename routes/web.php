@@ -80,3 +80,5 @@ Route::post('/news-send',[HomeController::class,'sendNewsNotification']);
 
 Route::get('reports/rates', [ReportController::class,'getCropRatePdf']);
 Route::post('reports/rates', [ReportController::class,'cropRatePdf']);
+
+Route::view('/mail-view', 'reports.pdf.mail');

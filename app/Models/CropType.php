@@ -26,14 +26,15 @@ class CropType extends Model
         return $this->belongsTo(Crop::class, 'crop_id');
     }
 
-    /**
-     * Get all of the comments for the CropType
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function offers(): HasMany
+    
+    public function commissionShopRates(): HasMany
     {
-        return $this->hasMany(Offer::class);
+        return $this->hasMany(CommissionShopRate::class, 'crop_type_id');
+    }
+
+    public function commissionShopRate(): HasOne
+    {
+        return $this->hasOne(CommissionShopRate::class, 'crop_type_id');
     }
 
     public function rates(): HasMany

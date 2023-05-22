@@ -21,13 +21,19 @@ return new class extends Migration
             $table->text('about')->nullable();
             $table->string('address');
             $table->point('location');
-            $table->string('image')->nullable();
+            $table->string('logo')->nullable();
             $table->string('banner')->nullable();
-            $table->boolean('status')->default(true);
+            $table->boolean('active')->default(true);
             $table->json('social_links')->nullable();
+            $table->unsignedMediumInteger('rating')->default(0);
+            $table->unsignedMediumInteger('rating_count')->default(0);
+            $table->unsignedSmallInteger('ad_index')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->spatialIndex('location');
+            // $table->index(['city_id']);
+            // $table->index(['active']);
         });
     }
 

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->morphs('ratingable');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->index(['user_id','rate']);
         });
     }
 
