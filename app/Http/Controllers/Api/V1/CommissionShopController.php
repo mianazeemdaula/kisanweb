@@ -65,6 +65,15 @@ class CommissionShopController extends Controller
             $image->save($path);
             $shop->logo = $path;
         }
+        if($request->has('banner')){
+            $file =  $request->file('banner');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = Str::random(15).'.'.$ext;
+            $path = "shops/".$fileName;
+            $image = Image::make($file->getRealPath());
+            $image->save($path);
+            $shop->banner = $path;
+        }
         $shop->address = $request->address;
         $shop->location = new Point($request->lat, $request->lng);
         $socials = [];
@@ -74,6 +83,10 @@ class CommissionShopController extends Controller
             $socials['email'] = $request->email;
         }if($request->web){
             $socials['web'] = $request->web;
+        }if($request->whatsapp){
+            $socials['whatsapp'] = $request->whatsapp;
+        }if($request->mobile){
+            $socials['mobile'] = $request->mobile;
         }
         $shop->social_links = $socials;
         $shop->save();
