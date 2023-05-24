@@ -20,8 +20,8 @@ class CommissionShopController extends Controller
      */
     public function index()
     {
-        $shop = auth()->user()->commissionShop;
-        $data = CommissionShop::with('crops')->findOrFail($shop->id);
+        $data = CommissionShop::with(['crops', 'city'])
+        ->where('user_id', auth()->id())->first();
         return response()->json($data, 200);
     }
 
