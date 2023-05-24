@@ -20,7 +20,8 @@ class CommissionShopController extends Controller
      */
     public function index()
     {
-        $data = auth()->user()->commissionShop;
+        $shop = auth()->user()->commissionShop;
+        $data = CommissionShop::with('crops')->findOrFail($shop->id);
         return response()->json($data, 200);
     }
 
@@ -101,12 +102,12 @@ class CommissionShopController extends Controller
      */
     public function show($id)
     {
-        $shop = CommissionShop::findOrFail($id);
-        return \App\Models\Crop::with(['types' => function($q) use ($shop){
-            $q->with(['commissionShopRate' => function($rate) use($shop){
-                $rate->getLatestRates($shop->id);
-            }])->whereHas('commissionShopRate');
-        }])->whereIn('id', $shop->crops->pluck('id'))->get();
+        $shop = CommissionShop::with('crops')->findOrFail($id);
+        // return \App\Models\Crop::with(['types' => function($q) use ($shop){
+        //     $q->with(['commissionShopRate' => function($rate) use($shop){
+        //         $rate->getLatestRates($shop->id);
+        //     }])->whereHas('commissionShopRate');
+        // }])->whereIn('id', $shop->crops->pluck('id'))->get();
         return response()->json($shop, 200);
     }
 
@@ -118,7 +119,8 @@ class CommissionShopController extends Controller
      */
     public function edit($id)
     {
-        //
+        $shop = CommissionShop::with('crops')->findOrFail($id);
+        return response()->json($data, 200, $headers);
     }
 
     /**
