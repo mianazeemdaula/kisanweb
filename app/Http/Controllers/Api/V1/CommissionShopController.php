@@ -49,7 +49,8 @@ class CommissionShopController extends Controller
             'lng' => 'required',
             'address' => 'required',
             'logo' => 'required',
-            // 'about' => 'required',
+            'banner' => 'required',
+            'about' => 'required',
             'city' => 'required',
         ]);
         $shop = new CommissionShop();
