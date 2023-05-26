@@ -212,7 +212,7 @@ class CommissionShopController extends Controller
     {
         $user = $request->user();
         $address = $user->addresses()->pluck('location');
-        $shops = CommissionShop::with(['city', 'user'])->get();
+        $shops = CommissionShop::with(['city', 'user'])->paginate();
         return response()->json($shops, 200);
     }
 }
