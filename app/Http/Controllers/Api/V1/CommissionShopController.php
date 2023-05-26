@@ -211,8 +211,10 @@ class CommissionShopController extends Controller
     public function getNearByShop(Request $request)
     {
         $user = $request->user();
-        $address = $user->addresses()->pluck('location');
-        $shops = CommissionShop::with(['city', 'user'])->paginate();
+        $address = $user->addresses()->whereDefault(true)->first();
+        $shops = CommissionShop::query()->orderByDistance('location',$address->location)
+        ->with(['city', 'user'])
+        ->paginate();
         return response()->json($shops, 200);
     }
 }
