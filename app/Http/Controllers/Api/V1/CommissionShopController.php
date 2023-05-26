@@ -20,7 +20,7 @@ class CommissionShopController extends Controller
      */
     public function index()
     {
-        $data = CommissionShop::with(['crops', 'city'])
+        $data = CommissionShop::with(['crops', 'city', 'user'])
         ->where('user_id', auth()->id())->first();
         return response()->json($data, 200);
     }
@@ -187,7 +187,7 @@ class CommissionShopController extends Controller
             'crops' => 'required',
         ]);
         $request->user()->commissionShop->crops()->sync(json_decode($request->crops));
-        return response()->json($request->user()->commissionShop, 200);
+        return $this->index();
     }
 
     public function postCropRate(Request $request)
@@ -212,7 +212,7 @@ class CommissionShopController extends Controller
     {
         $user = $request->user();
         $address = $user->addresses()->pluck('location');
-        $shops = CommissionShop::with(['city'])->get();
+        $shops = CommissionShop::with(['city', 'user'])->get();
         return response()->json($shops, 200);
     }
 }
