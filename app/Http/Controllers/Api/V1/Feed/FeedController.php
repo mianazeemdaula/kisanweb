@@ -33,7 +33,8 @@ class FeedController extends Controller
         // ->paginate();
         $data = Feed::with(['user' => function($q){
             $q->select('id','name', 'image');
-        }, 'media'])->withCounts()->paginate();
+        }, 'media'])->withCounts()
+        ->latest()->paginate();
         return response()->json($data, 200);
     }
 
