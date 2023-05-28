@@ -68,7 +68,7 @@ class FeedController extends Controller
         $feed->save();
         if($request->has('images')){
             foreach ($request->file('images') as $key => $file) {
-                $medias[] = MediaHelper::save($file, $deal);
+                $medias[] = MediaHelper::save($file, $feed);
             }
             foreach ($medias as $img) {
                 $feed->media()->save($img);
