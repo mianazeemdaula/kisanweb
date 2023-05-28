@@ -49,6 +49,7 @@ class FeedCommentController extends Controller
         $comment->content = $request->content;
         $comment->save();
         FeedUpdateEvent::dispatch($feed);
+        $user = $comment->user;
         return response()->json($comment, 200);
     }
 
