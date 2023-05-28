@@ -50,7 +50,7 @@ class FeedLikeController extends Controller
             $like->save();
         }
         // update feed pusher
-        FeedUpdateEvent::dispatch($this->getFeedData($feed));
+        FeedUpdateEvent::dispatch($feed);
         return response()->json($like, 200);
     }
 
@@ -100,12 +100,5 @@ class FeedLikeController extends Controller
                     ->where('feed_id', $feed->id)
                     ->firstOrFail();
 
-    }
-    
-    public function getFeedData($id)
-    {
-        return Feed::with(['user' => function($q){
-            $q->select('id','name', 'image');
-        }, 'media', 'scopeWithCounts'])->find($id);
     }
 }
