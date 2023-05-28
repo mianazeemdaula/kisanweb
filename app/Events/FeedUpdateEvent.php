@@ -23,7 +23,7 @@ class FeedUpdateEvent implements ShouldBroadcast
      */
     public $data;
 
-    public function __construct($data)
+    public function __construct($id)
     {
         $this->data =  Feed::withCounts()->with(['user' => function($q){
             $q->select('id','name', 'image');
