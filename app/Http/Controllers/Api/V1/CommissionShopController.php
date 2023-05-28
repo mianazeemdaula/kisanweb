@@ -190,6 +190,12 @@ class CommissionShopController extends Controller
         return $this->index();
     }
 
+    public function getShopCropsWithType()
+    {
+        $data = auth()->user()->commissionShop->crops()->with(['types'])->get();
+        return response()->json($data, 200);
+    }
+
     public function postCropRate(Request $request)
     {
         $request->validate([
