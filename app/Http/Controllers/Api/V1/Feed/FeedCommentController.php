@@ -48,7 +48,7 @@ class FeedCommentController extends Controller
         $comment->feed_id = $feed;
         $comment->content = $request->content;
         $comment->save();
-        FeedUpdateEvent::dispatch($feed);
+        FeedUpdateEvent::dispatch($this->getFeedData($feed));
         return response()->json($comment, 200);
     }
 
@@ -97,5 +97,12 @@ class FeedCommentController extends Controller
         $this->authorize('delete', $comment);
 
         $comment->delete();
+    }
+
+    public function getFeedData($id)
+    {
+        return Feed::withCounts()->with(['user' => function($q){
+            $q->select('id','name', 'image');
+        }, 'media'])->find($id);
     }
 }

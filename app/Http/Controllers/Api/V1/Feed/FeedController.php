@@ -74,7 +74,7 @@ class FeedController extends Controller
                 $feed->media()->save($img);
             }
         }
-        FeedUpdateEvent::dispatch($feed->id);
+        FeedUpdateEvent::dispatch($this->getFeedData($feed->id));
         return response()->json($feed, 200);
     }
 
@@ -128,7 +128,7 @@ class FeedController extends Controller
             $feed->video = $videoPath;
         }
         $feed->save();
-        FeedUpdateEvent::dispatch($feed->id);
+        FeedUpdateEvent::dispatch($this->getFeedData($feed->id));
         return response()->json($feed, 200);
     }
 
@@ -143,4 +143,12 @@ class FeedController extends Controller
         Feed::findOrFail($id)->delete();
         return response()->json($data, 200, $headers);
     }
+
+    public function getFeedData($id)
+    {
+        return Feed::withCounts()->with(['user' => function($q){
+            $q->select('id','name', 'image');
+        }, 'media'])->find($id);
+    }
+    
 }
