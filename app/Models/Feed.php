@@ -28,4 +28,9 @@ class Feed extends Model
     {
         return $query->withCount(['likes', 'comments']);
     }
+
+    public function media()
+    {
+        return $this->morphMany(Media::class, 'mediaable');
+    }
 }

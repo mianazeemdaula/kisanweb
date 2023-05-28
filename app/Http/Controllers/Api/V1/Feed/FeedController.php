@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\V1\Feed;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helper\MediaHelper;
 
 use App\Models\Feed;
 use App\Events\FeedUpdateEvent;
+
 
 class FeedController extends Controller
 {
@@ -31,7 +33,7 @@ class FeedController extends Controller
         // ->paginate();
         $data = Feed::with(['user' => function($q){
             $q->select('id','name', 'image');
-        }])->withCounts()->paginate();
+        }, 'media'])->withCounts()->paginate();
         return response()->json($data, 200);
     }
 
@@ -61,13 +63,12 @@ class FeedController extends Controller
         $feed->user_id = auth()->user()->id;
         $feed->type = $validatedData['type'];
         $feed->content = $validatedData['content'];
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $feed->image = $imagePath;
+        $medias = array();
+        foreach ($request->file('images') as $key => $file) {
+            $medias[] = MediaHelper::save($file, $deal);
         }
-        if ($request->hasFile('video')) {
-            $videoPath = $request->file('video')->store('videos', 'public');
-            $feed->video = $videoPath;
+        foreach ($medias as $img) {
+            $feed->media()->save($img);
         }
         $feed->save();
         FeedUpdateEvent::dispatch($feed->id);
@@ -82,7 +83,10 @@ class FeedController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Feed::with(['user' => function($q){
+            $q->select('id','name', 'image');
+        }, 'media'])->withCounts()->findOrFail($id);
+        return response()->json($data, 200);
     }
 
     /**
