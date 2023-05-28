@@ -65,13 +65,15 @@ class FeedController extends Controller
         $feed->type = $validatedData['type'];
         $feed->content = $validatedData['content'];
         $medias = array();
-        foreach ($request->file('images') as $key => $file) {
-            $medias[] = MediaHelper::save($file, $deal);
-        }
-        foreach ($medias as $img) {
-            $feed->media()->save($img);
-        }
         $feed->save();
+        if($request->has('images')){
+            foreach ($request->file('images') as $key => $file) {
+                $medias[] = MediaHelper::save($file, $deal);
+            }
+            foreach ($medias as $img) {
+                $feed->media()->save($img);
+            }
+        }
         FeedUpdateEvent::dispatch($feed->id);
         return response()->json($feed, 200);
     }
