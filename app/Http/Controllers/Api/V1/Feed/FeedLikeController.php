@@ -104,8 +104,8 @@ class FeedLikeController extends Controller
     
     public function getFeedData($id)
     {
-        return Feed::withCounts()->with(['user' => function($q){
+        return Feed::with(['user' => function($q){
             $q->select('id','name', 'image');
-        }, 'media'])->find($id);
+        }, 'media', 'scopeWithCounts'])->find($id);
     }
 }
