@@ -17,7 +17,7 @@ class FeedCommentController extends Controller
      */
     public function index($feed)
     {
-        $data = FeedComment::with('user')->where('feed_id', $feed)->get(); 
+        $data = FeedComment::with('user')->where('feed_id', $feed)->latest()->paginate(); 
         return response()->json($data, 200);  
     }
 
