@@ -41,13 +41,13 @@ class FeedLikeController extends Controller
     {
         $userId = auth()->user()->id;
         $like = FeedLike::where('user_id',$userId )->where('feed_id', $feed)->first();
-        if($like){
-            $like->delete();
-        }else{
+        if(!$like){
             $like = new FeedLike;
             $like->user_id = 
             $like->feed_id = $feed;
             $like->save();
+        }else{
+            $like->delete();
         }
         // update feed pusher
         FeedUpdateEvent::dispatch($feed);
