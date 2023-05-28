@@ -37,20 +37,20 @@ class FeedLikeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $feed)
+    public function store(Request $request, $id)
     {
-        $userId = auth()->user()->id;
-        $like = FeedLike::where('user_id',$userId )->where('feed_id', $feed)->first();
+        $userId = $request->user()->id;
+        $like = FeedLike::where('user_id',$userId )->where('feed_id', $id)->first();
         if(!$like){
             $like = new FeedLike;
-            $like->user_id = 
-            $like->feed_id = $feed;
+            $like->user_id = $userId;
+            $like->feed_id = $id;
             $like->save();
         }else{
             $like->delete();
         }
         // update feed pusher
-        FeedUpdateEvent::dispatch($feed);
+        FeedUpdateEvent::dispatch($id);
         return response()->json($like, 200);
     }
 
