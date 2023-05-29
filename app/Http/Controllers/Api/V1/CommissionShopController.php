@@ -107,7 +107,7 @@ class CommissionShopController extends Controller
         $data['rates'] =  \App\Models\Crop::with(['types' => function($q) use ($data){
             $q->with(['commissionShopRate' => function($rate) use($data){
                 $rate->getLatestRates($data['shop']->id);
-            }])->whereHas('commissionShopRate');
+            }]);
         }])->get();
         return response()->json($data, 200);
     }
