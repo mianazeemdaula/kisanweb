@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Feed extends Model
 {
     use HasFactory;
+    protected $appends = ['liked'];
 
     public function user()
     {
@@ -32,5 +33,12 @@ class Feed extends Model
     public function media()
     {
         return $this->morphMany(Media::class, 'mediaable');
+    }
+
+    public function getLikedAttribute()
+    {
+        if(auth()->id())
+        return $this->likes()->where('user_id',auth()->id())->exists();
+        return false;
     }
 }
