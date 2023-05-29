@@ -32,15 +32,25 @@ class CommissionShopRate extends Model
         return $this->belongsTo(CropType::class, 'crop_type_id');
     }
 
-    public function scopeGetLatestRates($query, $commission_shop_id)
+    public function scopeGetLatestRates($query, $shopId)
     {
-        return $query->select('commission_shop_rates.min_price as min_rate', 'commission_shop_rates.max_price as max_rate', 'commission_shop_rates.crop_type_id')
-            ->where('commission_shop_id', $commission_shop_id)
-            ->where('rate_date', function ($subquery) use ($commission_shop_id) {
+        // return $query->select('commission_shop_rates.min_price as min_rate', 'commission_shop_rates.max_price as max_rate', 'commission_shop_rates.crop_type_id')
+        //     ->where('commission_shop_id', $commission_shop_id)
+        //     ->where('rate_date', function ($subquery) use ($commission_shop_id) {
+        //         $subquery->selectRaw('MAX(rate_date)')
+        //             ->from('commission_shop_rates')
+        //             ->whereColumn('commission_shop_id', 'commission_shop_rates.commission_shop_id')
+        //             ->whereColumn('crop_type_id', 'commission_shop_rates.crop_type_id');
+        //     });
+
+            return $query->select('min_price as min_rate', 'max_price as max_rate', 'crop_type_id')
+            // ->whereIn('crop_type_id', $cropTypeIds)
+            ->where('commission_shop_id', $shopId)
+            ->where('rate_date', function ($subquery) use ($shopId) {
                 $subquery->selectRaw('MAX(rate_date)')
                     ->from('commission_shop_rates')
-                    ->whereColumn('commission_shop_id', 'commission_shop_rates.commission_shop_id')
-                    ->whereColumn('crop_type_id', 'commission_shop_rates.crop_type_id');
+                    ->whereColumn('crop_type_id', 'commission_shop_rates.crop_type_id')
+                    ->where('commission_shop_id', $shopId);
             });
     }
 }
