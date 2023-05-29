@@ -103,13 +103,13 @@ class CommissionShopController extends Controller
      */
     public function show($id)
     {
-        $shop = CommissionShop::with('crops')->findOrFail($id);
-        // return \App\Models\Crop::with(['types' => function($q) use ($shop){
-        //     $q->with(['commissionShopRate' => function($rate) use($shop){
-        //         $rate->getLatestRates($shop->id);
-        //     }])->whereHas('commissionShopRate');
-        // }])->whereIn('id', $shop->crops->pluck('id'))->get();
-        return response()->json($shop, 200);
+        $data['shop'] = CommissionShop::with(['crops', 'city', 'user'])->findOrFail($id);
+        $data['rates'] =  \App\Models\Crop::with(['types' => function($q) use ($data){
+            $q->with(['commissionShopRate' => function($rate) use($data){
+                $rate->getLatestRates($data['shop']->id);
+            }])->whereHas('commissionShopRate');
+        }])->get();
+        return response()->json($data, 200);
     }
 
     /**
