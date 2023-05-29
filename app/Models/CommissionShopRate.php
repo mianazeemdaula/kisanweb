@@ -39,7 +39,7 @@ class CommissionShopRate extends Model
             ->where('rate_date', function ($subquery) use ($commission_shop_id) {
                 $subquery->selectRaw('MAX(rate_date)')
                     ->from('commission_shop_rates')
-                    ->whereColumn('commission_shop_id', 'commission_shop_rates.commission_shop_id')
+                    ->whereColumn('commission_shop_id', $commission_shop_id)
                     ->whereColumn('crop_type_id', 'commission_shop_rates.crop_type_id');
             });
     }
