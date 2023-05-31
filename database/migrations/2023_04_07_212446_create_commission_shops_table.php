@@ -21,8 +21,9 @@ return new class extends Migration
             $table->text('about')->nullable();
             $table->string('address');
             $table->point('location');
-            $table->string('logo')->nullable();
-            $table->string('banner')->nullable();
+            $table->string('logo');
+            $table->string('banner');
+            $table->string('shop_number')->nullable();
             $table->boolean('active')->default(true);
             $table->json('social_links')->nullable();
             $table->unsignedMediumInteger('rating')->default(0);
