@@ -52,12 +52,14 @@ class CommissionShopController extends Controller
             'banner' => 'required',
             'about' => 'required',
             'city' => 'required',
+            'shop_number' => 'required',
         ]);
         $shop = new CommissionShop();
         $shop->user_id = $request->user()->id;
         $shop->name = $request->name;
         $shop->about = $request->about;
         $shop->city_id = $request->city;
+        $shop->shop_number = $request->shop_number;
         if($request->has('logo')){
             $file =  $request->file('logo');
             $ext = $file->getClientOriginalExtension();
