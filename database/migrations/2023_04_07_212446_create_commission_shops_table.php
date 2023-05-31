@@ -33,8 +33,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->spatialIndex('location');
-            // $table->index(['city_id']);
-            // $table->index(['active']);
+            $table->index(['city_id']);
+            $table->index(['active']);
         });
     }
 
