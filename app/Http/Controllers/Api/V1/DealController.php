@@ -169,4 +169,11 @@ class DealController extends Controller
         $data = $query->orderBy('id','desc')->paginate();
         return response()->json($data, 200);
     }
+
+    public function homeDeals()
+    {
+        $data = Deal::with(['seller', 'packing', 'weight', 'media', 'type.crop'])
+        ->whereHas('seller')->latest()->take(5)->get();
+        return response()->json($data, 200);
+    }
 }
