@@ -152,6 +152,7 @@ class DealController extends Controller
             'images' => 'sometimes',
             'images.*' => 'sometimes|mimes:jpg,jpeg,png',
         ]);
+        return $request->all();
         try {
             DB::beginTransaction();
             $deal =  Deal::findOrFail($id);
