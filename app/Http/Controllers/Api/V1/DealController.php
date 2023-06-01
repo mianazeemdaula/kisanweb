@@ -172,7 +172,9 @@ class DealController extends Controller
 
     public function homeDeals()
     {
-        $data = Deal::with(['seller', 'packing', 'weight', 'media', 'type.crop'])
+        $data = Deal::with(['bids' => function($q){
+            $q->with(['buyer']);
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
         ->whereHas('seller')->latest()->take(5)->get();
         return response()->json($data, 200);
     }
