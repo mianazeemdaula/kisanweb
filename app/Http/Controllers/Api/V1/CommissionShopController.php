@@ -20,8 +20,15 @@ class CommissionShopController extends Controller
      */
     public function index()
     {
-        $data = CommissionShop::with(['crops', 'city', 'user'])
+        $data['shop'] = CommissionShop::with(['crops', 'city', 'user'])
         ->where('user_id', auth()->id())->first();
+       if($data['shop']){
+            $data['rates'] =  \App\Models\Crop::with(['types' => function($q) use ($data){
+                $q->with(['commissionShopRate' => function($rate) use($data){
+                    $rate->where('commission_shop_id', $data['shop']->id);
+                }])->whereHas('commissionShopRate');
+            }])->get();
+       }
         return response()->json($data, 200);
     }
 
