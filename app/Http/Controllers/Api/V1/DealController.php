@@ -140,6 +140,7 @@ class DealController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return $request->all();
         $this->validate($request,[
             'packing_id' => 'sometimes|integer',
             'weight_type_id' => 'required',
@@ -152,7 +153,6 @@ class DealController extends Controller
             'images' => 'sometimes',
             'images.*' => 'sometimes|mimes:jpg,jpeg,png',
         ]);
-        return $request->all();
         try {
             DB::beginTransaction();
             $deal =  Deal::findOrFail($id);
