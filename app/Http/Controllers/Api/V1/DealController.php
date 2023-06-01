@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Deal;
 use App\Models\Bid;
 use App\Models\Notification;
+use App\Models\Media;
 
 class DealController extends Controller
 {
@@ -139,7 +140,47 @@ class DealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'packing_id' => 'sometimes|integer',
+            'weight_type_id' => 'required',
+            'demand' => 'required',
+            'note' => 'required',
+            'qty' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
+            'address' => 'required',
+            'images' => 'sometimes',
+            'images.*' => 'sometimes|mimes:jpg,jpeg,png',
+        ]);
+        try {
+            DB::beginTransaction();
+            $deal =  Deal::findOrFail($id);
+            $deal->packing_id = $request->packing_id;
+            $deal->demand = $request->demand;
+            $deal->weight_type_id = $request->weight_type_id;
+            $deal->note = $request->note;
+            $deal->qty = $request->qty;
+            $deal->location = new Point($request->lat,$request->lng);
+            $deal->address = $request->address;
+            $oldImages = json_decode($request->oldimages);
+            foreach ($imgId as $oldImages) {
+                Media::find($imgId)->delete();
+            }
+            $medias = array();
+            foreach ($request->file('images') as $key => $file) {
+                $medias[] = MediaHelper::save($file, $deal);
+            }
+            $deal->save();
+            foreach ($medias as $img) {
+                $deal->media()->save($img);
+            }
+            DB::commit();
+            DealUpdateEvent::dispatch($deal->id);
+            return  response()->json($deal, 200);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return  response()->json(['message' => 'Somthing went wrong'], 422);
+        }
     }
 
     /**
