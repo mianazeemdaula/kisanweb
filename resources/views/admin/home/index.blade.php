@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="">
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
             <x-stat-card title="Total Users" count="{{ $data['users'] }}" color="bg-green-200">
                 <span class="bi bi-snow"></span>
             </x-stat-card>

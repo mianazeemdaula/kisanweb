@@ -1,6 +1,6 @@
 <div class="p-4">
     <div class="flex items-center justify-between">
-        <div class="flex items-center">
+        <div class="md:flex items-center hidden">
             <span class="bi bi-app-indicator mr-4"></span>
             <div class="flex bg-white rounded-3xl p-1">
                 @for ($i = 0; $i < 5; $i++)
