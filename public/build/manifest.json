@@ -19,6 +19,11 @@
       "assets/bootstrap-icons.999550fa.woff"
     ]
   },
+  "resources/css/app.css": {
+    "file": "assets/app.c013203d.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
   "resources/js/app.css": {
     "file": "assets/app.cc6228ee.css",
     "src": "resources/js/app.css"
