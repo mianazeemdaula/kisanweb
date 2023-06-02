@@ -82,3 +82,7 @@ Route::get('reports/rates', [ReportController::class,'getCropRatePdf']);
 Route::post('reports/rates', [ReportController::class,'cropRatePdf']);
 
 Route::view('/mail-view', 'reports.pdf.mail');
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('home',[HomeController::class, 'index']);
+});
