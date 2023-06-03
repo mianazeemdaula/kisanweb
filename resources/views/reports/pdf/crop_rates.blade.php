@@ -59,7 +59,7 @@
                 </thead>
                 <tbody>
                     @foreach ($rates->chunk(2) as $rows)
-                        <tr class="tr border-b text-xs">
+                        <tr class="tr border-b text-xs border-gray-400">
                             @foreach ($rows as $rate)
                                 <td class="text-center font-bold border text-lg">{{ $rate->city->name_ur }}</td>
                                 <td class="text-center border pl-1 text-lg w-24">{{ $rate->min_price }}</td>
