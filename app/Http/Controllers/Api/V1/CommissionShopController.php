@@ -28,6 +28,7 @@ class CommissionShopController extends Controller
                     $rate->where('commission_shop_id', $data['shop']->id);
                 }])->whereHas('commissionShopRate');
             }])->get();
+            $data['rates'] = $data['shop']->crops()->with(['types.commissionShopRate'])->get();
        }
         return response()->json($data, 200);
     }
