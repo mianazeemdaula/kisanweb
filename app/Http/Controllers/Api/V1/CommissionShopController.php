@@ -28,7 +28,9 @@ class CommissionShopController extends Controller
                     $rate->where('commission_shop_id', $data['shop']->id);
                 }])->whereHas('commissionShopRate');
             }])->get();
-            $data['rates'] = $data['shop']->crops()->with(['types.commissionShopRate'])->get();
+            $data['rates'] = $data['shop']->crops()->with(['types.commissionShopRate' => function($q){
+                $q->where('commission_shop_id', $data['shop']->id);
+            }])->get();
        }
         return response()->json($data, 200);
     }
@@ -225,7 +227,7 @@ class CommissionShopController extends Controller
             'crop_type_id' => 'required',
         ]);
         $data =  CommissionShopRate::updateOrCreate([
-            'commission_shop_id' => $request->user()->id,
+            'commission_shop_id' => $request->user()->commissionShop->id,
             'crop_type_id' => $request->crop_type_id,
             'rate_date' => date('Y-m-d'),
         ],[
