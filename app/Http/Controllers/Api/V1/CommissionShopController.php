@@ -117,7 +117,7 @@ class CommissionShopController extends Controller
             $q->with(['commissionShopRate' => function($rate) use($data){
                 $rate->where('commission_shop_id', $data['shop']->id);
             }])->whereHas('commissionShopRate');
-        }])->whereIn('id', $data['shop']->crops->pluck('id'))->get();
+        }])->get();
         return response()->json($data, 200);
     }
 

@@ -34,7 +34,7 @@ class CropType extends Model
 
     public function commissionShopRate(): HasOne
     {
-        return $this->hasOne(CommissionShopRate::class, 'crop_type_id')->latest();
+        return $this->hasOne(CommissionShopRate::class, 'crop_type_id')->orderBy('rate_date', 'desc');
     }
 
     public function rates(): HasMany
