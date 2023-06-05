@@ -12,7 +12,7 @@
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app.01f9aca2.css"
+      "assets/app.2ba9b014.css"
     ],
     "assets": [
       "assets/bootstrap-icons.cfe45b98.woff2",
@@ -20,12 +20,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.6b5a4106.css",
+    "file": "assets/app.5c8e3a26.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app.01f9aca2.css",
+    "file": "assets/app.2ba9b014.css",
     "src": "resources/js/app.css"
   }
 }
