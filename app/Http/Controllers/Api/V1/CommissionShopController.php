@@ -241,6 +241,7 @@ class CommissionShopController extends Controller
         $address = $user->addresses()->whereDefault(true)->first();
         $shops = CommissionShop::query()->orderByDistance('location',$address->location)
         ->with(['city', 'user'])
+        ->whereActive(true)
         ->paginate();
         return response()->json($shops, 200);
     }

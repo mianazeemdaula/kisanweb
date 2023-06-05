@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ShopController;
 
 Route::get('/login', [LoginController::class,'show']);
 Route::post('/login', [LoginController::class,'login'])->name('login');
@@ -85,4 +86,5 @@ Route::view('/mail-view', 'reports.pdf.mail');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('home',[HomeController::class, 'index']);
+    Route::resource('shops', ShopController::class);
 });

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CommissionShop;
 
-class CommissionShopController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class CommissionShopController extends Controller
      */
     public function index()
     {
-        //
+        $shops = CommissionShop::latest()->paginate();
+        return view('admin.shops.index', compact('shops'));
     }
 
     /**
@@ -68,7 +70,10 @@ class CommissionShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $shop = CommissionShop::find($id);
+        $shop->active = !$shop->active;
+        $shop->save();
+        return redirect()->back();
     }
 
     /**
