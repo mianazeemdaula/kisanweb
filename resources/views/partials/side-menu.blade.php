@@ -21,7 +21,7 @@
                 </div> --}}
                 {{-- <x-menu-item title="Home" icon="bi-house-door-fill" active="true" />
                 <hr class="my-4 text-gray-600"> --}}
-                <x-menu-item title="Statistics" icon="bi-envelope-fill" active="false" url="{{ url('/statistics') }}" />
+                <x-menu-item title="Statistics" icon="bi-envelope-fill" active="false" url="{{ url('/admin/home') }}" />
                 <x-menu-item title="Shops" icon="bi-building" active="false" url="{{ route('shops.index') }}" />
                 <x-menu-item title="Users" icon="bi-snow" active="false" url="" />
 
