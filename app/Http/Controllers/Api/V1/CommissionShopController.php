@@ -50,17 +50,22 @@ class CommissionShopController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'name' => 'required',
             'lat' => 'required',
             'lng' => 'required',
             'address' => 'required',
-            // 'logo' => 'required',
-            // 'banner' => 'required',
             'about' => 'required',
-            'city' => 'required',
             'shop_number' => 'required',
-        ]);
+        ];
+        if(!$request->has('id')){
+            $rules =  array_merge($rules,[
+                'city' => 'required',
+                'logo' => 'required',
+                'banner' => 'required',
+            ]);
+        }
+        $request->validate($rules);
         $shop = null;
         $socials = [];
         if($request->has('id')){
