@@ -61,11 +61,18 @@ class CommissionShopController extends Controller
             'city' => 'required',
             'shop_number' => 'required',
         ]);
-        $shop = new CommissionShop();
-        $shop->user_id = $request->user()->id;
+        $shop = null;
+        $socials = [];
+        if($request->has('id')){
+            $shop = CommissionShop::findOrFail($request->id);
+            $socials = $shop->social_links;
+        }else{
+            $shop = new CommissionShop();
+            $shop->user_id = $request->user()->id;
+            $shop->city_id = $request->city;
+        }
         $shop->name = $request->name;
         $shop->about = $request->about;
-        $shop->city_id = $request->city;
         $shop->shop_number = $request->shop_number;
         if($request->has('logo')){
             $file =  $request->file('logo');
@@ -87,7 +94,6 @@ class CommissionShopController extends Controller
         }
         $shop->address = $request->address;
         $shop->location = new Point($request->lat, $request->lng);
-        $socials = [];
         if($request->facebook){
             $socials['facebook'] = $request->facebook;
         }if($request->email){

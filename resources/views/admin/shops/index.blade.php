@@ -38,8 +38,8 @@
                         @foreach ($shops as $item)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <img src="{{ $item->user->image }}" class="rounded-full w-10 h-10" alt=""
-                                        srcset="">
+                                    <img src="{{ $item->user->image }}" class="rounded-full w-10 h-10 object-cover"
+                                        alt="" srcset="">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $item->name }}
