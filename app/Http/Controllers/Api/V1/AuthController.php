@@ -9,6 +9,7 @@ use App\Models\Address;
 use App\Models\SocialAccount;
 use \Hash;
 use Carbon\Carbon;
+use Image;
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -62,6 +63,15 @@ class AuthController extends Controller
             $user->cnic = $request->cnic;
         }if($request->has('email')){
             $user->email = $request->email;
+        }
+        if($request->has('image')){
+            $file = $request->image;
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$ext;
+            $path = "profile/".$fileName;
+            $image = Image::make($file->getRealPath());
+            $image->save($path);
+            $user->image = $path;
         }
         $user->save();
         if($request->has('lat') && $request->has('lng')){

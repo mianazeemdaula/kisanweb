@@ -25,12 +25,12 @@ class FeedUpdateEvent implements ShouldBroadcast
 
     public function __construct($id)
     {
-        $feed =  Feed::withCounts()->with(['user' => function($q){
-            $q->select('id','name', 'image');
-        }, 'media'])->find($id);
-        $c = $feed->likes_count;
-        $c = $feed->comments_count;
-        $this->data = $feed;
+        $feed =  Feed::withCounts()->find($id);
+        $this->data = [
+            'likes' => $feed->likes_count,
+            'comments' => $feed->comments_count,
+            'id' => $id,
+        ];
     }
 
     /**
@@ -45,6 +45,6 @@ class FeedUpdateEvent implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'feed.updated';
+        return 'feed.counts';
     }
 }
