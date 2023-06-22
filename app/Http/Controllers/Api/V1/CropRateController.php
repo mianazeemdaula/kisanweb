@@ -112,19 +112,13 @@ class CropRateController extends Controller
             }])->whereHas('rate')->where('crop_id', $request->crop)->get();
             return response()->json($data, 200,[]);
         }else if($request->type == 'today'){
-            $isRates = CropRate::where('crop_type_id', $request->crop_type)->latest()->first();
-            if($isRates){
-                 // $ids = CropRate::whereDate('rate_date',$date)->pluck('crop_type_id');
-                $rates = Crop::with(['types' => function($t) use ($isRates){
-                    $t->with(['rates' => function($r,) use($isRates){
-                        $r->with('city');
-                        $r->whereDate('rate_date', $isRates->rate_date);
-                        $r->where('crop_type_id', $isRates->crop_type_id);
-                    }]);
-                }])->get();
-                return response()->json($rates, 200,[]);
-            }
-            return response()->json([], 200,[]);
+            $rates = Crop::with(['types' => function($t) use ($isRates){
+                $t->with(['rates' => function($r,) use($isRates){
+                    $r->with('city');
+                    $r->whereDate('rate_date', now());
+                }]);
+            }])->whereId($request->crop_id)->get();
+            return response()->json($rates, 200,[]);
            
         }else if($request->type == 'mycities'){
             $isRates = CropRate::whereDate('rate_date',now())->first();
