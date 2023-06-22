@@ -112,8 +112,8 @@ class CropRateController extends Controller
             }])->whereHas('rate')->where('crop_id', $request->crop)->get();
             return response()->json($data, 200,[]);
         }else if($request->type == 'today'){
-            $rates = Crop::with(['types' => function($t) use ($isRates){
-                $t->with(['rates' => function($r,) use($isRates){
+            $rates = Crop::with(['types' => function($t){
+                $t->with(['rates' => function($r){
                     $r->with('city');
                     $r->whereDate('rate_date', now());
                 }]);
