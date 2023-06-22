@@ -119,7 +119,8 @@ class CropRateController extends Controller
                     $t->with(['rates' => function($r,) use($isRates){
                         $r->with('city');
                         $r->whereDate('rate_date', $isRates->rate_date);
-                    }])->where('id',$isRates->crop_type_id);
+                        $r->where('crop_type_id', $isRates->crop_type_id);
+                    }]);
                 }])->get();
                 return response()->json($rates, 200,[]);
             }
