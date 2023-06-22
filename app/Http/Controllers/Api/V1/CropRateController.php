@@ -129,7 +129,6 @@ class CropRateController extends Controller
             $ids = CropRate::whereDate('rate_date', $date)->pluck('crop_type_id');
             $rates = Crop::with(['types' => function($t) use ($ids, $request, $date){
                 $t->with(['rates' => function($r) use ($request, $date){
-                    $r->with('city');
                     $r->whereDate('rate_date', $date);
                     $r->whereIn('city_id', json_decode($request->cities));
                 }])->whereIn('id', $ids);
