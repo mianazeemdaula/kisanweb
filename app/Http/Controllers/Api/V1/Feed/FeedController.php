@@ -65,7 +65,7 @@ class FeedController extends Controller
         if($request->has('id')){
             $feed = Feed::find($request->id);
             $oldImages = json_decode($request->oldimages ?? "[]");
-            foreach ($imgId as $oldImages) {
+            foreach ($oldImages as $imgId) {
                 Media::find($imgId)->delete();
             }
         }else{
