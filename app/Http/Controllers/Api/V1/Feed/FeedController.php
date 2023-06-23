@@ -140,7 +140,7 @@ class FeedController extends Controller
      */
     public function destroy($id)
     {
-        Feed::findOrFail($id)->delete();
-        return response()->json($data, 200, $headers);
+        $feed = Feed::findOrFail($id)->delete();
+        return response()->json($feed, 200, $headers);
     }
 }
