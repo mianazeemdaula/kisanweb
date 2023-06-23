@@ -61,8 +61,18 @@ class FeedController extends Controller
             'type' => 'required|string',
             'content' => 'required|string',
         ]);
-        $feed = new Feed;
-        $feed->user_id = auth()->user()->id;
+        $feed = null;
+        if($request->has('id')){
+            $feed = Feed::find($request->id);
+            $oldImages = json_decode($request->oldimages ?? "[]");
+            foreach ($imgId as $oldImages) {
+                Media::find($imgId)->delete();
+            }
+        }else{
+            $feed = new Feed;
+            $feed->user_id = auth()->user()->id;
+
+        }
         $feed->type = $validatedData['type'];
         $feed->content = $validatedData['content'];
         $medias = array();
