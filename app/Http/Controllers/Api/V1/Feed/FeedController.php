@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helper\MediaHelper;
 
+use App\Models\Media;
 use App\Models\Feed;
 use App\Events\FeedUpdateEvent;
 
@@ -116,19 +117,23 @@ class FeedController extends Controller
             'type' => 'required|string',
             'content' => 'required|string',
         ]);
-        $feed = Feed::findOrFail($id);
+        $feed = Feed::find($id);
         $feed->type = $validatedData['type'];
         $feed->content = $validatedData['content'];
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $feed->image = $imagePath;
-        }
-        if ($request->hasFile('video')) {
-            $videoPath = $request->file('video')->store('videos', 'public');
-            $feed->video = $videoPath;
-        }
+        $medias = array();
         $feed->save();
-        FeedUpdateEvent::dispatch($feed->id);
+        $oldImages = json_decode($request->oldimages ?? "[]");
+        foreach ($imgId as $oldImages) {
+            Media::find($imgId)->delete();
+        }
+        if($request->has('images')){
+            foreach ($request->file('images') as $key => $file) {
+                $medias[] = MediaHelper::save($file, $feed);
+            }
+            foreach ($medias as $img) {
+                $feed->media()->save($img);
+            }
+        }
         return response()->json($feed, 200);
     }
 
@@ -141,6 +146,6 @@ class FeedController extends Controller
     public function destroy($id)
     {
         $feed = Feed::findOrFail($id)->delete();
-        return response()->json($feed, 200, $headers);
+        return response()->json($feed, 200);
     }
 }
