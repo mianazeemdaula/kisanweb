@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DealController;
 use App\Http\Controllers\ShopController;
 
 Route::get('/login', [LoginController::class,'show']);
@@ -88,3 +89,5 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('home',[HomeController::class, 'index']);
     Route::resource('shops', ShopController::class);
 });
+
+Route::resource('deals', DealController::class);
