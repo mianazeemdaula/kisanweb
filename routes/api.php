@@ -82,6 +82,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('bid', BidController::class);
     Route::resource('inbox', InboxController::class);
     Route::get('inbox-chat/{id}', [InboxController::class.'getChat']);
+    Route::post('chattypes', [InboxController::class.'chatType']);
     Route::resource('chat', ChatController::class);
     Route::resource('review', ReviewController::class);
     Route::post('review-history', [ReviewController::class,'history']);

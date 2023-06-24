@@ -41,9 +41,6 @@ class InboxController extends Controller
 
     public function show($id)
     {
-        // $data = Chat::with(['deal','buyer','lastmsg'])->where('deal_id',$id)->paginate();
-        // return response()->json($data, 200);
-
         $data = Chat::with(['deal','buyer','lastmsg'])
         ->leftJoin('messages', function($join) { 
             $join->on('messages.chat_id', '=', 'chats.id')
@@ -53,7 +50,6 @@ class InboxController extends Controller
         ->select('chats.*')
         ->whereHas('lastmsg')
         ->where('chats.deal_id',$id)->paginate();
-        //select * from ( SELECT chat_id, max(id) as latest FROM `messages` group by chat_id ) as t order by latest;
         return response()->json($data, 200);
     }
 
@@ -61,5 +57,22 @@ class InboxController extends Controller
     {
         $data = Chat::with(['deal','buyer','lastmsg'])->find($id);
         return response()->json($data, 200);
+    }
+
+    public function chatType(Request $request)
+    {
+        $user = auth()->user();
+        $query = Deal::with(['bids' => function($q) use($user) {
+            $q->with(['buyer']);
+        }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])
+        ->whereHas('chats');
+        if($request->type == 'bids'){
+            $chatDealIds = Chat::where('buyer_id', $user->id)->pluck('deal_id');
+            $query->whereIn('id', $chatDealIds);
+        }else{
+            $query->where('seller_id', $user->id);
+        }
+        $data = $query->paginate();
+        return response()->json($query, 200);
     }
 }
