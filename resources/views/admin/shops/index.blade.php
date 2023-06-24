@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="w-full p-9">
+    <div class="w-full">
         <div class="flex items-center justify-between">
             <h5 class="">Shops</h5>
         </div>
@@ -37,11 +37,11 @@
                     <tbody class="bg-white divide-y divide-gray-200 " id="chatlist">
                         @foreach ($shops as $item)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <img src="{{ $item->user->image }}" class="rounded-full w-10 h-10 object-cover"
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    <img src="{{ $item->banner }}" class="rounded-full w-10 h-10 object-cover"
                                         alt="" srcset="">
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                                     {{ $item->name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->city->name }} </td>
@@ -54,7 +54,7 @@
                                             class="">{{ $item->active ? 'active' : 'inactive' }}</button>
                                     </form>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                                     {{ implode(' ', array_slice(explode(' ', $item->about), 0, 10)) }}
                                 </td>
                                 <td>
@@ -66,9 +66,11 @@
                                         <a href="{{ route('shops.edit', $item->id) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
-                                        <a href="http://">
-                                            <span class="bi bi-trash"></span>
-                                        </a>
+                                        <form action="{{ route('shops.destroy', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit"><span class="bi bi-trash"></span></button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

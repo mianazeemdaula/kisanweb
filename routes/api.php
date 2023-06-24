@@ -22,6 +22,9 @@ use App\Http\Controllers\Api\V1\CropRateController;
 use App\Http\Controllers\Api\V1\CropCityRateController;
 use App\Http\Controllers\Api\V1\DataController;
 use App\Http\Controllers\Api\V1\CommissionShopController;
+use App\Http\Controllers\Api\V1\ShopFavoriteController;
+use App\Http\Controllers\Api\V1\ShopReportController;
+use App\Http\Controllers\Api\V1\QuoteController;
 use App\Http\Controllers\Api\V1\VideoController;
 use App\Http\Controllers\Api\V1\Feed\FeedController;
 use App\Http\Controllers\Api\V1\Feed\FeedLikeController;
@@ -101,6 +104,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/feeds.comments',FeedCommentController::class);
     // Commission Shops routes
     Route::resource('commissionshop', CommissionShopController::class);
+    Route::resource('fav-shops', ShopFavoriteController::class);
+    Route::resource('reported-shops', ShopReportController::class);
+    Route::resource('quotes', QuoteController::class);
     Route::get('commissionshop-crops', [CommissionShopController::class,'getShopCropsWithType']);
     Route::post('commissionshop-crops', [CommissionShopController::class,'cropsUpdate']);
     Route::post('commissionshop-post-rates', [CommissionShopController::class,'postCropRate']);

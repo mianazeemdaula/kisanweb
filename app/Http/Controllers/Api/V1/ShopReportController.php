@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CommissionShop;
 
-class ShopController extends Controller
+class ShopReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = CommissionShop::latest()->paginate();
-        return view('admin.shops.index', compact('shops'));
+        //
     }
 
     /**
@@ -70,10 +69,7 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $shop = CommissionShop::find($id);
-        $shop->active = !$shop->active;
-        $shop->save();
-        return redirect()->back();
+        //
     }
 
     /**
@@ -84,8 +80,6 @@ class ShopController extends Controller
      */
     public function destroy($id)
     {
-        $shop = CommissionShop::findOrFail($id);
-        $shop->delete();
-        return redirect()->back();
+        //
     }
 }

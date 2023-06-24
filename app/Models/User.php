@@ -121,4 +121,15 @@ class User extends Authenticatable
     {
         return number_format($this->reviews()->avg('rating') ?? 0, 1);
     }
+
+    
+    public function favoriteShops()
+    {
+        return $this->hasManyThrough(CommissionShop::class, 'favorite_shops');
+    }
+
+    public function reportedShops()
+    {
+        return $this->belongsToMany(CommissionShop::class, 'reported_shops');
+    }
 }
