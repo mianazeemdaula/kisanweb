@@ -125,7 +125,7 @@ class User extends Authenticatable
     
     public function favoriteShops()
     {
-        return $this->hasManyThrough(CommissionShop::class, 'favorite_shops');
+        return $this->belongsToMany(CommissionShop::class, 'favorite_shops');
     }
 
     public function reportedShops()
