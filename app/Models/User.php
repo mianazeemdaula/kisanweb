@@ -130,6 +130,6 @@ class User extends Authenticatable
 
     public function reportedShops()
     {
-        return $this->belongsToMany(CommissionShop::class, 'reported_shops');
+        return $this->belongsToMany(CommissionShop::class, 'reported_shops')->withPivot('reason');
     }
 }
