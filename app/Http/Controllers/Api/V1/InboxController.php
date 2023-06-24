@@ -73,6 +73,6 @@ class InboxController extends Controller
             $query->where('seller_id', $user->id);
         }
         $data = $query->paginate();
-        return response()->json($query, 200);
+        return response()->json($data, 200);
     }
 }
