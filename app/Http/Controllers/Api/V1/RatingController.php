@@ -111,7 +111,7 @@ class RatingController extends Controller
     function getRatings(Request $request){
         $query = null;
         if($request->type == 'shop'){
-            $userId = $request->user()->id();
+            $userId = $request->user()->id;
             $query = \App\Models\CommissionShop::find($request->id)->ratings()
             ->orderByRaw("ratingable_type = 'App\Models\CommissionShop' and ratingable_id = $userId desc");
         }
