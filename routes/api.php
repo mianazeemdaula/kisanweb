@@ -29,6 +29,7 @@ use App\Http\Controllers\Api\V1\VideoController;
 use App\Http\Controllers\Api\V1\Feed\FeedController;
 use App\Http\Controllers\Api\V1\Feed\FeedLikeController;
 use App\Http\Controllers\Api\V1\Feed\FeedCommentController;
+use App\Http\Controllers\Api\V1\RatingController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -106,6 +107,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('commissionshop', CommissionShopController::class);
     Route::resource('fav-shops', ShopFavoriteController::class);
     Route::resource('reported-shops', ShopReportController::class);
+    Route::post('rating', [RatingController::class,'store']);
+    Route::post('get-ratings', [RatingController::class,'getRatings']);
     Route::resource('quotes', QuoteController::class);
     Route::get('commissionshop-crops', [CommissionShopController::class,'getShopCropsWithType']);
     Route::post('commissionshop-crops', [CommissionShopController::class,'cropsUpdate']);

@@ -50,11 +50,12 @@ class RatingController extends Controller
         }
     
         $rating = Rating::updateOrInsert(
-            ['ratingdable_type' => $type, 'ratingdable_id' => $records->id],
-            ['description' => $request->description, 'rate' => $request->rate]
+            ['ratingable_type' => $type, 'ratingable_id' => $request->id, 'user_id' => $user->id],
+            ['description' => $request->description, 'rate' => $request->rate, 
+            'created_at' =>  now(), 'updated_at' =>now()]
         );
         if($request->type == 'shop'){
-            $shop = App\Models\CommissionShop::find($request->id);
+            $shop = \App\Models\CommissionShop::find($request->id);
             $shop->rating =  $shop->ratings()->avg('rate');
             $shop->rating_count =  $shop->ratings()->count();
             $shop->save();
@@ -105,5 +106,16 @@ class RatingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function getRatings(Request $request){
+        $query = null;
+        if($request->type == 'shop'){
+            $query = \App\Models\CommissionShop::find($request->id)->ratings();
+        }
+        $query->with(['user' => function($q){
+            $q->select(['id','name', 'image']);
+        }]);
+        return response()->json($query->paginate(), 200);
     }
 }
