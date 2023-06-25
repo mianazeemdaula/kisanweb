@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use MatanYadaev\EloquentSpatial\SpatialBuilder;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
 use Illuminate\Support\Str;
 
 class CommissionShop extends Model
@@ -53,5 +55,10 @@ class CommissionShop extends Model
     public function rates(): HasMany
     {
         return $this->hasMany(CommissionShopRate::class);
+    }
+
+    public function ratings(): MorphMany
+    {
+        return $this->morphMany(Rating::class, 'ratingable');
     }
 }
