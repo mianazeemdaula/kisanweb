@@ -4,9 +4,10 @@
         <div class="grid md:grid-cols-5 grid-cols-1 gap-4 p-4">
             @foreach ($deals as $item)
                 <div class="shadow-xl p-4 rounded-lg">
-                    <img src="{{ $item->media()->first()->path }}" class="h-56" alt="Image" srcset="">
-                    <div class="flex space-x-1">
-                        <img src="{{ $item->seller->image }}" class="w-8 h-8 rounded-sm" alt="" srcset="">
+                    <img src="{{ $item->media()->first()->path }}" class="h-56 object-cover" alt="Image" srcset="">
+                    <div class="flex space-x-1 mt-2">
+                        <img src="{{ $item->seller->image }}" class="w-8 h-8 rounded-md object-cover" alt=""
+                            srcset="">
                         <div>
                             <div>{{ $item->seller->name }}</div>
                             <div class="text-sm">{{ $item->created_at }}</div>
