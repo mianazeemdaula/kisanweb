@@ -18,7 +18,7 @@ class DealController extends Controller
         $deals = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
         }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
-        ->whereHas('seller')->paginate();
+        ->whereHas('seller')->latest()->paginate();
         return view('guest.deal.index', compact('deals'));
     }
 
