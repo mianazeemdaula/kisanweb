@@ -19,7 +19,7 @@ class DealController extends Controller
             $q->with(['buyer']);
         }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
         ->whereHas('seller')->latest()->paginate();
-        return view('guest.deal.index', compact('deals'));
+        return view('guest.deals.index', compact('deals'));
     }
 
     /**
@@ -51,7 +51,12 @@ class DealController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $deal = Deal::with(['bids' => function($q){
+            $q->with(['buyer']);
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+        ->findOrFail($id);
+        return view('guest.deals.show', compact('deal'));
     }
 
     /**

@@ -18,6 +18,7 @@
 <body>
     @include('components.guest_navbar')
     @yield('body')
+    @yield('js')
 </body>
 
 </html>

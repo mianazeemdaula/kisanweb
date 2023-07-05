@@ -90,4 +90,4 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('shops', ShopController::class);
 });
 
-Route::resource('deals', DealController::class);
+Route::resource('deal', DealController::class);
