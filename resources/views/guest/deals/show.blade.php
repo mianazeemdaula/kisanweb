@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 @section('body')
     <div class="flex p-4">
-        <div class="bg-green h-96 min-w-[30%] slider"
+        <div class="bg-green h-96 min-w-[30%] max-w-[30%] slider"
             data-slick='{"slidesToShow": {{ $deal->media->count() }}, "slidesToScroll": {{ $deal->media->count() }}}'>
             <img src="{{ $deal->media()->first()->path }}" alt="Image not found">
             {{-- @foreach ($deal->media as $item)
