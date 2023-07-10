@@ -1,4 +1,8 @@
 {
+  "node_modules/owl.carousel/dist/assets/owl.video.play.png": {
+    "file": "assets/owl.video.play.04360456.png",
+    "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
+  },
   "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
     "file": "assets/bootstrap-icons.cfe45b98.woff2",
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
@@ -8,15 +12,16 @@
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
   },
   "resources/js/app.js": {
-    "file": "assets/app.4db9987e.js",
+    "file": "assets/app.004099b5.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app.c8e556c0.css"
+      "assets/app.336bb5c3.css"
     ],
     "assets": [
       "assets/bootstrap-icons.cfe45b98.woff2",
-      "assets/bootstrap-icons.999550fa.woff"
+      "assets/bootstrap-icons.999550fa.woff",
+      "assets/owl.video.play.04360456.png"
     ]
   },
   "resources/css/app.css": {
@@ -25,7 +30,7 @@
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app.c8e556c0.css",
+    "file": "assets/app.336bb5c3.css",
     "src": "resources/js/app.css"
   }
 }

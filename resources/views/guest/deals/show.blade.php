@@ -1,11 +1,11 @@
 @extends('layouts.guest')
 @section('body')
     <div class="flex p-4">
-        <div class="bg-green h-96 min-w-[30%] max-w-[30%] slider"
-            data-slick='{"slidesToShow": {{ $deal->media->count() }}, "slidesToScroll": {{ $deal->media->count() }}}'>
-            <img src="{{ $deal->media()->first()->path }}" alt="Image not found">
-            {{-- @foreach ($deal->media as $item)
-            @endforeach --}}
+        <div class="bg-green h-96 min-w-[30%] max-w-[30%] owl-carousel owl-theme">
+            {{-- <img src="{{ $deal->media()->first()->path }}" alt="Image not found"> --}}
+            @foreach ($deal->media as $item)
+                <img src="{{ $item->path }}" alt="Image not found">
+            @endforeach
         </div>
         <div class="ml-2 flex-1">
             <h2 class="text-2xl">{{ $deal->type->crop->name }}</h2>
@@ -44,31 +44,6 @@
 
 @section('js')
     <script type="module">
-            $(".slider").slick({
-                // normal options...
-                infinite: false,
-                // the magic
-                responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        infinite: true
-                    }
-
-                }, {
-
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        dots: true
-                    }
-
-                }, {
-
-                    breakpoint: 300,
-                    settings: "unslick" // destroys slick
-
-                }]
-            });
+            $('.owl-carousel').owlCarousel();
     </script>
 @endsection
