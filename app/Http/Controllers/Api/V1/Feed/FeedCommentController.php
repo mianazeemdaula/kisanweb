@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Feed;
 use App\Models\FeedComment;
 use App\Events\FeedUpdateEvent;
+use App\Helper\FCM;
 
 class FeedCommentController extends Controller
 {
@@ -50,6 +51,12 @@ class FeedCommentController extends Controller
         $comment->save();
         FeedUpdateEvent::dispatch($feed);
         $user = $comment->user;
+        $feed = Feed::find($feed);
+        $data = [
+            'type' => 'comment',
+            'feed_id' => $feed->id,
+        ];
+        FCM::send([$feed->user->fcm_token], 'Comment', auth()->user()->name." comment on your post", $data);
         return response()->json($comment, 200);
     }
 
