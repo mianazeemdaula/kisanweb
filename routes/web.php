@@ -12,6 +12,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CityController;
 
 Route::get('/login', [LoginController::class,'show']);
 Route::post('/login', [LoginController::class,'login'])->name('login');
@@ -88,6 +89,7 @@ Route::view('/mail-view', 'reports.pdf.mail');
 Route::group(['prefix' => 'admin'], function() {
     Route::get('home',[HomeController::class, 'index']);
     Route::resource('shops', ShopController::class);
+    Route::resource('cities', CityController::class);
 });
 
 Route::resource('deal', DealController::class);

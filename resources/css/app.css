@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input {
+    @apply rounded-sm px-2 py-1 border font-light
+}
+
+select {
+    @apply rounded-sm px-2 py-1 border
+}
