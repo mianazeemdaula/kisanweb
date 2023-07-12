@@ -69,7 +69,9 @@ class UserController extends Controller
             if($request->has('name')){
                 $user->name = $request->name;
             }
-
+            if($request->has('city_id')){
+                $user->city_id = $request->city_id;
+            }
             if($request->has('type')){
                 $user->type = $request->type;
             }
