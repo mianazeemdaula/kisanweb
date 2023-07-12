@@ -12,7 +12,7 @@ class CityController extends Controller
 {
     public function index()
     {
-        $data = City::orderBy('name')->select(['id','name'])->get();
+        $data = City::orderBy('name')->select(['id','name', 'name_ur'])->get();
         return response()->json($data, 200);
     }
 }
