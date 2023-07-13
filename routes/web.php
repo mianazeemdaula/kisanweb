@@ -77,6 +77,10 @@ Route::get('send-notification/{id}', function($id){
     return \App\Helper\FCM::sendNotification(\App\Models\Notification::find($id));
 });
 
+Route::get('whatsapp', function(){
+    return \App\Helper\WhatsApp::sendTemplate("923004103160", "hello_world", 'en_US' , [], []);
+});
+
 
 Route::get('/news',[HomeController::class,'newsNotification']);
 Route::post('/news-send',[HomeController::class,'sendNewsNotification']);

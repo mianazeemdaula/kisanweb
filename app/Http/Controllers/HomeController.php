@@ -14,6 +14,7 @@ class HomeController extends Controller
         $data['last_day'] = \App\Models\User::whereHas('addresses')->whereDate('created_at',now()->subDays(1))->count();
         $data['today'] = \App\Models\User::whereHas('addresses')->whereDate('created_at',now())->count();
         $data['deals'] = \App\Models\Deal::where('status','open')->count();
+        $data['closed_deals'] = \App\Models\Deal::where('status','accepted')->count();
         $data['today_deals'] = \App\Models\Deal::where('status','open')->whereDate('created_at',now())->count();
         $data['feed'] = \App\Models\Feed::count();
         $data['shops'] = \App\Models\CommissionShop::count();

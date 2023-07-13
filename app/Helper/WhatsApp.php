@@ -13,7 +13,7 @@ class WhatsApp {
             return;
         }
         $to =  $notification->user->whatsapp;
-        return WhatsApp::send($to,'welcome','en',[],[]);
+        return WhatsApp::sendText($to,'welcome','en',[],[]);
     }
 
     static public function sendText($to, $text)
@@ -23,7 +23,7 @@ class WhatsApp {
         $notification = [
             "messaging_product" => "whatsapp",
             "to" => $to, 
-            "recipient_type"=> "individual",
+            // "recipient_type"=> "individual",
             "type" => "text", 
             "text" => [
                 "preview_url" => false,
@@ -35,7 +35,7 @@ class WhatsApp {
             'Content-Type' => 'application/json',
         ];
 
-        $url = "https://graph.facebook.com/v15.0/$WHATSAPP_PHONE_ID/messages";
+        $url = "https://graph.facebook.com/v17.0/$WHATSAPP_PHONE_ID/messages";
         return Http::withHeaders($headers)->post($url, $notification);
     }
 
@@ -67,7 +67,7 @@ class WhatsApp {
             'Content-Type' => 'application/json',
         ];
 
-        $url = "https://graph.facebook.com/v15.0/$WHATSAPP_PHONE_ID/messages";
+        $url = "https://graph.facebook.com/v17.0/$WHATSAPP_PHONE_ID/messages";
         return Http::withHeaders($headers)->post($url, $notification);
     }
 }

@@ -17,6 +17,9 @@
             <x-stat-card title="Today Deals" count="{{ $data['today_deals'] }}" color="bg-green-200">
                 <span class="bi bi-snow"></span>
             </x-stat-card>
+            <x-stat-card title="Closed Deals" count="{{ $data['closed_deals'] }}" color="bg-green-200">
+                <span class="bi bi-snow"></span>
+            </x-stat-card>
             <x-stat-card title="Feeds" count="{{ $data['feed'] }}" color="bg-green-200">
                 <span class="bi bi-snow"></span>
             </x-stat-card>
