@@ -12,6 +12,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\CityController;
 
 Route::get('/login', [LoginController::class,'show']);
@@ -94,6 +95,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('home',[HomeController::class, 'index']);
     Route::resource('shops', ShopController::class);
     Route::resource('cities', CityController::class);
+    Route::resource('quotes', QuoteController::class);
 });
 
-Route::resource('deal', DealController::class);
+Route::resource('deals', DealController::class);
+// Route::resource('rates', DealController::class);

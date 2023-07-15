@@ -9,3 +9,35 @@ input {
 select {
     @apply rounded-sm px-2 py-1 border
 }
+
+textarea {
+    @apply rounded-sm px-2 py-1 border
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.crop-rates {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+    padding-left: 100%;
+    /* Ensure the entire marquee is off-screen initially */
+}
+
+.crop-rates li {
+    display: inline-block;
+    padding-right: 2rem;
+    /* Add some spacing between rates */
+}

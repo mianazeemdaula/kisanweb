@@ -24,6 +24,7 @@
                 <x-menu-item title="Statistics" icon="bi-envelope-fill" active="false" url="{{ url('/admin/home') }}" />
                 <x-menu-item title="Shops" icon="bi-building" active="false" url="{{ route('shops.index') }}" />
                 <x-menu-item title="Cities" icon="bi-snow" active="false" url="{{ route('cities.index') }}" />
+                <x-menu-item title="Quotes" icon="bi-snow" active="false" url="{{ route('quotes.index') }}" />
 
                 {{-- <div
                     class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
