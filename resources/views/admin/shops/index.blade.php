@@ -46,10 +46,8 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->city->name }} </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <form action="{{ route('shops.update', $item->id) }}" method="post">
+                                    <form action="{{ url("admin/shop-stauts/$item->id") }}" method="post">
                                         @csrf
-                                        @method('put')
-                                        <input type="hidden" name="status" value="1">
                                         <button class="bg-gray-200 px-2 rounded-xl" type="submit"
                                             class="">{{ $item->active ? 'active' : 'inactive' }}</button>
                                     </form>

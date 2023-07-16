@@ -44,13 +44,13 @@
                                 <td>
                                     <div class="flex space-x-3">
 
-                                        <a href="{{ route('shops.show', $item->id) }}">
+                                        <a href="{{ route('cities.show', $item->id) }}">
                                             <span class="bi bi-eye"></span>
                                         </a>
-                                        <a href="{{ route('shops.edit', $item->id) }}">
+                                        <a href="{{ route('cities.edit', $item->id) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
-                                        <form action="{{ route('shops.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('cities.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit"><span class="bi bi-trash"></span></button>

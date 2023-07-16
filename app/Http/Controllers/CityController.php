@@ -70,7 +70,9 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $districts = District::all();
+        $city = City::findOrFail($id);
+        return view('admin.cities.edit', compact('districts', 'city'));
     }
 
     /**
@@ -82,10 +84,17 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $shop = CommissionShop::find($id);
-        $shop->active = !$shop->active;
-        $shop->save();
-        return redirect()->back();
+        $request->validate([
+            'district' => 'required',
+            'name' => 'required',
+            'name_ur' => 'required',
+        ]);
+        $city = City::findOrFail($id);
+        $city->district_id = $request->district;
+        $city->name = $request->name;
+        $city->name_ur = $request->name_ur;
+        $city->save();
+        return redirect()->route('cities.index');
     }
 
     /**

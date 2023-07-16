@@ -94,6 +94,7 @@ Route::view('/mail-view', 'reports.pdf.mail');
 Route::group(['prefix' => 'admin'], function() {
     Route::get('home',[HomeController::class, 'index']);
     Route::resource('shops', ShopController::class);
+    Route::post('shop-stauts/{id}', [ShopController::class,'updateStatus']);
     Route::resource('cities', CityController::class);
     Route::resource('quotes', QuoteController::class);
 });

@@ -58,7 +58,8 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = CommissionShop::findOrFail($id);
+        return view('admin.shops.edit', compact('item'));
     }
 
     /**
@@ -71,7 +72,9 @@ class ShopController extends Controller
     public function update(Request $request, $id)
     {
         $shop = CommissionShop::find($id);
-        $shop->active = !$shop->active;
+        $shop->name = $request->name;
+        $shop->about = $request->about;
+        $shop->shop_number = $request->shop_number;
         $shop->save();
         return redirect()->back();
     }
@@ -86,6 +89,14 @@ class ShopController extends Controller
     {
         $shop = CommissionShop::findOrFail($id);
         $shop->delete();
+        return redirect()->back();
+    }
+
+    public function updateStatus($id)
+    {
+        $shop = CommissionShop::find($id);
+        $shop->active = !$shop->active;
+        $shop->save();
         return redirect()->back();
     }
 }

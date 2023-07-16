@@ -1,33 +1,29 @@
 @extends('layouts.admin')
 @section('content')
     <div class="bg-white rounded-lg">
-        <form action="{{ route('cities.store') }}" method="post" class="">
+        <form action="{{ route('shops.update', $item->id) }}" method="post" class="">
             @csrf
-            <div class="grid grid-cols-1 md:grid-cols-3 p-2 gap-2 md:p-4">
-                <div>
-                    <h3 class="p-1">District</h3>
-                    <select name="district" id="" class="w-80">
-                        @foreach ($districts as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('district')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-
-                </div>
+            @method('PUT')
+            <div class="grid grid-cols-1 md:grid-cols-2 p-2 gap-2 md:p-4 items-end">
                 <div>
                     <h3 class="p-1">Name</h3>
-                    <input type="text" placeholder="Name" name="name" value="{{ old('name') }}" class="w-80">
+                    <input type="text" placeholder="Name" name="name" value="{{ $item->name }}" class="w-full">
                     @error('name')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <h3 class="p-1">Name Urdu</h3>
-                    <input type="text" placeholder="Name Urdu" name="name_ur" value="{{ old('name_ur') }}"
-                        class="w-80">
-                    @error('name_ur')
+                    <h3 class="p-1">About</h3>
+                    <input type="text" placeholder="About" name="about" value="{{ $item->about }}" class="w-full">
+                    @error('about')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <h3 class="p-1">Shop #</h3>
+                    <input type="text" placeholder="Shop Number" name="shop_number" value="{{ $item->shop_number }}"
+                        class="w-full">
+                    @error('shop_number')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
