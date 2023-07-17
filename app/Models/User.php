@@ -55,6 +55,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'image' => 'string',
         'rating' => 'float',
+        'city_id' => 'string',
         'location' => Point::class,
     ];
 
