@@ -67,7 +67,12 @@ class InboxController extends Controller
         }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])
         ->whereHas('chats');
         if($request->type == 'bids'){
-            $chatDealIds = Chat::where('buyer_id', $user->id)->pluck('deal_id');
+            $chatDealIds = Chat::where('buyer_id', $user->id)
+            ->leftJoin('messages', function($join) { 
+                $join->on('messages.chat_id', '=', 'chats.id')
+                ->on('messages.id', '=', \DB::raw("(SELECT max(id) from messages WHERE messages.chat_id = chats.id)"));
+            })
+            ->orderBy('messages.created_at','desc')->pluck('deal_id');
             $query->whereIn('id', $chatDealIds);
         }else{
             $query->where('seller_id', $user->id);
