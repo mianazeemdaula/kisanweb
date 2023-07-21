@@ -100,6 +100,11 @@ class Deal extends Model
         return $this->hasMany(Chat::class)->latest();
     }
 
+    public function chatMsg(): HasOne
+    {
+        return $this->hasOne(Chat::class)->latest();
+    }
+
     public function reactions(): HasMany
     {
         return $this->hasMany(Reaction::class);

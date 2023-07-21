@@ -73,7 +73,9 @@ class InboxController extends Controller
                 ->on('messages.id', '=', \DB::raw("(SELECT max(id) from messages WHERE messages.chat_id = chats.id)"));
             })
             ->orderBy('messages.created_at','desc')->pluck('deal_id');
-            $query->whereIn('id', $chatDealIds);
+            $query->whereIn('id', $chatDealIds)
+            ->orderByRaw('FIELD(id, '.$chatDealIds->implode(',').')')
+            ;
         }else{
             $query->where('seller_id', $user->id);
         }
