@@ -18,7 +18,7 @@ class SupportDetailController extends Controller
      */
     public function index($support)
     {
-        $data = SupportDetail::with('user')->where('feed_id', $support)->latest()->paginate(); 
+        $data = SupportDetail::with('user')->where('support_id', $support)->latest()->paginate(); 
         return response()->json($data, 200);  
     }
 

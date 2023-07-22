@@ -46,13 +46,18 @@ class SupportController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'content' => 'required|string',
         ]);
 
         $support = new Support();
         $support->title = $request->title;
         $support->user_id = $request->user()->id;
         $support->save();
-        return response()->json($feed, 200);
+        $support->details()->insert([
+            'content' => $request->content,
+            'user_id' => $request->user()->id,
+        ]);
+        return response()->json($support, 200);
     }
 
     /**
@@ -65,7 +70,7 @@ class SupportController extends Controller
     {
         $data = Support::with(['user' => function($q){
             $q->select('id','name', 'image');
-        }, 'detail'])->latest()->findOrFail($id);
+        }, 'detail'])->findOrFail($id);
         return response()->json($data, 200);
     }
 
