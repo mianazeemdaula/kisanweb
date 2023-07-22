@@ -23,7 +23,8 @@ class SupportController extends Controller
     {
         $data = Support::with(['user' => function($q){
             $q->select('id','name', 'image');
-        }, 'detail'])->latest()->paginate();
+        }, 'detail'])
+        ->where('user_id', auht()->id())->latest()->paginate();
         return response()->json($data, 200);
     }
 
