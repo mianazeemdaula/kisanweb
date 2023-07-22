@@ -56,6 +56,7 @@ class SupportController extends Controller
         $support->details()->insert([
             'content' => $request->content,
             'user_id' => $request->user()->id,
+            'support_id' => $support->id, 
         ]);
         return response()->json($support, 200);
     }
