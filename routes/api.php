@@ -103,6 +103,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/feeds', FeedController::class);
     Route::resource('/feeds.likes', FeedLikeController::class);
     Route::resource('/feeds.comments',FeedCommentController::class);
+
+    // Support
+    Route::resource('/support', \App\Http\Controllers\Api\V1\Support\SupportController::class);
+    Route::resource('/support.details',\App\Http\Controllers\Api\V1\Support\SupportDetailController::class);
+    
     // Commission Shops routes
     Route::resource('commissionshop', CommissionShopController::class);
     Route::resource('fav-shops', ShopFavoriteController::class);
