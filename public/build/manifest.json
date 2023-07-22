@@ -1,11 +1,11 @@
 {
-  "node_modules/owl.carousel/dist/assets/owl.video.play.png": {
-    "file": "assets/owl.video.play.04360456.png",
-    "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
-  },
   "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
     "file": "assets/bootstrap-icons.cfe45b98.woff2",
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "node_modules/owl.carousel/dist/assets/owl.video.play.png": {
+    "file": "assets/owl.video.play.04360456.png",
+    "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
   },
   "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
     "file": "assets/bootstrap-icons.999550fa.woff",
@@ -16,7 +16,7 @@
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app.47cf3c21.css"
+      "assets/app.16feff87.css"
     ],
     "assets": [
       "assets/bootstrap-icons.cfe45b98.woff2",
@@ -25,12 +25,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.714445aa.css",
+    "file": "assets/app.515ef4ed.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app.47cf3c21.css",
+    "file": "assets/app.16feff87.css",
     "src": "resources/js/app.css"
   }
 }

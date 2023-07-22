@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="bg-white rounded-lg">
-        <form action="{{ route('admin.quotes.store') }}" method="post" class="">
+        <form action="{{ route('admin.deals.store') }}" method="post" class="">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-1 p-2 gap-2 md:p-4 items-end">
                 <div>

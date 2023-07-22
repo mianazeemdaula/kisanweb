@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Quote;
+use App\Models\Deal;
+use App\Models\Crop;
 
-class QuoteController extends Controller
+class DealController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        $quotes = Quote::latest()->paginate();
-        return view('admin.quotes.index', compact('quotes'));
+        $deals = Deal::latest()->paginate();
+        return view('admin.deals.index', compact('deals'));
     }
 
     /**
@@ -25,7 +27,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        return view('admin.quotes.create');
+        return view('admin.deals.create');
     }
 
     /**
@@ -39,10 +41,10 @@ class QuoteController extends Controller
         $request->validate([
             'quote' => 'required',
         ]);
-        $quote = new Quote;
+        $quote = new Deal;
         $quote->quote = $request->quote;
         $quote->save();
-        return redirect()->route('quotes.index');
+        return redirect()->route('feeds.index');
     }
 
     /**
@@ -64,8 +66,11 @@ class QuoteController extends Controller
      */
     public function edit($id)
     {
-        $quote = Quote::findOrFail($id);
-        return view('admin.quotes.edit', compact('quote'));
+        $crops = Crop::with('types')->get();
+        $weights = \App\Models\WeightType::all();
+        $packings = \App\Models\Packing::all();
+        $deal = Deal::findOrFail($id);
+        return view('admin.deals.edit', compact('deal','crops','weights','packings'));
     }
 
     /**
@@ -78,12 +83,22 @@ class QuoteController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'quote' => 'required',
+            'crop_type_id' => 'required',
+            'weight_type_id' => 'required',
+            'packing_id' => 'required',
+            'demand' => 'required',
+            'qty' => 'required',
+            'note' => 'required',
         ]);
-        $quote = Quote::findOrFail($id);
-        $quote->quote = $request->quote;
-        $quote->save();
-        return redirect()->route('quotes.index');
+        $deal = Deal::findOrFail($id);
+        $deal->crop_type_id = $request->crop_type_id;
+        $deal->weight_type_id = $request->weight_type_id;
+        $deal->packing_id = $request->packing_id;
+        $deal->demand = $request->demand;
+        $deal->qty = $request->qty;
+        $deal->note = $request->note;
+        $deal->save();
+        return redirect()->route('admin.deals.index');
     }
 
     /**
@@ -94,8 +109,8 @@ class QuoteController extends Controller
      */
     public function destroy($id)
     {
-        $qutoe = Quote::findOrFail($id);
-        $qutoe->delete();
+        $deal = Deal::findOrFail($id);
+        $deal->delete();
         return redirect()->back();
     }
 }

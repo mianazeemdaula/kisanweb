@@ -3,7 +3,7 @@
     <div class="w-full">
         <div class="flex items-center justify-between">
             <h5 class="">Quotoes</h5>
-            <a href="{{ route('quotes.create') }}">
+            <a href="{{ route('admin.quotes.create') }}">
                 <div class="px-4 bg-green-700 text-white rounded-xl">
                     Add Quote
                 </div>
@@ -39,13 +39,13 @@
                                 <td>
                                     <div class="flex space-x-3">
 
-                                        <a href="{{ route('quotes.show', $item->id) }}">
+                                        <a href="{{ route('admin.quotes.show', $item->id) }}">
                                             <span class="bi bi-eye"></span>
                                         </a>
-                                        <a href="{{ route('quotes.edit', $item->id) }}">
+                                        <a href="{{ route('admin.quotes.edit', $item->id) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
-                                        <form action="{{ route('quotes.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('admin.quotes.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit"><span class="bi bi-trash"></span></button>

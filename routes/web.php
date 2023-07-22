@@ -12,7 +12,6 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\ShopController;
-use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\CityController;
 
 Route::get('/login', [LoginController::class,'show']);
@@ -91,12 +90,14 @@ Route::post('reports/rates', [ReportController::class,'cropRatePdf']);
 
 Route::view('/mail-view', 'reports.pdf.mail');
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('home',[HomeController::class, 'index']);
     Route::resource('shops', ShopController::class);
     Route::post('shop-stauts/{id}', [ShopController::class,'updateStatus']);
     Route::resource('cities', CityController::class);
-    Route::resource('quotes', QuoteController::class);
+    Route::resource('quotes',App\Http\Controllers\Admin\QuoteController::class);
+    Route::resource('feeds', App\Http\Controllers\Admin\FeedController::class);
+    Route::resource('deals', App\Http\Controllers\Admin\DealController::class);
 });
 
 Route::resource('deals', DealController::class);

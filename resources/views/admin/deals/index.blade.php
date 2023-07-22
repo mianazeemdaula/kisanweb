@@ -2,10 +2,10 @@
 @section('content')
     <div class="w-full">
         <div class="flex items-center justify-between">
-            <h5 class="">Cities</h5>
-            <a href="{{ route('admin.cities.create') }}">
+            <h5 class="">Deals</h5>
+            <a href="{{ route('admin.deals.create') }}">
                 <div class="px-4 bg-green-700 text-white rounded-xl">
-                    Add City
+                    Add Deal
                 </div>
             </a>
         </div>
@@ -20,11 +20,19 @@
                                 ID</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Name</th>
+                                Username</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                City
-                            </th>
+                                Crop</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Demand</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Qty</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Images</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Action
@@ -32,25 +40,40 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200 " id="chatlist">
-                        @foreach ($shops as $item)
+                        @foreach ($deals as $item)
                             <tr>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                                     {{ $item->id }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ $item->name }}
+                                    {{ $item->seller->name }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->name_ur }} </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    {{ $item->type->crop->name }} - {{ $item->type->name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    Rs.{{ $item->demand }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    {{ $item->qty }} {{ $item->weight->name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    <div class="flex">
+                                        @foreach ($item->media as $img)
+                                            <img class="w-10 h-10" src="{{ $img }}" alt="Not found">
+                                        @endforeach
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="flex space-x-3">
 
-                                        <a href="{{ route('admin.cities.show', $item->id) }}">
+                                        <a href="{{ route('admin.deals.show', $item->id) }}">
                                             <span class="bi bi-eye"></span>
                                         </a>
-                                        <a href="{{ route('admin.cities.edit', $item->id) }}">
+                                        <a href="{{ route('admin.deals.edit', $item->id) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
-                                        <form action="{{ route('admin.cities.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('admin.deals.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit"><span class="bi bi-trash"></span></button>
@@ -64,7 +87,7 @@
             </div>
         </div>
         <div class="mt-4">
-            <x-web-pagination :paginator="$shops" />
+            <x-web-pagination :paginator="$deals" />
         </div>
     </div>
 @endsection
