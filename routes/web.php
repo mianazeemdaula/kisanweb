@@ -19,7 +19,7 @@ Route::post('/login', [LoginController::class,'login'])->name('login');
 
 
 Route::get('/', function () {
-    return bcrypt('admin@#');
+    // return bcrypt('admin@#');
     return view('guest.index');
 });
 
