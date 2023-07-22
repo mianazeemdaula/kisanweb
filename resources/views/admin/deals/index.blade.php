@@ -60,7 +60,7 @@
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                                     <div class="flex">
                                         @foreach ($item->media as $img)
-                                            <img class="w-10 h-10" src="{{ $img }}" alt="Not found">
+                                            <img class="w-10 h-10" src="{{ $img->path }}" alt="Not found">
                                         @endforeach
                                     </div>
                                 </td>
