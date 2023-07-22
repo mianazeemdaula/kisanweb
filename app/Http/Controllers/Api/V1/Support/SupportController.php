@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Helper\MediaHelper;
 
 use App\Models\Support;
+use App\Models\SupportDetail;
 use App\Models\Media;
 use App\Events\FeedUpdateEvent;
 
@@ -53,11 +54,11 @@ class SupportController extends Controller
         $support->title = $request->title;
         $support->user_id = $request->user()->id;
         $support->save();
-        $support->details()->insert([
-            'content' => $request->content,
-            'user_id' => $request->user()->id,
-            'support_id' => $support->id, 
-        ]);
+        $details = new SupportDetail;
+        $details->content = $request->content;
+        $details->user_id = $request->user()->id;
+        $details->support_id = $support->id;
+        $details->save();
         return response()->json($support, 200);
     }
 
