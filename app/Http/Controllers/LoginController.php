@@ -23,6 +23,10 @@ class LoginController extends Controller
         endif;
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
+        if($user->type != 'admin'){
+            return redirect()->to('login')
+                ->withErrors('you are not an admin');
+        }
 
         Auth::login($user);
 
