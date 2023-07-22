@@ -30,6 +30,8 @@ use App\Http\Controllers\Api\V1\Feed\FeedController;
 use App\Http\Controllers\Api\V1\Feed\FeedLikeController;
 use App\Http\Controllers\Api\V1\Feed\FeedCommentController;
 use App\Http\Controllers\Api\V1\RatingController;
+use App\Http\Controllers\Api\V1\Support\SupportController;
+use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -105,9 +107,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/feeds.comments',FeedCommentController::class);
 
     // Support
-    Route::resource('/support', \App\Http\Controllers\Api\V1\Support\SupportController::class);
-    Route::resource('/support.details',\App\Http\Controllers\Api\V1\Support\SupportDetailController::class);
-    
+    Route::resource('/support', SupportController::class);
+    Route::resource('/support.details',SupportDetailController::class);
+
     // Commission Shops routes
     Route::resource('commissionshop', CommissionShopController::class);
     Route::resource('fav-shops', ShopFavoriteController::class);
