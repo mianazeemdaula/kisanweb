@@ -101,6 +101,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('quotes',App\Http\Controllers\Admin\QuoteController::class);
         Route::resource('feeds', App\Http\Controllers\Admin\FeedController::class);
         Route::resource('deals', App\Http\Controllers\Admin\DealController::class);
+        Route::resource('settings', App\Http\Controllers\Admin\SettingController::class);
+        
+        // Reports
+        Route::get('rate-reports',[App\Http\Controllers\Admin\RateReportController::class,'reports']);
+        Route::post('report/cropdays',[App\Http\Controllers\Admin\RateReportController::class,'cropTypeLastDays']);
     });
 });
 

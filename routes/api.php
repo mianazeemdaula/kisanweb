@@ -30,6 +30,7 @@ use App\Http\Controllers\Api\V1\Feed\FeedController;
 use App\Http\Controllers\Api\V1\Feed\FeedLikeController;
 use App\Http\Controllers\Api\V1\Feed\FeedCommentController;
 use App\Http\Controllers\Api\V1\RatingController;
+use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 /*
@@ -109,6 +110,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Support
     Route::resource('/support', SupportController::class);
     Route::resource('/support.details',SupportDetailController::class);
+
+    // Settings
+    Route::resource('/settings',SettingController::class);
 
     // Commission Shops routes
     Route::resource('commissionshop', CommissionShopController::class);
