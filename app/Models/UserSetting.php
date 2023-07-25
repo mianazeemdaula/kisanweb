@@ -12,6 +12,11 @@ class UserSetting extends Model
 
     protected $fillable = ['user_id', 'value','setting_id'];
 
+    protected $casts = [
+        'user_id' => 'integer',
+        'setting_id' => 'integer',
+    ];
+
     function getValueAttribute($v) {
         switch($this->setting->type){
             case 'integer':
