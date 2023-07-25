@@ -26,7 +26,7 @@ class UserSetting extends Model
             case 'boolean':
                 return (boolean) $v;
         }
-        return $this->setting->type;
+        return $v;
     }
 
     public function user(): BelongsTo
