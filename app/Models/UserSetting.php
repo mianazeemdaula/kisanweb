@@ -10,6 +10,8 @@ class UserSetting extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'value','setting_id'];
+
     function getValueAttribute($v) {
         switch($this->setting->type){
             case 'integer':
