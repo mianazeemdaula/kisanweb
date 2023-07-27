@@ -15,12 +15,12 @@ class RateReportController extends Controller
 
     function cropTypeLastDays(Request $request)  {
         $dates = CropRate::select('rate_date')->orderBy('rate_date','desc')->limit(7)->distinct()->get();
-        $data =  CropRate::selectRaw('MIN(min_price) as _min, MAX(max_price) as _max, rate_date')
+        $data =  CropRate::selectRaw('MIN(min_price) as _min, MAX(max_price) as _max, rate_date, crop_type_id')
             ->whereBetween('rate_date', [$dates[$dates->count()-1]['rate_date'],$dates[0]['rate_date']])
-            ->where('crop_type_id', $request->type_id)
+            ->whereIn('crop_type_id', [82,76,60])
             ->groupBy('rate_date')
             ->groupBy('crop_type_id')
-            ->get();
+            ->get();    
         return response()->json($data, 200);
     }
 

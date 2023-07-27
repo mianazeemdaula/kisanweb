@@ -104,7 +104,7 @@ class CropRateController extends Controller
             $item->rate->min_price_last = $d == null ? 0 : $d->min_last; 
             $item->rate->max_price_last = $d == null ? 0 : $d->max_last; 
          });
-        $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com");
+        $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com", "jhonhill267@gmail.com");
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
     }
