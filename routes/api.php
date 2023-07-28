@@ -101,7 +101,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('city-rates', CropCityRateController::class);
     Route::post('city-rate-history', [CropCityRateController::class,'cityHistory']);
     Route::post('rates-filter', [CropRateController::class,'filter']);
-
+    Route::get('trending-rates-graph', [CropRateController::class,'trendingCropsGraphs']);
+    
     // Feed
     Route::resource('/feeds', FeedController::class);
     Route::resource('/feeds.likes', FeedLikeController::class);
@@ -110,10 +111,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Support
     Route::resource('/support', SupportController::class);
     Route::resource('/support.details',SupportDetailController::class);
-
+    
     // Settings
     Route::resource('/settings',SettingController::class);
-
+    
     // Commission Shops routes
     Route::resource('commissionshop', CommissionShopController::class);
     Route::resource('fav-shops', ShopFavoriteController::class);
@@ -125,10 +126,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('commissionshop-crops', [CommissionShopController::class,'cropsUpdate']);
     Route::post('commissionshop-post-rates', [CommissionShopController::class,'postCropRate']);
     Route::post('commissionshop-get-nearby', [CommissionShopController::class,'getNearByShop']);
-
+    
     // Videos
     Route::resource('/videos', VideoController::class);
-
+    
     // // Comment routes
     // Route::delete('/feeds/{feed}/comments/{comment}', [FeedCommentController::class, 'destroy']);
 });

@@ -153,5 +153,29 @@ class CropRateController extends Controller
         }
 
     }
+
+    function trendingCropsGraphs() {
+        $ids =  [82,76,60];
+        $data = [];
+        foreach ($ids as $id) {
+            $dates = CropRate::select('rate_date')->orderBy('rate_date','desc')
+            ->where('crop_type_id',$id)->limit(7)->distinct()->get();
+            $rates =  CropRate::selectRaw('MIN(min_price) as _min, MAX(max_price) as _max, rate_date, crop_type_id')
+                ->whereBetween('rate_date', [$dates[$dates->count()-1]['rate_date'],$dates[0]['rate_date']])
+                ->where('crop_type_id', $id)
+                ->groupBy('rate_date')
+                ->groupBy('crop_type_id')
+                ->get();  
+            $type = CropType::find($id);
+            $res['rates'] = $rates;  
+            $res['dates'] = [$dates[$dates->count()-1]['rate_date'],$dates[0]['rate_date']];
+            $res['crop_name'] = $type->crop->name;
+            $res['crop_name_ur'] = $type->crop->name_ur;
+            $res['crop_type_name'] = $type->name;
+            $res['crop_type_name_ur'] = $type->code;
+            $data[] = $res;
+        }
+        return response()->json($data, 200);
+    }
     
 }
