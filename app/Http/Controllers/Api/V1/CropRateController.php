@@ -159,7 +159,7 @@ class CropRateController extends Controller
         $data = [];
         foreach ($ids as $id) {
             $dates = CropRate::select('rate_date')->orderBy('rate_date','desc')
-            ->where('crop_type_id',$id)->limit(7)->distinct()->get();
+            ->where('crop_type_id',$id)->limit(20)->distinct()->get();
             $rates =  CropRate::selectRaw('MIN(min_price) as _min, MAX(max_price) as _max, rate_date, crop_type_id')
                 ->whereBetween('rate_date', [$dates[$dates->count()-1]['rate_date'],$dates[0]['rate_date']])
                 ->where('crop_type_id', $id)
