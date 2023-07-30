@@ -61,4 +61,9 @@ class CommissionShop extends Model
     {
         return $this->morphMany(Rating::class, 'ratingable')->orderBy('id','desc');
     }
+
+    public function favoritUsers()
+    {
+        return $this->belongsToMany(User::class, 'favorite_shops');
+    }
 }

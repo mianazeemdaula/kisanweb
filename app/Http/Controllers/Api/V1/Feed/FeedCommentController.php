@@ -56,7 +56,8 @@ class FeedCommentController extends Controller
             'type' => 'comment',
             'feed_id' => $feed->id,
         ];
-        FCM::send([$feed->user->fcm_token], 'Comment', auth()->user()->name." comment on your post", $data);
+        \App\Helper\FCM::sendToSetting(5,"Comment", auth()->user()->name." comment on post",$data);
+        // FCM::send([$feed->user->fcm_token], 'Comment', auth()->user()->name." comment on your post", $data);
         return response()->json($comment, 200);
     }
 

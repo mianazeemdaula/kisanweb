@@ -53,7 +53,7 @@ Route::get('/test/{id}', function($id){
 });
 
 Route::get('/not/{token}', function($token){
-
+    return \App\Helper\FCM::sendToSetting(7,"TItle", "body", ['type' => 'comment', 'shop_id'=> 3]);
     return \App\Helper\FCM::send([$token], "Title of", "Body of ",['type' => 'mand_rate', 'crop_id' => 2]);
 });
 

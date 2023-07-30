@@ -51,11 +51,11 @@ class CropRateController extends Controller
             'min_price' => $request->min,
             'max_price' => $request->max,
         ]);
-        // $tokens = \App\Models\User::where('city_id',$request->city)->whereNotNull('fcm_token')->pluck('fcm_token');
-        // foreach ($tokens->chunk(1000) as $value) {
-        //     $keys = $value->toArray();
-        //     $data[] =  \App\Helper\FCM::send($keys,"ریٹس اپڈیت" , "آپکے شہر کے ریٹس اپڈیٹ کردیئے گئے ہیں",['type' => 'city_rates', 'crop_type_id' => $crop_type_id]);
-        // }
+        \App\Helper\FCM::sendToSetting(6,"نرخ اپڈیٹ","آپ کے شہر کے فصلوں کے ریٹس اپڈیٹ کر دیے گئے ہیں",[
+            'type' => 'mand_rate',
+            'crop_id' => $request->crop_type_id,
+            'city_id' => $request->city,
+        ]);
         return response()->json($rate, 200);
     }
 

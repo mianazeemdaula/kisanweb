@@ -86,6 +86,7 @@ class FeedController extends Controller
             }
         }
         FeedUpdateEvent::dispatch($feed->id);
+        \App\Helper\FCM::sendToSetting(4,auth()->user()->name+" add post", substr($feed->content,0,30), ['type' => 'feed']);
         return response()->json($feed, 200);
     }
 
