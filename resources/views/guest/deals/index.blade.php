@@ -4,7 +4,7 @@
         <div class="grid md:grid-cols-5 grid-cols-1 gap-4 p-4">
             @foreach ($deals as $item)
                 <div class="shadow-xl p-4 rounded-lg hover:shadow-sm">
-                    <a href="{{ url("/deal/$item->id") }}">
+                    <a href="{{ url("/deals/$item->id") }}">
                         <img src="{{ $item->media()->first()->path }}" class="h-56 w-full object-contain" alt="Image"
                             srcset="">
                     </a>

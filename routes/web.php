@@ -13,6 +13,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CityController;
+use Spatie\Sitemap\SitemapGenerator;
+
 
 Route::get('/login', [LoginController::class,'show']);
 Route::post('/login', [LoginController::class,'login'])->name('login');
@@ -53,6 +55,7 @@ Route::get('/test/{id}', function($id){
 });
 
 Route::get('/not/{token}', function($token){
+    $sitemap =  SitemapGenerator::create('https://kisanstock.com')->writeToFile("sitemap.xml");
     return \App\Helper\FCM::sendToSetting(7,"TItle", "body", ['type' => 'comment', 'shop_id'=> 3]);
     return \App\Helper\FCM::send([$token], "Title of", "Body of ",['type' => 'mand_rate', 'crop_id' => 2]);
 });
