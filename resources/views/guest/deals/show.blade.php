@@ -1,4 +1,7 @@
 @extends('layouts.guest')
+@section('title')
+    {{ $deal->type->crop->name }} for sale of RS.{{ $deal->demand }} / {{ $deal->weight->name }} at {{ $deal->address }}
+@endsection
 @section('body')
     <div class="flex p-4">
         <div class="bg-green h-96 min-w-[30%] max-w-[30%] owl-carousel owl-theme">
@@ -44,6 +47,6 @@
 
 @section('js')
     <script type="module">
-            $('.owl-carousel').owlCarousel();
+        $('.owl-carousel').owlCarousel();
     </script>
 @endsection
