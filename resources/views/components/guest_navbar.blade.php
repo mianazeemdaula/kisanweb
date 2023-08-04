@@ -12,7 +12,7 @@
                 <div class="py-1 w-20 text-sm text-center rounded-md">Deals</div>
             </a>
             <div class="border-r"></div>
-            <a href="{{ url('shops') }}">
+            <a href="{{ url('commission-shops') }}">
                 <div class=" py-1 w-20 text-sm text-center rounded-md">Shops</div>
             </a>
         </nav>

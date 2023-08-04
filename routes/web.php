@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Appy\FcmHttpV1\FcmNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyApiEmail;
-
 use Spatie\Sitemap\SitemapGenerator;
 
 
@@ -52,16 +51,14 @@ Route::view('/mail-view', 'reports.pdf.mail');
 
 
 
-Route::group(['namespace' => 'App\Http\Controllers'], function() {
+Route::group([], function() {
 
-    
-    Route::get('/login', [LoginController::class,'show']);
-    Route::post('/login', [LoginController::class,'login'])->name('login');
-    Route::get('/news',[HomeController::class,'newsNotification']);
-    Route::post('/news-send',[HomeController::class,'sendNewsNotification']);
-
-    Route::get('reports/rates', [ReportController::class,'getCropRatePdf']);
-    Route::post('reports/rates', [ReportController::class,'cropRatePdf']);
+    Route::get('/login', [\App\Http\Controllers\LoginController::class,'show']);
+    Route::post('/login', [\App\Http\Controllers\LoginController::class,'login'])->name('login');
+    Route::get('/news',[\App\Http\Controllers\HomeController::class,'newsNotification']);
+    Route::post('/news-send',[\App\Http\Controllers\HomeController::class,'sendNewsNotification']);
+    Route::get('reports/rates', [\App\Http\Controllers\ReportController::class,'getCropRatePdf']);
+    Route::post('reports/rates', [\App\Http\Controllers\ReportController::class,'cropRatePdf']);
 
     Route::get('/', function () {
         // return bcrypt('admin@#');
@@ -72,26 +69,26 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
         return view('guest.rates.crops');
     });
     
-    Route::get('data/cities', [DataController::class,'cities']);
-    Route::resource('deals', DealController::class);
-    Route::resource('shops', DealController::class);
+    Route::get('data/cities', [\App\Http\Controllers\DataController::class,'cities']);
+    Route::resource('deals', \App\Http\Controllers\DealController::class);
+    Route::resource('commission-shops', \App\Http\Controllers\ShopController::class);
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home',[HomeController::class,'index'])->name('home');
+    Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
     
-    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin'], function() {
-        Route::get('home',[HomeController::class, 'index']);
-        Route::resource('shops', ShopController::class);
-        Route::post('shop-stauts/{id}', [ShopController::class,'updateStatus']);
-        Route::resource('cities', CityController::class);
-        Route::resource('quotes',QuoteController::class);
-        Route::resource('feeds', FeedController::class);
-        Route::resource('deals', DealController::class);
-        Route::resource('settings', SettingController::class);
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+        Route::get('home',[\App\Http\Controllers\HomeController::class, 'index']);
+        Route::resource('shops', \App\Http\Controllers\Admin\ShopController::class);
+        Route::post('shop-stauts/{id}', [\App\Http\Controllers\Admin\ShopController::class,'updateStatus']);
+        Route::resource('cities', \App\Http\Controllers\Admin\CityController::class);
+        Route::resource('quotes',\App\Http\Controllers\Admin\QuoteController::class);
+        Route::resource('feeds', \App\Http\Controllers\Admin\FeedController::class);
+        Route::resource('deals', \App\Http\Controllers\Admin\DealController::class);
+        Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
         
         // Reports
-        Route::get('rate-reports',[RateReportController::class,'reports']);
-        Route::post('report/cropdays',[RateReportController::class,'cropTypeLastDays']);
+        Route::get('rate-reports',[\App\Http\Controllers\Admin\RateReportController::class,'reports']);
+        Route::post('report/cropdays',[\App\Http\Controllers\Admin\RateReportController::class,'cropTypeLastDays']);
     });
 });

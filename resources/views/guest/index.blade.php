@@ -4,7 +4,7 @@
     <div class="py-4 mt-2 bg-green-50">
         <div class="marquee">
             <ul class="crop-rates">
-                @foreach (\App\Models\CropRate::take(20)->get() as $item)
+                @foreach (\App\Models\CropRate::orderBy('rate_date', 'desc')->take(20)->get() as $item)
                     <li> {{ $item->city->name }} {{ $item->min_price }} - {{ $item->max_price }}</li>
                 @endforeach
             </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CommissionShop;
 
 class ShopController extends Controller
 {
@@ -13,7 +14,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $shops = CommissionShop::latest()->paginate();
+        return view('guest.shops.index', compact('shops'));
     }
 
     /**
@@ -45,7 +47,8 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        $shop = CommissionShop::findOrFail($id);
+        return view('guest.shops.show', compact('shop'));
     }
 
     /**
