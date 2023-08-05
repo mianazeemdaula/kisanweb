@@ -47,7 +47,7 @@ class CropRateController extends Controller
             'city_id' => $request->city,
             'user_id' => $request->user()->id,
             // 'rate_date' => Carbon::parse($request->rate_date)->format('Y-m-d'),
-            'rate_date' => Carbon::createFromDate(2023,8,3)->format('Y-m-d'),
+            'rate_date' => Carbon::now()->format('Y-m-d'),
         ],[
             'min_price' => $request->min,
             'max_price' => $request->max,
