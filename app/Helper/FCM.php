@@ -93,7 +93,7 @@ class FCM {
         $res = array();
         foreach ($tokens->chunk(1000) as $value) {
             $keys = $value->toArray();
-            $data[] =  \App\Helper\FCM::send($keys, $title,$body,$data);
+            $res[] =  \App\Helper\FCM::send($keys, $title,$body,$data);
             // $res[] =  count($keys);
         }
         return $res;
