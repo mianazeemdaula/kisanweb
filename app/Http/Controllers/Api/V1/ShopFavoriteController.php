@@ -41,7 +41,13 @@ class ShopFavoriteController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $user->favoriteShops()->syncWithoutDetaching($request->shop_id);
+        $favShop =  $user->favoriteShops()->wherePivot('commission_shop_id', $request->shop_id)->first();
+        if($favShop){
+            $user->favoriteShops()->detach($request->shop_id);
+        }else{
+            $user->favoriteShops()->syncWithoutDetaching($request->shop_id);
+
+        }
         return $this->index();
     }
 
