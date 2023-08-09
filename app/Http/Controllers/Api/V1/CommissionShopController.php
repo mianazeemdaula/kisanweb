@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use MatanYadaev\EloquentSpatial\Objects\Point;
+use Illuminate\Support\Facades\DB;
 use Image;
 
 use App\Models\CommissionShop;
@@ -26,7 +27,8 @@ class CommissionShopController extends Controller
             $data['rates'] =  \App\Models\Crop::with(['types' => function($q) use ($data){
                 $q->with(['commissionShopRate' => function($rate) use($data){
                     $rate->where('commission_shop_id', $data['shop']->id);
-                }])->whereIn('id',CommissionShopRate::select('crop_type_id')->where('commission_shop_id', $data['shop']->id)->distinct()->get()->toArray());
+                }])->whereIn('id',CommissionShopRate::select('crop_type_id')
+                ->where('commission_shop_id', $data['shop']->id)->distinct()->get()->toArray());
             }])->get();
        }
         return response()->json($data, 200);
@@ -256,7 +258,14 @@ class CommissionShopController extends Controller
         $address = $user->addresses()->whereDefault(true)->first();
         $shops = CommissionShop::query()->orderByDistance('location',$address->location)
         ->with(['city', 'user'])
+        ->leftJoin('commission_shop_rates as csr', function($join) {
+            $join->on('csr.commission_shop_id', '=', 'commission_shops.id');
+            $join->on('csr.rate_date', '=', DB::raw('(
+                SELECT MAX(rate_date) FROM commission_shop_rates WHERE crop_type_id = csr.crop_type_id AND commission_shops.id = csr.commission_shop_id
+            )'));
+        })
         ->whereActive(true)
+        ->orderBy('csr.commission_shop_id')
         ->paginate();
         return response()->json($shops, 200);
     }
