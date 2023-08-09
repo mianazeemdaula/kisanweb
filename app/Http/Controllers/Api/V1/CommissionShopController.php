@@ -262,7 +262,7 @@ class CommissionShopController extends Controller
         ->join('commission_shop_rates as csr', function($join) {
             $join->on('csr.commission_shop_id', '=', 'commission_shops.id');
             $join->on('csr.rate_date', '=', DB::raw('(
-                SELECT MAX(rate_date) FROM commission_shop_rates WHERE crop_type_id = csr.crop_type_id AND commission_shops.id = csr.commission_shop_id
+                SELECT MAX(rate_date) FROM commission_shop_rates WHERE crop_type_id = csr.crop_type_id AND commission_shops.id = csr.commission_shop_id LIMIT 1
             )'));
         })
         ->whereActive(true)
