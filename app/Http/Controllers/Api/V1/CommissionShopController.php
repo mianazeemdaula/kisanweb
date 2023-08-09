@@ -257,6 +257,7 @@ class CommissionShopController extends Controller
         $user = $request->user();
         $address = $user->addresses()->whereDefault(true)->first();
         $shops = CommissionShop::query()->orderByDistance('location',$address->location)
+        ->select('commission_shops.*')
         ->with(['city', 'user'])
         ->leftJoin('commission_shop_rates as csr', function($join) {
             $join->on('csr.commission_shop_id', '=', 'commission_shops.id');
