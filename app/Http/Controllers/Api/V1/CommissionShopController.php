@@ -259,7 +259,7 @@ class CommissionShopController extends Controller
         $shops = CommissionShop::query()->orderByDistance('location',$address->location)
         ->select('commission_shops.*')
         ->with(['city', 'user'])
-        ->join('commission_shop_rates as csr', function($join) {
+        ->leftJoin('commission_shop_rates as csr', function($join) {
             $join->on('csr.commission_shop_id', '=', 'commission_shops.id');
             $join->on('csr.rate_date', '=', DB::raw('(
                 SELECT MAX(rate_date) FROM commission_shop_rates WHERE crop_type_id = csr.crop_type_id AND commission_shops.id = csr.commission_shop_id LIMIT 1
