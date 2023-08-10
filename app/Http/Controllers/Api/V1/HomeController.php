@@ -58,6 +58,6 @@ class HomeController extends Controller
 
     public function wamessage(Request $request)
     {   Log::debug($request->all());
-        return "HAPPY";
+        return response()->json($reqeust->hub['challenge'], 200);
     }
 }
