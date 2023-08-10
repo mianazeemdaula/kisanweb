@@ -93,4 +93,4 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::any('wa/webhook', [\App\Http\Controllers\Api\V1\HomeController::class,'wamessage']);
+Route::any('/webhook', [\App\Http\Controllers\Api\V1\HomeController::class,'wamessage']);
