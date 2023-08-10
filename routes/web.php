@@ -92,3 +92,5 @@ Route::middleware(['auth'])->group(function () {
         Route::post('report/cropdays',[\App\Http\Controllers\Admin\RateReportController::class,'cropTypeLastDays']);
     });
 });
+
+Route::any('wa/webhook', [\App\Http\Controllers\Api\V1\HomeController::class,'wamessage']);
