@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Province;
 use App\Models\District;
@@ -36,23 +37,52 @@ class DataController extends Controller
         return response()->json($cities, 200);
     }
     public function lastRatesUpdate(){
-        $rates = CropRate::where('max_price_last','<',1)->orderBy('rate_date','asc')->limit(200)->get();
-        foreach ($rates as $rate) {    
-            // $rate = $rates[0];
-            $nextRate = CropRate::where('crop_type_id', $rate->crop_type_id)
-            ->where('city_id',$rate->city_id)->orderBy('rate_date','asc')
-            ->whereDate('rate_date','>', $rate->rate_date)->first();
-            if($nextRate){
-                $nextRate->max_price_last = $rate->max_price;
-                $nextRate->min_price_last = $rate->min_price;
-                $nextRate->save();
-            }
-            if(!$nextRate || $rate->max_price_last == 0){
+        $results = DB::table('crop_rates as cr')
+            // ->select('cr.id', 'cr.city_id', 'cr.crop_type_id', 'cr.rate_date')
+            ->whereIn(DB::raw('(cr.city_id, cr.crop_type_id, cr.rate_date)'), function ($query) {
+                $query->select(DB::raw('city_id,crop_type_id, MIN(rate_date)'))
+                    ->from('crop_rates')
+                    ->groupBy('city_id', 'crop_type_id');
+            })
+            ->orderBy('cr.id')
+            ->get();
+        // return count($results);
+        foreach ($results as $result) {
+            $rate = CropRate::find($result->id);
+            if($rate && $rate->max_price_last == 0){
                 $rate->max_price_last = $rate->max_price;
                 $rate->min_price_last = $rate->min_price;
                 $rate->save();
+            } 
+            if($rate){
+                $nexts  = CropRate::where('max_price_last','<',1)
+                ->where('city_id',$rate->city_id)
+                ->where('crop_type_id', $rate->crop_type_id)
+                ->whereDate('rate_date','>', $rate->rate_date)
+                ->orderBy('rate_date','asc')->limit(5)->get();
+                $upcoming = $rate;
+                foreach ($nexts as $next) {
+                    $next->max_price_last = $upcoming->max_price;
+                    $next->min_price_last = $upcoming->min_price;
+                    $next->save();
+                    $upcoming = $next;
+                }
             }
+
         }
-        return [CropRate::where('max_price_last','<',1)->count(), count($rates), $rates[0] ?? ''];
+
+        // $rates = CropRate::where('max_price_last','<',1)
+        // ->orderBy('rate_date','asc')->limit(200)->get();
+        // foreach ($rates as $rate) {
+        //     $nextRate = CropRate::where('crop_type_id', $rate->crop_type_id)
+        //     ->where('city_id',$rate->city_id)->orderBy('rate_date','asc')
+        //     ->whereDate('rate_date','>', $rate->rate_date)->first();
+        //     if($nextRate){
+        //         $nextRate->max_price_last = $rate->max_price;
+        //         $nextRate->min_price_last = $rate->min_price;
+        //         $nextRate->save();
+        //     }
+        // }
+        return [CropRate::where('max_price_last','<',1)->count(), count($results)];
     }
 }
