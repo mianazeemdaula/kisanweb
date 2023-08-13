@@ -68,8 +68,6 @@ Route::group([], function() {
     Route::get('/rates', function () {
         return view('guest.rates.crops');
     });
-    
-    Route::get('data/cities', [\App\Http\Controllers\DataController::class,'cities']);
     Route::resource('deals', \App\Http\Controllers\DealController::class);
     Route::resource('commission-shops', \App\Http\Controllers\ShopController::class);
 });
@@ -86,6 +84,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('feeds', \App\Http\Controllers\Admin\FeedController::class);
         Route::resource('deals', \App\Http\Controllers\Admin\DealController::class);
         Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
+        Route::resource('feedmills', \App\Http\Controllers\Admin\FeedMillController::class);
+        Route::resource('sugarmills', \App\Http\Controllers\Admin\SugarMillController::class);
         
         // Reports
         Route::get('rate-reports',[\App\Http\Controllers\Admin\RateReportController::class,'reports']);
@@ -94,3 +94,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::any('/webhook', [\App\Http\Controllers\Api\V1\HomeController::class,'wamessage']);
+Route::any('/datafeed', [\App\Http\Controllers\DataController::class,'lastRatesUpdate']);

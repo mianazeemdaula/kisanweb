@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\District;
+use App\Models\SugarMill;
 use App\Models\City;
 
-class CityController extends Controller
+class SugarMillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $shops = City::latest()->paginate();
-        return view('admin.cities.index', compact('shops'));
+        $collection = SugarMill::latest()->paginate();
+        return view('admin.sugarmills.index', compact('collection'));
     }
 
     /**
@@ -27,8 +27,8 @@ class CityController extends Controller
      */
     public function create()
     {
-        $districts = District::all();
-        return view('admin.cities.create', compact('districts'));
+        $cities = City::all();
+        return view('admin.sugarmills.create', compact('cities'));
     }
 
     /**
@@ -40,16 +40,16 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'district' => 'required',
+            'city_id' => 'required',
             'name' => 'required',
             'name_ur' => 'required',
         ]);
-        $city = new City;
-        $city->district_id = $request->district;
+        $city = new SugarMill;
+        $city->city_id = $request->city_id;
         $city->name = $request->name;
         $city->name_ur = $request->name_ur;
         $city->save();
-        return redirect()->route('admin.cities.index', ['parameterKey' => 'value']);
+        return redirect()->route('admin.sugarmills.index');
     }
 
     /**
@@ -71,9 +71,9 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        $districts = District::all();
-        $city = City::findOrFail($id);
-        return view('admin.cities.edit', compact('districts', 'city'));
+        $cities = City::all();
+        $model = SugarMill::findOrFail($id);
+        return view('admin.sugarmills.edit', compact('cities','model'));
     }
 
     /**
@@ -86,16 +86,16 @@ class CityController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'district' => 'required',
+            'city_id' => 'required',
             'name' => 'required',
             'name_ur' => 'required',
         ]);
-        $city = City::findOrFail($id);
-        $city->district_id = $request->district;
+        $city = SugarMill::findOrFail($id);
+        $city->city_id = $request->city_id;
         $city->name = $request->name;
         $city->name_ur = $request->name_ur;
         $city->save();
-        return redirect()->route('admin.cities.index');
+        return redirect()->route('admin.sugarmills.index');
     }
 
     /**
@@ -106,7 +106,7 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        $shop = City::findOrFail($id);
+        $shop = SugarMill::findOrFail($id);
         $shop->delete();
         return redirect()->back();
     }

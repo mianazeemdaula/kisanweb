@@ -42,6 +42,8 @@ class CropRateController extends Controller
             'city' => 'required',
             'rate_date' => 'required',
         ]);
+        $lastRate = CropRate::where('crop_type_id', $request->crop_type_id)
+        ->where('city_id',$request->city)->orderBy('rate_date','desc')->first();
         $rate = CropRate::updateOrCreate([
             'crop_type_id' => $request->crop_type_id,
             'city_id' => $request->city,
@@ -51,6 +53,8 @@ class CropRateController extends Controller
         ],[
             'min_price' => $request->min,
             'max_price' => $request->max,
+            'min_price_last' => $lastRate->min_price ?? $request->min,
+            'max_price_last' => $lastRate->max_price ?? $request->max,
         ]);
         \App\Helper\FCM::sendToSetting(6,"نرخ اپڈیٹ","آپ کے شہر کے فصلوں کے ریٹس اپڈیٹ کر دیے گئے ہیں",[
             'type' => 'mand_rate',

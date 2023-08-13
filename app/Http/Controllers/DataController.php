@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\City;
+use App\Models\CropRate;
 
 class DataController extends Controller
 {
@@ -33,5 +34,25 @@ class DataController extends Controller
             ]);
         }
         return response()->json($cities, 200);
+    }
+    public function lastRatesUpdate(){
+        $rates = CropRate::where('max_price_last','<',1)->orderBy('rate_date','asc')->limit(200)->get();
+        foreach ($rates as $rate) {    
+            // $rate = $rates[0];
+            $nextRate = CropRate::where('crop_type_id', $rate->crop_type_id)
+            ->where('city_id',$rate->city_id)->orderBy('rate_date','asc')
+            ->whereDate('rate_date','>', $rate->rate_date)->first();
+            if($nextRate){
+                $nextRate->max_price_last = $rate->max_price;
+                $nextRate->min_price_last = $rate->min_price;
+                $nextRate->save();
+            }
+            if(!$nextRate || $rate->max_price_last == 0){
+                $rate->max_price_last = $rate->max_price;
+                $rate->min_price_last = $rate->min_price;
+                $rate->save();
+            }
+        }
+        return [CropRate::where('max_price_last','<',1)->count(), count($rates), $rates[0] ?? ''];
     }
 }

@@ -76,19 +76,19 @@ class CropRate extends Model
         return $this->belongsTo(CropType::class);
     }
 
-    public function getMinPriceLastAttribute()
-    {
-        return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
-        ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
-        ->orderBy('rate_date','desc')->avg('min_price') ?? $this->min_price;
-    }
+    // public function getMinPriceLastAttribute()
+    // {
+    //     return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
+    //     ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
+    //     ->orderBy('rate_date','desc')->avg('min_price') ?? $this->min_price;
+    // }
 
-    public function getMaxPriceLastAttribute()
-    {
-        return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
-        ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
-        ->orderBy('rate_date','desc')->avg('max_price') ?? $this->max_price;
-    }
+    // public function getMaxPriceLastAttribute()
+    // {
+    //     return (double) $this->whereDate('rate_date','<=',\Carbon\Carbon::parse($this->rate_date)->subDays(1))
+    //     ->where('crop_type_id', $this->crop_type_id)->groupBy('rate_date')
+    //     ->orderBy('rate_date','desc')->avg('max_price') ?? $this->max_price;
+    // }
 
     public function getMinCityPriceLastAttribute()
     {
