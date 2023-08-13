@@ -84,6 +84,7 @@ class DealController extends Controller
             $deal->qty = $request->qty;
             $deal->location = new Point($request->lat,$request->lng);
             $deal->address = $request->address;
+            $deal->moisture = $request->moisture ?? 0;
             $medias = array();
             foreach ($request->file('images') as $key => $file) {
                 $medias[] = MediaHelper::save($file, $deal);
