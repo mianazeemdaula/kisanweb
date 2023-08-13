@@ -43,7 +43,9 @@ class CropRateController extends Controller
             'rate_date' => 'required',
         ]);
         $lastRate = CropRate::where('crop_type_id', $request->crop_type_id)
-        ->where('city_id',$request->city)->orderBy('rate_date','desc')->first();
+        ->where('city_id',$request->city)
+        ->whereDate('rate_date', '<',Carbon::now()->format('Y-m-d'))
+        ->orderBy('rate_date','desc')->first();
         $rate = CropRate::updateOrCreate([
             'crop_type_id' => $request->crop_type_id,
             'city_id' => $request->city,
