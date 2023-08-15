@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\DB;
 class CropRate extends Model
 {
     use HasFactory;
-    // protected $appends = ['min_price_last','max_price_last'];
-    // protected $with = ['last'];
+
     protected $casts = [
         'min_price' => 'double',
         'max_price' => 'double',
@@ -31,18 +30,6 @@ class CropRate extends Model
         'user_id'
     ];
 
-    // Scops
-
-    public function scopeRate($query){
-        return $query->select(
-            'crop_type_id', 'rate_date',
-            \DB::raw('cast(min(min_price) as float) as min_rate'),
-            \DB::raw('cast(max(max_price) as float) as max_rate'),
-        )->groupBy('rate_date','crop_type_id')
-        ->whereIn('rate_date', function($q){
-            $q->select(\DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
-        });
-    }
 
     public function scopeCityHistory($query){
         return $query->select(
@@ -149,20 +136,9 @@ class CropRate extends Model
             DB::raw('MIN(cr.min_price) AS min_rate'),
             DB::raw('MAX(cr.max_price) AS max_rate'),
             DB::raw('MAX(cr.rate_date) AS rate_date'),
-            DB::raw('MIN(prev_cr.min_price) AS min_city_price_last'),
-            DB::raw('MAX(prev_cr.max_price) AS max_city_price_last'),
+            DB::raw('MIN(cr.min_price_last) AS min_city_price_last'),
+            DB::raw('MAX(cr.max_price_last) AS max_city_price_last'),
         )
-        ->leftJoin('crop_rates as prev_cr', function($join) {
-            $join->on('cr.crop_type_id', '=', 'prev_cr.crop_type_id');
-            $join->on('prev_cr.rate_date', '=', DB::raw('(
-                SELECT MAX(rate_date) FROM crop_rates
-                WHERE crop_type_id = cr.crop_type_id AND rate_date < cr.rate_date AND city_id = cr.city_id
-            )'));
-        })->whereIn('cr.id', function($query) {
-            $query->select(DB::raw('MAX(id)'))
-                ->from('crop_rates')
-                ->groupBy('city_id','crop_type_id');
-        })
         ->join('cities', 'cities.id', '=', 'cr.city_id')
         ->groupBy('cr.city_id', 'cr.crop_type_id', 'cr.rate_date')
         ->orderBy('cr.rate_date', 'desc');

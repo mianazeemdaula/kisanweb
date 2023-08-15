@@ -104,24 +104,9 @@ class CropRateController extends Controller
                 DB::raw('cast(max(max_price_last) as float) as max_price_last'),
             )->groupBy('rate_date','crop_type_id')
             ->whereIn('rate_date', function($q){
-                $q->select(\DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
+                $q->select(DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
             });
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
-        // $data['rates']->each(function($item) {
-        //     $d  = CropRate::select(
-        //         \DB::raw('max(max_price) as max_last'),
-        //         \DB::raw('min(min_price) as min_last'),
-        //     )
-        //     ->whereNotIn('rate_date', [$item->rate_date])
-        //     // ->whereDate('rate_date' ,'<',$item->rate_date)
-        //     ->groupBy('rate_date')
-        //     ->orderBy('rate_date', 'desc')
-        //     ->where('crop_type_id', $item->crop_type_id)->first();
-        //     $item->rate->min_price_last = $d == null ? 0 : $d->min_last; 
-        //     $item->rate->max_price_last = $d == null ? 0 : $d->max_last; 
-        //  });
-        $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com", "jhonhill267@gmail.com");
-        $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
     }
 
