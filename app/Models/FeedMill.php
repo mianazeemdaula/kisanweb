@@ -12,6 +12,10 @@ class FeedMill extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
