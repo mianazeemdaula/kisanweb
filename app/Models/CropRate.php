@@ -144,25 +144,4 @@ class CropRate extends Model
         ->orderBy('cr.rate_date', 'desc');
     }
 
-    public function scopeCityRateHistory($query)
-    {
-        return $query->from('crop_rates as cr')->select(
-            'cr.city_id',
-            'cr.crop_type_id',
-            DB::raw('MIN(cr.min_price) AS min_rate'),
-            DB::raw('MAX(cr.max_price) AS max_rate'),
-            DB::raw('MAX(cr.rate_date) AS rate_date'),
-            DB::raw('MIN(prev_cr.min_price) AS min_price_last'),
-            DB::raw('MAX(prev_cr.max_price) AS max_price_last'),
-        )
-        ->leftJoin('crop_rates as prev_cr', function($join) {
-            $join->on('cr.crop_type_id', '=', 'prev_cr.crop_type_id');
-            $join->on('prev_cr.rate_date', '=', DB::raw('(
-                SELECT MAX(rate_date) FROM crop_rates FORCE INDEX (idx_crop_type_id_rate_date_city_id) 
-                WHERE crop_type_id = cr.crop_type_id AND rate_date < cr.rate_date AND city_id = cr.city_id
-            )'));
-        })
-        ->groupBy('cr.city_id', 'cr.crop_type_id', 'cr.rate_date')
-        ->orderBy('cr.rate_date', 'desc');
-    }
 }
