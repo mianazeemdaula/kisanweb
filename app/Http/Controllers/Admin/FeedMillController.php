@@ -27,7 +27,7 @@ class FeedMillController extends Controller
      */
     public function create()
     {
-        $cities = City::all();
+        $cities = City::orderBy('name')->get();
         return view('admin.feedmills.create', compact('cities'));
     }
 

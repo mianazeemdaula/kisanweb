@@ -45,6 +45,7 @@ Route::get('whatsapp', function(){
 });
 
 Route::get('test', function(){
+    return \App\Models\FeedMill::with(['rate','city'])->paginate(50);
     return \LevelUp\Experience\Facades\Leaderboard::generate();
     $user= \App\Models\User::find(15);
     $user->addPoints(10);
@@ -94,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('deals', \App\Http\Controllers\Admin\DealController::class);
         Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
         Route::resource('feedmills', \App\Http\Controllers\Admin\FeedMillController::class);
+        Route::resource('feedmillsrate', \App\Http\Controllers\Admin\FeedMillRateController::class);
         Route::resource('sugarmills', \App\Http\Controllers\Admin\SugarMillController::class);
         
         // Reports
