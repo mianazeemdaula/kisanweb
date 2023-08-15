@@ -102,6 +102,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('city-rate-history', [CropCityRateController::class,'cityHistory']);
     Route::post('rates-filter', [CropRateController::class,'filter']);
     Route::get('trending-rates-graph', [CropRateController::class,'trendingCropsGraphs']);
+    Route::get('feed-mill-rates', [FeedMillController::class,'index']);
     
     // Feed
     Route::resource('/feeds', FeedController::class);
