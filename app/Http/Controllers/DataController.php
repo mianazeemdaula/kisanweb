@@ -9,6 +9,7 @@ use App\Models\Province;
 use App\Models\District;
 use App\Models\City;
 use App\Models\CropRate;
+use LevelUp\Experience\Models\Level;
 
 class DataController extends Controller
 {
@@ -84,5 +85,20 @@ class DataController extends Controller
         //     }
         // }
         return [CropRate::where('max_price_last','<',1)->count(), count($results)];
+    }
+
+
+    public function pointsLevel() {
+        $level = Level::find(1);
+        if(!$level){
+            Level::add(
+                ['level' => 1, 'next_level_experience' => null],
+                ['level' => 2, 'next_level_experience' => 1000],
+                ['level' => 3, 'next_level_experience' => 2000],
+                ['level' => 4, 'next_level_experience' => 5000],
+                ['level' => 5, 'next_level_experience' => 10000],
+            );
+        }
+        
     }
 }

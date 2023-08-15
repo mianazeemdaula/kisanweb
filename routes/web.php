@@ -44,6 +44,15 @@ Route::get('whatsapp', function(){
     return \App\Helper\WhatsApp::sendTemplate("923004103160", "hello_world", 'en_US' , [], []);
 });
 
+Route::get('test', function(){
+    return \LevelUp\Experience\Facades\Leaderboard::generate();
+    $user= \App\Models\User::find(15);
+    $user->addPoints(10);
+    return $user->getPoints();
+});
+
+
+
 
 
 
@@ -94,4 +103,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::any('/webhook', [\App\Http\Controllers\Api\V1\HomeController::class,'wamessage']);
-Route::any('/datafeed', [\App\Http\Controllers\DataController::class,'lastRatesUpdate']);
+Route::get('/datafeed', [\App\Http\Controllers\DataController::class,'lastRatesUpdate']);
+Route::get('/datalevels', [\App\Http\Controllers\DataController::class,'pointsLevel']);

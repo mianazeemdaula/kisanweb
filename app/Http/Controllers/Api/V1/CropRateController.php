@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 use App\Models\Crop;
@@ -96,21 +96,30 @@ class CropRateController extends Controller
     public function filter(Request $request)
     {
         $data['rates'] = CropType::with(['rate' => function($r) use($request) {
-            $r->rate();
+            $r->select(
+                'crop_type_id', 'rate_date',
+                DB::raw('cast(min(min_price) as float) as min_rate'),
+                DB::raw('cast(max(max_price) as float) as max_rate'),
+                DB::raw('cast(max(min_price_last) as float) as min_price_last'),
+                DB::raw('cast(max(max_price_last) as float) as max_price_last'),
+            )->groupBy('rate_date','crop_type_id')
+            ->whereIn('rate_date', function($q){
+                $q->select(\DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
+            });
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
-        $data['rates']->each(function($item) {
-            $d  = CropRate::select(
-                \DB::raw('max(max_price) as max_last'),
-                \DB::raw('min(min_price) as min_last'),
-            )
-            ->whereNotIn('rate_date', [$item->rate_date])
-            // ->whereDate('rate_date' ,'<',$item->rate_date)
-            ->groupBy('rate_date')
-            ->orderBy('rate_date', 'desc')
-            ->where('crop_type_id', $item->crop_type_id)->first();
-            $item->rate->min_price_last = $d == null ? 0 : $d->min_last; 
-            $item->rate->max_price_last = $d == null ? 0 : $d->max_last; 
-         });
+        // $data['rates']->each(function($item) {
+        //     $d  = CropRate::select(
+        //         \DB::raw('max(max_price) as max_last'),
+        //         \DB::raw('min(min_price) as min_last'),
+        //     )
+        //     ->whereNotIn('rate_date', [$item->rate_date])
+        //     // ->whereDate('rate_date' ,'<',$item->rate_date)
+        //     ->groupBy('rate_date')
+        //     ->orderBy('rate_date', 'desc')
+        //     ->where('crop_type_id', $item->crop_type_id)->first();
+        //     $item->rate->min_price_last = $d == null ? 0 : $d->min_last; 
+        //     $item->rate->max_price_last = $d == null ? 0 : $d->max_last; 
+        //  });
         $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com", "jhonhill267@gmail.com");
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);

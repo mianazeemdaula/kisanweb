@@ -9,12 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use \JordanMiguel\LaravelPopular\Traits\Visitable;
 
 
 class Deal extends Model
 {
-    use HasFactory, Visitable;
+    use HasFactory;
     use \Znck\Eloquent\Traits\BelongsToThrough;
 
     protected $appends = ['reactionsIds'];
