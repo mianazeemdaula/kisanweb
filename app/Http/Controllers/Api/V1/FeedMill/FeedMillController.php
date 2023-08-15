@@ -15,7 +15,7 @@ class FeedMillController extends Controller
     public function index()
     {
         $data = FeedMill::with('rate')
-        ->wereHas('rate')->paginate(50);
+        ->whereHas('rate')->paginate(50);
         return response()->json($data, 200);
     }
 
