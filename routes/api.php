@@ -31,6 +31,7 @@ use App\Http\Controllers\Api\V1\Feed\FeedLikeController;
 use App\Http\Controllers\Api\V1\Feed\FeedCommentController;
 use App\Http\Controllers\Api\V1\RatingController;
 use App\Http\Controllers\Api\V1\SettingController;
+use App\Http\Controllers\Api\V1\FeedMill\FeedMillController;
 use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 /*
