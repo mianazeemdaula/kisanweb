@@ -104,9 +104,11 @@ class CropRateController extends Controller
                 DB::raw('cast(max(max_price_last) as float) as max_price_last'),
             )->groupBy('rate_date','crop_type_id')
             ->whereIn('rate_date', function($q){
-                $q->select(DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
+                $q->select(\DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
             });
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
+        $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com", "jhonhill267@gmail.com");
+        $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
     }
 
