@@ -12,7 +12,7 @@
                 </a>
                 <a href="{{ route('admin.feedmillsrate.create') }}">
                     <div class="px-4 bg-green-700 text-white rounded-xl">
-                        Add Rates
+                        Add Feed Mill Rate
                     </div>
                 </a>
             </div>

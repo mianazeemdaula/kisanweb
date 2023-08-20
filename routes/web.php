@@ -97,6 +97,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('feedmills', \App\Http\Controllers\Admin\FeedMillController::class);
         Route::resource('feedmillsrate', \App\Http\Controllers\Admin\FeedMillRateController::class);
         Route::resource('sugarmills', \App\Http\Controllers\Admin\SugarMillController::class);
+        Route::resource('sugarmillsrate', \App\Http\Controllers\Admin\SugarMillRateController::class);
         
         // Reports
         Route::get('rate-reports',[\App\Http\Controllers\Admin\RateReportController::class,'reports']);

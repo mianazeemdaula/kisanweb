@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\FeedMillRate;
-use App\Models\FeedMill;
+use App\Models\SugarMillRate;
+use App\Models\SugarMill;
 
-class FeedMillRateController extends Controller
+class SugarMillRateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +23,8 @@ class FeedMillRateController extends Controller
      */
     public function create()
     {
-        $mills = FeedMill::orderBy('name')->get();
-        return view('admin.feedmills.rates.create', compact('mills'));
+        $mills = SugarMill::orderBy('name')->get();
+        return view('admin.sugarmills.rates.create', compact('mills'));
     }
 
     /**
@@ -34,26 +34,26 @@ class FeedMillRateController extends Controller
     {
         
         $request->validate([
-            'feed_mill_id' => 'required',
+            'sugar_mill_id' => 'required',
             'min' => 'required',
             'max' => 'required',
         ]);
-        $lastRate = FeedMillRate::where('feed_mill_id', $request->feed_mill_id)
+        $lastRate = SugarMillRate::where('sugar_mill_id', $request->sugar_mill_id)
         ->whereDate('created_at', '<',Carbon::now()->format('Y-m-d'))
         ->orderBy('created_at','desc')->first();
-        $feedrate = FeedMillRate::where('feed_mill_id', $request->feed_mill_id)
+        $feedrate = SugarMillRate::where('sugar_mill_id', $request->sugar_mill_id)
         ->whereDate('created_at',Carbon::now()->format('Y-m-d'))->first();
         if(!$feedrate){
-            $feedrate = new FeedMillRate;
+            $feedrate = new SugarMillRate;
         }
-        $feedrate->feed_mill_id = $request->feed_mill_id;
+        $feedrate->sugar_mill_id = $request->sugar_mill_id;
         $feedrate->user_id =  $request->user()->id;
         $feedrate->min_price =  $request->min;
         $feedrate->max_price =  $request->max;
         $feedrate->min_price_last =  $lastRate->min_price ?? $request->min;
         $feedrate->max_price_last =  $lastRate->max_price ?? $request->max;
         $feedrate->save();
-        return redirect()->route('admin.feedmills.index');
+        return redirect()->route('admin.sugarmills.index');
     }
 
     /**

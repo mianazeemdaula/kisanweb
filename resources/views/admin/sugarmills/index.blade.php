@@ -3,11 +3,18 @@
     <div class="w-full">
         <div class="flex items-center justify-between">
             <h5 class="">Sugar Mills</h5>
-            <a href="{{ route('admin.sugarmills.create') }}">
-                <div class="px-4 bg-green-700 text-white rounded-xl">
-                    Add Sugar Mill
-                </div>
-            </a>
+            <div class="flex items-center space-x-2">
+                <a href="{{ route('admin.sugarmills.create') }}">
+                    <div class="px-4 bg-green-700 text-white rounded-xl">
+                        Add Sugar Mill
+                    </div>
+                </a>
+                <a href="{{ route('admin.sugarmillsrate.create') }}">
+                    <div class="px-4 bg-green-700 text-white rounded-xl">
+                        Add Rates
+                    </div>
+                </a>
+            </div>
         </div>
 
         <div class="bg-white">
