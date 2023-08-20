@@ -32,6 +32,7 @@ use App\Http\Controllers\Api\V1\Feed\FeedCommentController;
 use App\Http\Controllers\Api\V1\RatingController;
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\FeedMill\FeedMillController;
+use App\Http\Controllers\Api\V1\SugarMill\SugarMillController;
 use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 /*
@@ -104,7 +105,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('rates-filter', [CropRateController::class,'filter']);
     Route::get('trending-rates-graph', [CropRateController::class,'trendingCropsGraphs']);
     Route::get('feed-mill-rates', [FeedMillController::class,'index']);
-    Route::get('sugar-mill-rates', [FeedMillController::class,'index']);
+    Route::get('sugar-mill-rates', [SugarMillController::class,'index']);
     
     // Feed
     Route::resource('/feeds', FeedController::class);
