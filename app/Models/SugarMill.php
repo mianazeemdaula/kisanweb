@@ -25,9 +25,9 @@ class SugarMill extends Model
     {
         return $this->hasMany(SugarMillRate::class);
     }
-    
+
     public function rate(): HasOne
     {
-        return $this->hasOne(SugarMillRate::class)->lastest();
+        return $this->hasOne(SugarMillRate::class)->latest();
     }
 }

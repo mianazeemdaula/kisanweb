@@ -28,6 +28,6 @@ class FeedMill extends Model
 
     public function rate(): HasOne
     {
-        return $this->hasOne(FeedMillRate::class);
+        return $this->hasOne(FeedMillRate::class)->latest();
     }
 }
