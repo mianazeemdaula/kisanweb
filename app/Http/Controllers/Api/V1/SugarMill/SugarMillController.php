@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\SugarMill;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\SugarMill;
 
 class SugarMillController extends Controller
 {
@@ -12,7 +13,9 @@ class SugarMillController extends Controller
      */
     public function index()
     {
-        //
+        $data = SugarMill::with(['rate','city'])
+        ->whereHas('rate')->paginate(50);
+        return response()->json($data, 200);
     }
 
     /**
