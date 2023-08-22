@@ -69,21 +69,7 @@ class DataController extends Controller
                     $upcoming = $next;
                 }
             }
-
         }
-
-        // $rates = CropRate::where('max_price_last','<',1)
-        // ->orderBy('rate_date','asc')->limit(200)->get();
-        // foreach ($rates as $rate) {
-        //     $nextRate = CropRate::where('crop_type_id', $rate->crop_type_id)
-        //     ->where('city_id',$rate->city_id)->orderBy('rate_date','asc')
-        //     ->whereDate('rate_date','>', $rate->rate_date)->first();
-        //     if($nextRate){
-        //         $nextRate->max_price_last = $rate->max_price;
-        //         $nextRate->min_price_last = $rate->min_price;
-        //         $nextRate->save();
-        //     }
-        // }
         return [CropRate::where('max_price_last','<',1)->count(), count($results)];
     }
 
