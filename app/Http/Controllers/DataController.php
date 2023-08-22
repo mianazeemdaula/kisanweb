@@ -50,13 +50,16 @@ class DataController extends Controller
         // return count($results);
         foreach ($results as $result) {
             $rate = CropRate::find($result->id);
-            if($rate && $rate->max_price_last == 0){
+            if($rate && ($rate->max_price_last == 0 || $rate->min_price_last == 0)){
                 $rate->max_price_last = $rate->max_price;
                 $rate->min_price_last = $rate->min_price;
                 $rate->save();
             } 
             if($rate){
-                $nexts  = CropRate::where('max_price_last','<',1)
+                $nexts  = CropRate::where((function ($q){
+                    $q->where('max_price_last','<',1);
+                    $q->orWhere('min_price_last','<',1);
+                }))
                 ->where('city_id',$rate->city_id)
                 ->where('crop_type_id', $rate->crop_type_id)
                 ->whereDate('rate_date','>', $rate->rate_date)
@@ -70,7 +73,7 @@ class DataController extends Controller
                 }
             }
         }
-        return [CropRate::where('max_price_last','<',1)->count(), count($results)];
+        return [CropRate::where('max_price_last','<',1)->orWhere('min_price_last','<',1)->count(), count($results)];
     }
 
 
