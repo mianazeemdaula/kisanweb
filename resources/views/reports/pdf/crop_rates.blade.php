@@ -52,9 +52,11 @@
                         <th class="border">شہر</th>
                         <th class="border">کم ازکم</th>
                         <th class="border">زیادہ سے زیادہ</th>
+                        <th class="border">رجحان</th>
                         <th class="border">شہر</th>
                         <th class="border">کم ازکم</th>
                         <th class="border">زیادہ سے زیادہ</th>
+                        <th class="border">رجحان</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +68,15 @@
                                 <td class="text-center border pl-1 border-gray-400 text-lg w-24">{{ $rate->min_price }}
                                 </td>
                                 <td class='text-center border border-gray-400 text-lg w-24'>{{ $rate->max_price }}</td>
+                                <td class='text-center border border-gray-400 text-lg w-24'>
+                                    @if ($rate->min_price + $rate->max_pricelast > $rate->max_price + $rate->max_price_last)
+                                        {{ 'up' }}
+                                    @elseif ($rate->min_price + $rate->max_pricelast < $rate->max_price + $rate->max_price_last)
+                                        {{ 'low' }}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                </td>
                             @endforeach
                         </tr>
                     @endforeach
