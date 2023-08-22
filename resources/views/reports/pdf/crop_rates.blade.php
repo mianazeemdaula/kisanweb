@@ -97,8 +97,8 @@
                 </div>
             </div>
             <div class="absolute" style="left:50%; top:50%; transform: translate(-50%, -50%); z-index: -1">
-                <img alt="logo" src="{{ asset('/images/logo.svg') }}" class="{{ $rates > 25 ? 'w-80' : 'w-60' }}"
-                    style="opacity: 0.4;">
+                <img alt="logo" src="{{ asset('/images/logo.svg') }}"
+                    class="{{ count($rates) > 25 ? 'w-80' : 'w-60' }}" style="opacity: 0.4;">
             </div>
         </div>
     </main>
