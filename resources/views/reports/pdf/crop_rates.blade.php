@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="{{ asset('css/pdf_tw.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         @page {
             margin: 50px 50px 220px 80px;
@@ -70,7 +71,7 @@
                                 <td class='text-center border border-gray-400 text-lg w-24'>{{ $rate->max_price }}</td>
                                 <td class='text-center border border-gray-400 text-lg w-24'>
                                     @if ($rate->min_price + $rate->min_price_last > $rate->max_price + $rate->max_price_last)
-                                        <i class="bi bi-arrow-up"></i>
+                                        <i class="bi-arrow-up"></i>
                                     @elseif ($rate->min_price + $rate->min_price_last < $rate->max_price + $rate->max_price_last)
                                         <i class="bi bi-arrow-down"></i>
                                     @else
