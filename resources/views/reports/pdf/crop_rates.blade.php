@@ -70,9 +70,9 @@
                                 </td>
                                 <td class='text-center border border-gray-400 text-lg w-24'>{{ $rate->max_price }}</td>
                                 <td class='text-center border border-gray-400 text-lg w-24'>
-                                    @if ($rate->min_price + $rate->min_price_last > $rate->max_price + $rate->max_price_last)
+                                    @if ($rate->min_price + $rate->max_price > $rate->min_price_last + $rate->max_price_last)
                                         <i class="bi bi-arrow-up-short"></i>
-                                    @elseif ($rate->min_price + $rate->min_price_last < $rate->max_price + $rate->max_price_last)
+                                    @elseif ($rate->min_price + $rate->max_price < $rate->min_price_last + $rate->max_price_last)
                                         <i class="bi bi-arrow-down-short"></i>
                                     @else
                                         {{ '-' }}
