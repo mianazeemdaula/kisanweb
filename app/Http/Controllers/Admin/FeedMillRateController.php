@@ -35,23 +35,36 @@ class FeedMillRateController extends Controller
         
         $request->validate([
             'feed_mill_id' => 'required',
-            'min' => 'required',
-            'max' => 'required',
+            'price' => 'required',
+            // 'max' => 'required',
         ]);
         $lastRate = FeedMillRate::where('feed_mill_id', $request->feed_mill_id)
         ->whereDate('created_at', '<',Carbon::now()->format('Y-m-d'))
         ->orderBy('created_at','desc')->first();
         $feedrate = FeedMillRate::where('feed_mill_id', $request->feed_mill_id)
         ->whereDate('created_at',Carbon::now()->format('Y-m-d'))->first();
+        $min = $max = $request->price;
         if(!$feedrate){
             $feedrate = new FeedMillRate;
+        }else{
+            if($request->price < $feedrate->min_price){
+                $min = $request->price;
+                $max = $feedrate->max_price;
+            }
+            else if($request->price > $feedrate->max_price){
+                $max = $request->price;
+                $min = $feedrate->min_price;
+            }else{
+                $min = $feedrate->min_price;
+                $max = $feedrate->max_price;
+            }
         }
         $feedrate->feed_mill_id = $request->feed_mill_id;
         $feedrate->user_id =  $request->user()->id;
-        $feedrate->min_price =  $request->min;
-        $feedrate->max_price =  $request->max;
-        $feedrate->min_price_last =  $lastRate->min_price ?? $request->min;
-        $feedrate->max_price_last =  $lastRate->max_price ?? $request->max;
+        $feedrate->min_price =  $min;
+        $feedrate->max_price =  $max;
+        $feedrate->min_price_last =  $lastRate->min_price ?? $min;
+        $feedrate->max_price_last =  $lastRate->max_price ?? $max;
         $feedrate->save();
         return redirect()->route('admin.feedmills.index');
     }

@@ -1,11 +1,11 @@
 {
-  "node_modules/owl.carousel/dist/assets/owl.video.play.png": {
-    "file": "assets/owl.video.play.04360456.png",
-    "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
-  },
   "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
     "file": "assets/bootstrap-icons.cfe45b98.woff2",
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "node_modules/owl.carousel/dist/assets/owl.video.play.png": {
+    "file": "assets/owl.video.play.04360456.png",
+    "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
   },
   "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
     "file": "assets/bootstrap-icons.999550fa.woff",

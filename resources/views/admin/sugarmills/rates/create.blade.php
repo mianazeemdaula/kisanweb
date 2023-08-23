@@ -8,7 +8,7 @@
                     <h3 class="p-1">Mills</h3>
                     <select name="sugar_mill_id" id="" class="w-80">
                         @foreach ($mills as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->name }} ({{ $item->city->name }})</option>
                         @endforeach
                     </select>
                     @error('sugar_mill_id')
@@ -17,19 +17,19 @@
 
                 </div>
                 <div>
-                    <h3 class="p-1">Minimum</h3>
-                    <input type="number" placeholder="Minimum" name="min" value="{{ old('min') }}" class="w-80">
-                    @error('min')
+                    <h3 class="p-1">Price</h3>
+                    <input type="number" placeholder="price" name="price" value="{{ old('price') }}" class="w-80">
+                    @error('price')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
-                <div>
+                {{-- <div>
                     <h3 class="p-1">Maximum</h3>
                     <input type="number" placeholder="Maximum" name="max" value="{{ old('max') }}" class="w-80">
                     @error('max')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
                 <div>
                     <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
