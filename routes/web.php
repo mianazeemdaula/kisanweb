@@ -108,3 +108,9 @@ Route::middleware(['auth'])->group(function () {
 Route::any('/webhook', [\App\Http\Controllers\Api\V1\HomeController::class,'wamessage']);
 Route::get('/datafeed', [\App\Http\Controllers\DataController::class,'lastRatesUpdate']);
 Route::get('/datalevels', [\App\Http\Controllers\DataController::class,'pointsLevel']);
+
+Route::get('/mail', function(){
+   return Mail::raw('This is the plain text content of the email.', function ($message) {
+        $message->to('mazeemrehan@gmail.com')->subject('Your Subject Here');
+    });
+});

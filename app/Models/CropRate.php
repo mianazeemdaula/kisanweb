@@ -27,7 +27,9 @@ class CropRate extends Model
         'min_price',
         'max_price',
         'rate_date',
-        'user_id'
+        'user_id',
+        'min_price_last',
+        'max_price_last',
     ];
 
 
