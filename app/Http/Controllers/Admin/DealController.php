@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\Models\Crop;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DealsExport;
+
 
 class DealController extends Controller
 {
@@ -112,5 +115,9 @@ class DealController extends Controller
         $deal = Deal::findOrFail($id);
         $deal->delete();
         return redirect()->back();
+    }
+
+    function export() {
+        return Excel::download(new DealsExport, 'deals.xlsx');
     }
 }

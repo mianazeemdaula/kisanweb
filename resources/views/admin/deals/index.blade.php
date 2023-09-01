@@ -3,9 +3,9 @@
     <div class="w-full">
         <div class="flex items-center justify-between">
             <h5 class="">Deals</h5>
-            <a href="{{ route('admin.deals.create') }}">
+            <a href="{{ url('admin/deals-export') }}">
                 <div class="px-4 bg-green-700 text-white rounded-xl">
-                    Add Deal
+                    Export Deals
                 </div>
             </a>
         </div>
