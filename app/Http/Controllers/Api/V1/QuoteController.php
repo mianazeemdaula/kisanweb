@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use App\Models\Quote;
 
 class QuoteController extends Controller
@@ -16,8 +16,13 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        $data = Quote::latest()->first();
-        return response()->json($data, 200);
+        if(Carbon::now()->dayOfWeek == 5){
+            $data = Quote::find(23);
+            return response()->json($data, 200);
+        }else{
+            $data = Quote::latest()->first();
+            return response()->json($data, 200);
+        }
     }
 
     /**
