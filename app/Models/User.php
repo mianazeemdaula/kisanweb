@@ -12,10 +12,11 @@ use Illuminate\Support\Str;
 
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\SpatialBuilder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use LevelUp\Experience\Concerns\GiveExperience;
 
 
@@ -99,7 +100,6 @@ class User extends Authenticatable
         return $this->hasOne(CommissionShop::class)->latest();
     }
     
-    
 
     public function following()
     {
@@ -135,5 +135,11 @@ class User extends Authenticatable
     public function reportedShops()
     {
         return $this->belongsToMany(CommissionShop::class, 'reported_shops')->withPivot('reason');
+    }
+
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Subscription::class, 'user_subscriptions', 'user_id', 'subscription_id')
+                    ->withPivot('start_date', 'end_date');
     }
 }

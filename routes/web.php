@@ -5,10 +5,9 @@ use Appy\FcmHttpV1\FcmNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyApiEmail;
 use Spatie\Sitemap\SitemapGenerator;
+use Illuminate\Support\Facades\Log;
 
-
-
-
+use Spatie\Browsershot\Browsershot;
 
 Route::get('app/terms-and-conditions', function () {
     return view('app.terms');
@@ -24,6 +23,38 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
+
+    // return Browsershot::url('http://127.0.0.1:8000/save-image')
+    // ->fullPage()
+    // ->save('/images/crop_rates.jpg');
+    $provinceWiseRates =  \DB::table('crop_rates')
+    ->join('crop_types', 'crop_rates.crop_type_id', '=', 'crop_types.id')
+    ->join('cities', 'crop_rates.city_id', '=', 'cities.id')
+    ->join('districts', 'cities.district_id', '=', 'districts.id')
+    ->join('provinces', 'districts.province_id', '=', 'provinces.id')
+    ->select(
+        'provinces.name as province_name',
+        'crop_rates.min_price',
+        'crop_rates.min_price_last',
+        'crop_rates.max_price',
+        'crop_rates.max_price_last',
+        'crop_types.name as type_name', 
+        'cities.name as city_name',
+        'crop_types.id as crop_type_id',
+    )
+    ->whereDate('crop_rates.rate_date', '2023-06-20')
+    ->where('crop_types.id', 60)
+    ->get();
+
+    $grouped = $provinceWiseRates->groupBy([
+        'province_name', 
+        'crop_name', 
+        'type_name', 
+        'city_name'
+    ]);
+
+    return $grouped;
+
     $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token');
     $data = array();
     foreach ($tokens->chunk(1000) as $value) {
@@ -51,6 +82,8 @@ Route::get('test', function(){
     $user->addPoints(10);
     return $user->getPoints();
 });
+
+Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
 
 
 
@@ -114,4 +147,9 @@ Route::get('/mail', function(){
    return Mail::raw('This is the plain text content of the email.', function ($message) {
         $message->to('mazeemrehan@gmail.com')->subject('Your Subject Here');
     });
+});
+
+
+Route::any('whtasapphooks', function (Request $request) {
+    Log::debug($request->all());
 });

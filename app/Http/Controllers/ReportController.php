@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Spatie\Browsershot\Browsershot;
+
 
 
 class ReportController extends Controller
@@ -24,5 +26,14 @@ class ReportController extends Controller
         return view('reports.pdf.crop_rates', compact('rates','filterDate','type'));
         // $pdf = Pdf::loadView('reports.pdf.crop_rates',compact('rates','date','type'));
         // return $pdf->output()->stream();
+    }
+
+    function saveImage()  {
+        $filterDate =  \Carbon\Carbon::parse('2023-06-20');
+        $rates =  \App\Models\CropRate::where('crop_type_id',60)
+        ->with(['city'])
+        ->whereDate('rate_date',$filterDate)->get();
+        $type =  \App\Models\CropType::with('crop')->find(60);
+        return view('reports.pdf.crop_rates', compact('rates','filterDate','type'));
     }
 }
