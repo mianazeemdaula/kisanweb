@@ -127,6 +127,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('feeds', \App\Http\Controllers\Admin\FeedController::class);
         Route::resource('deals', \App\Http\Controllers\Admin\DealController::class);
         Route::get('deals-export', [\App\Http\Controllers\Admin\DealController::class,'export']);
+        Route::get('export-nearby-shops/{id}', [\App\Http\Controllers\Admin\DealController::class,'exportNearBuyers']);
         Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
         Route::resource('feedmills', \App\Http\Controllers\Admin\FeedMillController::class);
         Route::resource('feedmillsrate', \App\Http\Controllers\Admin\FeedMillRateController::class);

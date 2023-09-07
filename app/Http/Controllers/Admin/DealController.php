@@ -8,6 +8,7 @@ use App\Models\Deal;
 use App\Models\Crop;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DealsExport;
+use App\Exports\DealNearByShopsExport;
 
 
 class DealController extends Controller
@@ -119,5 +120,9 @@ class DealController extends Controller
 
     function export() {
         return Excel::download(new DealsExport, 'deals.xlsx');
+    }
+
+    function exportNearBuyers($id) {
+        return Excel::download(new DealNearByShopsExport($id), $id.'-buyers.xlsx');
     }
 }
