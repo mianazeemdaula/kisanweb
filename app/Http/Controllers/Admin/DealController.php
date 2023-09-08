@@ -9,6 +9,7 @@ use App\Models\Crop;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DealsExport;
 use App\Exports\DealNearByShopsExport;
+use App\Models\CommissionShop;
 
 
 class DealController extends Controller
@@ -59,7 +60,11 @@ class DealController extends Controller
      */
     public function show($id)
     {
-        //
+        $deal = Deal::with(['bids'])->findOrFail($id);
+        $shops =  CommissionShop::query()->orderByDistance('location',$deal->location)
+        ->withDistance('location', $deal->location)->whereDistanceSphere('location',$deal->location, '<=', 15000)
+        ->whereActive(true)->with(['city', 'user'])->get();
+        return view('admin.deals.show', compact('deal','shops'));
     }
 
     /**
