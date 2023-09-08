@@ -67,8 +67,7 @@
                                 </td>
                                 <td>
                                     <div class="flex space-x-3">
-
-                                        <a href="{{ route('admin.deals.show', $item->id) }}">
+                                        <a href="{{ route('admin.deals.show', $item->id) }}" target="_blank">
                                             <span class="bi bi-eye"></span>
                                         </a>
                                         <a href="{{ route('admin.deals.edit', $item->id) }}">
