@@ -11,7 +11,7 @@
                 <p>Quantity: {{ $deal->qty }} {{ $deal->weight->name }}</p>
                 <p>Location: {{ $deal->address }}</p>
                 <p>Phone: {{ $deal->seller->mobile }}</p>
-                <img src="{{ $deal->media[0]->path }}" class="w-96 " alt="Images">
+                <img src="{{ $deal->media[0]->path }}" class="w-40 " alt="Images">
             </div>
 
             <!-- Bids Information -->
@@ -31,18 +31,20 @@
             <!-- Shops Information -->
             <div class="bg-gray-100 p-4 mt-4">
                 <h2 class="text-lg">Nearby Shops</h2>
-                <table class="">
-                    <tr>
-                        <td>Name</td>
-                        <td>Location</td>
-                        <td>Phone</td>
-                        <td>WhatsApp</td>
-                        <td>Distance</td>
-                    </tr>
-                    @foreach ($shops as $shop)
+                <table class="min-w-full text-left text-sm font-light">
+                    <thead class="border-b font-medium dark:border-neutral-500">
                         <tr>
+                            <td>Name</td>
+                            <td>Location</td>
+                            <td>Phone</td>
+                            <td>WhatsApp</td>
+                            <td>Distance</td>
+                        </tr>
+                    </thead>
+                    @foreach ($shops as $shop)
+                        <tr class="border-b dark:border-neutral-500">
                             <td>{{ $shop->name }}</td>
-                            <td>{{ $shop->address }}</td>
+                            <td class="whitespace-normal">{{ $shop->address }}</td>
                             <td>{{ $shop->social_links['mobile'] }}</td>
                             <td>{{ $shop->social_links['whatsapp'] }}</td>
                             <td>{{ $shop->distance * 100 }} km</td>
