@@ -32,7 +32,7 @@
             <div class="bg-gray-100 p-4 mt-4">
                 <h2 class="text-lg">Nearby Shops</h2>
                 @foreach ($shops as $shop)
-                    <div class="mt-2">
+                    <div class="flex items-center mt-2">
                         <p>Name: {{ $shop->name }}</p>
                         <p>Location: {{ $shop->address }}</p>
                         <p>Phone: {{ $shop->social_links['mobile'] }}</p>
