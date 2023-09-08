@@ -62,7 +62,7 @@ class DealController extends Controller
     {
         $deal = Deal::with(['bids'])->findOrFail($id);
         $shops =  CommissionShop::query()->orderByDistance('location',$deal->location)
-        ->withDistance('location', $deal->location)->whereDistanceSphere('location',$deal->location, '<=', 15000)
+        ->withDistance('location', $deal->location)->whereDistanceSphere('location',$deal->location, '<=', 25000)
         ->whereActive(true)->with(['city', 'user'])->get();
         return view('admin.deals.show', compact('deal','shops'));
     }
