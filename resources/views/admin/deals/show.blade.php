@@ -37,7 +37,7 @@
                         <p>Location: {{ $shop->address }}</p>
                         <p>Phone: {{ $shop->social_links['mobile'] }}</p>
                         <p>WhatsApp: {{ $shop->social_links['whatsapp'] }}</p>
-                        <p>Distance: {{ $shop->distance }} km</p>
+                        <p>Distance: {{ $shop->distance * 100 }} km</p>
                     </div>
                 @endforeach
             </div>
