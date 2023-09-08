@@ -16,7 +16,7 @@
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app.31951651.css"
+      "assets/app.7f8c4aac.css"
     ],
     "assets": [
       "assets/bootstrap-icons.cfe45b98.woff2",
@@ -25,12 +25,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.78f26672.css",
+    "file": "assets/app.fafcdb4c.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app.31951651.css",
+    "file": "assets/app.7f8c4aac.css",
     "src": "resources/js/app.css"
   }
 }
