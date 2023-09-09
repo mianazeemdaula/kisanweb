@@ -23,6 +23,8 @@
                         <div class="ml-4">
                             <p>{{ $bid->buyer->name }}</p>
                             <p>Bidding Price: RS{{ $bid->bid_price }}</p>
+                            <p>Mobile: {{ $bid->buyer->mobile }}</p>
+                            <p>WhatsApp: {{ $bid->buyer->whatsapp }}</p>
                         </div>
                     </div>
                 @endforeach

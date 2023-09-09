@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('name_ur');
+            $table->mediumText('description');
             $table->boolean('active')->default(true);
             $table->string('type',10)->default('whatsapp');
             $table->smallInteger('fee')->unsigned()->default(200);

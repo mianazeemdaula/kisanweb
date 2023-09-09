@@ -13,6 +13,6 @@ class Subscription extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_subscriptions', 'subscription_id', 'user_id')
-                    ->withPivot('start_date', 'end_date');
+        ->withPivot('start_date', 'end_date', 'whatsapp', 'active');
     }
 }

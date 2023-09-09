@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('subscription_id');
             $table->date('start_date');
             $table->date('end_date');
+            $table->string('whatsapp', 14);
+            $table->boolean('active')->default(true);
         });
     }
 
