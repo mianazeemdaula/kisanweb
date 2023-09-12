@@ -32,14 +32,11 @@ class ProcessWhatsApp implements ShouldQueue
     {
         $waapi = new WaAPI();
         $res = null;
-        
-        Log::debug($this->message);
-        // if(!isset($this->message['media'])) {
+        if(!isset($this->message['media'])) {
             $res =  $waapi->sendMessage($this->message['to'], $this->message['text']);
-        // } else if(isset($this->message['media'])) {
-        //     $res =  $waapi->sendMediaFromUrl($this->message['to'], $this->message['media'] , $this->message['text'], "image");
-        // }
-        // Log::debug(['to' => $this->message['to'], 'at' => now()]);
+        } else if(isset($this->message['media'])) {
+            $res =  $waapi->sendMediaFromUrl($this->message['to'], $this->message['media'] , $this->message['text'], "image");
+        }
         return;
     }
 }
