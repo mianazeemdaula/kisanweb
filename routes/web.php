@@ -8,6 +8,7 @@ use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Log;
 
 use Spatie\Browsershot\Browsershot;
+use WaAPI\WaAPI\WaAPI;
 
 Route::get('app/terms-and-conditions', function () {
     return view('app.terms');
@@ -153,4 +154,38 @@ Route::get('/mail', function(){
 
 Route::any('whtasapphooks', function (Request $request) {
     Log::debug($request->all());
+});
+
+Route::get('wappi/message', function(){
+    $waapi = new WaAPI();
+    // $res =  $waapi->sendMessage("923004103160@c.us", "Test WhatsApp message");
+    // return response()->json($res, 200);
+    // $res =  $waapi->sendMediaFromUrl("923004103160@c.us", "https://kisanstock.com/offers/vL5oeBWqnRnjZ78.jpg", "mediaCaption", "image");
+    $groups = [];
+    $chats = [];
+    
+    // $res = $waapi->getChats();
+    // foreach ($res->data as $chat) {
+    //     if($chat['isGroup'] == true){
+    //         $data['chat_id'] = $chat['id']['_serialized'];
+    //         $data['name'] = $chat['name'];
+    //         $groups[] = $data;
+    //     }else{
+    //         $data['chat_id'] = $chat['id']['_serialized'];
+    //         $data['name'] = $chat['name'];
+    //         $chats[] = $data;
+    //     }
+    // }
+    $nextMinute = 0;
+    $jobs = [
+        ['to' => '923004103160@c.us', 'text' => 'Hello World 1'],
+        ['to' => '923004103160@c.us', 'text' => 'Hello World 2'],
+        ['to' => '923004103160@c.us', 'text' => 'Hello World 3'],
+        ['to' => '923004103160@c.us', 'text' => 'Hello World 4'],
+    ];
+    foreach ($jobs as $job) {
+        \App\Jobs\ProcessWhatsApp::dispatch($job)
+                    ->delay(now()->addMinutes($nextMinute++));
+    }
+    return response()->json($jobs, 200);
 });

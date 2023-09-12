@@ -27,7 +27,8 @@
         "spatie/browsershot": "^3.58",
         "spatie/laravel-analytics": "^5.0",
         "spatie/laravel-sitemap": "^6.3",
-        "staudenmeir/belongs-to-through": "^2.13"
+        "staudenmeir/belongs-to-through": "^2.13",
+        "waapi/waapi-laravel-sdk": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
