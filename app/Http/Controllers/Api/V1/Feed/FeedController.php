@@ -87,7 +87,7 @@ class FeedController extends Controller
             }
         }
         FeedUpdateEvent::dispatch($feed->id);
-        SendFeedNotificationJob::dispatch(auth()->user()->name." added post", substr($validatedData['content'],0,30), ['type' => 'feed'])->delay(now()->addSeconds(30));
+        SendFeedNotificationJob::dispatch(auth()->user()->name." added post", $validatedData['content'], ['type' => 'feed'])->delay(now()->addSeconds(30));
         // \App\Helper\FCM::sendToSetting(4,auth()->user()->name." added post", substr($validatedData['content'],0,30), ['type' => 'feed']);
         return response()->json($feed, 200);
     }
