@@ -59,7 +59,7 @@ class WAMessageController extends Controller
             $respones[] = $job;
         }
         // return $respones;
-        return response()->json(['message' => 'Message sent successfully'], 200);
+        return redirect()->back();
     }
 
 
