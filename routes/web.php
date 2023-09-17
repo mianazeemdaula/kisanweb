@@ -134,6 +134,10 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('feedmillsrate', \App\Http\Controllers\Admin\FeedMillRateController::class);
         Route::resource('sugarmills', \App\Http\Controllers\Admin\SugarMillController::class);
         Route::resource('sugarmillsrate', \App\Http\Controllers\Admin\SugarMillRateController::class);
+
+        // WhatsApp
+        Route::get('send-message', [\App\Http\Controllers\Admin\WAMessageController::class,'sendMessage']);
+        Route::post('send-message', [\App\Http\Controllers\Admin\WAMessageController::class,'postSendMessage']);
         
         // Reports
         Route::get('rate-reports',[\App\Http\Controllers\Admin\RateReportController::class,'reports']);
@@ -158,8 +162,8 @@ Route::any('whtasapphooks', function (Request $request) {
 
 Route::get('wappi/message', function(){
     $waapi = new WaAPI();
-    // $res =  $waapi->sendMessage("923004103160@c.us", "Test WhatsApp message");
-    // return response()->json($res, 200);
+    $res =  $waapi->sendMessage("923004103160@c.us", "Test WhatsApp message");
+    return response()->json($res, 200);
     // $res =  $waapi->sendMediaFromUrl("923004103160@c.us", "https://kisanstock.com/offers/vL5oeBWqnRnjZ78.jpg", "mediaCaption", "image");
     $groups = [];
     $chats = [];

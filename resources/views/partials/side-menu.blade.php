@@ -35,6 +35,8 @@
 
                 <x-menu-item title="Sugar Mills" icon="bi-gear" active="false"
                     url="{{ route('admin.sugarmills.index') }}" />
+                <x-menu-item title="WhatsApp" icon="bi-whatsapp" active="false"
+                    url="{{ url('admin/send-message') }}" />
 
                 {{-- <div
                     class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
