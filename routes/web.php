@@ -138,6 +138,8 @@ Route::middleware(['auth'])->group(function () {
         // WhatsApp
         Route::get('send-message', [\App\Http\Controllers\Admin\WAMessageController::class,'sendMessage']);
         Route::post('send-message', [\App\Http\Controllers\Admin\WAMessageController::class,'postSendMessage']);
+        Route::get('send-group-message', [\App\Http\Controllers\Admin\WAMessageController::class,'getGroups']);
+        Route::post('send-group-message', [\App\Http\Controllers\Admin\WAMessageController::class,'sendGroupMessage']);
         
         // Reports
         Route::get('rate-reports',[\App\Http\Controllers\Admin\RateReportController::class,'reports']);
@@ -162,11 +164,12 @@ Route::any('whtasapphooks', function (Request $request) {
 
 Route::get('wappi/message', function(){
     $waapi = new WaAPI();
-    $res =  $waapi->sendMessage("923004103160@c.us", "Test WhatsApp message");
-    return response()->json($res, 200);
-    // $res =  $waapi->sendMediaFromUrl("923004103160@c.us", "https://kisanstock.com/offers/vL5oeBWqnRnjZ78.jpg", "mediaCaption", "image");
+    // $res =  $waapi->sendMessage("923004103160@c.us", "Test WhatsApp message");
+    // return response()->json($res, 200);
+    $res =  $waapi->sendMediaFromUrl("120363026419217408@g.us", "https://kisanstock.com/offers/vL5oeBWqnRnjZ78.jpg", "mediaCaption", "image");
     $groups = [];
     $chats = [];
+    return $res;
     
     // $res = $waapi->getChats();
     // foreach ($res->data as $chat) {

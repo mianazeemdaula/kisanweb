@@ -19,22 +19,46 @@ class WAMessageController extends Controller
 
     public function getGroups()
     {
-        $groups = $this->wa->getGroups();
-        return view('admin.whatsapp.groups', compact('groups'));
+        $wapp = new WaAPI();
+        $res = $wapp->getChats();
+        $groups = [];
+        foreach ($res->data as $chat) {
+            if($chat['isGroup'] == true && $chat['isReadOnly'] == false){
+                $data['id'] = $chat['id']['_serialized'];
+                $data['name'] = $chat['name'];
+                $groups[] = $data;
+            }else{
+                $data['id'] = $chat['id']['_serialized'];
+                $data['name'] = $chat['name'];
+                $chats[] = $data;
+            }
+        }
+        return view('admin.whatsapp.send-group-message', compact('groups'));
     }
 
     public function sendGroupMessage(Request $request)
     {
         $nextMinute = 0;
-        foreach ($request->groups as $group) {
+        $media = null;
+        if($request->hasFile('media')){
+            $fileName = time().'.'.$request->file('media')->getClientOriginalExtension();
+            $media = asset($request->file('media')->move('temp',$fileName));
+        }
+        $respones = [];
+        foreach ($request->to as $to) {
             $job = [
-                'to' => $group,
+                'to' => $to,
                 'text' => $request->text,
             ];
+            if($media){
+                $job['media'] = $media;
+            }
             \App\Jobs\ProcessWhatsApp::dispatch($job)
                     ->delay(now()->addMinutes($nextMinute));
             $nextMinute = $nextMinute + 2;
+            $respones[] = $job;
         }
+        // return $respones;
         return response()->json(['message' => 'Message sent successfully'], 200);
     }
 
