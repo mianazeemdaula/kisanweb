@@ -38,6 +38,10 @@ class WAMessageController extends Controller
 
     public function sendGroupMessage(Request $request)
     {
+        $request->validate([
+            'to' => 'required',
+            'text' => 'required',
+        ]);
         $nextMinute = 0;
         $media = null;
         if($request->hasFile('media')){
@@ -89,5 +93,35 @@ class WAMessageController extends Controller
             $wapp->sendMessage($to, $request->text);
         }
         return redirect()->back()->with(['message' => 'Message sent successfully']);
+    }
+
+    private function readGroups()  {
+        $file_path = public_path('wa_groups.json');
+        $groups = [];
+        File::exists($file_path);
+        if (file_exists($file_path)) {
+            $json_data = file_get_contents($file_path);
+            $groups = json_decode($json_data, true);
+        } else {
+            $wapp = new WaAPI();
+            $res = $wapp->getChats();
+            $groups = [];
+            foreach ($res->data as $chat) {
+                if($chat['isGroup'] == true && $chat['isReadOnly'] == false){
+                    $data['id'] = $chat['id']['_serialized'];
+                    $data['name'] = $chat['name'];
+                    $groups[] = $data;
+                }else{
+                    $data['id'] = $chat['id']['_serialized'];
+                    $data['name'] = $chat['name'];
+                    $chats[] = $data;
+                }
+            }
+            $json_data = json_encode($groups, JSON_PRETTY_PRINT);
+            $file_path = public_path('wa_groups.json');
+            file_put_contents($file_path, $json_data);
+            $groups = collect($groups);
+        }
+        return $groups;
     }
 }
