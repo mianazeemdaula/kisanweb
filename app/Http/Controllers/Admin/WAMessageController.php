@@ -29,7 +29,7 @@ class WAMessageController extends Controller
                 $groups[] = $data;
             }else{
                 $data['id'] = $chat['id']['_serialized'];
-                $data['name'] = $chat['name'];
+                $data['name'] = $chat['name'] ?? 'No Name';
                 $chats[] = $data;
             }
         }
