@@ -23,7 +23,7 @@ class WAMessageController extends Controller
         $res = $wapp->getChats();
         $groups = [];
         foreach ($res->data as $chat) {
-            if($chat['isGroup'] == true && $chat['isReadOnly'] == false && $chat['name'] != null){
+            if($chat['isGroup'] == true && $chat['isReadOnly'] == false &&  isset($chat['name'])){
                 $data['id'] = $chat['id']['_serialized'];
                 $data['name'] = $chat['name'];
                 $groups[] = $data;
