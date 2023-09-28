@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Browsershot\Browsershot;
+
 
 use App\Models\Province;
 use App\Models\District;
 use App\Models\City;
 use App\Models\CropRate;
+use App\Models\PaymentGateway;
+use App\Models\Subscription;
 use LevelUp\Experience\Models\Level;
 
 class DataController extends Controller
@@ -89,5 +93,64 @@ class DataController extends Controller
             );
         }
         
+    }
+
+    public function paymentAndSubscription()  {
+        PaymentGateway::updateOrCreate([
+            'name' => 'Paypal',
+            'name_ur' => 'پے پال',
+            'slug' => 'paypal',
+        ],[
+            'logo' => 'https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg',
+            'config' => [
+                'client_id' => 'sb',
+                'client_secret' => 'sb',
+                'mode' => 'sandbox',
+                'currency' => 'USD',
+            ]
+        ]);
+
+        PaymentGateway::updateOrCreate(
+            ['name' => 'JazzCash', 'name_ur' => 'جاز کیش', 'slug' => 'jazzcash'],
+            ['logo' => 'https://www.jazzcash.com.pk/wp-content/uploads/2019/10/JazzCash-Logo.png', 'config' => []]
+        );
+        PaymentGateway::updateOrCreate(
+            ['name' => 'EasyPaisa', 'name_ur' => 'ایزی پیسہ', 'slug' => 'easypaisa'],
+            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => []]
+        );
+        PaymentGateway::updateOrCreate(
+            ['name' => 'Bank Transfer', 'name_ur' => 'بینک ٹرانسفر', 'slug' => 'bank-transfer'],
+            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => []]
+        );
+
+        Subscription::updateOrCreate(
+            ['name' => 'Daily Rates', 'name_ur' => 'روانہ کی قیمتیں'],
+            ['fee' => 200, 'duration' => 30, 'duration_unit' => 'day', 'description' => 'Free Plan', 'description_ur' => 'مفت پلان']
+        );
+
+        Subscription::updateOrCreate(
+            ['name' => 'Selling Request', 'name_ur' => 'فروخت کی درخواست'],
+            ['fee' => 300, 'duration' => 30, 'duration_unit' => 'day', 'description' => 'Whatsapp the request of selling of crop', 'description_ur' => 'فروخت کی درخواست کو واٹس ایپ کریں']
+        );
+        return response()->json(['message' => 'done'], 200);
+    }
+
+    public function generateRatesImage()  {
+        // Browsershot::url('https://google.com')->save('temp/rates.png');
+        $image = \Image::canvas(800, 600, '#ff0000');
+        $text = 'مرحباً بكم في لاراڤيل';
+        $image->text($text, 500, 40, function($font) {
+            $font->file(public_path('fonts/Jameel_Noori_Nastaleeq.ttf'));
+            $font->size(24);
+            $font->color('#ffffff');
+            $font->align('right');
+        });
+       return $image->response();
+        $image->save(public_path('temp/rates2.png'));
+        // // Image draw table with text, rate min, rate max and trend
+
+        // // save the image
+        // $image->save(public_path('temp/rates2.png'));
+
     }
 }

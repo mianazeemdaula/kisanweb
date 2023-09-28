@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Appy\FcmHttpV1\FcmNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyApiEmail;
-use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Log;
 
 use Spatie\Browsershot\Browsershot;
 use WaAPI\WaAPI\WaAPI;
+
+
 
 Route::get('app/terms-and-conditions', function () {
     return view('app.terms');
@@ -65,17 +66,6 @@ Route::get('/test/{id}', function($id){
     return response()->json($data, 200);
 });
 
-Route::get('/not/{token}', function($token){
-    $sitemap =  SitemapGenerator::create('https://kisanstock.com')->writeToFile("sitemap.xml");
-    return \App\Helper\FCM::sendToSetting(7,"TItle", "body", ['type' => 'comment', 'shop_id'=> 3]);
-    return \App\Helper\FCM::send([$token], "Title of", "Body of ",['type' => 'mand_rate', 'crop_id' => 2]);
-});
-
-
-Route::get('whatsapp', function(){
-    return \App\Helper\WhatsApp::sendTemplate("923004103160", "hello_world", 'en_US' , [], []);
-});
-
 Route::get('test', function(){
     return \App\Models\FeedMill::with(['rate','city'])->paginate(50);
     return \LevelUp\Experience\Facades\Leaderboard::generate();
@@ -87,13 +77,7 @@ Route::get('test', function(){
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
 
 
-
-
-
-
 Route::view('/mail-view', 'reports.pdf.mail');
-
-
 
 Route::group([], function() {
 
@@ -148,51 +132,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::any('/webhook', [\App\Http\Controllers\Api\V1\HomeController::class,'wamessage']);
-Route::get('/datafeed', [\App\Http\Controllers\DataController::class,'lastRatesUpdate']);
-Route::get('/datalevels', [\App\Http\Controllers\DataController::class,'pointsLevel']);
-
-Route::get('/mail', function(){
-   return Mail::raw('This is the plain text content of the email.', function ($message) {
-        $message->to('mazeemrehan@gmail.com')->subject('Your Subject Here');
-    });
-});
+Route::get('/datafeed', [\App\Http\Controllers\DataController::class,'paymentAndSubscription']);
+Route::get('/rate-image', [\App\Http\Controllers\DataController::class,'generateRatesImage']);
 
 
 Route::any('whtasapphooks', function (Request $request) {
     Log::debug($request->all());
-});
-
-Route::get('wappi/message', function(){
-    $waapi = new WaAPI();
-    // $res =  $waapi->sendMessage("923004103160@c.us", "Test WhatsApp message");
-    // return response()->json($res, 200);
-    $res =  $waapi->sendMediaFromUrl("120363026419217408@g.us", "https://kisanstock.com/offers/vL5oeBWqnRnjZ78.jpg", "mediaCaption", "image");
-    $groups = [];
-    $chats = [];
-    return $res;
-    
-    // $res = $waapi->getChats();
-    // foreach ($res->data as $chat) {
-    //     if($chat['isGroup'] == true){
-    //         $data['chat_id'] = $chat['id']['_serialized'];
-    //         $data['name'] = $chat['name'];
-    //         $groups[] = $data;
-    //     }else{
-    //         $data['chat_id'] = $chat['id']['_serialized'];
-    //         $data['name'] = $chat['name'];
-    //         $chats[] = $data;
-    //     }
-    // }
-    $nextMinute = 0;
-    $jobs = [
-        ['to' => '923004103160@c.us', 'text' => 'Hello World 1'],
-        ['to' => '923004103160@c.us', 'text' => 'Hello World 2'],
-        ['to' => '923004103160@c.us', 'text' => 'Hello World 3'],
-        ['to' => '923004103160@c.us', 'text' => 'Hello World 4'],
-    ];
-    foreach ($jobs as $job) {
-        \App\Jobs\ProcessWhatsApp::dispatch($job)
-                    ->delay(now()->addMinutes($nextMinute++));
-    }
-    return response()->json($jobs, 200);
 });

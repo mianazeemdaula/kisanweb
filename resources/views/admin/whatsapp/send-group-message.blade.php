@@ -15,7 +15,7 @@
                     </div>
                     <div class="grid grid-cols-3 md:grid-cols-4 gap-2">
                         @foreach ($groups as $item)
-                            <div>
+                            <div class="text-xs">
                                 <input type="checkbox" name="to[]" value="{{ $item['id'] }}"> {{ $item['name'] }}
                             </div>
                         @endforeach
@@ -27,7 +27,7 @@
                 </div>
                 <div>
                     <h3 class="p-1">Message</h3>
-                    <textarea placeholder="Message" name="text" value="{{ old('text') }}" class="w-80" required></textarea>
+                    <textarea placeholder="Message" name="text" value="{{ old('text') }}" class="w-full" rows="5" required></textarea>
                     @error('text')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror

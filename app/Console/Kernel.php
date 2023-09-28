@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping();
+        $schedule->command('app:delete-old-files')->everyDayAt('00:00')->withoutOverlapping();
+        $schedule->command('app:generate-sitemap')->everyDayAt('01:00')->withoutOverlapping();
     }
 
     /**

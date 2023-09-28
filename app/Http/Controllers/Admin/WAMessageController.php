@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use WaAPI\WaAPI\WaAPI;
-
+use Illuminate\Support\Facades\File;
 
 class WAMessageController extends Controller
 {
@@ -20,19 +20,7 @@ class WAMessageController extends Controller
     public function getGroups()
     {
         $wapp = new WaAPI();
-        $res = $wapp->getChats();
-        $groups = [];
-        foreach ($res->data as $chat) {
-            if($chat['isGroup'] == true && $chat['isReadOnly'] == false &&  isset($chat['name'])){
-                $data['id'] = $chat['id']['_serialized'];
-                $data['name'] = $chat['name'];
-                $groups[] = $data;
-            }else{
-                $data['id'] = $chat['id']['_serialized'];
-                $data['name'] = $chat['name'] ?? 'No Name';
-                $chats[] = $data;
-            }
-        }
+        $groups = $this->readGroups();
         return view('admin.whatsapp.send-group-message', compact('groups'));
     }
 
@@ -98,7 +86,6 @@ class WAMessageController extends Controller
     private function readGroups()  {
         $file_path = public_path('wa_groups.json');
         $groups = [];
-        File::exists($file_path);
         if (file_exists($file_path)) {
             $json_data = file_get_contents($file_path);
             $groups = json_decode($json_data, true);
@@ -107,7 +94,10 @@ class WAMessageController extends Controller
             $res = $wapp->getChats();
             $groups = [];
             foreach ($res->data as $chat) {
-                if($chat['isGroup'] == true && $chat['isReadOnly'] == false && $chat['name'] != null){
+                if(!isset($chat['name'])){
+                    continue;
+                }
+                if($chat['isGroup'] == true && $chat['isReadOnly'] == false){
                     $data['id'] = $chat['id']['_serialized'];
                     $data['name'] = $chat['name'];
                     $groups[] = $data;
