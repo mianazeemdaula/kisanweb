@@ -9,8 +9,13 @@
                 <div>
                     <div class="flex justify-between">
                         <h3 class="p-1">Groups</h3>
-                        <div id="checkAll" class="cursor-pointer bg-blue-500 rounded p-1 text-white">
-                            Select All
+                        <div class="flex space-x-2">
+                            <div id="checkAll" class="cursor-pointer bg-blue-500 rounded p-1 text-white">
+                                Select All
+                            </div>
+                            <div>
+                                <a href="{{ url('admin/del-wa-group-file') }}">Delete Cache</a>
+                            </div>
                         </div>
                     </div>
                     <div class="grid grid-cols-3 md:grid-cols-4 gap-2">

@@ -124,6 +124,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('send-message', [\App\Http\Controllers\Admin\WAMessageController::class,'postSendMessage']);
         Route::get('send-group-message', [\App\Http\Controllers\Admin\WAMessageController::class,'getGroups']);
         Route::post('send-group-message', [\App\Http\Controllers\Admin\WAMessageController::class,'sendGroupMessage']);
+        Route::get('del-wa-group-file', [\App\Http\Controllers\Admin\WAMessageController::class,'deleteWAGroupFile']);
         
         // Reports
         Route::get('rate-reports',[\App\Http\Controllers\Admin\RateReportController::class,'reports']);

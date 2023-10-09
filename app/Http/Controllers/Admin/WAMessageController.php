@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use WaAPI\WaAPI\WaAPI;
 use Illuminate\Support\Facades\File;
 
+
 class WAMessageController extends Controller
 {
     public $wa;
@@ -113,5 +114,10 @@ class WAMessageController extends Controller
             $groups = collect($groups);
         }
         return $groups;
+    }
+
+    public function deleteWAGroupFile()  {
+        File::delete(public_path('wa_groups.json'));
+        return redirect()->back()->with(['message' => 'File deleted successfully']);
     }
 }
