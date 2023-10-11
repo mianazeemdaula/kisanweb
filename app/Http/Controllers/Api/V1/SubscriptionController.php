@@ -32,7 +32,7 @@ class SubscriptionController extends Controller
     {
         $request->validate([
             'subscription_id' => 'required|exists:subscriptions,id',
-            'payment_method' => 'required|in:jazzcash,easypesa,upaisa,card,stripe,applepay,googlepay',
+            'payment_method' => 'required|exists:payment_gateways,id',
             'contact' => 'required',
         ]);
         $user = auth()->user();

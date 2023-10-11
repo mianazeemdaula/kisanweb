@@ -107,7 +107,8 @@ class DataController extends Controller
                 'client_secret' => 'sb',
                 'mode' => 'sandbox',
                 'currency' => 'USD',
-            ]
+            ],
+            'active' => false,
         ]);
 
         PaymentGateway::updateOrCreate(
@@ -120,7 +121,8 @@ class DataController extends Controller
         );
         PaymentGateway::updateOrCreate(
             ['name' => 'Bank Transfer', 'name_ur' => 'بینک ٹرانسفر', 'slug' => 'bank-transfer'],
-            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => []]
+            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => [],
+            'active' => false,],
         );
 
         Subscription::updateOrCreate(

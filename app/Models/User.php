@@ -142,4 +142,5 @@ class User extends Authenticatable
         return $this->belongsToMany(Subscription::class, 'user_subscriptions', 'user_id', 'subscription_id')
                     ->withPivot('start_date', 'end_date', 'contact', 'active', 'payment_tx_id', 'payment_gateway_id');
     }
+    
 }

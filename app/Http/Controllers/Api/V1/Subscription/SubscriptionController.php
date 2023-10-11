@@ -14,7 +14,7 @@ class SubscriptionController extends Controller
     public function index()
     {
         $data['subscriptions'] = Subscription::whereActive(true)->get();
-        $data['user_subscriptions'] = auth()->user()->subscriptions()->wherePivot('active',true)->pluck('id')->toArray();
+        $data['user_subscriptions'] = auth()->user()->subscriptions();
         return response()->json($data, 200);
     }
 

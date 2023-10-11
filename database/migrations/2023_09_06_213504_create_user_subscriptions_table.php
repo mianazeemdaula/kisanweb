@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_subscriptions', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('subscription_id');
             $table->unsignedBigInteger('payment_gateway_id');
@@ -24,7 +23,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');
             $table->foreign('payment_gateway_id')->references('id')->on('payment_gateways')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
