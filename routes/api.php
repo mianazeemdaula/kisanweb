@@ -35,6 +35,7 @@ use App\Http\Controllers\Api\V1\FeedMill\FeedMillController;
 use App\Http\Controllers\Api\V1\SugarMill\SugarMillController;
 use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
+use App\Http\Controllers\Api\V1\Subscription\SubscriptionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -134,6 +135,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Videos
     Route::resource('/videos', VideoController::class);
     
+    Route::resource('/subscription', SubscriptionController::class);
     // // Comment routes
     // Route::delete('/feeds/{feed}/comments/{comment}', [FeedCommentController::class, 'destroy']);
 });
