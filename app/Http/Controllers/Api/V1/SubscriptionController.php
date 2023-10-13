@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Subscription;
+
 class SubscriptionController extends Controller
 {
     /**
@@ -13,7 +15,8 @@ class SubscriptionController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $data = $user->subscriptions()->paginate();
+        $data['subscriptions'] = Subscription::active()->get();
+        $data['subscribed'] = $user->subscriptions()->wherePivot('active',1)->get();
         return response()->json($data, 200);
     }
 
@@ -34,15 +37,17 @@ class SubscriptionController extends Controller
             'subscription_id' => 'required|exists:subscriptions,id',
             'payment_method' => 'required|exists:payment_gateways,id',
             'contact' => 'required',
+            'txid' => 'required'
         ]);
         $user = auth()->user();
-        $user->subscriptions()->syncWithoutDetaching($request->subscription_id, [
-            'payment_gateway_id' => $request->payment_method,
+        $user->subscriptions()->syncWithoutDetaching([$request->subscription_id => [
             'contact' => $request->contact,
             'active' => false,
             'start_date' => now(),
             'end_date' => now()->addDays(30),
-        ]);
+            'payment_tx_id' => $request->txid,
+            'payment_gateway_id' => $request->payment_method,
+        ]]);
         return response()->json(['message' => 'Subscription added successfully'], 200);
     }
 

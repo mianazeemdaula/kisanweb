@@ -20,8 +20,19 @@ class Subscription extends Model
         'description',
         'description_ur',
         'active',
-        'config',
     ];
+
+    protected $casts = [
+        'active' => 'boolean',
+        'fee' => 'integer',
+        'duration' => 'integer',
+    ];
+    
+
+    public function scopeActive($query)
+    {
+        return $query->whereActive(true);
+    }
 
     public function users()
     {

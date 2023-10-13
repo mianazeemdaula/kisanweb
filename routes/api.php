@@ -35,7 +35,7 @@ use App\Http\Controllers\Api\V1\FeedMill\FeedMillController;
 use App\Http\Controllers\Api\V1\SugarMill\SugarMillController;
 use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
-use App\Http\Controllers\Api\V1\Subscription\SubscriptionController;
+use App\Http\Controllers\Api\V1\SubscriptionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes

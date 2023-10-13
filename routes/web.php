@@ -26,6 +26,8 @@ Route::get('app/fb-delete-data', function () {
 
 Route::get('/test/{id}', function($id){
 
+    \App\Jobs\ProcessSubscriptionJob::dispatch(1, 'Test message', 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
+    return 'done';
     // return Browsershot::url('http://127.0.0.1:8000/save-image')
     // ->fullPage()
     // ->save('/images/crop_rates.jpg');
