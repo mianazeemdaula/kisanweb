@@ -125,15 +125,25 @@ class DataController extends Controller
             'active' => false,],
         );
 
-        Subscription::updateOrCreate(
+        $sub = Subscription::updateOrCreate(
             ['name' => 'Daily Rates', 'name_ur' => 'روانہ کی قیمتیں'],
-            ['fee' => 200, 'duration' => 1, 'duration_unit' => 'month', 'description' => 'Free Plan', 'description_ur' => 'مفت پلان']
+            ['duration_unit' => 'month', 'description' => 'Free Plan', 'description_ur' => 'مفت پلان']
+        );
+
+        $sub->packages()->updateOrCreate(
+            ['fee' => 200, 'duration' => 1, 'duration_unit' => 'month']
+        );
+        $sub->packages()->updateOrCreate(
+            ['fee' => 500, 'duration' => 3, 'duration_unit' => 'month']
+        );
+        $sub->packages()->updateOrCreate(
+            ['fee' => 1800, 'duration' => 1, 'duration_unit' => 'year']
         );
 
         Subscription::updateOrCreate(
             
             ['name' => 'Selling Request', 'name_ur' => 'فروخت کی درخواست'],
-            ['fee' => 300, 'duration' => 1, 'duration_unit' => 'month', 'description' => 'Whatsapp the request of selling of crop', 'description_ur' => 'فروخت کی درخواست کو واٹس ایپ کریں']
+            ['description' => 'Whatsapp the request of selling of crop', 'description_ur' => 'فروخت کی درخواست کو واٹس ایپ کریں']
         );
         return response()->json(['message' => 'done'], 200);
     }
