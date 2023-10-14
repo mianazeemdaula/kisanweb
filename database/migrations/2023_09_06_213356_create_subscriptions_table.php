@@ -19,9 +19,6 @@ return new class extends Migration
             $table->mediumText('description_ur');
             $table->boolean('active')->default(true);
             $table->string('type',10)->default('whatsapp');
-            $table->smallInteger('fee')->unsigned()->default(200);
-            $table->smallInteger('duration')->unsigned()->default(30);
-            $table->string('duration_unit',6)->default('day');
             $table->timestamps();
         });
     }

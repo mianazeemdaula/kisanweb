@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Subscription extends Model
 {
@@ -14,9 +14,6 @@ class Subscription extends Model
         'name',
         'name_ur',
         'slug',
-        'fee',
-        'duration',
-        'duration_unit',
         'description',
         'description_ur',
         'active',
@@ -24,8 +21,6 @@ class Subscription extends Model
 
     protected $casts = [
         'active' => 'boolean',
-        'fee' => 'integer',
-        'duration' => 'integer',
     ];
     
 
@@ -34,9 +29,8 @@ class Subscription extends Model
         return $query->whereActive(true);
     }
 
-    public function users()
+    public function packages(): HasMany
     {
-        return $this->belongsToMany(User::class, 'user_subscriptions', 'subscription_id', 'user_id')
-        ->withPivot('start_date', 'end_date', 'contact', 'active', 'payment_tx_id', 'payment_gateway_id');
+        return $this->hasMany(SubscriptionPackage::class);
     }
 }
