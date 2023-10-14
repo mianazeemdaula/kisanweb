@@ -113,26 +113,27 @@ class DataController extends Controller
 
         PaymentGateway::updateOrCreate(
             ['name' => 'JazzCash', 'name_ur' => 'جاز کیش', 'slug' => 'jazzcash'],
-            ['logo' => 'https://www.jazzcash.com.pk/wp-content/uploads/2019/10/JazzCash-Logo.png', 'config' => []]
+            ['logo' => 'https://www.jazzcash.com.pk/wp-content/uploads/2019/10/JazzCash-Logo.png', 'config' => [], 'public_data' => ['account' => '03001234567', 'account_name' => 'JazzCash Account']]
         );
         PaymentGateway::updateOrCreate(
             ['name' => 'EasyPaisa', 'name_ur' => 'ایزی پیسہ', 'slug' => 'easypaisa'],
-            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => []]
+            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => [],'public_data' => ['account' => '03001234567', 'account_name' => 'EasyPaisa Account']]
         );
         PaymentGateway::updateOrCreate(
             ['name' => 'Bank Transfer', 'name_ur' => 'بینک ٹرانسفر', 'slug' => 'bank-transfer'],
-            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => [],
+            ['logo' => 'https://www.easypaisa.com.pk/wp-content/uploads/2019/10/easypaisa-logo.png', 'config' => [],'public_data' => ['account' => '03001234567', 'account_name' => 'Bank Account'],
             'active' => false,],
         );
 
         Subscription::updateOrCreate(
             ['name' => 'Daily Rates', 'name_ur' => 'روانہ کی قیمتیں'],
-            ['fee' => 200, 'duration' => 30, 'duration_unit' => 'day', 'description' => 'Free Plan', 'description_ur' => 'مفت پلان']
+            ['fee' => 200, 'duration' => 1, 'duration_unit' => 'month', 'description' => 'Free Plan', 'description_ur' => 'مفت پلان']
         );
 
         Subscription::updateOrCreate(
+            
             ['name' => 'Selling Request', 'name_ur' => 'فروخت کی درخواست'],
-            ['fee' => 300, 'duration' => 30, 'duration_unit' => 'day', 'description' => 'Whatsapp the request of selling of crop', 'description_ur' => 'فروخت کی درخواست کو واٹس ایپ کریں']
+            ['fee' => 300, 'duration' => 1, 'duration_unit' => 'month', 'description' => 'Whatsapp the request of selling of crop', 'description_ur' => 'فروخت کی درخواست کو واٹس ایپ کریں']
         );
         return response()->json(['message' => 'done'], 200);
     }

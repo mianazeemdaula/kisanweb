@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->boolean('active')->default(true);
             $table->json('config')->nullable();
+            $table->json('public_data')->nullable();
             $table->timestamps();
         });
     }

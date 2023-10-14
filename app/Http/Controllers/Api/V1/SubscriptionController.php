@@ -48,7 +48,8 @@ class SubscriptionController extends Controller
             'payment_tx_id' => $request->txid,
             'payment_gateway_id' => $request->payment_method,
         ]]);
-        return response()->json(['message' => 'Subscription added successfully'], 200);
+        $data = $user->subscriptions()->wherePivot('subscription_id', $request->subscription_id)->first();
+        return response()->json($data, 200);
     }
 
     /**

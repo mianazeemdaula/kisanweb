@@ -18,7 +18,12 @@ class PaymentGateway extends Model
         'config',
     ];
 
+    protected $hidden = [
+        'config',
+    ];
+
     protected $casts = [
         'config' => 'json',
+        'public_data' => 'json',
     ];
 }
