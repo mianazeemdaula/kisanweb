@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use WaAPI\WaAPI\WaAPI;
 use App\Models\Subscription;
+use Illuminate\Support\Str;
+use App\Models\SubscriptionPackage;
 
 class SubscriptionController extends Controller
 {
@@ -15,7 +17,8 @@ class SubscriptionController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $data['subscriptions'] = Subscription::active()->with(['packages'])->get();
+        $data['subscriptions'] = Subscription::active()->with(['packages'])
+        ->whereHas('packages')->get();
         $data['subscribed'] = $user->subscriptions()->wherePivot('active',1)->get();
         return response()->json($data, 200);
     }
@@ -34,21 +37,43 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'subscription_id' => 'required|exists:subscriptions,id',
+            'package_id' => 'required|exists:subscription_packages,id',
             'payment_method' => 'required|exists:payment_gateways,id',
             'contact' => 'required',
-            'txid' => 'required'
+            'screenshot' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $user = auth()->user();
-        $user->subscriptions()->syncWithoutDetaching([$request->subscription_id => [
+        $package = SubscriptionPackage::find($request->package_id);
+        $lastDate = now();
+        if($package->duration_unit == 'month'){
+            $lastDate = $lastDate->addMonths($package->duration);
+        }else if($package->duration_unit == 'year'){
+            $lastDate = $lastDate->addYears($package->duration);    
+        }else{
+            $lastDate = $lastDate->addDays($package->duration);
+        }
+        $screenshot = null;
+        if($request->hasFile('screenshot')){
+            $screenshot = $request->file('screenshot')->store('public/subscriptions');
+        }
+        $user->subscriptions()->syncWithoutDetaching([$request->package_id => [
             'contact' => $request->contact,
-            'active' => false,
+            'active' => Str::contains(Str::lower($package->name), 'trial'),
             'start_date' => now(),
-            'end_date' => now()->addDays(30),
-            'payment_tx_id' => $request->txid,
+            'end_date' => $lastDate,
+            'payment_tx_id' => $request->txid ?? null,
             'payment_gateway_id' => $request->payment_method,
+            'screenshot' => $screenshot ?? null,
         ]]);
-        $data = $user->subscriptions()->wherePivot('subscription_id', $request->subscription_id)->first();
+        $data = $user->subscriptions()->wherePivot('subscription_package_id', $request->package_id)->first();
+        if($data->pivot->active){
+            $waapi = new WaAPI();
+            $to = $request->contact;
+            if(Str::startsWith($to, '03')){
+                $to = '92'.substr($to, 1);
+            }
+            $waapi->addGroupParticipant("120363168242340048@g.us",$to."@c.us");
+        }
         return response()->json($data, 200);
     }
 

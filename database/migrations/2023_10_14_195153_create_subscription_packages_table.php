@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('subscription_packages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('subscription_id');
+            $table->string('name', 50)->nullable();
             $table->smallInteger('fee')->unsigned()->default(200);
             $table->smallInteger('duration')->unsigned()->default(30);
             $table->string('duration_unit',6)->default('day');

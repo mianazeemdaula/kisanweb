@@ -31,6 +31,6 @@ class Subscription extends Model
 
     public function packages(): HasMany
     {
-        return $this->hasMany(SubscriptionPackage::class);
+        return $this->hasMany(SubscriptionPackage::class)->orderBy('fee');
     }
 }

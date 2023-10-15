@@ -131,17 +131,19 @@ class DataController extends Controller
         );
 
         $sub->packages()->updateOrCreate(
-            ['fee' => 200, 'duration' => 1, 'duration_unit' => 'month']
+            ['name' => 'Free Trial','fee' => 0, 'duration' => 3, 'duration_unit' => 'day']
         );
         $sub->packages()->updateOrCreate(
-            ['fee' => 500, 'duration' => 3, 'duration_unit' => 'month']
+            ['name' => 'Monthly','fee' => 200, 'duration' => 1, 'duration_unit' => 'month']
         );
         $sub->packages()->updateOrCreate(
-            ['fee' => 1800, 'duration' => 1, 'duration_unit' => 'year']
+            ['name' => 'Fournightly', 'fee' => 500, 'duration' => 3, 'duration_unit' => 'month']
+        );
+        $sub->packages()->updateOrCreate(
+            ['name' => 'Yearly', 'fee' => 1800, 'duration' => 1, 'duration_unit' => 'year']
         );
 
         Subscription::updateOrCreate(
-            
             ['name' => 'Selling Request', 'name_ur' => 'فروخت کی درخواست'],
             ['description' => 'Whatsapp the request of selling of crop', 'description_ur' => 'فروخت کی درخواست کو واٹس ایپ کریں']
         );
