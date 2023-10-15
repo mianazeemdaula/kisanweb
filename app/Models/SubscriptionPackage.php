@@ -18,11 +18,13 @@ class SubscriptionPackage extends Model
         'duration_unit',
         'name',
         'name_ur',
+        'trial',
     ];
     
     protected $casts = [
         'fee' => 'integer',
         'duration' => 'integer',
+        'trial' => 'boolean',
     ];
 
     public function user(): BelongsTo

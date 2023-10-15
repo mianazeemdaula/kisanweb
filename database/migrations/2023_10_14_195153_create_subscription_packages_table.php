@@ -19,6 +19,7 @@ return new class extends Migration
             $table->smallInteger('fee')->unsigned()->default(200);
             $table->smallInteger('duration')->unsigned()->default(30);
             $table->string('duration_unit',6)->default('day');
+            $table->boolean('trial')->default(false);
             $table->timestamps();
             $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');
         });

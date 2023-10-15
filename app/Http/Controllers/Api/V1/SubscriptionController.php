@@ -8,6 +8,7 @@ use WaAPI\WaAPI\WaAPI;
 use App\Models\Subscription;
 use Illuminate\Support\Str;
 use App\Models\SubscriptionPackage;
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
@@ -42,7 +43,19 @@ class SubscriptionController extends Controller
             'contact' => 'required',
             'screenshot' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
         $user = auth()->user();
+        $data = $user->subscriptions()->wherePivot('subscription_package_id', $request->package_id)->first();
+
+        if($data){
+            $isExpired = Carbon::parse($data->pivot->end_date)->isPast();
+            if($data->trial){
+                return response()->json(['message' => "You are already avail the trial"], 422);
+            }else if(!$isExpired){
+                return response()->json(['message' => "You are already subscribed to this package"], 422);
+            }
+        }
+
         $package = SubscriptionPackage::find($request->package_id);
         $lastDate = now();
         if($package->duration_unit == 'month'){
@@ -58,7 +71,7 @@ class SubscriptionController extends Controller
         }
         $user->subscriptions()->syncWithoutDetaching([$request->package_id => [
             'contact' => $request->contact,
-            'active' => Str::contains(Str::lower($package->name), 'trial'),
+            'active' => $package->trial,
             'start_date' => now(),
             'end_date' => $lastDate,
             'payment_tx_id' => $request->txid ?? null,

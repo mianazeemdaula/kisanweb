@@ -15,10 +15,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Run Queue Worker
         $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping();
+
+        // Delete temp old files daily from storage folder
         $schedule->command('app:delete-old-files')->everyDayAt('00:00')->withoutOverlapping();
+
+        // Generate Sitemap Daily for SEO
         $schedule->command('app:generate-sitemap')->everyDayAt('01:00')->withoutOverlapping();
+
+        // Expire Subscription after end date
+        $schedule->command('app:expire-subscription')->everyDayAt('00:10')->withoutOverlapping();
     }
 
     /**

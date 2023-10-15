@@ -131,7 +131,7 @@ class DataController extends Controller
         );
 
         $sub->packages()->updateOrCreate(
-            ['name' => 'Free Trial', 'name_ur' => 'فری ٹرائل', 'fee' => 0, 'duration' => 3, 'duration_unit' => 'day']
+            ['name' => 'Free Trial', 'name_ur' => 'فری ٹرائل', 'fee' => 0, 'duration' => 3, 'duration_unit' => 'day', 'trial' => true]
         );
         $sub->packages()->updateOrCreate(
             ['name' => 'Monthly','name_ur' => 'مہانہ وار','fee' => 200, 'duration' => 1, 'duration_unit' => 'month']
