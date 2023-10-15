@@ -131,16 +131,16 @@ class DataController extends Controller
         );
 
         $sub->packages()->updateOrCreate(
-            ['name' => 'Free Trial','fee' => 0, 'duration' => 3, 'duration_unit' => 'day']
+            ['name' => 'Free Trial', 'name_ur' => 'فری ٹرائل', 'fee' => 0, 'duration' => 3, 'duration_unit' => 'day']
         );
         $sub->packages()->updateOrCreate(
-            ['name' => 'Monthly','fee' => 200, 'duration' => 1, 'duration_unit' => 'month']
+            ['name' => 'Monthly','name_ur' => 'مہانہ وار','fee' => 200, 'duration' => 1, 'duration_unit' => 'month']
         );
         $sub->packages()->updateOrCreate(
-            ['name' => 'Fournightly', 'fee' => 500, 'duration' => 3, 'duration_unit' => 'month']
+            ['name' => 'Fournightly','name_ur' => 'مہینہ 3', 'fee' => 500, 'duration' => 3, 'duration_unit' => 'month']
         );
         $sub->packages()->updateOrCreate(
-            ['name' => 'Yearly', 'fee' => 1800, 'duration' => 1, 'duration_unit' => 'year']
+            ['name' => 'Yearly', 'name_ur' => 'سالانہ','fee' => 1800, 'duration' => 1, 'duration_unit' => 'year']
         );
 
         Subscription::updateOrCreate(

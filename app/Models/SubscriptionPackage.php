@@ -17,6 +17,7 @@ class SubscriptionPackage extends Model
         'duration',
         'duration_unit',
         'name',
+        'name_ur',
     ];
     
     protected $casts = [
