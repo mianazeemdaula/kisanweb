@@ -25,6 +25,7 @@ class SubscriptionPackage extends Model
         'fee' => 'integer',
         'duration' => 'integer',
         'trial' => 'boolean',
+        'subscription_id' => 'integer',
     ];
 
     public function user(): BelongsTo
