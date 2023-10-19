@@ -51,7 +51,7 @@ class SubscriptionController extends Controller
             $isExpired = Carbon::parse($data->pivot->end_date)->isPast();
             if($data->trial){
                 return response()->json(['message' => "You are already avail the trial"], 422);
-            }else if(!$isExpired){
+            }else if(!$isExpired  && $data->pivot->active){
                 return response()->json(['message' => "You are already subscribed to this package"], 422);
             }
         }
@@ -67,7 +67,9 @@ class SubscriptionController extends Controller
         }
         $screenshot = null;
         if($request->hasFile('screenshot')){
-            $screenshot = $request->file('screenshot')->store('public/subscriptions');
+            $file = $request->file('screenshot');
+            $screenshot = time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('payments'), $screenshot);
         }
         $user->subscriptions()->syncWithoutDetaching([$request->package_id => [
             'contact' => $request->contact,
@@ -76,7 +78,7 @@ class SubscriptionController extends Controller
             'end_date' => $lastDate,
             'payment_tx_id' => $request->txid ?? null,
             'payment_gateway_id' => $request->payment_method,
-            'screenshot' => $screenshot ?? null,
+            'screenshot' => $screenshot == null ? null : "payments/".$screenshot,
         ]]);
         $data = $user->subscriptions()->wherePivot('subscription_package_id', $request->package_id)->first();
         if($data->pivot->active){

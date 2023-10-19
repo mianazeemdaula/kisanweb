@@ -13,10 +13,10 @@ class Subscription extends Model
     protected $fillable = [
         'name',
         'name_ur',
-        'slug',
         'description',
         'description_ur',
         'active',
+        'type',
     ];
 
     protected $casts = [

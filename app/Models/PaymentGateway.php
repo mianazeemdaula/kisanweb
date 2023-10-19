@@ -16,6 +16,7 @@ class PaymentGateway extends Model
         'logo',
         'active',
         'config',
+        'public_data',
     ];
 
     protected $hidden = [
@@ -25,5 +26,11 @@ class PaymentGateway extends Model
     protected $casts = [
         'config' => 'json',
         'public_data' => 'json',
+        'active' => 'boolean'
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
 }

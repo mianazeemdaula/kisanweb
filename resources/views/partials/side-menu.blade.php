@@ -22,21 +22,24 @@
                 {{-- <x-menu-item title="Home" icon="bi-house-door-fill" active="true" />
                 <hr class="my-4 text-gray-600"> --}}
                 <x-menu-item title="Statistics" icon="bi-envelope-fill" active="false" url="{{ url('/admin/home') }}" />
-                <x-menu-item title="Shops" icon="bi-building" active="false" url="{{ route('admin.shops.index') }}" />
-                <x-menu-item title="Cities" icon="bi-snow" active="false" url="{{ route('admin.cities.index') }}" />
-                <x-menu-item title="Quotes" icon="bi-snow" active="false" url="{{ route('admin.quotes.index') }}" />
-                <x-menu-item title="Feeds" icon="bi-snow" active="false" url="{{ route('admin.feeds.index') }}" />
-                <x-menu-item title="Deals" icon="bi-snow" active="false" url="{{ route('admin.deals.index') }}" />
-                <x-menu-item title="Rate Reports" icon="bi-snow" active="false" url="{{ url('admin/rate-reports') }}" />
+                <x-menu-item title="Shops" icon="bi-shop" active="false" url="{{ route('admin.shops.index') }}" />
+                <x-menu-item title="Cities" icon="bi-building" active="false" url="{{ route('admin.cities.index') }}" />
+                <x-menu-item title="Quotes" icon="bi-quote" active="false" url="{{ route('admin.quotes.index') }}" />
+                <x-menu-item title="Feeds" icon="bi-bookshelf" active="false" url="{{ route('admin.feeds.index') }}" />
+                <x-menu-item title="Deals" icon="bi-cart2" active="false" url="{{ route('admin.deals.index') }}" />
+                <x-menu-item title="Rate Reports" icon="bi-graph-up" active="false"
+                    url="{{ url('admin/rate-reports') }}" />
                 <x-menu-item title="User Settings" icon="bi-gear" active="false"
                     url="{{ route('admin.settings.index') }}" />
-                <x-menu-item title="Feed Mills" icon="bi-gear" active="false"
+                <x-menu-item title="Feed Mills" icon="bi-buildings" active="false"
                     url="{{ route('admin.feedmills.index') }}" />
 
                 <x-menu-item title="Sugar Mills" icon="bi-gear" active="false"
                     url="{{ route('admin.sugarmills.index') }}" />
                 <x-menu-item title="WhatsApp" icon="bi-whatsapp" active="false"
                     url="{{ url('admin/send-message') }}" />
+                <x-menu-item title="Subscriptions" icon="bi-search" active="false"
+                    url="{{ route('admin.subscriptions.index') }}" />
 
                 {{-- <div
                     class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">

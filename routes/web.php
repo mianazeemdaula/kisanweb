@@ -131,6 +131,11 @@ Route::middleware(['auth'])->group(function () {
         // Reports
         Route::get('rate-reports',[\App\Http\Controllers\Admin\RateReportController::class,'reports']);
         Route::post('report/cropdays',[\App\Http\Controllers\Admin\RateReportController::class,'cropTypeLastDays']);
+
+        // Subscriptions
+        Route::resource('subscriptions',\App\Http\Controllers\Admin\SubscriptionController::class);
+        Route::resource('subscriptions.packages',\App\Http\Controllers\Admin\SubscriptionPackageController::class);
+        Route::resource('pending-subscriptions',\App\Http\Controllers\Admin\SubscriptionPendingController::class);
     });
 });
 
