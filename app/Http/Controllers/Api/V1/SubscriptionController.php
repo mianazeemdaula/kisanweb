@@ -51,7 +51,7 @@ class SubscriptionController extends Controller
             $isExpired = Carbon::parse($data->pivot->end_date)->isPast();
             if($data->trial && $isExpired && $data->id == $request->package_id){
                 return response()->json(['message' => "You are already avail the trial"], 422);
-            }else if(!$isExpired  && $data->pivot->active){
+            }else if(!$isExpired  && $data->id == $request->package_id){
                 return response()->json(['message' => "You are already subscribed to this package"], 422);
             }
         }

@@ -37,6 +37,7 @@ use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
 use App\Http\Controllers\Api\V1\PaymentGatewaysController;
+use App\Http\Controllers\Api\V1\AdsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -138,7 +139,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::resource('/subscription', SubscriptionController::class);
     Route::resource('/payment-methods', PaymentGatewaysController::class);
-    // Comment routes
+    // Ads routes
+    Route::resource('/advertisement', AdsController::class);
     // Route::delete('/feeds/{feed}/comments/{comment}', [FeedCommentController::class, 'destroy']);
 });
 
