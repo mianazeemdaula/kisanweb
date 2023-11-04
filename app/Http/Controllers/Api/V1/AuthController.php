@@ -147,7 +147,7 @@ class AuthController extends Controller
         $request->validate([
             'mobile' => 'required',
         ]);
-        $mobile = $request->mobile.'@c.us';
+        $mobile = str_replace('+', '', $request->mobile).'@c.us';
         $code = rand(100000,999999);
         $message = "Your verification code for Kisan Stock is ".$code;
         $waapi = new WaAPI();
