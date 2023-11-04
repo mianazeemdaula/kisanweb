@@ -58,6 +58,7 @@ Route::post('auth/phone-signup', [AuthController::class,'phoneSignup']);
 Route::post('auth/mobile-register', [AuthController::class,'mobileRegister']);
 Route::post('auth/loginsocial', [AuthController::class,'loginFromSocial']);
 Route::post('auth/{provider}/callback', [AuthController::class,'socialcallback']);
+Route::post('auth/whtasapp', [AuthController::class,'whatsapp']);
 
 Route::resource('crop', CropController::class);
 Route::resource('crop.type', CropTypeController::class);

@@ -11,7 +11,7 @@ use \Hash;
 use Carbon\Carbon;
 use Image;
 use Laravel\Socialite\Facades\Socialite;
-
+use WaAPI\WaAPI\WaAPI;
 
 use MatanYadaev\EloquentSpatial\Objects\Point;
 
@@ -140,5 +140,18 @@ class AuthController extends Controller
     public function socialcallback(Request $request)
     {
         return $request->all();
+    }
+
+    public function whatsapp(Request $request)
+    {
+        $request->validate([
+            'mobile' => 'required',
+        ]);
+        $mobile = $request->mobile;
+        $code = rand(100000,999999);
+        $message = "Your verification code for Kisan Stock is ".$code;
+        $waapi = new WaAPI();
+        $res =  $waapi->sendMessage($mobile, $message);
+        return response()->json(['code' => $code, 'res' => $res], 200);
     }
 }
