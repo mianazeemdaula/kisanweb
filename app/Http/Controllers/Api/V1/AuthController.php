@@ -23,8 +23,13 @@ class AuthController extends Controller
             'mobile' => 'required',
             'firebase_uid' => 'required',
         ]);
+        $mobile = $request->mobile;
+        if(substr($mobile, 0, 2) == '03'){
+            $mobile = substr($mobile, 1);
+            $mobile = '92'.$mobile;
+        }
         // $user = User::where('mobile', $request->mobile)->where('firebase_uid', $request->firebase_uid)->first();
-        $user = User::where('mobile', $request->mobile)->first();
+        $user = User::where('mobile', $mobile)->first();
         // if (! $user || ! Hash::check($request->password, $user->password)) {
         if (! $user) {
             return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
@@ -53,9 +58,14 @@ class AuthController extends Controller
             'firebase_uid' => 'required',
             'type' => 'required',
         ]);
+        $mobile = $request->mobile;
+        if(substr($mobile, 0, 2) == '03'){
+            $mobile = substr($mobile, 1);
+            $mobile = '92'.$mobile;
+        }
         $user = new User();
         $user->name = $request->name;
-        $user->mobile = $request->mobile;
+        $user->mobile = $mobile;
         $user->firebase_uid = $request->firebase_uid;
         $user->type = $request->type;
         $user->image = "https://ui-avatars.com/api/?name=".str_replace(' ', '+', $request->name);
@@ -130,7 +140,12 @@ class AuthController extends Controller
 
     public function mobileRegister(Request $request)
     {
-        $user = User::where('mobile', $request->mobile)->first();
+        $mobile = $request->mobile;
+        if(substr($mobile, 0, 2) == '03'){
+            $mobile = substr($mobile, 1);
+            $mobile = '92'.$mobile;
+        }
+        $user = User::where('mobile', $mobile)->first();
         if($user){
             return response()->json(['register'=> true], 200);
         }

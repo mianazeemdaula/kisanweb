@@ -69,6 +69,16 @@ Route::get('/test/{id}', function($id){
 });
 
 Route::get('test', function(){
+    $users = \App\Models\User::all();
+    foreach ($users as $user) {
+        $mobile= $user->mobile;
+        if(substr($mobile, 0, 2) == '03'){
+            $mobile = substr($mobile, 1);
+            $mobile = '92'.$mobile;
+        }
+        $user->mobile = $mobile;
+        $user->save();
+    }
     return \App\Models\FeedMill::with(['rate','city'])->paginate(50);
     return \LevelUp\Experience\Facades\Leaderboard::generate();
     $user= \App\Models\User::find(15);
