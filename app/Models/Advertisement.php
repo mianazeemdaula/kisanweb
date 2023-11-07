@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use MatanYadaev\EloquentSpatial\SpatialBuilder;
 use MatanYadaev\EloquentSpatial\Objects\Point;
-
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -44,9 +43,10 @@ class Advertisement extends Model
         'view_km' => 'double',
     ];
 
-    protected function image(): Attribute{
-        return Attribute::create(
-            get: fn ($value) => asset('ads/' . $value),
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => asset('ads/' . $value),
         );
     }
 
