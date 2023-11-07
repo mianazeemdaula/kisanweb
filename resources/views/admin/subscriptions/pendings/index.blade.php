@@ -65,6 +65,7 @@
                                                 @csrf
                                                 @method('put')
                                                 <input type="hidden" name="user_id" value="{{ $item->pivot->user_id }}">
+                                                <input type="hidden" name="status" value="accept">
                                                 <button type="submit"><span class="bi bi-check-circle"></span></button>
                                             </form>
                                             <form action="{{ route('admin.pending-subscriptions.destroy', $item->id) }}"
