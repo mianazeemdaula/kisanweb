@@ -43,8 +43,10 @@ class Advertisement extends Model
         'view_km' => 'double',
     ];
 
-    public function  getImageAttribue($value) : string {
-        return asset('ads/' . $value);
+    protected function image(): Attribute{
+        return Attribute::create(
+            get: fn ($value) => asset('ads/' . $value),
+        );
     }
 
     public function newEloquentBuilder($query): SpatialBuilder
