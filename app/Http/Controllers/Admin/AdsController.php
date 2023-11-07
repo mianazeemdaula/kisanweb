@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Advertisement;
 class AdsController extends Controller
 {
     /**
@@ -12,7 +13,8 @@ class AdsController extends Controller
      */
     public function index()
     {
-        //
+        $ads = Advertisement::paginate();
+        return view('admin.ads.index', compact('ads'));
     }
 
     /**
@@ -20,7 +22,7 @@ class AdsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.ads.create');
     }
 
     /**
@@ -28,7 +30,23 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required|image',
+            'link' => 'required',
+        ]);
+        $ad = new Advertisement;
+        $ad->title = $request->title;
+        $ad->link = $request->link;
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = $ad->id.'.'.$image->getClientOriginalExtension();
+            $location = public_path('images/ads/'.$filename);
+            Image::make($image)->save($location);
+            $ad->image = $filename;
+        }
+        $ad->save();
+        return redirect()->route('admin.ads.index')->with('success', 'Advertisement created successfully.');
     }
 
     /**
@@ -44,7 +62,8 @@ class AdsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ad = Advertisement::findOrFail($id);
+        return view('admin.ads.edit', compact('ad'));
     }
 
     /**

@@ -17,6 +17,7 @@ use App\Helper\FCM;
 use App\Models\User;
 use App\Models\Deal;
 use App\Models\Notification;
+use App\Models\Address;
 
 class CreateDealJob implements ShouldQueue
 {
@@ -41,11 +42,11 @@ class CreateDealJob implements ShouldQueue
     public function handle()
     {
         $deal = Deal::find($this->dealId);
-        $users = User::where('id','!=',$deal->seller_id)->whereNotNull('fcm_token')->get();
+        $ids = Address::query()->whereDistanceSphere('location',$deal->location, 30)->pluck('user_id')->toArray();
+        $users = User::where('id','!=',$deal->seller_id)
+        ->whereIn('id', $ids)->whereNotNull('fcm_token')->get();
         foreach ($users as $user) {
-            $phone = Str::replaceFirst('03','923',$user->mobile);
             $title = "Hurry Up!";
-            // $body = $deal->type->crop->name." ($deal->qty * )".")";
             $notif =  Notification::create([
                 'user_id' => $user->id,
                 'title' => $title,
@@ -53,8 +54,6 @@ class CreateDealJob implements ShouldQueue
                 'data' => json_encode(['id' => $deal->id, 'type' => 'deal']),
             ]);
             FCM::sendNotification($notif);
-            // $fcm = new FcmNotification();
-            // $fcm->setTitle($notif->title)->setBody($notif->body)->setToken($user->fcm_token)->send();
         }
     }
 }
