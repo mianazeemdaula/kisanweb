@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use MatanYadaev\EloquentSpatial\SpatialBuilder;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Advertisement extends Model
