@@ -146,6 +146,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('subscriptions',\App\Http\Controllers\Admin\SubscriptionController::class);
         Route::resource('subscriptions.packages',\App\Http\Controllers\Admin\SubscriptionPackageController::class);
         Route::resource('pending-subscriptions',\App\Http\Controllers\Admin\SubscriptionPendingController::class);
+
+        // Advertisement
+        Route::resource('ads',\App\Http\Controllers\Admin\AdsController::class);
     });
 });
 

@@ -3,13 +3,12 @@
     <div class="w-full">
         <div class="flex items-center justify-between">
             <h5 class="">Advertisement</h5>
-            <a href="{{ route('admin.quotes.create') }}">
+            <a href="{{ route('admin.ads.create') }}">
                 <div class="px-4 bg-green-700 text-white rounded-xl">
                     Add Ad
                 </div>
             </a>
         </div>
-
         <div class="bg-white">
             <div class="overflow-x-auto mt-6 ">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -20,7 +19,20 @@
                                 ID</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Qutoe</th>
+                                Title</th>
+                                <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Action</th>
+                                <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Link</th>
+
+                                <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Expire On</th>
+                                <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Active</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Action
@@ -34,7 +46,27 @@
                                     {{ $item->id }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ $item->quote }}
+                                    {{ $item->title }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    {{ $item->action }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    @if($item->action == 'whatsapp')
+                                        <a href="https://wa.me/{{ $item->link }}" target="_blank">{{ $item->link }}</a>
+                                        @elseif($item->action == 'link')
+                                        <a href="{{ $item->link }}" target="_blank">Link</a>
+                                        @elseif($item->action == 'deal')
+                                        <a href="{{ route('deal', $item->link) }}" target="_blank">Deal</a>
+                                        @elseif($item->action == 'shop')
+                                        <a href="{{ route('shop', $item->link) }}" target="_blank">Shop</a>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    {{ \Carbon\Carbon::parse($item->end_date)->diffForHumans() }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                    {{ $item->active ? 'Active' : 'inactive' }}
                                 </td>
                                 <td>
                                     <div class="flex space-x-3">

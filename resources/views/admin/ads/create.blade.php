@@ -1,9 +1,13 @@
 @extends('layouts.admin')
 @section('content')
     <div class="bg-white rounded-lg">
-        <form action="{{ route('admin.ads.store') }}" method="post" class="">
+        
+        @foreach ($errors->all() as $error)
+        <div class="text-red-500">{{ $error }}</div>
+    @endforeach
+        <form action="{{ route('admin.ads.store') }}" method="post" class="" enctype="multipart/form-data">
             @csrf
-            <div class="grid grid-cols-1 md:grid-cols-1 p-2 gap-2 md:p-4 items-end">
+            <div class="grid grid-cols-1 md:grid-cols-3 p-2 gap-2 md:p-4 items-end">
                 <div>
                     <h3 class="p-1">Title</h3>
                     <input type="text" placeholder="Title" name="title" value="{{ old('title') }}" class="w-80">
@@ -48,6 +52,35 @@
                     <h3 class="p-1">End Date</h3>
                     <input type="date" placeholder="End Date" name="end_date" value="{{ old('end_date') }}" class="w-80">
                     @error('end_date')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <h3 class="p-1">Latitude</h3>
+                    <input type="number" placeholder="Latitude" name="lat" value="{{ old('lat') }}" class="w-80" step="any">
+                    @error('lat')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <h3 class="p-1">Longitude</h3>
+                    <input type="number" placeholder="Longitude" name="lng" value="{{ old('lng') }}" class="w-80" step="any">
+                    @error('lng')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <h3 class="p-1">View Range (km)</h3>
+                    <input type="number" placeholder="View km" name="view_km" value="{{ old('view_km') }}" class="w-80" step="any">
+                    @error('view_km')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div>
+                    <h3 class="p-1">Image</h3>
+                    <input type="file" placeholder="Ad Image" name="image" value="{{ old('image') }}" class="w-80">
+                    @error('image')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
