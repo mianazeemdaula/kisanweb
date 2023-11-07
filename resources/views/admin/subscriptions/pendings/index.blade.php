@@ -60,7 +60,7 @@
                                     <td>
                                         <div class="flex space-x-3">
 
-                                            <form action="{{ route('admin.pending-subscriptions.update', $item->id) }}"
+                                            <form action="{{ route('admin.pending-subscriptions.update', $package->id) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('put')
