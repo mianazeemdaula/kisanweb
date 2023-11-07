@@ -28,6 +28,7 @@ class AuthController extends Controller
             $mobile = substr($mobile, 1);
             $mobile = '92'.$mobile;
         }
+        $mobile = str_replace('+', '', $mobile);
         // $user = User::where('mobile', $request->mobile)->where('firebase_uid', $request->firebase_uid)->first();
         $user = User::where('mobile', $mobile)->first();
         // if (! $user || ! Hash::check($request->password, $user->password)) {
@@ -63,6 +64,7 @@ class AuthController extends Controller
             $mobile = substr($mobile, 1);
             $mobile = '92'.$mobile;
         }
+        $mobile = str_replace('+', '', $mobile);
         $user = new User();
         $user->name = $request->name;
         $user->mobile = $mobile;
@@ -145,6 +147,7 @@ class AuthController extends Controller
             $mobile = substr($mobile, 1);
             $mobile = '92'.$mobile;
         }
+        $mobile = str_replace('+', '', $mobile);
         $user = User::where('mobile', $mobile)->first();
         if($user){
             return response()->json(['register'=> true], 200);
