@@ -65,6 +65,7 @@ class SubscriptionController extends Controller
         }else{
             $lastDate = $lastDate->addDays($package->duration);
         }
+        // process screenshot
         $screenshot = null;
         if($request->hasFile('screenshot')){
             $file = $request->file('screenshot');
@@ -83,11 +84,7 @@ class SubscriptionController extends Controller
         $data = $user->subscriptions()->wherePivot('subscription_package_id', $request->package_id)->first();
         if($data->pivot->active){
             $waapi = new WaAPI();
-            $to = $request->contact;
-            if(Str::startsWith($to, '03')){
-                $to = '92'.substr($to, 1);
-            }
-            $waapi->addGroupParticipant("120363168242340048@g.us",$to."@c.us");
+            $waapi->addGroupParticipant("120363168242340048@g.us",$request->contact."@c.us");
         }
         return response()->json($data, 200);
     }
