@@ -78,6 +78,7 @@ Route::get('test', function(){
             $user->pivot->save();
             $waapi = new WaAPI();
             $res[] = $waapi->addGroupParticipant("120363168242340048@g.us",$user->pivot->contact."@c.us");
+            sleep(3);
             // return response()->json($res, 200);
          }
     }
