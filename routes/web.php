@@ -87,7 +87,9 @@ Route::get('test', function(){
 
 Route::get('/addwa/{phone}', function($phone){
     $waapi = new WaAPI();
-    $res = $waapi->addGroupParticipant("120363168242340048@g.us",$phone."@c.us");
+    // $res = $waapi->sendMessage("$phone@c.us","Oh Kida");
+    $res = $waapi->deleteMessageById("true_923004103160@c.us_3EB0119B4DBC8915927FF5");
+    // $res = $waapi->addGroupParticipant("120363168242340048@g.us",$phone."@c.us");
     return response()->json($res, 200);
 });
 
