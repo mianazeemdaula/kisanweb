@@ -70,17 +70,18 @@ Route::get('/test/{id}', function($id){
 
 Route::get('test', function(){
    $packages = \App\Models\SubscriptionPackage::where('trial', true)->get();
+   $res = [];
     foreach ($packages as $package) {
          foreach($package->users as $user){
             $user->pivot->start_date = now();
             $user->pivot->end_date = now()->addDays(3);
             $user->pivot->save();
             $waapi = new WaAPI();
-            $res = $waapi->addGroupParticipant("120363168242340048@g.us",$user->pivot->contact."@c.us");
+            $res[] = $waapi->addGroupParticipant("120363168242340048@g.us",$user->pivot->contact."@c.us");
             // return response()->json($res, 200);
          }
     }
-    return response()->json($packages, 200);
+    return response()->json($res, 200);
 });
 
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
