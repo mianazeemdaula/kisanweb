@@ -60,11 +60,6 @@ class AuthController extends Controller
             'type' => 'required',
         ]);
         $mobile = $request->mobile;
-        if(substr($mobile, 0, 2) == '03'){
-            $mobile = substr($mobile, 1);
-            $mobile = '92'.$mobile;
-        }
-        $mobile = str_replace('+', '', $mobile);
         $user = new User();
         $user->name = $request->name;
         $user->mobile = $mobile;

@@ -69,21 +69,17 @@ Route::get('/test/{id}', function($id){
 });
 
 Route::get('test', function(){
-    $users = \App\Models\User::all();
-    foreach ($users as $user) {
-        $mobile= $user->mobile;
-        if(substr($mobile, 0, 2) == '03'){
-            $mobile = substr($mobile, 1);
-            $mobile = '92'.$mobile;
-        }
-        $user->mobile = $mobile;
-        $user->save();
+   $packages = \App\Models\SubscriptionPackage::where('trial', true)->get();
+    foreach ($packages as $package) {
+         foreach($package->users as $user){
+            $user->pivot->start_date = now();
+            $user->pivot->end_date = now()->addDays(3);
+            $user->pivot->save();
+            $waapi = new WaAPI();
+            $res = $waapi->addGroupParticipant("120363168242340048@g.us",$user->pivot->contact."@c.us");
+            return response()->json($res, 200);
+         }
     }
-    return \App\Models\FeedMill::with(['rate','city'])->paginate(50);
-    return \LevelUp\Experience\Facades\Leaderboard::generate();
-    $user= \App\Models\User::find(15);
-    $user->addPoints(10);
-    return $user->getPoints();
 });
 
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
