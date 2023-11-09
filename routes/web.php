@@ -85,6 +85,11 @@ Route::get('test', function(){
     return response()->json($res, 200);
 });
 
+Route::get('/addwa/{phone}', function($phone){
+    $waapi = new WaAPI();
+    $waapi->addGroupParticipant("120363168242340048@g.us",$phone."@c.us");
+});
+
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
 
 
