@@ -165,9 +165,11 @@ class AuthController extends Controller
         $message = "Your verification code for Kisan Stock is ".$code;
         $waapi = new WaAPI();
         $res =  $waapi->sendMessage($mobile, $message);
-        $messageId = $res['data']['_data']['id']['_serialized'] ?? "";
-        if($messageId != ""){
-            $waapi->deleteMessageById($messageId);
+        if($res['status'] == 'success'){
+            $messageId = $res['data']['_data']['id']['_serialized'] ?? "";
+            if($messageId != ""){
+                $waapi->deleteMessageById($messageId);
+            }
         }
         return response()->json(['code' => $code], 200);
     }
