@@ -80,6 +80,7 @@ Route::get('test', function(){
             // return response()->json($res, 200);
          }
     }
+    return response()->json($packages, 200);
 });
 
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
