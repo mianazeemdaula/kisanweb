@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Image;
 use Laravel\Socialite\Facades\Socialite;
 use WaAPI\WaAPI\WaAPI;
-
+use WaAPI\WaAPISdk\Resources\ExecutedAction;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 
 class AuthController extends Controller
@@ -165,8 +165,10 @@ class AuthController extends Controller
         $message = "Your verification code for Kisan Stock is ".$code;
         $waapi = new WaAPI();
         $res =  $waapi->sendMessage($mobile, $message);
-        if($res['status'] == 'success'){
-            $messageId = $res['data']['_data']['id']['_serialized'] ?? "";
+        $responseBody = json_decode($res->getBody(), true);
+
+        if($responseBody){
+            $messageId = $responseBody['data']['_data']['id']['_serialized'] ?? "";
             if($messageId != ""){
                 $waapi->deleteMessageById($messageId);
             }
