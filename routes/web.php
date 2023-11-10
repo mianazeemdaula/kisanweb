@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 use Spatie\Browsershot\Browsershot;
 use WaAPI\WaAPI\WaAPI;
+use Google\Client;
 
 
 
@@ -86,11 +87,32 @@ Route::get('test', function(){
 });
 
 Route::get('/addwa/{phone}', function($phone){
-    $waapi = new WaAPI();
-    // $res = $waapi->sendMessage("$phone@c.us","Oh Kida");
-    $res = $waapi->deleteMessageById("true_923004103160@c.us_3EB0119B4DBC8915927FF5");
+    
+    // $client = new Client();
+    // $client->setAuthConfig(public_path('client_secret.json'));
+    // putenv('GOOGLE_APPLICATION_CREDENTIALS=client_secret.json');
+    // $client->useApplicationDefaultCredentials();
+    // $client->setScopes([\Google\Service\PeopleService::CONTACTS]);
+    // //read all save contacts
+    // // $httpClient = $client->authorize();
+    // // $response = $httpClient->get('https://www.googleapis.com/plus/v1/people/me');
+    // // return $response->getStatusCode();
+    // // return $httpClient;
+    // // // Add contact to Google Contacts
+    // $service = new \Google_Service_PeopleService($client);
+    // $contact = new \Google_Service_PeopleService_Person();
+    // $phone = new \Google_Service_PeopleService_PhoneNumber();
+    // $phone->setValue("+923334103160");
+    // $phone->setType('mobile');
+    // $contact->setPhoneNumbers($phone);
+    // $contact->setNames(['givenName' => 'Azeem Ufone', 'familyName' => 'Azeem Ufone']);
+    // $res = $service->people->createContact($contact);
+    // return response()->json($res, 200);
+    // $waapi = new WaAPI();
+    // // $res = $waapi->sendMessage("$phone@c.us","Oh Kida");
+    // // $res = $waapi->deleteMessageById("true_923004103160@c.us_3EB0119B4DBC8915927FF5");
     // $res = $waapi->addGroupParticipant("120363168242340048@g.us",$phone."@c.us");
-    return response()->json($res, 200);
+    // return response()->json($res, 200);
 });
 
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
@@ -153,6 +175,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('subscriptions',\App\Http\Controllers\Admin\SubscriptionController::class);
         Route::resource('subscriptions.packages',\App\Http\Controllers\Admin\SubscriptionPackageController::class);
         Route::resource('pending-subscriptions',\App\Http\Controllers\Admin\SubscriptionPendingController::class);
+        Route::get('subscription-contacts',[\App\Http\Controllers\Admin\SubscriptionController::class,'exportContacts']);
 
         // Advertisement
         Route::resource('ads',\App\Http\Controllers\Admin\AdsController::class);

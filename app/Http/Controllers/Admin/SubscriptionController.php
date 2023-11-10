@@ -89,4 +89,36 @@ class SubscriptionController extends Controller
     {
         //
     }
+
+    public function exportContacts()  {
+        $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+            'Content-type'        => 'text/csv',   
+            'Content-Disposition' => 'attachment; filename=contacts.csv',
+            'Expires'             => '0',
+            'Pragma'              => 'public'
+        ];
+    
+        $columns = array("First Name","Last Name","Email","Phone");
+    
+        $packages = \App\Models\SubscriptionPackage::where('trial', true)->get();
+        $rows = [];
+        foreach ($packages as $package) {
+            foreach($package->users as $user){
+                $rows[] = array($user->name, $user->name, $user->email, "+".$user->pivot->contact);
+            }
+        }
+    
+        $callback = function() use($rows, $columns) {
+            $file = fopen('php://output', 'w');
+            fputs($file, $bom = (chr(0xEF) . chr(0xBB) . chr(0xBF)));
+            fputcsv($file, $columns);
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+            fclose($file);
+        };
+    
+        return response()->stream($callback, 200, $headers);
+    }
 }
