@@ -99,13 +99,13 @@ class SubscriptionController extends Controller
             'Pragma'              => 'public'
         ];
     
-        $columns = array("Name","Given Name","Phone 1 - Type","Phone 1 - Value",'Email 1 - Type','Email 1 - Value');
+        $columns = array("First Name","Last Name","Email","Phone number");
     
         $packages = \App\Models\SubscriptionPackage::where('trial', true)->get();
         $rows = [];
         foreach ($packages as $package) {
             foreach($package->users as $user){
-                $rows[] = array($user->name, "KSPS","Mobile", "+".$user->pivot->contact, "Office", $user->email,);
+                $rows[] = array($user->name, "KSPS", $user->email, "+".$user->pivot->contact);
             }
         }
     
