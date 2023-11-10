@@ -105,7 +105,7 @@ class SubscriptionController extends Controller
         $rows = [];
         foreach ($packages as $package) {
             foreach($package->users as $user){
-                $rows[] = array($user->name, $user->name, $user->email, "+".$user->pivot->contact);
+                $rows[] = array($user->name, "Kisan Stock PS", $user->email, "+".$user->pivot->contact);
             }
         }
     
