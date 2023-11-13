@@ -58,10 +58,10 @@
                                 <td>
                                     <div class="flex space-x-3">
 
-                                        <a href="{{ route('admin.subscriptions.show', $item->id) }}">
+                                        <a href="{{ route('admin.subscriptions.packages.show', [$subscriptionId,$item->id]) }}">
                                             <span class="bi bi-eye"></span>
                                         </a>
-                                        <a href="{{ route('admin.subscriptions.edit', $item->id) }}">
+                                        <a href="{{ route('admin.subscriptions.packages.edit', [$subscriptionId,$item->id]) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
                                         {{-- <form action="{{ route('admin.subscriptions.destroy', $item->id) }}" method="post">

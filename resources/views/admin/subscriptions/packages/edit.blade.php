@@ -1,7 +1,18 @@
 @extends('layouts.admin')
 @section('content')
     <div class="bg-white rounded-lg">
-        <form action="{{ route('admin.subscriptions.update', $item->id) }}" method="post" class="">
+        <!-- if there are creation errors, they will show here -->
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-sm">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            
+        @endif
+        <form action="{{ route('admin.subscriptions.packages.update',[$subscriptionId,$item->id]) }}" method="post" class="">
             @csrf
             @method('PUT')
             <div class="grid grid-cols-1 md:grid-cols-2 p-2 gap-2 md:p-4 items-end">
@@ -21,32 +32,35 @@
                     @enderror
                 </div>
                 <div>
-                    <h3 class="p-1">Description</h3>
-                    <textarea name="description" id="" class="w-full" cols="30" rows="10">{{ $item->description }}</textarea>
-                    @error('description')
+                    <h3 class="p-1">Fee</h3>
+                    <input type="number" placeholder="Fee" name="fee" value="{{ $item->fee }}" class="w-full">
+                    @error('fee')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <h3 class="p-1">Description Urdu</h3>
-                    <textarea name="description_ur" id="" class="w-full" cols="30" rows="10">{{ $item->description_ur }}</textarea>
-                    @error('description_ur')
+                    <h3 class="p-1">Duration</h3>
+                    <input type="number" placeholder="Duration" name="duration" value="{{ $item->duration }}"
+                        class="w-full">
+                    @error('duration')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <h3 class="p-1">Type</h3>
-                    <select name="type" id="" class="w-full">
-                        <option value="whatsapp" {{ $item->type == 'whatsapp' ? 'selected' : '' }}>WhatsApp</option>
-                        <option value="email" {{ $item->type == 'email' ? 'selected' : '' }}>Email</option>
+                    <h3 class="p-1">Duration Unit</h3>
+                    <select name="duration_unit" id="">
+                        <option value="day" @if ($item->duration_unit == 'day') selected @endif>Day</option>
+                        <option value="week" @if ($item->duration_unit == 'week') selected @endif>Week</option>
+                        <option value="month" @if ($item->duration_unit == 'month') selected @endif>Month</option>
+                        <option value="year" @if ($item->duration_unit == 'year') selected @endif>Year</option>
                     </select>
-                    @error('type')
+                    @error('duration_unit')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <h3 class="p-1">Active</h3>
-                    <input type="checkbox" name="active" id="" @if ($item->active) checked @endif>
+                    <h3 class="p-1">Trial</h3>
+                    <input type="checkbox" name="trial" id="" @if ($item->trial) checked @endif>
                     @error('type')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror

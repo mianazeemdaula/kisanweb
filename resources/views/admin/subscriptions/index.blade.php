@@ -26,7 +26,7 @@
                             </th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                About
+                                Description
                             </th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -55,7 +55,7 @@
                                     <div class="flex space-x-3">
 
                                         <a href="{{ route('admin.subscriptions.packages.index', $item->id) }}">
-                                            <span class="bi bi-eye"></span>
+                                            <span class="bi bi-diagram-3"></span>
                                         </a>
                                         <a href="{{ route('admin.subscriptions.show', $item->id) }}">
                                             <span class="bi bi-eye"></span>

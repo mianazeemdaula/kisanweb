@@ -108,11 +108,11 @@ Route::get('/addwa/{phone}', function($phone){
     // $contact->setNames(['givenName' => 'Azeem Ufone', 'familyName' => 'Azeem Ufone']);
     // $res = $service->people->createContact($contact);
     // return response()->json($res, 200);
-    // $waapi = new WaAPI();
-    // // $res = $waapi->sendMessage("$phone@c.us","Oh Kida");
+    $waapi = new WaAPI();
+    // $res = $waapi->sendMessage("$phone@c.us","Oh Kida");
     // // $res = $waapi->deleteMessageById("true_923004103160@c.us_3EB0119B4DBC8915927FF5");
-    // $res = $waapi->addGroupParticipant("120363168242340048@g.us",$phone."@c.us");
-    // return response()->json($res, 200);
+    $res = $waapi->addGroupParticipant("120363168242340048@g.us",$phone."@c.us");
+    return response()->json($res, 200);
 });
 
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Models\SubscriptionPackage;
 
 class SubscriptionPackageController extends Controller
 {
@@ -56,10 +57,10 @@ class SubscriptionPackageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id, $subscriptionId)
+    public function edit(string $subscriptionId, $id)
     {
-        $subscriptionPackage = SubscriptionPackage::findOrFail($id);
-        return view('admin.subscriptions.packages.edit', compact('subscriptionPackage', 'subscriptionId'));
+        $item = SubscriptionPackage::findOrFail($id);
+        return view('admin.subscriptions.packages.edit', compact('item', 'subscriptionId', 'id'));
     }
 
     /**
@@ -68,14 +69,12 @@ class SubscriptionPackageController extends Controller
     public function update(Request $request,$subscriptionId , string $id)
     {
         $request->validate([
-            'subscription_id' => 'required|exists:subscriptions,id',
             'name' => 'required|string|max:255|unique:subscription_packages,name,' . $id,
             'name_ur' => 'required|string|max:255|unique:subscription_packages,name_ur,' . $id,
             'fee' => 'required|numeric',
             'duration' => 'required|numeric',
             'duration_unit' => 'required|in:day,week,month,year',
-            'trial' => 'required|boolean',
-            'status' => 'required',
+            'trial' => 'sometimes|boolean',
         ]);
 
         $subscriptionPackage = SubscriptionPackage::findOrFail($id);
