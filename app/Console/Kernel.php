@@ -26,6 +26,9 @@ class Kernel extends ConsoleKernel
 
         // Expire Subscription after end date
         $schedule->command('app:expire-subscription')->everyDayAt('00:10')->withoutOverlapping();
+
+        // Send Subscription Expiry Notification
+        $schedule->command('app:send-subscription-expiry')->everyDayAt('09:00')->withoutOverlapping();
     }
 
     /**

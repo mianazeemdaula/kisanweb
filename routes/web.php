@@ -130,7 +130,6 @@ Route::group([], function() {
     Route::post('reports/rates', [\App\Http\Controllers\ReportController::class,'cropRatePdf']);
 
     Route::get('/', function () {
-        // return bcrypt('admin@#');
         return view('guest.index');
     });
     
