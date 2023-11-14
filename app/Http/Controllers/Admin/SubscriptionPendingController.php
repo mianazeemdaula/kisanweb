@@ -19,7 +19,7 @@ class SubscriptionPendingController extends Controller
     {
         $collection = SubscriptionPackage::with(['users' => function($q){
             $q->wherePivot('active', false);
-        }])->whereHas('users')->paginate();
+        }])->where('trial', false)->whereHas('users')->paginate();
         return view('admin.subscriptions.pendings.index', compact('collection'));
     }
 
