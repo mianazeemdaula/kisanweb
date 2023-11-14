@@ -30,10 +30,7 @@ class ProcessExpireSubscriptionJob implements ShouldQueue
     public function handle(): void
     {
         $waapi = new WaAPI();
-        $to = $request->contact;
-        if(Str::startsWith($to, '03')){
-            $to = '92'.substr($to, 1);
-        }
+        $to = $this->contact;
         $waapi->removeGroupParticipant("120363168242340048@g.us",$to."@c.us");
     }
 }
