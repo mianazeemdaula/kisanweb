@@ -67,10 +67,11 @@ class SubscriptionController extends Controller
         }
         // process screenshot
         $screenshot = null;
-        if($request->hasFile('screenshot')){
+        if($request->has('screenshot')){
             $file = $request->file('screenshot');
             $screenshot = time().'.'.$file->getClientOriginalExtension();
             $file->move(public_path('payments'), $screenshot);
+            $screenshot = "payments/".$screenshot;
         }
         $user->subscriptions()->syncWithoutDetaching([$request->package_id => [
             'contact' => $request->contact,
@@ -79,7 +80,7 @@ class SubscriptionController extends Controller
             'end_date' => $lastDate,
             'payment_tx_id' => $request->txid ?? null,
             'payment_gateway_id' => $request->payment_method,
-            'screenshot' => $screenshot == null ? null : "payments/".$screenshot,
+            'screenshot' => $screenshot,
         ]]);
         $data = $user->subscriptions()->wherePivot('subscription_package_id', $request->package_id)->first();
         if($data->pivot->active){
