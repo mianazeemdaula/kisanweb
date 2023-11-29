@@ -64,7 +64,6 @@ class SubscriptionPendingController extends Controller
             'user_id' => 'required|exists:users,id',
             'status' => 'required|in:accept,reject',
         ]);
-        return [$request->all(),$id];
         $package = SubscriptionPackage::findOrFail($id);
         $lastDate = now();
         if($package->duration_unit == 'month'){
@@ -75,24 +74,23 @@ class SubscriptionPendingController extends Controller
             $lastDate = $lastDate->addDays($package->duration);
         }
         $active = $request->status == 'accept';
-        User::find($request->user_id)->subscriptions()->updateExistingPivot($package->id, [
+        User::find($request->user_id)->subscriptions()->updateExistingPivot($id, [
             'active' => $active,
             'start_date' => now(),
             'end_date' => $lastDate,
         ]);
-
         $data = $package->users()->wherePivot('user_id', $request->user_id)->first();
-        // $waapi = new WaAPI();
-        // $to = $request->contact;
-        // if(Str::startsWith($to, '03')){
-        //     $to = '92'.substr($to, 1);
-        // }
-        // $to = $to."@c.us";
-        // if($data->pivot->active){
-        //     $waapi->addGroupParticipant("120363168242340048@g.us",$to);
-        // }else{
-        //     $waapi->removeGroupParticipant("120363168242340048@g.us", $to);
-        // }
+        $waapi = new WaAPI();
+        $to = $request->contact;
+        if(Str::startsWith($to, '03')){
+            $to = '92'.substr($to, 1);
+        }
+        $to = $to."@c.us";
+        if($data->pivot->active){
+            $waapi->addGroupParticipant("120363168242340048@g.us",$to);
+        }else{
+            $waapi->removeGroupParticipant("120363168242340048@g.us", $to);
+        }
         return redirect()->route('admin.pending-subscriptions.index')->with('success', 'Subscription approved successfully.');
     }
 
