@@ -44,7 +44,9 @@
                                     <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                                         {{ $package->name }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->name }} [{{ $item->id }}]</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->name }} [{{ $item->id }}]<br/>
+                                        {{ $item->mobile }}
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{ $package->trial ? 'Trial' : '' }}
                                     </td>
