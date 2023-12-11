@@ -15,20 +15,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Run Queue Worker
-        $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping();
-
+        
         // Delete temp old files daily from storage folder
-        $schedule->command('app:delete-old-files')->everyDayAt('00:00')->withoutOverlapping();
-
+        $schedule->command('app:delete-old-files')->everyDayAt('00:00');
+        
         // Generate Sitemap Daily for SEO
-        $schedule->command('app:generate-sitemap')->everyDayAt('01:00')->withoutOverlapping();
+        $schedule->command('app:generate-sitemap')->everyDayAt('01:00');
 
         // Expire Subscription after end date
-        $schedule->command('app:expire-subscription')->everyDayAt('00:10')->withoutOverlapping();
+        $schedule->command('app:expire-subscription')->everyDayAt('00:10');
 
         // Send Subscription Expiry Notification
-        $schedule->command('app:send-subscription-expiry')->everyDayAt('09:00')->withoutOverlapping();
+        $schedule->command('app:send-subscription-expiry')->everyDayAt('09:00');
+
+        // Run Queue Worker
+        $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping();
     }
 
     /**
