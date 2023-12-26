@@ -34,8 +34,7 @@ class ExpireSubscriptionCommand extends Command
         $packages = SubscriptionPackage::all();
         $nextMint = 0;
         foreach($packages as $package){
-            $users = $package->users()->wherePivot('end_date','>=', now())
-            ->orWherePivot('active',1)->get();
+            $users = $package->users()->get();
             foreach($users as $user){
                 $isExpired = Carbon::parse($user->pivot->end_date)->isPast();
                 if($isExpired){
