@@ -34,7 +34,7 @@ class ProcessExpireSubscriptionJob implements ShouldQueue
         $waapi = new WaAPI();
         $to = $this->contact;
         $res = $waapi->getInstanceStatus();
-        if($res->attributes['instanceStatus'] === "ready"){
+        if(isset($res->attributes['instanceStatus']) && $res->attributes['instanceStatus'] === "ready"){
             $waapi->removeGroupParticipant("120363168242340048@g.us",$to."@c.us");
         }else{
             throw new \Exception("Instance is not ready");
