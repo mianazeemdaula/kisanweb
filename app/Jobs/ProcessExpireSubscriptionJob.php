@@ -15,6 +15,8 @@ class ProcessExpireSubscriptionJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $tries = 3;
+
     /**
      * Create a new job instance.
      */
@@ -31,6 +33,11 @@ class ProcessExpireSubscriptionJob implements ShouldQueue
     {
         $waapi = new WaAPI();
         $to = $this->contact;
-        $waapi->removeGroupParticipant("120363168242340048@g.us",$to."@c.us");
+        $res = $waapi->getInstanceStatus();
+        if($res->attributes['instanceStatus'] === "ready"){
+            $waapi->removeGroupParticipant("120363168242340048@g.us",$to."@c.us");
+        }else{
+            throw new \Exception("Instance is not ready");
+        }
     }
 }
