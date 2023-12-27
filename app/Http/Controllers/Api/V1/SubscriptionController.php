@@ -67,7 +67,7 @@ class SubscriptionController extends Controller
         }
         // process screenshot
         $screenshot = null;
-        if($request->has('screenshot')){
+        if($request->hasFile('screenshot')){
             $file = $request->file('screenshot');
             $screenshot = time().'.'.$file->getClientOriginalExtension();
             $file->move(public_path('payments'), $screenshot);
