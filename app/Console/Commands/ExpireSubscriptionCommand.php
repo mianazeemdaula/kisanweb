@@ -39,7 +39,7 @@ class ExpireSubscriptionCommand extends Command
                 $isExpired = Carbon::parse($user->pivot->end_date)->isPast();
                 if($isExpired){
                     $user->subscriptions()->updateExistingPivot($package->id, ['active' => 0]);
-                    ProcessExpireSubscriptionJob::dispatch($user->pivot->contact)->delay(now()->addMinutes($nextMint));
+                    // ProcessExpireSubscriptionJob::dispatch($user->pivot->contact)->delay(now()->addMinutes($nextMint));
                     $nextMint += 1;
                 }
             }
