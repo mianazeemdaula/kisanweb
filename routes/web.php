@@ -26,47 +26,8 @@ Route::get('app/fb-delete-data', function () {
 
 
 Route::get('/test/{id}', function($id){
-
-    \App\Jobs\ProcessSubscriptionJob::dispatch(1, 'Test message', 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
-    return 'done';
-    // return Browsershot::url('http://127.0.0.1:8000/save-image')
-    // ->fullPage()
-    // ->save('/images/crop_rates.jpg');
-    $provinceWiseRates =  \DB::table('crop_rates')
-    ->join('crop_types', 'crop_rates.crop_type_id', '=', 'crop_types.id')
-    ->join('cities', 'crop_rates.city_id', '=', 'cities.id')
-    ->join('districts', 'cities.district_id', '=', 'districts.id')
-    ->join('provinces', 'districts.province_id', '=', 'provinces.id')
-    ->select(
-        'provinces.name as province_name',
-        'crop_rates.min_price',
-        'crop_rates.min_price_last',
-        'crop_rates.max_price',
-        'crop_rates.max_price_last',
-        'crop_types.name as type_name', 
-        'cities.name as city_name',
-        'crop_types.id as crop_type_id',
-    )
-    ->whereDate('crop_rates.rate_date', '2023-06-20')
-    ->where('crop_types.id', 60)
-    ->get();
-
-    $grouped = $provinceWiseRates->groupBy([
-        'province_name', 
-        'crop_name', 
-        'type_name', 
-        'city_name'
-    ]);
-
-    return $grouped;
-
-    $tokens = \App\Models\User::whereNotNull('fcm_token')->pluck('fcm_token');
-    $data = array();
-    foreach ($tokens->chunk(1000) as $value) {
-        $keys = $value->toArray();
-        $data[] =  \App\Helper\FCM::send($keys, "منڈی ریٹ اپ ڈیٹ","فصلوں کے نئے نرخ اپ ڈیٹ ہو گئے، ابھی چیک کریں۔",['type' => 'mand_rate', 'crop_id' => 2]);
-    }
-    return response()->json($data, 200);
+   $deal =  \App\Models\Deal::find($id);
+   return Mail::to('mazeemrehan@gmail.com')->send(new \App\Mail\NewDealMail($deal));
 });
 
 Route::get('test', function(){

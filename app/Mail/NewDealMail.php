@@ -8,17 +8,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
-class NewDealMail extends Mailable
+use App\Models\Deal;
+
+class NewDealMail extends Mailable 
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public Deal $deal;
+    public function __construct( Deal $deal)
     {
-        //
+        $this->deal = $deal;
+        
     }
 
     /**
@@ -27,7 +32,7 @@ class NewDealMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Deal Mail',
+            subject: 'New Deal',
         );
     }
 
@@ -38,6 +43,9 @@ class NewDealMail extends Mailable
     {
         return new Content(
             markdown: 'mail.deals.newdeal',
+            with: [
+                'deal' => $this->deal,
+            ]
         );
     }
 
@@ -48,6 +56,8 @@ class NewDealMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath($this->deal->media[0]->path),
+        ];
     }
 }
