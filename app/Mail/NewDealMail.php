@@ -12,7 +12,7 @@ use Illuminate\Mail\Mailables\Attachment;
 
 use App\Models\Deal;
 
-class NewDealMail extends Mailable 
+class NewDealMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

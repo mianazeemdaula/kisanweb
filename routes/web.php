@@ -27,7 +27,7 @@ Route::get('app/fb-delete-data', function () {
 
 Route::get('/test/{id}', function($id){
    $deal =  \App\Models\Deal::find($id);
-   return Mail::to('mazeemrehan@gmail.com')->send(new \App\Mail\NewDealMail($deal));
+   Mail::to('mazeemrehan@gmail.com')->later(now()->addMinutes(1), new \App\Mail\NewDealMail($deal));
 });
 
 Route::get('test', function(){

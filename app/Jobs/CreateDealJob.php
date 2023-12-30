@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Mail;
 
 use App\Helper\FCM;
 
@@ -45,6 +45,7 @@ class CreateDealJob implements ShouldQueue
         $ids = Address::query()->whereDistanceSphere('location',$deal->location, 30)->pluck('user_id')->toArray();
         $users = User::where('id','!=',$deal->seller_id)
         ->whereIn('id', $ids)->whereNotNull('fcm_token')->get();
+        $delayMint = 1; 
         foreach ($users as $user) {
             $title = "Hurry Up!";
             $notif =  Notification::create([
@@ -54,6 +55,10 @@ class CreateDealJob implements ShouldQueue
                 'data' => json_encode(['id' => $deal->id, 'type' => 'deal']),
             ]);
             FCM::sendNotification($notif);
+            if($user->email){
+                Mail::to($user->email)->later(now()->addMinutes($delayMint), new \App\Mail\NewDealMail($deal));
+                $delayMint++;
+            }
         }
     }
 }
