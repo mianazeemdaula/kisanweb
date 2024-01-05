@@ -3,9 +3,9 @@
     <div>
         <div class="grid md:grid-cols-5 grid-cols-1 gap-4 p-4">
             @foreach ($deals as $item)
-                <div class="shadow-xl p-4 rounded-lg hover:shadow-sm">
+                <div class="shadow-xl p-4 rounded-lg hover:shadow-sm bg-gray-50">
                     <a href="{{ url("/deals/$item->id") }}">
-                        <img src="{{ $item->media()->first()->path }}" class="h-56 w-full object-contain" alt="Image"
+                        <img src="{{ str_replace("http://127.0.0.1:8000","https://kisanstock.com",$item->media()->first()->path) }}" class="w-full h-40 object-cover rounded" alt="Image"
                             srcset="">
                     </a>
                     <div class="flex space-x-1 mt-2">

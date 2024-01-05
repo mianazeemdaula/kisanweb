@@ -46,6 +46,15 @@ class CropRateController extends Controller
         ->where('city_id',$request->city)
         ->whereDate('rate_date', '<',Carbon::now()->format('Y-m-d'))
         ->orderBy('rate_date','desc')->first();
+        if($lastRate){
+            $min =  $request->min;
+            $max =  $request->max;
+            if($min > (($lastRate->min_price * 0.03) + $lastRate->min_price)){
+                return response()->json(['message' => 'Minimum price should not be greater than 3% of last rate'], 422);
+            }else if($max > (($lastRate->max_price * 0.03) + $lastRate->max_price)){
+                return response()->json(['message' => 'Maximum price should not be greater than 3% of last rate'], 422);
+            }
+        }
         $rate = CropRate::updateOrCreate([
             'crop_type_id' => $request->crop_type_id,
             'city_id' => $request->city,

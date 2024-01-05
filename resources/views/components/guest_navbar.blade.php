@@ -1,7 +1,9 @@
 <div class="p-2">
     <div class="flex w-full justify-between items-center bg-white/80 rounded-sm">
         <div class="px-4 py-2">
-            <img src="{{ asset('images/logo.svg') }}" class="w-12 h-12" alt="Logo">
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('images/logo.svg') }}" class="w-12 h-12" alt="Logo">
+            </a>
         </div>
         <nav class="px-4 flex space-x-3">
             <a href="{{ url('rates') }}">
