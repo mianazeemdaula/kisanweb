@@ -4,6 +4,11 @@
         @foreach (\App\Models\Crop::orderBy('sort')->get() as $item)
             <div class="bg-green-400 text-center h-20 rounded-md flex justify-center items-center">
                 {{ $item->name }}
+                <div>
+                    @foreach ($item->types as $type)
+                        <div>{{ $type->name }}</div>
+                    @endforeach
+                </div>
             </div>
         @endforeach
     </div>
