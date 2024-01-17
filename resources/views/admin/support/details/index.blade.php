@@ -6,6 +6,7 @@
             <form action="{{ route('admin.support.update', $support->id) }}" method="post">
                 @csrf
                 @method('put')
+                <input type="hidden" name="status" value="closed">
                 <button type="submit" class="px-4 bg-green-700 text-white rounded-xl">Close Chat</button>
             </form>
         </div>  

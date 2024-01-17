@@ -59,7 +59,7 @@ class SupportController extends Controller
         $support = Support::findOrfail($id);
         $support->status = $request->status;
         $support->save();
-        return redirect()->back();
+        return redirect()->route('admin.support.index')->with('success', 'Support ticket status updated successfully.');
     }
 
     /**
