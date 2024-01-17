@@ -10,6 +10,12 @@ class SupportDetail extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'content',
+        'user_id',
+        'support_id',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

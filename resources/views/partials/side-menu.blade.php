@@ -42,6 +42,8 @@
                     url="{{ route('admin.subscriptions.index') }}" />
                     <x-menu-item title="Ads" icon="bi-clipboard2-heart" active="false"
                     url="{{ route('admin.ads.index') }}" />
+                    <x-menu-item title="Support" icon="bi-clipboard2-heart" active="false"
+                    url="{{ route('admin.support.index') }}" />
 
                 {{-- <div
                     class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
