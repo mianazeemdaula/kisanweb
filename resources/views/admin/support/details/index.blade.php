@@ -3,11 +3,11 @@
     <div class="w-full">
         <div class="flex items-center justify-between">
             <h5 class="">{{ $support->title }}</h5>
-            <a href="{{ route('admin.cities.create') }}">
-                <div class="px-4 bg-green-700 text-white rounded-xl">
-                    Add City
-                </div>
-            </a>
+            <form action="{{ route('admin.support.update', $support->id) }}" method="post">
+                @csrf
+                @method('put')
+                <button type="submit" class="px-4 bg-green-700 text-white rounded-xl">Close Chat</button>
+            </form>
         </div>  
         <div class="mx-auto bg-white rounded shadow-md p-6 mt-4">
             <!-- Chat messages container -->

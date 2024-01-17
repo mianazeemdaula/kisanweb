@@ -3,9 +3,9 @@
     <div class="w-full">
         <div class="flex items-center justify-between">
             <h5 class="">Cities</h5>
-            <a href="{{ route('admin.cities.create') }}">
+            <a href="">
                 <div class="px-4 bg-green-700 text-white rounded-xl">
-                    Add City
+                    Close Chat
                 </div>
             </a>
         </div>

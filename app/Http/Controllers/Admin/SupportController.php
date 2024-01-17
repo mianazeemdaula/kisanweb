@@ -53,7 +53,13 @@ class SupportController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'status' => 'required|string|in:open,closed',
+        ]);
+        $support = Support::findOrfail($id);
+        $support->status = $request->status;
+        $support->save();
+        return redirect()->back();
     }
 
     /**
