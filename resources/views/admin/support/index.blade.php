@@ -47,7 +47,7 @@
                                 <td>
                                     <div class="flex space-x-3">
 
-                                        <a href="{{ route('admin.support.show', $item->id) }}">
+                                        <a href="{{ route('admin.support.chat.index', $item->id) }}">
                                             <span class="bi bi-eye"></span>
                                         </a>
                                         <form action="{{ route('admin.support.destroy', $item->id) }}" method="post">
