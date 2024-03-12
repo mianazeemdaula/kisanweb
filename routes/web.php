@@ -5,7 +5,7 @@ use Appy\FcmHttpV1\FcmNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyApiEmail;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
 use WaAPI\WaAPI\WaAPI;
 use Google\Client;
@@ -114,4 +114,16 @@ Route::get('/rate-image', [\App\Http\Controllers\DataController::class,'generate
 
 Route::any('whtasapphooks', function (Request $request) {
     Log::debug($request->all());
+});
+
+Route::get('remove-user', function(){
+    return view('auth.deleteuser');
+});
+
+
+Route::post('remove-user', function(Request $request){
+    $request->validate([
+        'email'=> 'required'
+    ]);
+    return redirect()->back()->WithErrors(['message' => 'Your account and data will automatically deleted within 90 days']);
 });

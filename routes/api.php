@@ -149,4 +149,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // Route::resource('rate', CropRateController::class);
 
+Route::get('userdel', function(){
+    return response()->json(['message' => 'Your account deleted successfully']);
+});
+
 
