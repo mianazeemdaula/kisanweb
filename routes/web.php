@@ -125,5 +125,20 @@ Route::post('remove-user', function(Request $request){
     $request->validate([
         'email'=> 'required'
     ]);
-    return redirect()->back()->WithErrors(['message' => 'Your account and data will automatically deleted within 90 days']);
+    $user = \App\Models\User::where('email',$request->email)->first();
+    if(!$user){
+        return redirect()->back()->WithErrors(['email' => 'User not found']);
+    }
+    \Mail::to($user->email)->send(new \App\Mail\DeleteAccountEmail($user->id));
+    return redirect()->back()->WithErrors(['message' => 'Email sent to user with confirmation link']);
+});
+
+Route::get('delete-account/{id}', function($id){
+    $user = \App\Models\User::find($id);
+    if($user){
+        $user->delete();
+    }else{
+        return view('auth.userdeleted',['deleted' =>false]);
+    }
+    return view('auth.userdeleted',['deleted' =>true]);
 });

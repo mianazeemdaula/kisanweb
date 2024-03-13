@@ -36,6 +36,12 @@
 <body>
     @include('components.guest_navbar')
     @yield('body')
+
+    <footer>
+        <div class="bg-gray-800 text-white text-center py-4">
+            <p>&copy; 2024 Kisan Stock. All rights reserved.</p>
+        </div>
+    </footer>
     @yield('js')
 
     <!-- Google Tag Manager (noscript) -->
