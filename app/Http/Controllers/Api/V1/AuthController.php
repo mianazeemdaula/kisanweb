@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\SocialAccount;
@@ -161,6 +162,7 @@ class AuthController extends Controller
         $mobile = str_replace('+', '', $request->mobile);
         $code = rand(100000,999999);
         $waresponse = \App\Helper\WhatsApp::sendOtp($mobile,$code);
+        Log::info($waresponse);
         return response()->json(['code' => $code], 200);
     }
 }
