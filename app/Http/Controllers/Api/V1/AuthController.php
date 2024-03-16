@@ -162,7 +162,7 @@ class AuthController extends Controller
         $mobile = str_replace('+', '', $request->mobile);
         $code = rand(100000,999999);
         $waresponse = \App\Helper\WhatsApp::sendOtp($mobile,$code);
-        Log::info($waresponse);
+        // Log::info($waresponse);
         return response()->json(['code' => $code], 200);
     }
 }
