@@ -33,6 +33,6 @@ class SendFeedNotificationJob implements ShouldQueue
     public function handle(): void
     {
         
-        \App\Helper\FCM::sendToSetting(4, $title, $body, $data);
+        \App\Helper\FCM::sendToSetting(4, $this->title, $this->body, $this->data);
     }
 }
