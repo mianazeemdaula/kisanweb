@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         
         // Delete temp old files daily from storage folder
         $schedule->command('app:delete-old-files')->everyDayAt('00:00');
+        $schedule->command('app:expire-deal-after-time')->everyDayAt('00:05');
         
         // Generate Sitemap Daily for SEO
         $schedule->command('app:generate-sitemap')->everyDayAt('01:00');
