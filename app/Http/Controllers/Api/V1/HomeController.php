@@ -42,7 +42,7 @@ class HomeController extends Controller
             $q->with(['buyer'])->whereHas('buyer');
         }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
         ->whereHas('seller')
-        ->where('status','!=', 'accepted')
+        ->whereNotIn('status',['accepted','expired'])
         ->paginate();
         return response()->json($data, 200);
     }

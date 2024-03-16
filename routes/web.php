@@ -24,19 +24,6 @@ Route::get('app/fb-delete-data', function () {
     return response()->json(['email' => 'abc@gmail.com'], 200);
 });
 
-
-Route::get('/test/{id}', function($id){
-   $deal =  \App\Models\Deal::find($id);
-   Mail::to('mazeemrehan@gmail.com')->later(now()->addMinutes(1), new \App\Mail\NewDealMail($deal));
-});
-
-Route::get('test', function(){
-});
-
-Route::get('/addwa/{phone}', function($phone){
-    
-});
-
 Route::get('save-image',[\App\Http\Controllers\ReportController::class,'saveImage']);
 
 

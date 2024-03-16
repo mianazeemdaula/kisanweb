@@ -29,9 +29,7 @@ class AuthController extends Controller
             $mobile = '92'.$mobile;
         }
         $mobile = str_replace('+', '', $mobile);
-        // $user = User::where('mobile', $request->mobile)->where('firebase_uid', $request->firebase_uid)->first();
         $user = User::where('mobile', $mobile)->first();
-        // if (! $user || ! Hash::check($request->password, $user->password)) {
         if (! $user) {
             return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
         }
@@ -160,17 +158,9 @@ class AuthController extends Controller
         $request->validate([
             'mobile' => 'required',
         ]);
-        $mobile = str_replace('+', '', $request->mobile).'@c.us';
+        $mobile = str_replace('+', '', $request->mobile);
         $code = rand(100000,999999);
-        $message = "Your verification code for Kisan Stock is ".$code;
-        $waapi = new WaAPI();
-        $res =  $waapi->sendMessage($mobile, $message);
-        if($res->data){
-            $messageId = $res->data['_data']['id']['_serialized'] ?? "";
-            if($messageId != ""){
-                $waapi->deleteMessageById($messageId);
-            }
-        }
+        $waresponse = \App\Helper\WhatsApp::sendOtp($mobile,$code);
         return response()->json(['code' => $code], 200);
     }
 }
