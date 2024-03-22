@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use WaAPI\WaAPI\WaAPI;
 use Illuminate\Support\Facades\File;
+use App\Helper\WhatsApp;
 
 
 class WAMessageController extends Controller
@@ -67,9 +68,6 @@ class WAMessageController extends Controller
             'text' => 'required',
         ]);
         $to = $request->to;
-        if(!Str::endsWith($to, '@c.us')){
-            $to = $to.'@c.us';
-        }
         if(Str::startsWith($to, '03')){
             $to = '92'.substr($to, 1);
         }
@@ -79,7 +77,7 @@ class WAMessageController extends Controller
             $media = asset($request->file('media')->move('temp',$fileName));
             $wapp->sendMediaFromUrl($to, $media, $request->text, "image");
         }else{
-            $wapp->sendMessage($to, $request->text);
+           WhatsApp::sendText($to, $request->text);
         }
         return redirect()->back()->with(['message' => 'Message sent successfully']);
     }

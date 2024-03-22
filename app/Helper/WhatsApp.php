@@ -35,7 +35,7 @@ class WhatsApp {
             'Content-Type' => 'application/json',
         ];
 
-        $url = "https://graph.facebook.com/v17.0/$WHATSAPP_PHONE_ID/messages";
+        $url = "https://graph.facebook.com/v19.0/$WHATSAPP_PHONE_ID/messages";
         return Http::withHeaders($headers)->post($url, $notification);
     }
 
@@ -67,7 +67,7 @@ class WhatsApp {
             'Content-Type' => 'application/json',
         ];
 
-        $url = "https://graph.facebook.com/v17.0/$WHATSAPP_PHONE_ID/messages";
+        $url = "https://graph.facebook.com/v19.0/$WHATSAPP_PHONE_ID/messages";
         return Http::withHeaders($headers)->post($url, $notification);
     }
 

@@ -7,7 +7,6 @@ use App\Mail\VerifyApiEmail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
-use WaAPI\WaAPI\WaAPI;
 use Google\Client;
 
 
@@ -100,6 +99,7 @@ Route::get('/rate-image', [\App\Http\Controllers\DataController::class,'generate
 
 
 Route::any('whtasapphooks', function (Request $request) {
+    return \App\Helper\WhatsApp::sendText('923004103160','This is a test message with webhook');
     Log::debug($request->all());
 });
 
