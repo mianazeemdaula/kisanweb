@@ -77,7 +77,7 @@ class WAMessageController extends Controller
             $media = asset($request->file('media')->move('temp',$fileName));
             $wapp->sendMediaFromUrl($to, $media, $request->text, "image");
         }else{
-           WhatsApp::sendText($to, $request->text);
+           return WhatsApp::sendText($to, $request->text);
         }
         return redirect()->back()->with(['message' => 'Message sent successfully']);
     }
