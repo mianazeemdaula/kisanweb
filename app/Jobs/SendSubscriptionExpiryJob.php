@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use WaAPI\WaAPI\WaAPI;
+use App\Helper\WhatsApp;
 
 class SendSubscriptionExpiryJob implements ShouldQueue
 {
@@ -30,7 +30,6 @@ class SendSubscriptionExpiryJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $waapi = new WaAPI();
-        $waapi->sendMessage($this->contact."@c.us", $this->message);
+        WhatsApp::sendText($this->contact, $this->message);
     }
 }

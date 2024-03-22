@@ -46,7 +46,7 @@ class ProcessSubscriptionJob implements ShouldQueue
                     $this->sendEmail($contact, $sub->message);
                 }else if($sub->type == 'whatsapp'){
                     $job = [
-                        'to' => $contact."@c.us",
+                        'to' => $contact,
                         'text' => $this->message,
                     ];
                     if($this->image){

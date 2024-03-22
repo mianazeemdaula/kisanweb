@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use WaAPI\WaAPI\WaAPI;
 use Illuminate\Support\Facades\Log;
+use App\Helper\WhatsApp;
 
 class ProcessWhatsApp implements ShouldQueue
 {
@@ -33,10 +34,10 @@ class ProcessWhatsApp implements ShouldQueue
         $waapi = new WaAPI();
         $res = null;
         if(!isset($this->message['media'])) {
-            $res =  $waapi->sendMessage($this->message['to'], $this->message['text']);
+            $res =  WhatsApp::sendText($this->message['to'], $this->message['text']);
         } else if(isset($this->message['media'])) {
             $res =  $waapi->sendMediaFromUrl($this->message['to'], $this->message['media'] , $this->message['text'], "image");
         }
-        return;
+        return ;
     }
 }
