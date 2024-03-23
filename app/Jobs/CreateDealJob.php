@@ -42,7 +42,7 @@ class CreateDealJob implements ShouldQueue
     public function handle()
     {
         $deal = Deal::find($this->dealId);
-        $ids = Address::query()->whereDistanceSphere('location',$deal->location,'<=' ,30000)->pluck('user_id')->toArray();
+        $ids = Address::query()->whereDistanceSphere('location',$deal->location,'<=' ,30 * 1000)->pluck('user_id')->toArray();
         $users = User::where('id','!=',$deal->seller_id)
         ->whereIn('id', $ids)->whereNotNull('fcm_token')->get();
         $delayMint = 1; 
