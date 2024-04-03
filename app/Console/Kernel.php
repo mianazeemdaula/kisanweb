@@ -31,6 +31,9 @@ class Kernel extends ConsoleKernel
         // Send Subscription Expiry Notification
         $schedule->command('app:send-subscription-expiry')->dailyAt('09:00');
 
+        // Calculate User Points Daily
+        $schedule->command('app:user-points')->dailyAt('00:15');
+
         
     }
 

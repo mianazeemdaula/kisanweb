@@ -142,5 +142,11 @@ class User extends Authenticatable
         return $this->belongsToMany(SubscriptionPackage::class, 'user_subscriptions', 'user_id', 'subscription_package_id')
                     ->withPivot('start_date', 'end_date', 'contact', 'active', 'payment_tx_id', 'payment_gateway_id', 'screenshot');
     }
+
+    // user points relation
+    public function points(): HasMany
+    {
+        return $this->HasMany(UserPoint::class);
+    }
     
 }
