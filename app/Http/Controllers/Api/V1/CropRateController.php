@@ -60,7 +60,6 @@ class CropRateController extends Controller
         $rate = CropRate::updateOrCreate([
             'crop_type_id' => $request->crop_type_id,
             'city_id' => $request->city,
-            'user_id' => $request->user()->id,
             'rate_date' => Carbon::parse($request->rate_date)->format('Y-m-d'),
             // 'rate_date' => Carbon::now()->format('Y-m-d'),
         ],[
@@ -68,6 +67,7 @@ class CropRateController extends Controller
             'max_price' => $request->max,
             'min_price_last' => $lastRate->min_price ?? $request->min,
             'max_price_last' => $lastRate->max_price ?? $request->max,
+            'user_id' => $request->user()->id,
         ]);
         \App\Helper\FCM::sendToSetting(6,"نرخ اپڈیٹ","آپ کے شہر کے فصلوں کے ریٹس اپڈیٹ کر دیے گئے ہیں",[
             'type' => 'mand_rate',
