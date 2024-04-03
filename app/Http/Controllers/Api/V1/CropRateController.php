@@ -49,8 +49,8 @@ class CropRateController extends Controller
         if($lastRate){
             $min =  $request->min;
             $max =  $request->max;
-            $minPercent = ($lastRate->min_price * 0.05);
-            $maxPercent = ($lastRate->max_price * 0.05);
+            $minPercent = ($lastRate->min_price * 0.10);
+            $maxPercent = ($lastRate->max_price * 0.10);
             if($min > ($minPercent + $lastRate->min_price) || $min < ($lastRate->min_price - $minPercent)){
                 return response()->json(['message' => 'Minimum price should not be greater or less than 5% of last rate'], 422);
             }else if($max > ($maxPercent + $lastRate->max_price) || $max < ($lastRate->max_price - $maxPercent)){
