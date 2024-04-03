@@ -20,7 +20,7 @@ class QuoteController extends Controller
             $data = Quote::find(23);
             return response()->json($data, 200);
         }else{
-            $data = Quote::latest()->first();
+            $data = Quote::inRandomOrder()->first();
             return response()->json($data, 200);
         }
     }
