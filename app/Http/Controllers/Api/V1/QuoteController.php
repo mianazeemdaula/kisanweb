@@ -20,7 +20,7 @@ class QuoteController extends Controller
             $data = Quote::find(23);
             return response()->json($data, 200);
         }else{
-            $data = Quote::inRandomOrder()->first();
+            $data = Quote::where('id','!=',23)->inRandomOrder()->first();
             return response()->json($data, 200);
         }
     }
