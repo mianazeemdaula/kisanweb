@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $user = User::find(auth()->id());
         $data['user'] = $user;
-        $data['points'] = $user->points()->sum('points');
+        $data['user']['points'] = $user->points()->sum('points');
         $data['addresses'] = $user->addresses;
         return response()->json($data, 200);
     }
@@ -87,7 +87,7 @@ class UserController extends Controller
             }
             $user->save();
             $data['user'] = $user;
-            $data['points'] = $user->points()->sum('points');
+            $data['user']['points'] = $user->points()->sum('points');
             $data['addresses'] = $user->addresses;
             return response()->json($data, 200);
         } catch (\Throwable $th) {
