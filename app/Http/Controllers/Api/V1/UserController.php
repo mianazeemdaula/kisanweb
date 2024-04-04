@@ -87,6 +87,7 @@ class UserController extends Controller
             }
             $user->save();
             $data['user'] = $user;
+            $data['points'] = $user->points->sum('points');
             $data['addresses'] = $user->addresses;
             return response()->json($data, 200);
         } catch (\Throwable $th) {
