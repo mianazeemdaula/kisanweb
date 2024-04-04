@@ -23,8 +23,8 @@ class UserController extends Controller
     {
         $user = User::find(auth()->id());
         $data['user'] = $user;
-        $data['addresses'] = $user->addresses;
         $data['points'] = $user->points->sum('points');
+        $data['addresses'] = $user->addresses;
         return response()->json($data, 200);
     }
 
