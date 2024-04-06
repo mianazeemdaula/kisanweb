@@ -14,7 +14,9 @@ class FeedMillController extends Controller
      */
     public function index()
     {
-        $data = FeedMill::with(['rate','city'])
+        $data = FeedMill::with(['rate' => function($q){
+            $q->whereDate('created_at','<=',Carbon::now()->subDay()->format('Y-m-d'));
+        } ,'city'])
         ->whereHas('rate')->paginate(50);
         return response()->json($data, 200);
     }
