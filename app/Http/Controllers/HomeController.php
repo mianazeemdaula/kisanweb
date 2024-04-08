@@ -20,6 +20,7 @@ class HomeController extends Controller
         $data['shops'] = \App\Models\CommissionShop::count();
         $data['today_shops'] = \App\Models\CommissionShop::whereDate('created_at',now())->count();
         $data['deo_count'] = \App\Models\CropRate::whereDate('rate_date', now())->distinct('user_id')->count('user_id');
+        $data['rates_count'] = \App\Models\CropRate::whereDate('rate_date', now())->count();
         return view('admin.home.index', compact('data'));
     }
     

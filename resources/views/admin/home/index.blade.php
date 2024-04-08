@@ -32,6 +32,9 @@
             <x-stat-card title="Rates DEOs" count="{{ $data['deo_count'] }}" color="bg-green-200">
                 <span class="bi bi-people-fill"></span>
             </x-stat-card>
+            <x-stat-card title="Today Rates" count="{{ $data['rates_count'] }}" color="bg-green-200">
+                <span class="bi bi-people-fill"></span>
+            </x-stat-card>
             
         </div>
     </div>
