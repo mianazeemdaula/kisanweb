@@ -42,6 +42,12 @@ class CropRateController extends Controller
             'city' => 'required',
             'rate_date' => 'required',
         ]);
+        $row = CropRate::where('crop_type_id', $request->crop_type_id)
+        ->whereDate('rate_date', Carbon::parse($request->rate_date)->format('Y-m-d'))
+        ->where('city_id',$request->city)->first();
+        if($row && $row->user_id != $request->user()->id){
+            return response()->json(['message' => 'Rate already exists'], 422);
+        }
         $lastRate = CropRate::where('crop_type_id', $request->crop_type_id)
         ->where('city_id',$request->city)
         ->whereDate('rate_date', '<',Carbon::now()->format('Y-m-d'))
