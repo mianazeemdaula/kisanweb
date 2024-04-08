@@ -46,7 +46,7 @@ class CropRateController extends Controller
         ->where('city_id',$request->city)
         ->whereDate('rate_date', '<',Carbon::now()->format('Y-m-d'))
         ->orderBy('rate_date','desc')->first();
-        if($lastRate){
+        if($lastRate && $request->user()->type != 'deo'){
             $min =  $request->min;
             $max =  $request->max;
             $minPercent = ($lastRate->min_price * 0.15);
