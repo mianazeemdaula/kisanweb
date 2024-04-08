@@ -90,6 +90,9 @@ Route::middleware(['auth'])->group(function () {
         // 
         Route::resource('support',\App\Http\Controllers\Admin\SupportController::class);
         Route::resource('support.chat',\App\Http\Controllers\Admin\SupportChatController::class);
+
+        // statistics
+        Route::get('statistics/today-rates-users',[\App\Http\Controllers\Admin\StatisticsController::class,'todayCropRatesDeos']);
     });
 });
 
