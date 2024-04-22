@@ -36,7 +36,7 @@ class ShopReportController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $user->reportedShops()->attach($request->shop_id, ['reason' => $request->reason]);
+        $user->reportedShops()->attach($request->shop_id, ['reason' => $request->reason ?? 'Report reason not available']);
         return $this->index();
     }
 
