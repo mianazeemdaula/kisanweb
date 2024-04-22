@@ -67,6 +67,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('sugarmills', \App\Http\Controllers\Admin\SugarMillController::class);
         Route::resource('sugarmillsrate', \App\Http\Controllers\Admin\SugarMillRateController::class);
 
+        // Deo Crop Rates
+        Route::resource('deorates', \App\Http\Controllers\Admin\RatesDeoController::class);
+
         // WhatsApp
         Route::get('send-message', [\App\Http\Controllers\Admin\WAMessageController::class,'sendMessage']);
         Route::post('send-message', [\App\Http\Controllers\Admin\WAMessageController::class,'postSendMessage']);

@@ -95,6 +95,11 @@ class User extends Authenticatable
         return $this->hasOne(Address::class);
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function commissionShop(): HasOne
     {
         return $this->hasOne(CommissionShop::class)->latest();
@@ -147,6 +152,12 @@ class User extends Authenticatable
     public function points(): HasMany
     {
         return $this->HasMany(UserPoint::class);
+    }
+
+    // user points relation
+    public function croprates(): HasMany
+    {
+        return $this->HasMany(CropRate::class);
     }
     
 }
