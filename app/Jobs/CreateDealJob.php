@@ -57,7 +57,7 @@ class CreateDealJob implements ShouldQueue
             FCM::sendNotification($notif);
             if($user->email){
                 Mail::to($user->email)->later(now()->addMinutes($delayMint), new \App\Mail\NewDealMail($deal));
-                $delayMint++;
+                $delayMint += 2;
             }
         }
     }
