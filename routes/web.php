@@ -37,6 +37,7 @@ Route::group([], function() {
     Route::get('reports/rates', [\App\Http\Controllers\ReportController::class,'getCropRatePdf']);
     Route::post('reports/rates', [\App\Http\Controllers\ReportController::class,'cropRatePdf']);
     Route::post('reports/sugar-mill-report', [\App\Http\Controllers\ReportController::class,'sugarMillReport']);
+    Route::post('reports/fee-mill-report', [\App\Http\Controllers\ReportController::class,'feedMillReport']);
     
 
     Route::get('/', function () {

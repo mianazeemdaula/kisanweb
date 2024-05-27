@@ -35,6 +35,13 @@ class ReportController extends Controller
         return view('reports.pdf.sugermill_rates', compact('data','filterDate'));
     }
 
+    public function feedMillReport(Request $request){
+        $filterDate =  \Carbon\Carbon::parse($request->date);
+        $ids = \App\Models\FeedMillRate::whereDate('created_at', $filterDate)->pluck('feed_mill_id');
+        $data = \App\Models\FeedMill::with(['rate','city'])->whereIn('id', $ids)->get();
+        return view('reports.pdf.feedmill_rates', compact('data','filterDate'));
+    }
+
     function saveImage()  {
         $filterDate =  \Carbon\Carbon::parse('2023-06-20');
         $rates =  \App\Models\CropRate::where('crop_type_id',60)
