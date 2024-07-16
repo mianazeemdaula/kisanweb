@@ -27,11 +27,11 @@ class ExpireDealAfterTime extends Command
     public function handle()
     {
         $deals = Deal::where('status', 'open')->take(5)->get();
-        foreach ($deals as $deal) {
-            if ($deal->created_at->diffInDays(now()) > 60) {
-                $deal->status = 'expired';
-                $deal->save();
-            }
-        }
+        // foreach ($deals as $deal) {
+        //     if ($deal->created_at->diffInDays(now()) > 60) {
+        //         $deal->status = 'expired';
+        //         $deal->save();
+        //     }
+        // }
     }
 }
