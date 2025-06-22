@@ -22,6 +22,7 @@
                 {{-- <x-menu-item title="Home" icon="bi-house-door-fill" active="true" />
                 <hr class="my-4 text-gray-600"> --}}
                 <x-menu-item title="Statistics" icon="bi-envelope-fill" active="false" url="{{ url('/admin/home') }}" />
+                <x-menu-item title="Category" icon="bi-shop" active="false" url="{{ route('admin.category.index') }}" />
                 <x-menu-item title="Shops" icon="bi-shop" active="false" url="{{ route('admin.shops.index') }}" />
                 <x-menu-item title="Cities" icon="bi-building" active="false" url="{{ route('admin.cities.index') }}" />
                 <x-menu-item title="Quotes" icon="bi-quote" active="false" url="{{ route('admin.quotes.index') }}" />
@@ -40,11 +41,11 @@
                     url="{{ url('admin/send-message') }}" />
                 <x-menu-item title="Subscriptions" icon="bi-search" active="false"
                     url="{{ route('admin.subscriptions.index') }}" />
-                    <x-menu-item title="Ads" icon="bi-clipboard2-heart" active="false"
+                <x-menu-item title="Ads" icon="bi-clipboard2-heart" active="false"
                     url="{{ route('admin.ads.index') }}" />
-                    <x-menu-item title="Support" icon="bi-clipboard2-heart" active="false"
+                <x-menu-item title="Support" icon="bi-clipboard2-heart" active="false"
                     url="{{ route('admin.support.index') }}" />
-                    <x-menu-item title="DEO Rates" icon="bi-clipboard2-heart" active="false"
+                <x-menu-item title="DEO Rates" icon="bi-clipboard2-heart" active="false"
                     url="{{ route('admin.deorates.index') }}" />
                 {{-- <div
                     class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">

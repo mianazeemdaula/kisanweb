@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('home',[\App\Http\Controllers\HomeController::class, 'index']);
         Route::resource('shops', \App\Http\Controllers\Admin\ShopController::class);
+        Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
+        Route::resource('category.sub', \App\Http\Controllers\Admin\SubCategoryController::class);
         Route::post('shop-stauts/{id}', [\App\Http\Controllers\Admin\ShopController::class,'updateStatus']);
         Route::resource('cities', \App\Http\Controllers\Admin\CityController::class);
         Route::resource('quotes',\App\Http\Controllers\Admin\QuoteController::class);
