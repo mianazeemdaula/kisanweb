@@ -64,6 +64,7 @@ Route::post('auth/whtasapp', [AuthController::class,'whatsapp']);
 Route::resource('crop', CropController::class);
 Route::resource('crop.type', CropTypeController::class);
 
+
 Route::resource('media', MediaController::class);
 Route::get('/cities',[CityController::class, 'index']);
 
@@ -72,6 +73,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('crops', [HomeController::class,'crops']);
     Route::post('popular', [HomeController::class,'popular']);
     Route::get('latest', [HomeController::class,'latest']);
+    Route::get('subcats/{id}', [HomeController::class,'subcats']);
 
     // Categories, subcategories, and category deals routes
     // Route::resource('categories', [CategoryController::class,'categories']);

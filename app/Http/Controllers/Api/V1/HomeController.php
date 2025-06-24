@@ -11,6 +11,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 // Models
 use App\Models\Crop;
 use App\Models\Deal;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -56,8 +57,16 @@ class HomeController extends Controller
         return response()->json($data, 200);
     }
 
+    public function subcats($id)
+    {
+        $data = Category::with('subcategories')->where('parent_id', $id)->get();
+        return response()->json($data, 200);
+    }
+
     public function wamessage(Request $request)
     {   Log::debug($request->all());
         return $request->hub_challenge ?? 'Thank you for testing';
     }
+
+
 }
