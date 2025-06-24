@@ -126,6 +126,11 @@ class User extends Authenticatable
         return $this->hasMany(Reaction::class);
     }
 
+    public function catDealreactions(): HasMany
+    {
+        return $this->hasMany(CategoryDealReaction::class);
+    }
+
     public function getRatingAttribute()
     {
         return number_format($this->reviews()->avg('rating') ?? 0, 1);

@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\V1\SugarMill\SugarMillController;
 use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
+use App\Http\Controllers\Api\V1\Category\CategoryController;
 use App\Http\Controllers\Api\V1\PaymentGatewaysController;
 use App\Http\Controllers\Api\V1\AdsController;
 /*
@@ -64,9 +65,6 @@ Route::resource('crop', CropController::class);
 Route::resource('crop.type', CropTypeController::class);
 
 Route::resource('media', MediaController::class);
-
-
-
 Route::get('/cities',[CityController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -74,6 +72,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('crops', [HomeController::class,'crops']);
     Route::post('popular', [HomeController::class,'popular']);
     Route::get('latest', [HomeController::class,'latest']);
+
+    // Categories, subcategories, and category deals routes
+    // Route::resource('categories', [CategoryController::class,'categories']);
+    // Route::get('categories/{id}/subcategories', [HomeController::class,'subcategories']);
+    // Route::get('categories/{id}/subcategories/deals', [HomeController::class,'subcategoryDeals']);
+
 
     // Author Profile
     Route::get('user/profile',[UserController::class,'profile']);

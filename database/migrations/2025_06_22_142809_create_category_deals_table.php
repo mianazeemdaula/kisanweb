@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('status')->default('open');
             $table->boolean('is_sell')->default(false);
+            $table->json('attr')->nullable();
             $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
