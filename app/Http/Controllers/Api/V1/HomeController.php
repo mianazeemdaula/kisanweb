@@ -89,7 +89,7 @@ class HomeController extends Controller
 
     public function subcats($id)
     {
-        $data = Category::with('subcategories')->where('parent_id', $id)->get();
+        $data = Category::with(['subcategories'])->where('parent_id', $id)->get();
         return response()->json($data, 200);
     }
 
