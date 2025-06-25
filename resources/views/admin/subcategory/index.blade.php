@@ -4,7 +4,7 @@
         <div class="flex items-center justify-between">
             <h5 class="">{{ $category->name }}</h5>
             <a href="{{ route('admin.category.sub.create', $category->id) }}">
-                <div class="px-4 bg-green-700 text-white rounded-xl">
+                <div class="px-4 bg-green-700 text-white rounded-xl p-1">
                     Add
                 </div>
             </a>

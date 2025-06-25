@@ -12,6 +12,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 use App\Models\Crop;
 use App\Models\Deal;
 use App\Models\Category;
+use App\Models\CategoryDeal;
 
 class HomeController extends Controller
 {
@@ -43,6 +44,31 @@ class HomeController extends Controller
             $q->with(['buyer'])->whereHas('buyer');
         }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
         ->whereHas('seller')
+        ->whereNotIn('status',['accepted','expired'])
+        ->paginate();
+        return response()->json($data, 200);
+    }
+
+    public function catdeals(Request $reqeust)
+    {
+        $query = CategoryDeal::query();
+        if($reqeust->subcat){
+            $query->where('sub_category_id', $reqeust->subcat);
+        }
+
+        if($reqeust->lat && $reqeust->lng){
+            $point = new Point($reqeust->lat, $reqeust->lng, 4326);
+            $query->whereDistance('location', $point , '<', 10)->count();
+        }
+        if($reqeust->sortype){
+            // $query->orderBy();
+        }else{
+            $query->orderBy('id', 'desc');
+        }
+        $data = $query->with(['bids' => function($q){
+            $q->with(['buyer'])->whereHas('buyer');
+        }, 'user', 'media', 'subcategory.category'])
+        ->whereHas('user')
         ->whereNotIn('status',['accepted','expired'])
         ->paginate();
         return response()->json($data, 200);

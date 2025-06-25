@@ -37,6 +37,7 @@ use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
 use App\Http\Controllers\Api\V1\Category\CategoryController;
+use App\Http\Controllers\Api\V1\Category\CategoryDealsController;
 use App\Http\Controllers\Api\V1\PaymentGatewaysController;
 use App\Http\Controllers\Api\V1\AdsController;
 /*
@@ -73,10 +74,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('crops', [HomeController::class,'crops']);
     Route::post('popular', [HomeController::class,'popular']);
     Route::get('latest', [HomeController::class,'latest']);
+
+    // categories deals and data
+    Route::post('catdeals', [HomeController::class,'catdeals']);
     Route::get('subcats/{id}', [HomeController::class,'subcats']);
 
     // Categories, subcategories, and category deals routes
-    // Route::resource('categories', [CategoryController::class,'categories']);
+    Route::resource('categories-deals', [CategoryDealsController::class,'categories']);
     // Route::get('categories/{id}/subcategories', [HomeController::class,'subcategories']);
     // Route::get('categories/{id}/subcategories/deals', [HomeController::class,'subcategoryDeals']);
 
