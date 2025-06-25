@@ -63,7 +63,6 @@ class CategoryDealsController extends Controller
             $deal->qty = $request->qty;
             $deal->location = new Point($request->lat,$request->lng);
             $deal->address = $request->address;
-            $deal->moisture = $request->moisture ?? 0;
 
             // attributes
             if($request->has('attr') && is_array($request->attr)){
