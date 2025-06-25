@@ -26,6 +26,10 @@
                             </th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Icon
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Action
                             </th>
                         </tr>
@@ -52,16 +56,17 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->name_ur }} </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->icon }} </td>
                                 <td>
                                     <div class="flex space-x-3">
 
-                                        <a href="{{ route('admin.cities.show', $item->id) }}">
+                                        <a href="{{ route('admin.category.show', $item->id) }}">
                                             <span class="bi bi-eye"></span>
                                         </a>
-                                        <a href="{{ route('admin.cities.edit', $item->id) }}">
+                                        <a href="{{ route('admin.category.edit', $item->id) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
-                                        <form action="{{ route('admin.cities.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('admin.category.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit"><span class="bi bi-trash"></span></button>

@@ -1,35 +1,29 @@
 @extends('layouts.admin')
 @section('content')
     <div class="bg-white rounded-lg">
-        <form action="{{ route('admin.cities.update', $city->id) }}" method="post" class="">
+        <form action="{{ route('admin.category.update', $category->id) }}" method="post" class="">
             @csrf
             @method('PUT')
             <div class="grid grid-cols-1 md:grid-cols-3 p-2 gap-2 md:p-4">
                 <div>
-                    <h3 class="p-1">District</h3>
-                    <select name="district" id="" class="w-80">
-                        @foreach ($districts as $item)
-                            <option value="{{ $item->id }}" @if ($item->id == $city->district_id) selected @endif>
-                                {{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('district')
-                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-
-                </div>
-                <div>
                     <h3 class="p-1">Name</h3>
-                    <input type="text" placeholder="Name" name="name" value="{{ $city->name }}" class="w-80">
+                    <input type="text" placeholder="Name" name="name" value="{{ $category->name }}" class="w-80">
                     @error('name')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
                     <h3 class="p-1">Name Urdu</h3>
-                    <input type="text" placeholder="Name Urdu" name="name_ur" value="{{ $city->name_ur }}"
+                    <input type="text" placeholder="Name Urdu" name="name_ur" value="{{ $category->name_ur }}"
                         class="w-80">
                     @error('name_ur')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <h3 class="p-1">Icon</h3>
+                    <input type="text" placeholder="Icon" name="icon" value="{{ $category->icon }}" class="w-80">
+                    @error('icon')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>

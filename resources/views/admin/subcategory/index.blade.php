@@ -2,10 +2,10 @@
 @section('content')
     <div class="w-full">
         <div class="flex items-center justify-between">
-            <h5 class="">Sub Categories</h5>
+            <h5 class="">{{ $category->name }}</h5>
             <a href="{{ route('admin.category.sub.create', $category->id) }}">
                 <div class="px-4 bg-green-700 text-white rounded-xl">
-                    Add Sub Category
+                    Add
                 </div>
             </a>
         </div>
@@ -26,6 +26,10 @@
                             </th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Icon
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Action
                             </th>
                         </tr>
@@ -40,6 +44,7 @@
                                     {{ $item->name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->name_ur }} </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->icon }} </td>
                                 <td>
                                     <div class="flex space-x-3">
 

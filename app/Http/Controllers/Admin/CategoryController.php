@@ -42,11 +42,13 @@ class CategoryController extends Controller
             'parent_id' => 'nullable|exists:categories,id',
             'name' => 'required',
             'name_ur' => 'required',
+            'icon' => 'nullable|string',
         ]);
         $cat = new Category;
         $cat->parent_id = $request->parent_id;
         $cat->name = $request->name;
         $cat->name_ur = $request->name_ur;
+        $cat->icon = $request->icon;
         $cat->save();
         return redirect()->route('admin.category.index');
     }
@@ -70,8 +72,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $cats = Categroy::whereNull('parent_id')->all();
-        $category = Categroy::findOrFail($id);
+        $cats = Category::whereNull('parent_id')->get();
+        $category = Category::findOrFail($id);
         return view('admin.category.edit', compact('category', 'cats'));
     }
 
@@ -88,11 +90,15 @@ class CategoryController extends Controller
             'parent_id' => 'nullable|exists:categories,id',
             'name' => 'required',
             'name_ur' => 'required',
+            'icon' => 'nullable|string',
         ]);
-        $cat = Categroy::findOrFail($id);
+        $cat = Category::findOrFail($id);
         $cat->parent_id = $request->parent_id;
         $cat->name = $request->name;
         $cat->name_ur = $request->name_ur;
+        if ($request->icon) {
+            $cat->icon = $request->icon;
+        }
         $cat->save();
         return redirect()->route('admin.category.index');
     }

@@ -42,11 +42,13 @@ class SubCategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'name_ur' => 'required',
+            'icon' => 'nullable|string',
         ]);
         $cat = new SubCategory;
         $cat->name = $request->name;
         $cat->name_ur = $request->name_ur;
         $cat->category_id = $id;
+        $cat->icon = $request->icon;
         $cat->save();
         return redirect()->route('admin.category.sub.index',$id);
     }
@@ -71,8 +73,8 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
         $cats = Categroy::whereNull('parent_id')->all();
-        $category = Categroy::findOrFail($id);
-        return view('admin.category.edit', compact('category', 'cats'));
+        $subcategory = SubCategroy::findOrFail($id);
+        return view('admin.category.edit', compact('subcategory', 'cats', 'id'));
     }
 
     /**
@@ -88,11 +90,15 @@ class SubCategoryController extends Controller
             'parent_id' => 'nullable|exists:categories,id',
             'name' => 'required',
             'name_ur' => 'required',
+            'icon' => 'nullable|string',
         ]);
-        $cat = Categroy::findOrFail($id);
-        $cat->parent_id = $request->parent_id;
+        $cat = SubCategroy::findOrFail($id);
         $cat->name = $request->name;
         $cat->name_ur = $request->name_ur;
+        if ($request->icon) {
+            $cat->icon = $request->icon;
+        }
+        
         $cat->save();
         return redirect()->route('admin.category.index');
     }
