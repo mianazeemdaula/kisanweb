@@ -12,6 +12,8 @@ class CategoryDeal extends Model
 {
     use HasFactory;
 
+    protected $appends = ['reactionsIds'];
+
     protected $casts = [
         'attr' => 'array',
         'location' => Point::class,
