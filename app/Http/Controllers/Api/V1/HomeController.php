@@ -53,12 +53,12 @@ class HomeController extends Controller
     {
         $query = CategoryDeal::query();
         if($reqeust->cat){
-            $query->whereHas('subcategory', function($query) use($reqeust) {
-                $query->where('category_id', $reqeust->cat);
+            $query->whereHas('subcategory.category', function($query) use($reqeust) {
+                $query->where('id', $reqeust->cat);
             });
         }
         if($reqeust->subcat){
-            $query->where('sub_category_id', $reqeust->subcat);
+            $query->where('subcategory.id', $reqeust->subcat);
         }
         if($reqeust->lat && $reqeust->lng){
             $point = new Point($reqeust->lat, $reqeust->lng, 4326);
