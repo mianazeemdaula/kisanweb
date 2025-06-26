@@ -61,6 +61,8 @@ class CategoryDealsController extends Controller
             $deal->demand = $request->demand;
             $deal->note = $request->note;
             $deal->qty = $request->qty;
+            $deal->packing_id = $request->packing_id;
+            $deal->weight_type_id = $request->weight_type_id;
             $deal->location = new Point($request->lat,$request->lng);
             $deal->address = $request->address;
 

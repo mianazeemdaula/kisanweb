@@ -78,8 +78,8 @@ class DealController extends Controller
             $deal->seller_id = $request->user()->id;
             $deal->crop_type_id = $request->crop_type_id;
             $deal->packing_id = $request->packing_id;
-            $deal->demand = $request->demand;
             $deal->weight_type_id = $request->weight_type_id;
+            $deal->demand = $request->demand;
             $deal->note = $request->note;
             $deal->qty = $request->qty;
             $deal->location = new Point($request->lat,$request->lng);

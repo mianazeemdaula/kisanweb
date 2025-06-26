@@ -36,6 +36,16 @@ class CategoryDeal extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function packing()
+    {
+        return $this->belongsTo(Packing::class, 'packing_id');
+    }
+
+    public function weight()
+    {
+        return $this->belongsTo(WeightType::class, 'weight_type_id');
+    }
+
 
     //bids
     public function bids()

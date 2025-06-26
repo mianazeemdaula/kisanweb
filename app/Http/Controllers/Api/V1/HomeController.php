@@ -52,14 +52,15 @@ class HomeController extends Controller
     public function catdeals(Request $reqeust)
     {
         $query = CategoryDeal::query();
-        // if($reqeust->cat){
-        //     $query->whereHas('subcategory.category', function($query) use($reqeust) {
-        //         $query->where('id', $reqeust->cat);
-        //     });
-        // }
-        // if($reqeust->subcat){
-        //     $query->where('subcategory.id', $reqeust->subcat);
-        // }
+        if($reqeust->cat){
+            $query->whereHas('subcategory.category', function($query) use($reqeust) {
+                $query->where('id', $reqeust->cat);
+            });
+        }else if($reqeust->subcat){
+            $query->whereHas('subcategory.category', function($query) use($reqeust) {
+                $query->where('id', $reqeust->subcat);
+            });
+        }
         // if($reqeust->lat && $reqeust->lng){
         //     $point = new Point($reqeust->lat, $reqeust->lng, 4326);
         //     $query->whereDistance('location', $point , '<', 10)->count();
@@ -71,7 +72,7 @@ class HomeController extends Controller
         }
         $data = $query->with(['bids' => function($q){
             $q->with(['buyer'])->whereHas('buyer');
-        }, 'user', 'media', 'subcategory.category'])
+        }, 'user', 'media', 'subcategory.category', 'packing', 'weight'])
         ->whereHas('user')
         ->whereNotIn('status',['accepted','expired'])
         ->paginate();
