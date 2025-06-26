@@ -41,7 +41,7 @@ class CategoryDealReactionController extends Controller
             $reaction->user_id = $user->id;
             $reaction->category_deal_id = $request->deal_id;
             $reaction->save();
-            $fcmToken = CategoryDeal::find($request->deal_id)->seller->fcm_token;    
+            $fcmToken = CategoryDeal::find($request->deal_id)->user->fcm_token;    
             $data =  [
                 'type' => 'deal',
                 'deal_id' => $request->deal_id,
