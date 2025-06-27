@@ -93,11 +93,8 @@ class CategoryDealsController extends Controller
     public function show(string $id)
     {
         $deal = CategoryDeal::with(['bids' => function($q){
-            $q->with(['buyer']);
-        }, with(['bids' => function($q){
             $q->with(['buyer'])->whereHas('buyer');
-        }, 'user', 'media', 'subcategory.category'])
-        ])->whereHas('user')->findOrFail($id);
+        }, 'user', 'media', 'subcategory.category'])->findOrFail($id);
         return response()->json($deal);
     }
 
