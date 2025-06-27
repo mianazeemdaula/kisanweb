@@ -52,15 +52,12 @@ class HomeController extends Controller
     public function catdeals(Request $reqeust)
     {
         $query = CategoryDeal::query();
-        if($reqeust->cat){
-            $query->whereHas('subcategory.category', function($query) use($reqeust) {
-                $query->where('id', $reqeust->cat);
+        $catid = $reqeust->subcat ?? $reqeust->cat;
+        $query->whereHas('subcategory', function($query) use($catid) {
+            $query->whereHas('category', function($query2) use($catid) {
+                $query2->where('id', $catid);
             });
-        }else if($reqeust->subcat){
-            $query->whereHas('subcategory.category', function($query) use($reqeust) {
-                $query->where('id', $reqeust->subcat);
-            });
-        }
+        });
         // if($reqeust->lat && $reqeust->lng){
         //     $point = new Point($reqeust->lat, $reqeust->lng, 4326);
         //     $query->whereDistance('location', $point , '<', 10)->count();
