@@ -97,8 +97,7 @@ class CategoryDealsController extends Controller
         }, with(['bids' => function($q){
             $q->with(['buyer'])->whereHas('buyer');
         }, 'user', 'media', 'subcategory.category'])
-        ->whereHas('user')
-        ])->findOrFail($id);
+        ])->whereHas('user')->findOrFail($id);
         return response()->json($deal);
     }
 
