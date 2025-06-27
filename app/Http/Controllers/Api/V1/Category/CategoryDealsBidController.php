@@ -40,7 +40,7 @@ class CategoryDealsBidController extends Controller
         $bid = CategoryDealBid::where('category_deal_id', $request->deal_id)->where('buyer_id',$user->id)->first();
         if(!$bid){
             $bid = new CategoryDealBid();
-            $bid->deal_id = $request->deal_id;
+            $bid->category_deal_id = $request->deal_id;
             $bid->buyer_id = $user->id;
             $bid->bid_price = $request->bid_price;
             $bid->save();
