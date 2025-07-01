@@ -35,6 +35,21 @@ class HomeController extends Controller
             $point = new Point($reqeust->lat, $reqeust->lng, 4326);
             $query->whereDistance('location', $point , '<', 10)->count();
         }
+
+        if($reqeust->text){
+            $query->where(function($q) use($reqeust) {
+                $q->whereHas('seller', function($sellerQuery) use($reqeust) {
+                    $sellerQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                });
+            });
+            // where biders name
+            $query->orWhereHas('bids', function($bidQuery) use($reqeust) {
+                $bidQuery->whereHas('buyer', function($buyerQuery) use($reqeust) {
+                    $buyerQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                });  
+            });
+        }
+
         if($reqeust->sortype){
             // $query->orderBy();
         }else{
@@ -62,6 +77,13 @@ class HomeController extends Controller
         //     $point = new Point($reqeust->lat, $reqeust->lng, 4326);
         //     $query->whereDistance('location', $point , '<', 10)->count();
         // }
+        if($reqeust->text){
+            $query->where(function($q) use($reqeust) {
+                $q->whereHas('user', function($userQuery) use($reqeust) {
+                    $userQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                });
+            });
+        }
         if($reqeust->sortype){
             // $query->orderBy();
         }else{
@@ -82,6 +104,15 @@ class HomeController extends Controller
         $data = Deal::with(['bids' => function($q) use($user) {
             $q->with(['buyer'])->where('buyer_id', $user->id);
         }, 'seller', 'packing', 'weight' , 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
+        return response()->json($data, 200);
+    }
+
+    public function userCatDeals()
+    {
+        $user = auth()->user();
+        $data = CategoryDeal::with(['bids' => function($q) use($user) {
+            $q->with(['buyer'])->where('buyer_id', $user->id);
+        }, 'user', 'packing', 'weight' , 'media'])->where('user_id', $user->id)->paginate();
         return response()->json($data, 200);
     }
 

@@ -104,6 +104,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('data/create-deal', [DataController::class,'getCreateDealData']);
     
     Route::post('user-deals', [HomeController::class,'userDeals']);
+    Route::post('user-cat-deals', [HomeController::class,'userCatDeals']);
     // Rest
     Route::resource('deal', DealController::class);
     Route::get('home-deals', [DealController::class, 'homeDeals']);
