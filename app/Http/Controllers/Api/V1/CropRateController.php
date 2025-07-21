@@ -124,7 +124,7 @@ class CropRateController extends Controller
                 $q->select(\DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
             });
         }])->whereHas('rate')->where('crop_id', $request->crop)->get();
-        $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "muhammadashfaqthq786@gmail.com", "jhonhill267@gmail.com");
+        $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "kissanzone369@gmail.com", "jhonhill267@gmail.com");
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
     }
