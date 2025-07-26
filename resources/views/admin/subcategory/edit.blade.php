@@ -1,20 +1,21 @@
 @extends('layouts.admin')
 @section('content')
     <div class="bg-white rounded-lg">
-        <form action="{{ route('admin.category.sub.update', $cat->id, $sub->id) }}" method="post" class="">
+        <form action="{{ route('admin.category.sub.update', [$subcategory->category_id, $subcategory->id]) }}" method="post"
+            class="">
             @csrf
             @method('PUT')
             <div class="grid grid-cols-1 md:grid-cols-3 p-2 gap-2 md:p-4">
                 <div>
                     <h3 class="p-1">Name</h3>
-                    <input type="text" placeholder="Name" name="name" value="{{ $city->name }}" class="w-80">
+                    <input type="text" placeholder="Name" name="name" value="{{ $subcategory->name }}" class="w-80">
                     @error('name')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
                     <h3 class="p-1">Name Urdu</h3>
-                    <input type="text" placeholder="Name Urdu" name="name_ur" value="{{ $city->name_ur }}"
+                    <input type="text" placeholder="Name Urdu" name="name_ur" value="{{ $subcategory->name_ur }}"
                         class="w-80">
                     @error('name_ur')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -22,7 +23,7 @@
                 </div>
                 <div>
                     <h3 class="p-1">Icon</h3>
-                    <input type="text" placeholder="Icon" name="icon" value="{{ $city->icon }}" class="w-80">
+                    <input type="text" placeholder="Icon" name="icon" value="{{ $subcategory->icon }}" class="w-80">
                     @error('icon')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
@@ -31,7 +32,7 @@
                     <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit">
-                        Send
+                        Update
                     </button>
                 </div>
             </div>

@@ -70,11 +70,10 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($category_id, $id)
     {
-        $cats = Categroy::whereNull('parent_id')->all();
-        $subcategory = SubCategroy::findOrFail($id);
-        return view('admin.category.edit', compact('subcategory', 'cats', 'id'));
+        $subcategory = SubCategory::findOrFail($id);
+        return view('admin.subcategory.edit', compact('subcategory', 'category_id', 'id'));
     }
 
     /**
@@ -84,15 +83,14 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $category_id, $id)
     {
         $request->validate([
-            'parent_id' => 'nullable|exists:categories,id',
             'name' => 'required',
             'name_ur' => 'required',
             'icon' => 'nullable|string',
         ]);
-        $cat = SubCategroy::findOrFail($id);
+        $cat = SubCategory::findOrFail($id);
         $cat->name = $request->name;
         $cat->name_ur = $request->name_ur;
         if ($request->icon) {
@@ -100,7 +98,7 @@ class SubCategoryController extends Controller
         }
         
         $cat->save();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.sub.index', $category_id);
     }
 
     /**
@@ -109,10 +107,10 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($category_id, $id)
     {
-        $cat = Category::findOrFail($id);
+        $cat = SubCategory::findOrFail($id);
         $cat->delete();
-        return redirect()->back();
+        return redirect()->route('admin.category.sub.index', $category_id);
     }
 }

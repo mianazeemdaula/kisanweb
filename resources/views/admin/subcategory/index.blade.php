@@ -48,13 +48,14 @@
                                 <td>
                                     <div class="flex space-x-3">
 
-                                        <a href="{{ route('admin.cities.show', $item->id) }}">
+                                        <a href="{{ route('admin.category.sub.show', [$category->id, $item->id]) }}">
                                             <span class="bi bi-eye"></span>
                                         </a>
-                                        <a href="{{ route('admin.cities.edit', $item->id) }}">
+                                        <a href="{{ route('admin.category.sub.edit', [$category->id, $item->id]) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
-                                        <form action="{{ route('admin.cities.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('admin.category.sub.destroy', [$category->id, $item->id]) }}"
+                                            method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit"><span class="bi bi-trash"></span></button>
