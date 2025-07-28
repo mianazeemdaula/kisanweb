@@ -5,8 +5,25 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserSetting;
+use Google\Auth\OAuth2;
 
 class FCM {
+
+    static public function getAccessToken()
+    {
+        $serviceAccount = json_decode(file_get_contents(env('GOOGLE_CREDENTIALS')), true);
+
+        $oauth = new OAuth2([
+            'audience' => 'https://oauth2.googleapis.com/token',
+            'issuer' => $serviceAccount['client_email'],
+            'signingAlgorithm' => 'RS256',
+            'signingKey' => $serviceAccount['private_key'],
+            'scope' => 'https://www.googleapis.com/auth/firebase.messaging',
+        ]);
+
+        $token = $oauth->fetchAuthToken();
+        return $token['access_token'];
+    }
 
     static public function sendNotification(Notification $notification)
     {
@@ -16,6 +33,30 @@ class FCM {
         }
         $token =  $notification->user->fcm_token;
         return FCM::send([$token],$notification->title, $notification->body,(array) json_decode($notification->data));
+    }
+
+    static public function sendNotificationFcm($fcmToken, $title, $body, Array $data = [])
+    {
+        $accessToken = $this->getAccessToken();
+        $projectId = env('FCM_PROJECT_ID');
+        $url = "https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send";
+
+        $response = Http::withToken($accessToken)
+            ->withHeaders([
+                'Content-Type' => 'application/json; UTF-8',
+            ])
+            ->post($url, [
+                'message' => [
+                    'token' => $fcmToken,
+                    'notification' => [
+                        'title' => $title,
+                        'body' => $body,
+                    ]
+                ],
+                'data' => $data
+            ]);
+
+        return $response->json();
     }
 
     static public function send(Array $tokens, $title, $body, Array $data)

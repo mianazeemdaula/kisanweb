@@ -169,7 +169,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('/fcm/{id}', function($id){
     $fcmToken = \App\Models\User::find($id)->fcm_token;
-    $res =  \App\Helper\FCM::send([$fcmToken],"Test Title", "Test Body",[ 
+    $res =  \App\Helper\FCM::sendNotificationFcm($fcmToken,"Test Title", "Test Body",[ 
         'type' => 'deal', 
         'deal_id' => 1,
     ]);
