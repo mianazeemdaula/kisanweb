@@ -8,6 +8,7 @@ use App\Events\DealUpdateEvent;
 // Models
 use App\Models\CategoryDealBid;
 use App\Models\CategoryDeal;
+use App\Helper\FCM;
 
 class CategoryDealsBidController extends Controller
 {
@@ -48,6 +49,12 @@ class CategoryDealsBidController extends Controller
             $bid->bid_price = $request->bid_price;
             $bid->save();
         }
+        $fcmToken = CategoryDeal::find($request->deal_id)->user->fcm_token;
+        $data =  [
+            'type' => 'deal',
+            'deal_id' => $request->deal_id,
+        ];
+        FCM::send([$fcmToken],"Bid", "$user->name bid on your deal", $data);
         // \App\Jobs\BidNotificationJob::dispatch($bid->deal_id, $user->id);
         // DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($bid, 200);

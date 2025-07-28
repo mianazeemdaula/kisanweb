@@ -167,6 +167,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // Route::resource('rate', CropRateController::class);
 
+Route::get('/fcm/{id}', function($id){
+    $fcmToken = \App\Models\User::find($id)->fcm_token;
+    $res =  \App\Helper\FCM::send([$fcmToken],"Test Title", "Test Body",[ 
+        'type' => 'deal', 
+        'deal_id' => 1,
+    ]);
+    return response()->json(['fcm' => $fcmToken, 'res' => $res]);
+});
+
 Route::get('userdel', function(){
     return response()->json(['message' => 'Your account deleted successfully']);
 });
