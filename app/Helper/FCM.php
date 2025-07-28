@@ -31,7 +31,7 @@ class FCM {
         ];
         $dataString = json_encode($notification);
         $headers = [
-            'Authorization' =>  'key=' . $SERVER_API_KEY,
+            'Authorization' =>  'Bearer ' . $SERVER_API_KEY,
             'Content-Type' => 'application/json',
         ];
 
@@ -52,7 +52,7 @@ class FCM {
         ];
         $dataString = json_encode($notification);
         $headers = [
-            'Authorization' =>  'key=' . $SERVER_API_KEY,
+            'Authorization' =>  'Bearer ' . $SERVER_API_KEY,
             'Content-Type' => 'application/json',
         ];
 
