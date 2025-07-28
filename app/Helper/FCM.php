@@ -11,7 +11,7 @@ class FCM {
 
     static public function getAccessToken()
     {
-        $serviceAccount = json_decode(file_get_contents(env('GOOGLE_CREDENTIALS')), true);
+        $serviceAccount = json_decode(file_get_contents(storage_path(env('GOOGLE_CREDENTIALS'))), true);
 
         $oauth = new OAuth2([
             'audience' => 'https://oauth2.googleapis.com/token',
@@ -19,6 +19,7 @@ class FCM {
             'signingAlgorithm' => 'RS256',
             'signingKey' => $serviceAccount['private_key'],
             'scope' => 'https://www.googleapis.com/auth/firebase.messaging',
+            'tokenCredentialUri' => 'https://oauth2.googleapis.com/token',  // ✅ FIXED
         ]);
 
         $token = $oauth->fetchAuthToken();
@@ -35,50 +36,53 @@ class FCM {
         return FCM::send([$token],$notification->title, $notification->body,(array) json_decode($notification->data));
     }
 
-    static public function sendNotificationFcm($fcmToken, $title, $body, Array $data = [])
+    static public function send(array $tokens, $title, $body, Array $data = [])
     {
-        $accessToken = $this->getAccessToken();
+        $accessToken = FCM::getAccessToken();
         $projectId = env('FCM_PROJECT_ID');
         $url = "https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send";
+        $responses = [];
+        foreach ($tokens as $fcmToken) {
+            $response = Http::withToken($accessToken)
+                ->withHeaders([
+                    'Content-Type' => 'application/json; UTF-8',
+                ])
+                ->post($url, [
+                    'message' => [
+                        'token' => $fcmToken,
+                        'notification' => [
+                            'title' => $title,
+                            'body' => $body,
+                        ],
+                        'data' => array_map('strval',$data),
+                    ],
+                ]);
 
-        $response = Http::withToken($accessToken)
-            ->withHeaders([
-                'Content-Type' => 'application/json; UTF-8',
-            ])
-            ->post($url, [
-                'message' => [
-                    'token' => $fcmToken,
-                    'notification' => [
-                        'title' => $title,
-                        'body' => $body,
-                    ]
-                ],
-                'data' => $data
-            ]);
-
-        return $response->json();
+             $responses[] = $response->json();
+        }
+        return $responses;
     }
 
-    static public function send(Array $tokens, $title, $body, Array $data)
-    {
-        $SERVER_API_KEY = env('FCM_API_SERVER_KEY');
-        $notification = [
-            "registration_ids" => $tokens,
-            "notification" => [
-                "title" => $title,
-                "body" => $body,
-            ],
-            "data" => $data,
-        ];
-        $dataString = json_encode($notification);
-        $headers = [
-            'Authorization' =>  'Bearer ' . $SERVER_API_KEY,
-            'Content-Type' => 'application/json',
-        ];
+    // static public function send(Array $tokens, $title, $body, Array $data)
+    // {
+    //     $SERVER_API_KEY = env('FCM_API_SERVER_KEY');
+    //     $notification = [
+    //         "registration_ids" => $tokens,
+    //         "notification" => [
+    //             "title" => $title,
+    //             "body" => $body,
+    //         ],
+    //         "data" => $data,
+    //     ];
+    //     $dataString = json_encode($notification);
+    //     $headers = [
+    //         'Authorization' =>  'Bearer ' . $SERVER_API_KEY,
+    //         'Content-Type' => 'application/json',
+    //     ];
 
-        $url = "https://fcm.googleapis.com/v1/projects/". env('FCM_PROJECT_ID') . "/messages:send";
-        return Http::withHeaders($headers)->post("https://fcm.googleapis.com/fcm/send", $notification);
-    }
+    //     $url = "https://fcm.googleapis.com/v1/projects/". env('FCM_PROJECT_ID') . "/messages:send";
+    //     return Http::withHeaders($headers)->post("https://fcm.googleapis.com/fcm/send", $notification);
+    // }
 
     static public function topic(String $topic, $title, $body, Array $data)
     {
