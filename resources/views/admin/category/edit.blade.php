@@ -10,7 +10,8 @@
                     <select name="parent_id" id="" class="w-80">
                         <option value="">Select Main Category</option>
                         @foreach ($cats as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}" @if ($category->parent_id == $item->id) selected @endif>
+                                {{ $item->name }}</option>
                         @endforeach
                     </select>
                     @error('parent_id')
