@@ -67,7 +67,6 @@ class HomeController extends Controller
     public function catdeals(Request $reqeust)
     {
         $query = CategoryDeal::query();
-        $catid = $reqeust->subcat ?? $reqeust->cat;
         // $query->whereHas('subcategory', function($query) use($catid) {
         //     $query->whereHas('category', function($query2) use($catid) {
         //         $query2->where('id', $catid);
