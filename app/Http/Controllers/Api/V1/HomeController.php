@@ -72,12 +72,15 @@ class HomeController extends Controller
         //         $query2->where('id', $catid);
         //     });
         // });
+        $ids = [];
         if($reqeust->subcat){
-            $query->where('sub_category_id', $reqeust->subcat);
+            $ids = [$reqeust->subcat];
         }else if($reqeust->cat){
             $ids = Category::where('parent_id', $reqeust->cat)->pluck('id');
-            $query->whereIn('sub_category_id', $ids);
         }
+        $query->whereHas('subcategory', function($query) use($ids) {
+            $query->whereIn('category_id', $ids);
+        });
         // if($reqeust->lat && $reqeust->lng){
         //     $point = new Point($reqeust->lat, $reqeust->lng, 4326);
         //     $query->whereDistance('location', $point , '<', 10)->count();
