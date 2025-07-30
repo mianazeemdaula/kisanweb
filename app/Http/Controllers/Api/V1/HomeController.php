@@ -68,11 +68,17 @@ class HomeController extends Controller
     {
         $query = CategoryDeal::query();
         $catid = $reqeust->subcat ?? $reqeust->cat;
-        $query->whereHas('subcategory', function($query) use($catid) {
-            $query->whereHas('category', function($query2) use($catid) {
-                $query2->where('id', $catid);
-            });
-        });
+        // $query->whereHas('subcategory', function($query) use($catid) {
+        //     $query->whereHas('category', function($query2) use($catid) {
+        //         $query2->where('id', $catid);
+        //     });
+        // });
+        if($reqeust->subcat){
+            $query->where('sub_category_id', $reqeust->subcat);
+        }else if($reqeust->cat){
+            $ids = Category::where('parent_id', $reqeust->cat)->pluck('id');
+            $query->whereIn('sub_category_id', $ids);
+        }
         // if($reqeust->lat && $reqeust->lng){
         //     $point = new Point($reqeust->lat, $reqeust->lng, 4326);
         //     $query->whereDistance('location', $point , '<', 10)->count();
