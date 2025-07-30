@@ -87,7 +87,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'parent_id' => 'nullable|exists:categories,id',
+            'parent_id' => 'exists:categories,id',
             'name' => 'required',
             'name_ur' => 'required',
             'icon' => 'nullable|string',

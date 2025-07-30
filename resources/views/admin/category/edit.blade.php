@@ -6,6 +6,19 @@
             @method('PUT')
             <div class="grid grid-cols-1 md:grid-cols-3 p-2 gap-2 md:p-4">
                 <div>
+                    <h3 class="p-1">Main Category</h3>
+                    <select name="parent_id" id="" class="w-80">
+                        <option value="">Select Main Category</option>
+                        @foreach ($cats as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('parent_id')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+
+                </div>
+                <div>
                     <h3 class="p-1">Name</h3>
                     <input type="text" placeholder="Name" name="name" value="{{ $category->name }}" class="w-80">
                     @error('name')
