@@ -48,6 +48,18 @@ class HomeController extends Controller
                     $buyerQuery->where('name', 'like', '%' . $reqeust->text . '%');
                 });  
             });
+
+            // where type
+            $query->orWhereHas('type', function($typeQuery) use($reqeust) {
+                $typeQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                // or where type urdu name
+                $typeQuery->orWhere('name_ur', 'like', '%' . $reqeust->text . '%');
+                // where crop name
+                $typeQuery->orWhereHas('crop', function($cropQuery) use($reqeust) {
+                    $cropQuery->where('name', 'like', '%' . $reqeust->text . '%')
+                    ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%');
+                });
+            });
         }
 
         if($reqeust->sortype){
