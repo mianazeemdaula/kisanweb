@@ -9,6 +9,7 @@ use App\Models\CategoryDeal;
 use App\Helper\MediaHelper;
 use Illuminate\Support\Facades\DB;
 use MatanYadaev\EloquentSpatial\Objects\Point;
+use App\Jobs\CreateCategoryDealJob;
 
 class CategoryDealsController extends Controller
 {
@@ -80,6 +81,8 @@ class CategoryDealsController extends Controller
                 $deal->media()->save($img);
             }
             DB::commit();
+            // Dispatch job to notify users
+            CreateCategoryDealJob::dispatch($deal->id);
             return  response()->json($deal, 200);
         } catch (\Throwable $th) {
             DB::rollBack();

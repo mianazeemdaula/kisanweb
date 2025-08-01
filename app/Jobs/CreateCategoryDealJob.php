@@ -15,11 +15,11 @@ use App\Helper\FCM;
 
 
 use App\Models\User;
-use App\Models\Deal;
+use App\Models\CategoryDeal;
 use App\Models\Notification;
 use App\Models\Address;
 
-class CreateDealJob implements ShouldQueue
+class CreateCategoryDealJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -41,7 +41,7 @@ class CreateDealJob implements ShouldQueue
      */
     public function handle()
     {
-        $deal = Deal::find($this->dealId);
+        $deal = CategoryDeal::find($this->dealId);
         $ids = Address::query()->whereDistanceSphere('location',$deal->location,'<=' ,30 * 1000)->pluck('user_id')->toArray();
         $users = User::where('id','!=',$deal->seller_id)
         ->whereIn('id', $ids)->whereNotNull('fcm_token')->get();
@@ -51,8 +51,8 @@ class CreateDealJob implements ShouldQueue
             $notif =  Notification::create([
                 'user_id' => $user->id,
                 'title' => $title,
-                'body' => "New Deal for ".$deal->type->crop->name,
-                'data' => json_encode(['id' => $deal->id, 'type' => 'deal']),
+                'body' => "New Deal for ".$deal->subCategory->category->name,
+                'data' => json_encode(['id' => $deal->id, 'type' => 'cat_deal']),
             ]);
             FCM::sendNotification($notif);
             // if($user->email){

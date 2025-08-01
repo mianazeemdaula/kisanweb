@@ -51,11 +51,11 @@ class CategoryDealsBidController extends Controller
         }
         $fcmToken = CategoryDeal::find($request->deal_id)->user->fcm_token;
         $data =  [
-            'type' => 'deal',
+            'type' => 'cat_deal',
             'deal_id' => $request->deal_id,
         ];
         FCM::send([$fcmToken],"Bid", "$user->name bid on your deal", $data);
-        // \App\Jobs\BidNotificationJob::dispatch($bid->deal_id, $user->id);
+        \App\Jobs\CategoryBidNotificationJob::dispatch($bid->deal_id, $user->id);
         // DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($bid, 200);
     }
