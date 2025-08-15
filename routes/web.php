@@ -101,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
 
         // statistics
         Route::get('statistics/today-rates-users',[\App\Http\Controllers\Admin\StatisticsController::class,'todayCropRatesDeos']);
+    Route::resource('crop', \App\Http\Controllers\Admin\CropController::class);
+    Route::resource('croptype', \App\Http\Controllers\Admin\CropTypeController::class);
     });
 });
 

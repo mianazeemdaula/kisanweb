@@ -10,6 +10,8 @@ class Crop extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'name_ur', 'icon','sort', 'active','color'];
+
     /**
      * Get all of the comments for the Crop
      *

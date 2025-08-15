@@ -47,6 +47,9 @@
                     url="{{ route('admin.support.index') }}" />
                 <x-menu-item title="DEO Rates" icon="bi-clipboard2-heart" active="false"
                     url="{{ route('admin.deorates.index') }}" />
+                <x-menu-item title="Crops" icon="bi-flower3" active="false" url="{{ route('admin.crop.index') }}" />
+                <x-menu-item title="Crop Types" icon="bi-list-ul" active="false"
+                    url="{{ route('admin.croptype.index') }}" />
                 {{-- <div
                     class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
                     <i class="bi bi-chat-left-text-fill"></i>

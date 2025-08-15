@@ -12,6 +12,8 @@ class CropType extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['crop_id', 'name', 'code', 'sort'];
+
     protected $casts = [
         'crop_id' => 'integer',
     ];
