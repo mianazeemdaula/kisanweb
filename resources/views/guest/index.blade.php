@@ -23,7 +23,7 @@ $weeklyTrend = \App\Models\CropRate::with(['cropType.crop', 'city'])
 $dealsCount = \App\Models\Deal::whereDate('created_at', '>=', now()->subDays(7))->count();
 
 // Active shops count
-$shopsCount = \App\Models\Shop::where('is_active', true)->count();
+$shopsCount = \App\Models\CommissionShop::where('is_active', true)->count();
     @endphp
 
     <!-- Crop Rates Ticker -->
