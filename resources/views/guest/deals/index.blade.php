@@ -17,16 +17,19 @@
                                     class="w-10 h-10 rounded-full object-cover border-2 border-green-100" alt="">
                                 <div class="flex-1">
                                     <div class="font-semibold text-gray-900">{{ $item->seller->name }}</div>
-                                    <div class="text-xs text-gray-500 font-normal">{{ $item->created_at->diffForHumans() }}</div>
+                                    <div class="text-xs text-gray-500 font-normal">{{ $item->created_at->diffForHumans() }}
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-2">
                                 <span class="text-sm font-semibold text-gray-900">{{ $item->type->crop->name }}</span>
                                 <span class="text-sm text-gray-500">({{ $item->type->name }})</span>
                             </div>
-                            <div class="text-sm text-gray-600 mb-3 font-normal">{{ $item->qty }} {{ $item->weight->name }}</div>
+                            <div class="text-sm text-gray-600 mb-3 font-normal">{{ $item->qty }}
+                                {{ $item->weight->name }}</div>
                             <div class="flex justify-between items-center">
-                                <div class="text-green-600 font-bold text-lg">Rs. {{ $item->demand }}/{{ $item->weight->name }}
+                                <div class="text-green-600 font-bold text-lg">Rs.
+                                    {{ $item->demand }}/{{ $item->weight->name }}
                                 </div>
                                 <div class="flex items-center space-x-1 text-gray-500 text-sm">
                                     <span>{{ $item->reactions->count() }}</span>

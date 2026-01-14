@@ -2,7 +2,8 @@
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
             <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
-                <img src="{{ asset('images/logo.svg') }}" class="w-10 h-10 transition-transform group-hover:scale-105" alt="Logo">
+                <img src="{{ asset('images/logo.svg') }}" class="w-10 h-10 transition-transform group-hover:scale-105"
+                    alt="Logo">
                 <span class="font-display text-xl font-bold text-green-700 tracking-tight">KisanStock</span>
             </a>
             <div class="flex space-x-1">

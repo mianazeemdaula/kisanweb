@@ -76,7 +76,8 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
             @if ($todayRates->count() > 0)
                 <div class="mb-16">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Today's Market Rates</h2>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Today's Market
+                            Rates</h2>
                         <a href="{{ url('rates') }}"
                             class="text-green-600 hover:text-green-700 font-semibold flex items-center transition-colors">
                             View All <span class="ml-2">→</span>
@@ -88,7 +89,8 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                                 class="bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:border-green-400 transition-all hover-lift">
                                 <div class="flex justify-between items-start mb-3">
                                     <div>
-                                        <h3 class="font-semibold text-gray-900 text-lg">{{ $rate->cropType->crop->name ?? 'N/A' }}
+                                        <h3 class="font-semibold text-gray-900 text-lg">
+                                            {{ $rate->cropType->crop->name ?? 'N/A' }}
                                         </h3>
                                         <p class="text-sm text-gray-500 font-normal">{{ $rate->cropType->name ?? '' }}</p>
                                     </div>
@@ -99,7 +101,8 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                                     <div>
                                         <div class="text-2xl font-bold text-green-600">
                                             Rs. {{ number_format($rate->min_price, 2) }}</div>
-                                        <div class="text-sm text-gray-500 font-normal">to Rs. {{ number_format($rate->max_price, 2) }}
+                                        <div class="text-sm text-gray-500 font-normal">to Rs.
+                                            {{ number_format($rate->max_price, 2) }}
                                         </div>
                                     </div>
                                     @php
@@ -109,7 +112,8 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                                     @endphp
                                     @if ($priceChange != 0)
                                         <div class="text-right">
-                                            <span class="text-xs font-semibold {{ $isUp ? 'text-green-600' : 'text-red-600' }}">
+                                            <span
+                                                class="text-xs font-semibold {{ $isUp ? 'text-green-600' : 'text-red-600' }}">
                                                 {{ $isUp ? '↑' : '↓' }} Rs. {{ number_format(abs($priceChange), 2) }}
                                             </span>
                                         </div>
@@ -124,7 +128,8 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
             <!-- Weekly Trend Section -->
             @if ($weeklyTrend->count() > 0)
                 <div class="mb-16">
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight">Weekly Price Trends</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight">Weekly Price
+                        Trends</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         @foreach ($weeklyTrend->take(4) as $cropName => $rates)
                             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover-lift">

@@ -12,49 +12,57 @@
     <meta name="og:title" property="og:title" content="@yield('title', 'Kisan Stock')">
     <meta name="robots" content="index, follow">
     <link href="URL" rel="canonical">
-    
+
     <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <style>
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Poppins', 'Inter', sans-serif;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
-        
+
         .font-display {
             font-family: 'Poppins', sans-serif;
             letter-spacing: -0.03em;
         }
-        
+
         /* Smooth animations */
         * {
             transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
         }
-        
+
         /* Modern card hover effect */
         .hover-lift:hover {
             transform: translateY(-2px);
         }
-        
+
         /* Better focus states */
-        a:focus, button:focus {
+        a:focus,
+        button:focus {
             outline: 2px solid #22c55e;
             outline-offset: 2px;
         }
     </style>
-    
+
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {

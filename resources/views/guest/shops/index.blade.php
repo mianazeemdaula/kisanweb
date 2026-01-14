@@ -17,7 +17,8 @@
                                 <div class="flex-1">
                                     <div class="font-semibold text-gray-900 group-hover:text-green-600">{{ $item->name }}
                                     </div>
-                                    <div class="text-xs text-gray-500 font-normal">{{ $item->created_at->diffForHumans() }}</div>
+                                    <div class="text-xs text-gray-500 font-normal">{{ $item->created_at->diffForHumans() }}
+                                    </div>
                                 </div>
                             </div>
                             <p class="text-sm text-gray-600 mb-3 line-clamp-2 font-normal">{{ $item->about }}</p>
