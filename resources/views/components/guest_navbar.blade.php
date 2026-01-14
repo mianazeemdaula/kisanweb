@@ -1,22 +1,24 @@
-<div class="p-2">
-    <div class="flex w-full justify-between items-center bg-white/80 rounded-sm">
-        <div class="px-4 py-2">
-            <a href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.svg') }}" class="w-12 h-12" alt="Logo">
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+            <a href="{{ url('/') }}" class="flex items-center space-x-2">
+                <img src="{{ asset('images/logo.svg') }}" class="w-10 h-10" alt="Logo">
+                <span class="text-xl font-semibold text-green-700">KisanStock</span>
             </a>
+            <div class="flex space-x-1">
+                <a href="{{ url('rates') }}"
+                    class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 rounded-lg transition-colors">
+                    Rates
+                </a>
+                <a href="{{ url('deals') }}"
+                    class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 rounded-lg transition-colors">
+                    Deals
+                </a>
+                <a href="{{ url('commission-shops') }}"
+                    class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-700 hover:bg-green-50 rounded-lg transition-colors">
+                    Shops
+                </a>
+            </div>
         </div>
-        <nav class="px-4 flex space-x-3">
-            <a href="{{ url('rates') }}">
-                <div class="py-1 w-20 text-sm text-center rounded-md">Rates</div>
-            </a>
-            <div class="border-r"></div>
-            <a href="{{ url('deals') }}">
-                <div class="py-1 w-20 text-sm text-center rounded-md">Deals</div>
-            </a>
-            <div class="border-r"></div>
-            <a href="{{ url('commission-shops') }}">
-                <div class=" py-1 w-20 text-sm text-center rounded-md">Shops</div>
-            </a>
-        </nav>
     </div>
-</div>
+</nav>

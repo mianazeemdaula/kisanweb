@@ -1,18 +1,9 @@
 @extends('layouts.guest')
-@section('body')<!-- component -->
-<div class="bg-gray-200">
-  <header class="fixed top-0 left-0 bg-white w-full shadow">
-    <nav  class="justify-between m-auto flex container items-center text-gray-700">
-      <div class="pl-4 py-4 text-xl font-bold">
-        LOGO
-      </div>
-      <div class="hidden md:flex">
-        <div><a href="#">Home</a></div>
-        <div><a href="#">Home</a></div>
-        <div><a href="#">Home</a></div>
-        <div><a href="#">Home</a></div>
+@section('body')
+    <div class="min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">Welcome to <span class="text-green-600">KisanStock</span></h1>
+            <p class="text-gray-600 text-lg">Your one-stop platform for agricultural trading and market insights.</p>
+        </div>
     </div>
-    </nav>
-  </header>
-</div>
 @endsection

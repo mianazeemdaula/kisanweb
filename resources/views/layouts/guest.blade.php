@@ -33,13 +33,13 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body class="bg-gray-50">
     @include('components.guest_navbar')
     @yield('body')
 
     <footer>
-        <div class="bg-gray-800 text-white text-center py-4">
-            <p>&copy; 2024 Kisan Stock. All rights reserved.</p>
+        <div class="bg-green-700 text-white text-center py-6">
+            <p class="text-sm">&copy; 2024 Kisan Stock. All rights reserved.</p>
         </div>
     </footer>
     @yield('js')
