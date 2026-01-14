@@ -26,7 +26,8 @@
                             </div>
                             <div class="text-sm text-gray-600 mb-3">{{ $item->qty }} {{ $item->weight->name }}</div>
                             <div class="flex justify-between items-center">
-                                <div class="text-green-600 font-bold">₹{{ $item->demand }}/{{ $item->weight->name }}</div>
+                                <div class="text-green-600 font-bold">Rs. {{ $item->demand }}/{{ $item->weight->name }}
+                                </div>
                                 <div class="flex items-center space-x-1 text-gray-500 text-sm">
                                     <span>{{ $item->reactions->count() }}</span>
                                     <span class="bi bi-hand-thumbs-up"></span>

@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('title')
-    {{ $deal->type->crop->name }} for sale of RS.{{ $deal->demand }} / {{ $deal->weight->name }} at {{ $deal->address }}
+    {{ $deal->type->crop->name }} for sale of Rs. {{ $deal->demand }} / {{ $deal->weight->name }} at {{ $deal->address }}
 @endsection
 @section('body')
     <div class="max-w-7xl mx-auto px-4 py-8">
@@ -25,8 +25,8 @@
                     <div class="space-y-4 mb-6">
                         <div class="flex justify-between items-center py-3 border-b border-gray-200">
                             <span class="text-gray-600">Price</span>
-                            <span
-                                class="text-2xl font-bold text-green-600">₹{{ $deal->demand }}/{{ $deal->weight->name }}</span>
+                            <span class="text-2xl font-bold text-green-600">Rs.
+                                {{ $deal->demand }}/{{ $deal->weight->name }}</span>
                         </div>
                         <div class="flex justify-between items-center py-3 border-b border-gray-200">
                             <span class="text-gray-600">Available Quantity</span>
@@ -83,7 +83,7 @@
                                                 class="w-10 h-10 rounded-full object-cover border-2 border-green-100">
                                             <span class="font-medium text-gray-900">{{ $bid->buyer->name }}</span>
                                         </div>
-                                        <span class="font-bold text-green-600">₹{{ $bid->bid_price }}</span>
+                                        <span class="font-bold text-green-600">Rs. {{ $bid->bid_price }}</span>
                                     </div>
                                 @endforeach
                             </div>

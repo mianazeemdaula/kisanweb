@@ -98,8 +98,8 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                                 <div class="flex items-end justify-between">
                                     <div>
                                         <div class="text-2xl font-bold text-green-600">
-                                            ₹{{ number_format($rate->min_price, 2) }}</div>
-                                        <div class="text-sm text-gray-500">to ₹{{ number_format($rate->max_price, 2) }}
+                                            Rs. {{ number_format($rate->min_price, 2) }}</div>
+                                        <div class="text-sm text-gray-500">to Rs. {{ number_format($rate->max_price, 2) }}
                                         </div>
                                     </div>
                                     @php
@@ -110,7 +110,7 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                                     @if ($priceChange != 0)
                                         <div class="text-right">
                                             <span class="text-xs {{ $isUp ? 'text-green-600' : 'text-red-600' }}">
-                                                {{ $isUp ? '↑' : '↓' }} ₹{{ number_format(abs($priceChange), 2) }}
+                                                {{ $isUp ? '↑' : '↓' }} Rs. {{ number_format(abs($priceChange), 2) }}
                                             </span>
                                         </div>
                                     @endif
@@ -136,8 +136,8 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                                                 class="text-gray-600">{{ \Carbon\Carbon::parse($rate->rate_date)->format('M d') }}</span>
                                             <div class="flex items-center space-x-2">
                                                 <span class="text-gray-500">{{ $rate->city->name ?? 'N/A' }}</span>
-                                                <span
-                                                    class="font-medium text-green-600">₹{{ number_format($rate->min_rate, 0) }}-{{ number_format($rate->max_rate, 0) }}</span>
+                                                <span class="font-medium text-green-600">Rs.
+                                                    {{ number_format($rate->min_rate, 0) }}-{{ number_format($rate->max_rate, 0) }}</span>
                                             </div>
                                         </div>
                                     @endforeach
