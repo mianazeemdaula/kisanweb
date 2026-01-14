@@ -11,7 +11,7 @@
             </div>
 
             <!-- Crops Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach (\App\Models\Crop::orderBy('sort')->get() as $item)
                     <div
                         class="group relative bg-white rounded-2xl shadow-sm border-2 border-gray-100 hover:border-green-400 transition-all duration-300 overflow-hidden hover-lift">
@@ -23,27 +23,47 @@
 
                         <div class="p-6">
                             <!-- Icon Section -->
-                            @if ($item->icon)
-                                <div
-                                    class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                    <img src="{{ $item->icon }}" alt="{{ $item->name }}"
-                                        class="w-10 h-10 object-contain">
-                                </div>
-                            @else
-                                <div
-                                    class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                    <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                        </path>
-                                    </svg>
-                                </div>
-                            @endif
+                            <div
+                                class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                                @if ($item->icon && file_exists(public_path($item->icon)))
+                                    <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}"
+                                        class="w-12 h-12 object-contain"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                    <div style="display:none;" class="text-3xl">🌾</div>
+                                @else
+                                    <div class="text-4xl">
+                                        @php
+                                            $cropIcons = [
+                                                'wheat' => '🌾',
+                                                'maize' => '🌽',
+                                                'paddy' => '🌾',
+                                                'rice' => '🍚',
+                                                'mustard' => '🌻',
+                                                'cotton' => '🌸',
+                                                'sugarcane' => '🎋',
+                                                'potato' => '🥔',
+                                                'onion' => '🧅',
+                                                'tomato' => '🍅',
+                                                'chilli' => '🌶️',
+                                                'garlic' => '🧄',
+                                            ];
+                                            $cropName = strtolower($item->name);
+                                            $icon = '🌱';
+                                            foreach ($cropIcons as $key => $emoji) {
+                                                if (str_contains($cropName, $key)) {
+                                                    $icon = $emoji;
+                                                    break;
+                                                }
+                                            }
+                                            echo $icon;
+                                        @endphp
+                                    </div>
+                                @endif
+                            </div>
 
                             <!-- Crop Name -->
                             <div class="text-center mb-3">
-                                <h3 class="font-bold text-lg text-gray-900 group-hover:text-green-600 transition-colors">
+                                <h3 class="font-bold text-xl text-gray-900 group-hover:text-green-600 transition-colors">
                                     {{ $item->name }}
                                 </h3>
                                 @if ($item->name_ur)
@@ -53,27 +73,28 @@
 
                             <!-- Types Section -->
                             @if ($item->types->count() > 0)
-                                <div class="border-t border-gray-100 pt-3 mt-3">
-                                    <div class="flex items-center justify-center mb-2">
+                                <div class="border-t border-gray-100 pt-4 mt-4">
+                                    <div class="flex items-center justify-center mb-3">
                                         <span
                                             class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Varieties</span>
                                         <span
-                                            class="ml-2 bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full">
+                                            class="ml-2 bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">
                                             {{ $item->types->count() }}
                                         </span>
                                     </div>
                                     <div
-                                        class="space-y-1.5 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-green-200 scrollbar-track-gray-100">
+                                        class="space-y-2 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-green-200 scrollbar-track-gray-100">
                                         @foreach ($item->types as $type)
-                                            <div class="flex items-center justify-center">
+                                            <div class="flex items-start">
                                                 <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 hover:bg-green-100 transition-colors">
-                                                    <svg class="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-green-50 text-green-700 hover:bg-green-100 transition-colors w-full">
+                                                    <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor"
+                                                        viewBox="0 0 20 20">
                                                         <path fill-rule="evenodd"
                                                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                             clip-rule="evenodd"></path>
                                                     </svg>
-                                                    {{ $type->name }}
+                                                    <span class="text-left">{{ $type->name }}</span>
                                                 </span>
                                             </div>
                                         @endforeach
