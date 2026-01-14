@@ -39,7 +39,7 @@
 
     <footer>
         <div class="bg-green-700 text-white text-center py-6">
-            <p class="text-sm">&copy; 2024 Kisan Stock. All rights reserved.</p>
+            <p class="text-sm">&copy; 2024 KissanZone. All rights reserved.</p>
         </div>
     </footer>
     @yield('js')

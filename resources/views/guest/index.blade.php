@@ -33,7 +33,7 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                 @foreach (\App\Models\CropRate::orderBy('rate_date', 'desc')->take(20)->get() as $item)
                     <li class="whitespace-nowrap">
                         <span class="font-medium">{{ $item->city->name }}:</span>
-                        <span class="text-green-600">₹{{ $item->min_price }} - ₹{{ $item->max_price }}</span>
+                        <span class="text-green-600">Rs. {{ $item->min_price }} - Rs. {{ $item->max_price }}</span>
                     </li>
                 @endforeach
             </ul>
@@ -45,7 +45,7 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="text-gray-900">Kisan</span><span class="text-green-600">Stock</span>
+                    <span class="text-gray-900">Kissan</span><span class="text-green-600">Zone</span>
                 </h1>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">
                     Your trusted platform for buying and selling agricultural products with real-time market rates.
