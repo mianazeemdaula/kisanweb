@@ -98,40 +98,45 @@ class AuthController extends Controller
 
     public function loginFromSocial(Request $request)
     {
-        $request->validate([
-            'token' => 'required',
-            'provider' => 'required',
-        ]);
-        $provider = $request->provider;
-        $token = $request->token;
-        $socialUser = Socialite::driver($provider)->userFromToken($token);
-        $social = SocialAccount::updateOrCreate([
-            'provider' => $provider,
-            'uid' => $socialUser->getId(),
-        ]);
-        if(!$social->user){
-            // $request->request->add(['email' => $socialUser->getEmail()]);
-            // $request->validate([
-            //     'email' => 'required|unique:users|email',
-            // ]);
-            $user= User::where('email', $socialUser->getEmail())->first();
-            if(!$user){
-                $user = new User();
-                $user->name = $socialUser->name;
-                $user->email = $socialUser->getEmail();
-                $user->image = $socialUser->getAvatar();
-                $user->email_verified_at = Carbon::now();
-                $user->save();
+        try {
+            $request->validate([
+                'token' => 'required',
+                'provider' => 'required',
+            ]);
+            $provider = $request->provider;
+            $token = $request->token;
+            $socialUser = Socialite::driver($provider)->userFromToken($token);
+            $social = SocialAccount::updateOrCreate([
+                'provider' => $provider,
+                'uid' => $socialUser->getId(),
+            ]);
+            if(!$social->user){
+                // $request->request->add(['email' => $socialUser->getEmail()]);
+                // $request->validate([
+                //     'email' => 'required|unique:users|email',
+                // ]);
+                $user= User::where('email', $socialUser->getEmail())->first();
+                if(!$user){
+                    $user = new User();
+                    $user->name = $socialUser->name;
+                    $user->email = $socialUser->getEmail();
+                    $user->image = $socialUser->getAvatar();
+                    $user->email_verified_at = Carbon::now();
+                    $user->save();
+                }
+            }else{
+                $user = $social->user;
             }
-        }else{
-            $user = $social->user;
+            $social->user_id = $user->id;
+            $social->save();
+            $data['token'] = $user->createToken('login')->plainTextToken;
+            $data['user'] = $user;
+            $data['addresses'] = $user->addresses;
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['error' => 'Invalid token or provider'], 204);
         }
-        $social->user_id = $user->id;
-        $social->save();
-        $data['token'] = $user->createToken('login')->plainTextToken;
-        $data['user'] = $user;
-        $data['addresses'] = $user->addresses;
-        return response()->json($data, 200);
     }
 
     public function mobileRegister(Request $request)
