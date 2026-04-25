@@ -58,11 +58,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('auth/phone-login', [AuthController::class,'login']);
-Route::post('auth/phone-signup', [AuthController::class,'phoneSignup']);
-Route::post('auth/mobile-register', [AuthController::class,'mobileRegister']);
 Route::post('auth/signup', [AuthController::class,'signup']);
 Route::post('auth/login', [AuthController::class,'login']);
+Route::post('auth/phone-login', [AuthController::class,'loginPhone']);
+Route::post('auth/phone-signup', [AuthController::class,'phoneSignup']);
+Route::post('auth/mobile-register', [AuthController::class,'mobileRegister']);
 Route::post('auth/loginsocial', [AuthController::class,'loginFromSocial']);
 Route::post('auth/{provider}/callback', [AuthController::class,'socialcallback']);
 Route::post('auth/whtasapp', [AuthController::class,'whatsapp']);
