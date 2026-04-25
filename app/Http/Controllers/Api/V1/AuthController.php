@@ -18,6 +18,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 
 class AuthController extends Controller
 {
+    
     public function login(Request $request)
     {
         $request->validate([
@@ -50,7 +51,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'mobile' => 'required|unique:users',
-            'cnic' => 'sometimes|unique:users|min:13',
+            // 'cnic' => 'sometimes|unique:users|min:13',
             'email' => 'sometimes|unique:users|email',
             'lat' => 'required',
             'lng' => 'required',
@@ -68,7 +69,8 @@ class AuthController extends Controller
         $user->mobile_verified_at = Carbon::now();
         if($request->has('cnic')){
             $user->cnic = $request->cnic;
-        }if($request->has('email')){
+        }
+        if($request->has('email')){
             $user->email = $request->email;
         }
         if($request->has('image')){
