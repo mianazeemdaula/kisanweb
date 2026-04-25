@@ -16,9 +16,56 @@ use App\Models\User;
 use App\Models\PasswordReset;
 use App\Models\Review;
 use App\Models\Address;
+use App\Models\SocialAccount;
+use \Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string',
+        ]);
+        $email = $request->email;
+        $user = User::where('email', $email)->first();
+        if (! $user) {
+            return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
+        }
+        if (! Hash::check($request->password, $user->password)) {
+            return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
+        }
+        if($request->has('fcm_token')){
+            $user->fcm_token = $request->fcm_token;
+            $user->save();
+        }
+        $token = $user->createToken('login')->plainTextToken;
+        $data['token'] = $token;
+        $data['user'] = $user;
+        $data['addresses'] = $user->addresses;
+        return response()->json($data, 200);
+    }
+
+    public function signup(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+        $user = new User();
+        $user->name = "ABC";
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        $token = $user->createToken('login')->plainTextToken;
+        $data['token'] = $token;
+        $data['user'] = $user;
+        $data['addresses'] = $user->addresses;
+        return response()->json($data, 200);
+    }
+
     public function profile()
     {
         $user = User::find(auth()->id());
