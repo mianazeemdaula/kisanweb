@@ -1,5 +1,6 @@
 <?php
 namespace App\Helper;
+use Throwable;
 use Google\Auth\OAuth2;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -55,9 +56,22 @@ class FCM {
             'tokenCredentialUri' => 'https://oauth2.googleapis.com/token',
         ]);
 
-        $token = $oauth->fetchAuthToken();
+        try {
+            $token = $oauth->fetchAuthToken();
+        } catch (Throwable $exception) {
+            Log::warning('FCM access token fetch failed', [
+                'message' => $exception->getMessage(),
+            ]);
+
+            return null;
+        }
+
         if (!isset($token['access_token'])) {
-            throw new \RuntimeException('Unable to fetch FCM access token.');
+            Log::warning('FCM access token missing from Google OAuth response.', [
+                'response' => $token,
+            ]);
+
+            return null;
         }
 
         $expiresIn = max(60, ((int) ($token['expires_in'] ?? 3600)) - 60);
