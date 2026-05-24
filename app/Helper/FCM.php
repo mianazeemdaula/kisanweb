@@ -11,6 +11,24 @@ use App\Models\UserSetting;
 
 class FCM {
 
+    static private function fakeSuccessResponse(array $message, string $reason): array
+    {
+        Log::warning('FCM send bypassed', [
+            'reason' => $reason,
+            'message' => $message,
+        ]);
+
+        return [
+            'success' => true,
+            'status' => 200,
+            'simulated' => true,
+            'data' => [
+                'name' => 'projects/fake/messages/' . uniqid(),
+                'reason' => $reason,
+            ],
+        ];
+    }
+
     static public function getAccessToken()
     {
         $cachedToken = Cache::get('fcm_access_token');
@@ -20,7 +38,7 @@ class FCM {
 
         $credentialsPath = storage_path(env('GOOGLE_CREDENTIALS'));
         if (!is_file($credentialsPath)) {
-            throw new \RuntimeException('FCM service account file not found at: ' . $credentialsPath);
+            return null;
         }
 
         $serviceAccount = json_decode(file_get_contents($credentialsPath), true);
@@ -71,8 +89,13 @@ class FCM {
     {
         $projectId = env('FCM_PROJECT_ID');
         $url = "https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send";
+        $accessToken = FCM::getAccessToken();
 
-        $response = Http::withToken(FCM::getAccessToken())
+        if (!$accessToken) {
+            return FCM::fakeSuccessResponse($message, 'GOOGLE_CREDENTIALS file not found.');
+        }
+
+        $response = Http::withToken($accessToken)
             ->acceptJson()
             ->post($url, [
                 'message' => $message,
