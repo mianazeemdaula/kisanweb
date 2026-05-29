@@ -163,13 +163,21 @@ class DealController extends Controller
             $deal->qty = $request->qty;
             $deal->location = new Point($request->lat,$request->lng);
             $deal->address = $request->address;
-            $oldImages = json_decode($request->oldimages ?? "[]");
-            foreach ($imgId as $oldImages) {
-                Media::find($imgId)->delete();
+            $oldImages = json_decode($request->oldimages ?? "[]", true);
+            if (!is_array($oldImages)) {
+                $oldImages = [];
+            }
+            foreach ($oldImages as $imgId) {
+                $media = Media::find($imgId);
+                if ($media) {
+                    $media->delete();
+                }
             }
             $medias = array();
-            foreach ($request->file('images') as $key => $file) {
-                $medias[] = MediaHelper::save($file, $deal);
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $key => $file) {
+                    $medias[] = MediaHelper::save($file, $deal);
+                }
             }
             $deal->save();
             foreach ($medias as $img) {
