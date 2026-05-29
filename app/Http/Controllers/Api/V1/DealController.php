@@ -180,7 +180,7 @@ class DealController extends Controller
             return  response()->json($deal, 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return  response()->json(['message' => 'Somthing went wrong'], 422);
+            return  response()->json(['message' => $th->getMessage()], 422);
         }
     }
 

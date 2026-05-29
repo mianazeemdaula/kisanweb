@@ -120,6 +120,7 @@ class HomeController extends Controller
         $data = Deal::with(['bids' => function($q) use($user) {
             $q->with(['buyer'])->where('buyer_id', $user->id);
         }, 'seller', 'packing', 'weight' , 'media'])->where('seller_id', $user->id)->paginate();
+
         return response()->json($data, 200);
     }
 
