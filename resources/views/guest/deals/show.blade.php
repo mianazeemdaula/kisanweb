@@ -3,92 +3,128 @@
     {{ $deal->type->crop->name }} for sale of Rs. {{ $deal->demand }} / {{ $deal->weight->name }} at {{ $deal->address }}
 @endsection
 @section('body')
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Image Gallery -->
-                <div class="bg-gray-100">
-                    <div class="owl-carousel owl-theme">
-                        @foreach ($deal->media as $item)
-                            <div class="aspect-square">
-                                <img src="{{ $item->path }}" class="w-full h-full object-cover" alt="Deal image">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
+    <div class="bg-mesh min-h-screen py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6">
+                <a href="{{ url('/') }}" class="hover:text-green-600 transition-base">Home</a>
+                <span class="bi bi-chevron-right text-xs"></span>
+                <a href="{{ url('deals') }}" class="hover:text-green-600 transition-base">Deals</a>
+                <span class="bi bi-chevron-right text-xs"></span>
+                <span class="text-gray-700 font-medium">{{ $deal->type->crop->name }}</span>
+            </nav>
 
-                <!-- Deal Details -->
-                <div class="p-6">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $deal->type->crop->name }}</h1>
-                    <p class="text-gray-600 mb-6">Type: {{ $deal->type->name }}</p>
-
-                    <div class="space-y-4 mb-6">
-                        <div class="flex justify-between items-center py-3 border-b border-gray-200">
-                            <span class="text-gray-600">Price</span>
-                            <span class="text-2xl font-bold text-green-600">Rs.
-                                {{ $deal->demand }}/{{ $deal->weight->name }}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-3 border-b border-gray-200">
-                            <span class="text-gray-600">Available Quantity</span>
-                            <span class="font-semibold text-gray-900">{{ $deal->qty }}
-                                {{ $deal->weight->name ?? '' }}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-3 border-b border-gray-200">
-                            <span class="text-gray-600">Reactions</span>
-                            <div class="flex items-center space-x-2">
-                                <span class="bi bi-hand-thumbs-up text-green-600"></span>
-                                <span class="font-semibold">{{ $deal->reactions->count() }}</span>
-                            </div>
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <!-- Image Gallery -->
+                    <div class="bg-gray-100">
+                        <div class="owl-carousel owl-theme">
+                            @foreach ($deal->media as $item)
+                                <div class="aspect-square">
+                                    <img src="{{ $item->path }}" class="w-full h-full object-cover" alt="Deal image">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    @if ($deal->note)
+                    <!-- Deal Details -->
+                    <div class="p-6 sm:p-8 lg:p-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span
+                                class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-xs font-bold px-3 py-1.5 rounded-full">
+                                <span class="bi bi-flower2"></span> {{ $deal->type->name }}
+                            </span>
+                            <span class="text-xs text-gray-400">{{ $deal->created_at->diffForHumans() }}</span>
+                        </div>
+                        <h1 class="font-display text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">
+                            {{ $deal->type->crop->name }}</h1>
+
+                        <!-- Price highlight -->
+                        <div
+                            class="rounded-2xl bg-gradient-to-br from-green-50 to-green-100/60 border border-green-100 p-5 mb-6">
+                            <div class="text-sm text-green-700 font-medium">Asking Price</div>
+                            <div class="text-3xl font-extrabold text-green-700">
+                                Rs. {{ $deal->demand }}<span
+                                    class="text-base font-semibold text-green-600/70">/{{ $deal->weight->name }}</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="rounded-2xl border border-gray-100 p-4">
+                                <div class="text-xs text-gray-400 mb-1">Available Quantity</div>
+                                <div class="font-bold text-gray-900 flex items-center gap-2">
+                                    <span class="bi bi-box-seam text-green-500"></span> {{ $deal->qty }}
+                                    {{ $deal->weight->name ?? '' }}
+                                </div>
+                            </div>
+                            <div class="rounded-2xl border border-gray-100 p-4">
+                                <div class="text-xs text-gray-400 mb-1">Reactions</div>
+                                <div class="font-bold text-gray-900 flex items-center gap-2">
+                                    <span class="bi bi-hand-thumbs-up text-green-500"></span>
+                                    {{ $deal->reactions->count() }}
+                                </div>
+                            </div>
+                        </div>
+
+                        @if ($deal->note)
+                            <div class="mb-6">
+                                <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Note</h3>
+                                <p class="text-gray-700 leading-relaxed">{{ $deal->note }}</p>
+                            </div>
+                        @endif
+
                         <div class="mb-6">
-                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Note</h3>
-                            <p class="text-gray-700">{{ $deal->note }}</p>
+                            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Location</h3>
+                            <p class="text-gray-700 flex items-start gap-2">
+                                <span class="bi bi-geo-alt text-green-500 mt-0.5"></span>
+                                <span>{{ $deal->address }}</span>
+                            </p>
                         </div>
-                    @endif
 
-                    <div class="mb-6">
-                        <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">Location</h3>
-                        <p class="text-gray-700">{{ $deal->address }}</p>
-                    </div>
-
-                    <div class="mb-6">
-                        <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">Contact Seller</h3>
-                        <div class="flex flex-col space-y-2">
-                            <a href="tel:{{ $deal->seller->mobile }}"
-                                class="flex items-center space-x-3 px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors">
-                                <span class="bi bi-phone text-lg"></span>
-                                <span class="font-medium">{{ $deal->seller->mobile }}</span>
-                            </a>
-                            @if ($deal->seller->whatsapp)
-                                <a href="https://wa.me/{{ $deal->seller->whatsapp }}"
-                                    class="flex items-center space-x-3 px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors">
-                                    <span class="bi bi-whatsapp text-lg"></span>
-                                    <span class="font-medium">{{ $deal->seller->whatsapp }}</span>
+                        <!-- Seller card -->
+                        <div class="rounded-2xl border border-gray-100 p-5 mb-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="{{ $deal->seller->image }}"
+                                    class="w-12 h-12 rounded-full object-cover border-2 border-green-100" alt="">
+                                <div>
+                                    <div class="font-bold text-gray-900">{{ $deal->seller->name }}</div>
+                                    <div class="text-xs text-gray-400">Seller</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <a href="tel:{{ $deal->seller->mobile }}"
+                                    class="flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-base">
+                                    <span class="bi bi-telephone"></span> Call Seller
                                 </a>
-                            @endif
-                        </div>
-                    </div>
-
-                    @if ($deal->bids->count() > 0)
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-500 uppercase mb-3">Bids</h3>
-                            <div class="space-y-2 max-h-60 overflow-y-auto">
-                                @foreach ($deal->bids as $bid)
-                                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                        <div class="flex items-center space-x-3">
-                                            <img src="{{ $bid->buyer->image }}" alt=""
-                                                class="w-10 h-10 rounded-full object-cover border-2 border-green-100">
-                                            <span class="font-medium text-gray-900">{{ $bid->buyer->name }}</span>
-                                        </div>
-                                        <span class="font-bold text-green-600">Rs. {{ $bid->bid_price }}</span>
-                                    </div>
-                                @endforeach
+                                @if ($deal->seller->whatsapp)
+                                    <a href="https://wa.me/{{ $deal->seller->whatsapp }}" target="_blank" rel="noopener"
+                                        class="flex items-center justify-center gap-2 px-4 py-3 bg-green-50 text-green-700 font-semibold rounded-xl hover:bg-green-100 transition-base">
+                                        <span class="bi bi-whatsapp"></span> WhatsApp
+                                    </a>
+                                @endif
                             </div>
                         </div>
-                    @endif
+
+                        @if ($deal->bids->count() > 0)
+                            <div>
+                                <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Bids
+                                    ({{ $deal->bids->count() }})</h3>
+                                <div class="space-y-2 max-h-60 overflow-y-auto scrollbar-thin pr-1">
+                                    @foreach ($deal->bids as $bid)
+                                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
+                                            <div class="flex items-center gap-3">
+                                                <img src="{{ $bid->buyer->image }}" alt=""
+                                                    class="w-9 h-9 rounded-full object-cover border-2 border-green-100">
+                                                <span
+                                                    class="font-medium text-gray-900">{{ $bid->buyer->name }}</span>
+                                            </div>
+                                            <span class="font-bold text-green-600">Rs. {{ $bid->bid_price }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

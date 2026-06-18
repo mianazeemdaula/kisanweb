@@ -1,30 +1,37 @@
 @extends('layouts.guest')
+@section('title', 'Market Crop Rates | Digital Mandi')
 @section('body')
-    <div class="bg-gradient-to-b from-green-50 to-white min-h-screen py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <!-- Header Section -->
-            <div class="text-center mb-12">
-                <h1 class="font-display text-5xl font-bold text-gray-900 mb-4 tracking-tight">Market Crop Rates</h1>
-                <p class="text-gray-600 text-lg font-light max-w-2xl mx-auto">
-                    Browse our comprehensive collection of crops and their varieties with real-time market rates
+    <div class="bg-mesh min-h-screen">
+        <!-- Header -->
+        <section class="relative overflow-hidden">
+            <div class="absolute -top-20 right-0 w-80 h-80 bg-green-300/20 rounded-full blur-3xl"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-10 text-center animate-fade-up">
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 backdrop-blur border border-green-200 text-green-700 text-sm font-semibold mb-5 shadow-sm">
+                    <span class="bi bi-flower1"></span> Crops &amp; Varieties
+                </span>
+                <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
+                    Market <span class="text-gradient">Crop Rates</span>
+                </h1>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Browse our comprehensive collection of crops and their varieties with real-time market rates.
                 </p>
             </div>
+        </section>
 
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
             <!-- Crops Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 @foreach (\App\Models\Crop::orderBy('sort')->get() as $item)
-                    <div
-                        class="group relative bg-white rounded-2xl shadow-sm border-2 border-gray-100 hover:border-green-400 transition-all duration-300 overflow-hidden hover-lift">
+                    <div class="reveal group relative bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-green-300 hover-lift overflow-hidden">
                         <!-- Color accent bar -->
-                        @if ($item->color)
-                            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-green-600"
-                                style="background: {{ $item->color }};"></div>
-                        @endif
+                        <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-green-400 to-green-600"
+                            @if ($item->color) style="background: {{ $item->color }};" @endif></div>
 
                         <div class="p-6">
                             <!-- Icon Section -->
                             <div
-                                class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                                class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-sm">
                                 @if ($item->icon && file_exists(public_path($item->icon)))
                                     <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}"
                                         class="w-12 h-12 object-contain"
@@ -67,7 +74,7 @@
                                     {{ $item->name }}
                                 </h3>
                                 @if ($item->name_ur)
-                                    <p class="text-sm text-gray-500 font-light mt-1">{{ $item->name_ur }}</p>
+                                    <p class="text-sm text-gray-400 mt-1">{{ $item->name_ur }}</p>
                                 @endif
                             </div>
 
@@ -76,14 +83,13 @@
                                 <div class="border-t border-gray-100 pt-4 mt-4">
                                     <div class="flex items-center justify-center mb-3">
                                         <span
-                                            class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Varieties</span>
+                                            class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Varieties</span>
                                         <span
                                             class="ml-2 bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">
                                             {{ $item->types->count() }}
                                         </span>
                                     </div>
-                                    <div
-                                        class="space-y-2 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-green-200 scrollbar-track-gray-100">
+                                    <div class="space-y-2 max-h-40 overflow-y-auto scrollbar-thin pr-1">
                                         @foreach ($item->types as $type)
                                             <div class="flex items-start">
                                                 <span
@@ -105,11 +111,6 @@
                                     <span class="text-xs text-gray-400 italic">No varieties available</span>
                                 </div>
                             @endif
-
-                            <!-- Hover Effect Overlay -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-green-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl">
-                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -129,25 +130,4 @@
             @endif
         </div>
     </div>
-
-    <style>
-        /* Custom scrollbar for varieties list */
-        .scrollbar-thin::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar-track {
-            background: #f3f4f6;
-            border-radius: 4px;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-            background: #bbf7d0;
-            border-radius: 4px;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-            background: #86efac;
-        }
-    </style>
 @endsection
