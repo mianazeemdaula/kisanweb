@@ -47,7 +47,7 @@
                             Conditions</a></li>
                     <li><a href="{{ url('privacy') }}" class="hover:text-green-400 transition-base">Privacy Policy</a>
                     </li>
-                    <li><a href="https://play.google.com/store/apps/details?id=com.kisanstock.app" target="_blank"
+                    <li><a href="https://play.google.com/store/apps/details?id=com.kisan.digitalmandi&hl=en" target="_blank"
                             rel="noopener" class="hover:text-green-400 transition-base">Download App</a></li>
                 </ul>
             </div>
@@ -69,7 +69,7 @@
                         <span class="bi bi-tiktok text-lg"></span>
                     </a>
                 </div>
-                <a href="https://play.google.com/store/apps/details?id=com.kisanstock.app" target="_blank"
+                <a href="https://play.google.com/store/apps/details?id=com.kisan.digitalmandi&hl=en" target="_blank"
                     rel="noopener"
                     class="mt-5 inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-green-600 to-green-700 rounded-xl hover:shadow-lg hover:shadow-green-600/30 transition-base">
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">

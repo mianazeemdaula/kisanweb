@@ -40,7 +40,7 @@
                         {{ $link['label'] }}
                     </a>
                 @endforeach
-                <a href="https://play.google.com/store/apps/details?id=com.kisanstock.app" target="_blank"
+                <a href="https://play.google.com/store/apps/details?id=com.kisan.digitalmandi&hl=en" target="_blank"
                     rel="noopener"
                     class="ml-2 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-green-600 to-green-700 rounded-xl shadow-md shadow-green-600/25 hover:shadow-lg hover:shadow-green-600/40 hover:-translate-y-0.5 transition-base">
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -75,7 +75,7 @@
                     {{ $link['label'] }}
                 </a>
             @endforeach
-            <a href="https://play.google.com/store/apps/details?id=com.kisanstock.app" target="_blank" rel="noopener"
+            <a href="https://play.google.com/store/apps/details?id=com.kisan.digitalmandi&hl=en" target="_blank" rel="noopener"
                 class="flex items-center justify-center gap-2 mt-2 px-5 py-3 text-sm font-semibold text-white bg-gradient-to-r from-green-600 to-green-700 rounded-xl shadow-md">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path

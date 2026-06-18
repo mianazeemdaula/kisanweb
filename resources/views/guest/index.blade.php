@@ -230,7 +230,7 @@ $shopsCount = \App\Models\CommissionShop::where('active', true)->count();
                     <p class="text-green-50 text-lg mb-8">Download the Digital Mandi app to buy, sell and track rates
                         anywhere, anytime.</p>
                     <div class="flex flex-wrap justify-center gap-3">
-                        <a href="https://play.google.com/store/apps/details?id=com.kisanstock.app" target="_blank"
+                        <a href="https://play.google.com/store/apps/details?id=com.kisan.digitalmandi&hl=en" target="_blank"
                             rel="noopener"
                             class="inline-flex items-center gap-2 px-7 py-3.5 text-base font-semibold text-green-700 bg-white rounded-xl hover:-translate-y-0.5 transition-base shadow-lg">
                             <span class="bi bi-google-play"></span> Download App
