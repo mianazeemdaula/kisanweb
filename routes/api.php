@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\MediaController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\InboxController;
 use App\Http\Controllers\Api\V1\CategoryInboxController;
+use App\Http\Controllers\Api\V1\ChatCategoryController;
 use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\ReactionController;
@@ -89,6 +90,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('categories-bid', CategoryDealsBidController::class);
     Route::resource('categories-reaction', CategoryDealReactionController::class);
     Route::resource('categories-inbox', CategoryInboxController::class);
+    Route::resource('category-chat', ChatCategoryController::class);
     // Route::get('categories/{id}/subcategories', [HomeController::class,'subcategories']);
     // Route::get('categories/{id}/subcategories/deals', [HomeController::class,'subcategoryDeals']);
 

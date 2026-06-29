@@ -55,7 +55,7 @@ class CategoryDealsBidController extends Controller
             'deal_id' => $request->deal_id,
         ];
         FCM::send([$fcmToken],"Bid", "$user->name bid on your deal", $data);
-        \App\Jobs\CategoryBidNotificationJob::dispatch($bid->deal_id, $user->id);
+        \App\Jobs\CategoryBidNotificationJob::dispatch($bid->category_deal_id, $user->id);
         // DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($bid, 200);
     }
@@ -84,15 +84,15 @@ class CategoryDealsBidController extends Controller
         $this->validate($request,[
             'deal_id' => 'required'
         ]);
-        $bid = CategoryDealBid::find($request->deal_id);
-        if($bid->accept_bid_id != null){
+        $deal = CategoryDeal::find($request->deal_id);
+        if($deal->accept_bid_id != null){
             return response()->json(['message'=>'You have already accepted'], 409);
         }
-        $bid->status = 'accepted';
-        $bid->accept_bid_id = $id;
-        $bid->save();
+        $deal->status = 'accepted';
+        $deal->accept_bid_id = $id;
+        $deal->save();
         // DealUpdateEvent::dispatch($request->deal_id);
-        return response()->json($bid, 200);
+        return response()->json($deal, 200);
     }
 
     /**

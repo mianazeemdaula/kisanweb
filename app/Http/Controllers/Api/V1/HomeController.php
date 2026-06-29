@@ -114,12 +114,54 @@ class HomeController extends Controller
         return response()->json($data, 200);
     }
 
-    public function userDeals()
+    public function userDeals(Request $request)
     {
         $user = auth()->user();
+
+        if ($request->type === 'bids') {
+            // Get crop deals where user has placed bids
+            $cropDeals = Deal::with(['bids' => function($q) use($user) {
+                $q->with(['buyer'])->where('buyer_id', $user->id);
+            }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+            ->whereHas('bids', fn($q) => $q->where('buyer_id', $user->id))
+            ->get()
+            ->map(function($deal) {
+                $deal->deal_type = 'crop';
+                return $deal;
+            });
+
+            // Get category deals where user has placed bids
+            $catDeals = CategoryDeal::with(['bids' => function($q) use($user) {
+                $q->with(['buyer'])->where('buyer_id', $user->id);
+            }, 'user', 'packing', 'weight', 'media', 'subcategory.category'])
+            ->whereHas('bids', fn($q) => $q->where('buyer_id', $user->id))
+            ->get()
+            ->map(function($deal) {
+                $deal->deal_type = 'category';
+                return $deal;
+            });
+
+            // Merge and sort by latest first
+            $merged = $cropDeals->concat($catDeals)->sortByDesc('created_at')->values();
+
+            // Manual pagination
+            $perPage = 15;
+            $page = $request->get('page', 1);
+            $total = $merged->count();
+            $items = $merged->forPage($page, $perPage)->values();
+
+            $data = new \Illuminate\Pagination\LengthAwarePaginator(
+                $items, $total, $perPage, $page,
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+
+            return response()->json($data, 200);
+        }
+
+        // Default: seller's own deals
         $data = Deal::with(['bids' => function($q) use($user) {
             $q->with(['buyer'])->where('buyer_id', $user->id);
-        }, 'seller', 'packing', 'weight' , 'media'])->where('seller_id', $user->id)->paginate();
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
 
         return response()->json($data, 200);
     }

@@ -122,6 +122,7 @@ class CategoryDealsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        CategoryDeal::findOrFail($id)->delete();
+        return response()->json(['message'=>'deleted', 'status'=>true], 200, []);
     }
 }

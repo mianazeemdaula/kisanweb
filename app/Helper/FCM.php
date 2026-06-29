@@ -143,7 +143,11 @@ class FCM {
             return;
         }
         $token =  $notification->user->fcm_token;
-        return FCM::send([$token],$notification->title, $notification->body,(array) json_decode($notification->data));
+        $data = $notification->data;
+        if (is_string($data)) {
+            $data = json_decode($data, true);
+        }
+        return FCM::send([$token], $notification->title, $notification->body, (array) ($data ?? []));
     }
 
     static public function send(array $tokens, $title, $body, Array $data = [])

@@ -35,7 +35,7 @@ class CategoryInboxController extends Controller
             $chat->buyer_id = $request->buyer_id;
             $chat->save();
         }
-        $data = Chat::with(['deal','buyer'])->find($chat->id);
+        $data = CategoryDealChat::with(['deal','buyer'])->find($chat->id);
         return response()->json($data, 200);
     }
 
