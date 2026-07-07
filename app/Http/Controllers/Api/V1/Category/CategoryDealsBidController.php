@@ -17,7 +17,8 @@ class CategoryDealsBidController extends Controller
      */
     public function index()
     {
-        //
+        $bids = CategoryDealBid::with(['buyer', 'categoryDeal'])->paginate();
+        return response()->json($bids, 200);
     }
 
     /**
@@ -65,7 +66,8 @@ class CategoryDealsBidController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $bid = CategoryDealBid::with(['buyer', 'categoryDeal'])->findOrFail($id);
+        return response()->json($bid, 200);
     }
 
     /**
@@ -100,6 +102,9 @@ class CategoryDealsBidController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $bid = CategoryDealBid::findOrFail($id);
+        $bid->delete();
+        return response()->json(['message' => 'deleted', 'status' => true], 200);
     }
 }
+

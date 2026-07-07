@@ -57,7 +57,8 @@ class CategoryDealReactionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $reaction = CategoryDealReaction::with(['user', 'categoryDeal'])->findOrFail($id);
+        return response()->json($reaction, 200);
     }
 
     /**
@@ -81,6 +82,9 @@ class CategoryDealReactionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reaction = CategoryDealReaction::findOrFail($id);
+        $reaction->delete();
+        return response()->json(['message' => 'deleted', 'status' => true], 200);
     }
 }
+

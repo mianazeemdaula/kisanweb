@@ -69,7 +69,8 @@ class ReactionController extends Controller
      */
     public function show($id)
     {
-        //
+        $reaction = Reaction::with(['user', 'deal'])->findOrFail($id);
+        return response()->json($reaction, 200);
     }
 
     /**
@@ -103,6 +104,9 @@ class ReactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reaction = Reaction::findOrFail($id);
+        $reaction->delete();
+        return response()->json(['message' => 'deleted', 'status' => true], 200);
     }
 }
+

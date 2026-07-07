@@ -20,7 +20,8 @@ class BidController extends Controller
      */
     public function index()
     {
-        //
+        $bids = Bid::with(['buyer'])->paginate();
+        return response()->json($bids, 200);
     }
 
     /**
@@ -72,7 +73,8 @@ class BidController extends Controller
      */
     public function show($id)
     {
-        //
+        $bid = Bid::with(['buyer'])->findOrFail($id);
+        return response()->json($bid, 200);
     }
 
     /**
@@ -117,6 +119,9 @@ class BidController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bid = Bid::findOrFail($id);
+        $bid->delete();
+        return response()->json(['message' => 'deleted', 'status' => true], 200);
     }
 }
+

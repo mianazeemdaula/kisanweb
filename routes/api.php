@@ -39,6 +39,7 @@ use App\Http\Controllers\Api\V1\Support\SupportController;
 use App\Http\Controllers\Api\V1\Support\SupportDetailController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
 use App\Http\Controllers\Api\V1\Category\CategoryController;
+use App\Http\Controllers\Api\V1\Category\SubCategoryController;
 use App\Http\Controllers\Api\V1\Category\CategoryDealsController;
 use App\Http\Controllers\Api\V1\Category\CategoryDealsBidController;
 use App\Http\Controllers\Api\V1\Category\CategoryDealReactionController;
@@ -86,6 +87,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('subcats/{id}', [HomeController::class,'subcats']);
 
     // Categories, subcategories, and category deals routes
+    Route::resource('categories', CategoryController::class);
+    Route::resource('subcategories', SubCategoryController::class);
+    Route::resource('sub-categories', SubCategoryController::class);
     Route::resource('categories-deal', CategoryDealsController::class);
     Route::resource('categories-bid', CategoryDealsBidController::class);
     Route::resource('categories-reaction', CategoryDealReactionController::class);

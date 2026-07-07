@@ -31,7 +31,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'name_ur' => 'required|string',
+            'parent_id' => 'nullable|exists:categories,id',
+            'icon' => 'nullable|string',
+            'is_active' => 'nullable|boolean',
+            'sort' => 'nullable|integer',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->name_ur = $request->name_ur;
+        $category->parent_id = $request->parent_id;
+        $category->icon = $request->icon;
+        $category->is_active = $request->is_active ?? true;
+        $category->sort = $request->sort ?? 0;
+        $category->save();
+
+        return response()->json($category, 201);
     }
 
     /**
@@ -56,7 +74,25 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'sometimes|required|string',
+            'name_ur' => 'sometimes|required|string',
+            'parent_id' => 'nullable|exists:categories,id',
+            'icon' => 'nullable|string',
+            'is_active' => 'nullable|boolean',
+            'sort' => 'nullable|integer',
+        ]);
+
+        $category = Category::findOrFail($id);
+        if ($request->has('name')) $category->name = $request->name;
+        if ($request->has('name_ur')) $category->name_ur = $request->name_ur;
+        if ($request->has('parent_id')) $category->parent_id = $request->parent_id;
+        if ($request->has('icon')) $category->icon = $request->icon;
+        if ($request->has('is_active')) $category->is_active = $request->is_active;
+        if ($request->has('sort')) $category->sort = $request->sort;
+        $category->save();
+
+        return response()->json($category, 200);
     }
 
     /**
@@ -64,6 +100,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return response()->json(['message' => 'Category deleted successfully', 'status' => true], 200);
     }
 }
+

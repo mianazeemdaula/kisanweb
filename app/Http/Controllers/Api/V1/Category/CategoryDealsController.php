@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\CategoryDeal;
+use App\Models\Media;
 use App\Helper\MediaHelper;
 use Illuminate\Support\Facades\DB;
 use MatanYadaev\EloquentSpatial\Objects\Point;
@@ -18,7 +19,11 @@ class CategoryDealsController extends Controller
      */
     public function index()
     {
-        //
+        $data = CategoryDeal::with(['bids' => function($q){
+            $q->with(['buyer']);
+        }, 'user', 'packing', 'weight', 'media', 'subcategory.category'])
+        ->whereHas('user')->paginate();
+        return response()->json($data, 200);
     }
 
     /**
@@ -114,7 +119,60 @@ class CategoryDealsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request,[
+            'packing_id' => 'sometimes|integer',
+            'weight_type_id' => 'sometimes|integer',
+            'demand' => 'sometimes|required',
+            'note' => 'sometimes|required',
+            'qty' => 'sometimes|required',
+            'lat' => 'sometimes|required',
+            'lng' => 'sometimes|required',
+            'address' => 'sometimes|required',
+            'images' => 'sometimes',
+            'images.*' => 'sometimes|mimes:jpg,jpeg,png',
+        ]);
+        try {
+            DB::beginTransaction();
+            $deal = CategoryDeal::findOrFail($id);
+            if ($request->has('packing_id')) $deal->packing_id = $request->packing_id;
+            if ($request->has('weight_type_id')) $deal->weight_type_id = $request->weight_type_id;
+            if ($request->has('demand')) $deal->demand = $request->demand;
+            if ($request->has('note')) $deal->note = $request->note;
+            if ($request->has('qty')) $deal->qty = $request->qty;
+            if ($request->has('lat') && $request->has('lng')) {
+                $deal->location = new Point($request->lat, $request->lng);
+            }
+            if ($request->has('address')) $deal->address = $request->address;
+            if ($request->has('attr') && is_array($request->attr)) {
+                $deal->attr = $request->attr;
+            }
+
+            $oldImages = json_decode($request->oldimages ?? "[]", true);
+            if (!is_array($oldImages)) {
+                $oldImages = [];
+            }
+            foreach ($oldImages as $imgId) {
+                $media = Media::find($imgId);
+                if ($media) {
+                    $media->delete();
+                }
+            }
+            $medias = array();
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $key => $file) {
+                    $medias[] = MediaHelper::save($file, $deal);
+                }
+            }
+            $deal->save();
+            foreach ($medias as $img) {
+                $deal->media()->save($img);
+            }
+            DB::commit();
+            return response()->json($deal, 200);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['message' => $th->getMessage()], 422);
+        }
     }
 
     /**
@@ -126,3 +184,4 @@ class CategoryDealsController extends Controller
         return response()->json(['message'=>'deleted', 'status'=>true], 200, []);
     }
 }
+
