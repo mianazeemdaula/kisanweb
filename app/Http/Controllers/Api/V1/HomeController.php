@@ -38,27 +38,24 @@ class HomeController extends Controller
 
         if($reqeust->text){
             $query->where(function($q) use($reqeust) {
-                $q->whereHas('seller', function($sellerQuery) use($reqeust) {
-                    $sellerQuery->where('name', 'like', '%' . $reqeust->text . '%');
-                });
-            });
-            // where biders name
-            $query->orWhereHas('bids', function($bidQuery) use($reqeust) {
-                $bidQuery->whereHas('buyer', function($buyerQuery) use($reqeust) {
-                    $buyerQuery->where('name', 'like', '%' . $reqeust->text . '%');
-                });  
-            });
-
-            // where type
-            $query->orWhereHas('type', function($typeQuery) use($reqeust) {
-                $typeQuery->where('name', 'like', '%' . $reqeust->text . '%');
-                // or where type urdu name
-                $typeQuery->orWhere('name_ur', 'like', '%' . $reqeust->text . '%');
-                // where crop name
-                $typeQuery->orWhereHas('crop', function($cropQuery) use($reqeust) {
-                    $cropQuery->where('name', 'like', '%' . $reqeust->text . '%')
-                    ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%');
-                });
+                $q->where('note', 'like', '%' . $reqeust->text . '%')
+                  ->orWhere('address', 'like', '%' . $reqeust->text . '%')
+                  ->orWhereHas('seller', function($sellerQuery) use($reqeust) {
+                      $sellerQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                  })
+                  ->orWhereHas('bids', function($bidQuery) use($reqeust) {
+                      $bidQuery->whereHas('buyer', function($buyerQuery) use($reqeust) {
+                          $buyerQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                      });  
+                  })
+                  ->orWhereHas('type', function($typeQuery) use($reqeust) {
+                      $typeQuery->where('name', 'like', '%' . $reqeust->text . '%')
+                                ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%')
+                                ->orWhereHas('crop', function($cropQuery) use($reqeust) {
+                                    $cropQuery->where('name', 'like', '%' . $reqeust->text . '%')
+                                              ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%');
+                                });
+                  });
             });
         }
 
@@ -95,9 +92,24 @@ class HomeController extends Controller
         // }
         if($reqeust->text){
             $query->where(function($q) use($reqeust) {
-                $q->whereHas('user', function($userQuery) use($reqeust) {
-                    $userQuery->where('name', 'like', '%' . $reqeust->text . '%');
-                });
+                $q->where('note', 'like', '%' . $reqeust->text . '%')
+                  ->orWhere('address', 'like', '%' . $reqeust->text . '%')
+                  ->orWhereHas('user', function($userQuery) use($reqeust) {
+                      $userQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                  })
+                  ->orWhereHas('bids', function($bidQuery) use($reqeust) {
+                      $bidQuery->whereHas('buyer', function($buyerQuery) use($reqeust) {
+                          $buyerQuery->where('name', 'like', '%' . $reqeust->text . '%');
+                      });  
+                  })
+                  ->orWhereHas('subcategory', function($subQuery) use($reqeust) {
+                      $subQuery->where('name', 'like', '%' . $reqeust->text . '%')
+                               ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%')
+                               ->orWhereHas('category', function($catQuery) use($reqeust) {
+                                   $catQuery->where('name', 'like', '%' . $reqeust->text . '%')
+                                            ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%');
+                               });
+                  });
             });
         }
         if($reqeust->sortype){
