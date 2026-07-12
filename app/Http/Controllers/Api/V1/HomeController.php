@@ -50,7 +50,7 @@ class HomeController extends Controller
                   })
                   ->orWhereHas('type', function($typeQuery) use($reqeust) {
                       $typeQuery->where('name', 'like', '%' . $reqeust->text . '%')
-                                ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%')
+                                ->orWhere('code', 'like', '%' . $reqeust->text . '%')
                                 ->orWhereHas('crop', function($cropQuery) use($reqeust) {
                                     $cropQuery->where('name', 'like', '%' . $reqeust->text . '%')
                                               ->orWhere('name_ur', 'like', '%' . $reqeust->text . '%');
