@@ -245,7 +245,7 @@ class CommissionShopController extends Controller
             'min_price' => $request->min_price,
             'max_price' => $request->max_price,
         ]);
-        \App\Helper\FCM::sendToSetting(8,"Shop rates update", $request->user()->commissionShop->name." update rates of purchasing",[
+        \App\Jobs\SendSettingNotificationJob::dispatch(8, "Shop rates update", $request->user()->commissionShop->name . " update rates of purchasing", [
             'type' => 'shop',
             'shop_id' => $request->user()->commissionShop->id,
         ]);

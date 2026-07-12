@@ -75,7 +75,7 @@ class CropRateController extends Controller
             'max_price_last' => $lastRate->max_price ?? $request->max,
             'user_id' => $request->user()->id,
         ]);
-        \App\Helper\FCM::sendToSetting(6,"نرخ اپڈیٹ","آپ کے شہر کے فصلوں کے ریٹس اپڈیٹ کر دیے گئے ہیں",[
+        \App\Jobs\SendSettingNotificationJob::dispatch(6, "نرخ اپڈیٹ", "آپ کے شہر کے فصلوں کے ریٹس اپڈیٹ کر دیے گئے ہیں", [
             'type' => 'mand_rate',
             'crop_id' => $request->crop_type_id,
             'city_id' => $request->city,
