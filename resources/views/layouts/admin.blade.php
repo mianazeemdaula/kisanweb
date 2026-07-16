@@ -1,27 +1,36 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kisan Stock</title>
+    <title>Kisan Stock | Admin Panel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
 </head>
 
-<body class="font-[Poppins] bg-gray-100">
-    <div class="flex">
-        <div class="w-1/5 hidden md:block">
-            <!-- Side Menu -->
+<body class="bg-slate-50 text-slate-800 h-full flex flex-col overflow-hidden">
+    <div class="flex h-full overflow-hidden">
+        <!-- Sidebar -->
+        <div class="w-80 hidden lg:block h-full flex-shrink-0">
             @include('partials.side-menu')
         </div>
-        <div class="flex-1 overflow-x-auto">
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col h-full overflow-y-auto">
             <!-- Top Menu -->
             @include('partials.top-menu')
-            <!-- Content -->
-            <div class="p-2">
+            <!-- Page Content -->
+            <div class="p-6 md:p-8 flex-1">
                 @yield('content')
             </div>
         </div>
