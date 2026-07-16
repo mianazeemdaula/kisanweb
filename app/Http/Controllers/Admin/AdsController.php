@@ -43,9 +43,9 @@ class AdsController extends Controller
             'action' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'lat' => 'required',
-            'lng' => 'required',
-            'view_km' => 'required',
+            'lat' => 'required_without:is_app_open|nullable',
+            'lng' => 'required_without:is_app_open|nullable',
+            'view_km' => 'required_without:is_app_open|nullable',
         ]);
         $ad = new Advertisement();
         $ad->title = $request->title;
@@ -54,8 +54,13 @@ class AdsController extends Controller
         $ad->action = $request->action;
         $ad->start_date = $request->start_date;
         $ad->end_date = $request->end_date;
-        $ad->location = new Point($request->lat, $request->lng);
-        $ad->view_km = $request->view_km;
+        if($request->filled('lat') && $request->filled('lng')){
+            $ad->location = new Point($request->lat, $request->lng);
+        } else {
+            $ad->location = null;
+        }
+        $ad->view_km = $request->input('view_km', 10.0);
+        $ad->is_app_open = $request->boolean('is_app_open');
         $ad->slug = Str::slug($request->title);
         $ad->user_id = auth()->user()->id;
         if($request->hasFile('image')){
@@ -99,9 +104,9 @@ class AdsController extends Controller
             'action' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'lat' => 'required',
-            'lng' => 'required',
-            'view_km' => 'required',
+            'lat' => 'required_without:is_app_open|nullable',
+            'lng' => 'required_without:is_app_open|nullable',
+            'view_km' => 'required_without:is_app_open|nullable',
         ]);
         $ad = Advertisement::findOrFail($id);
         $ad->title = $request->title;
@@ -110,8 +115,13 @@ class AdsController extends Controller
         $ad->action = $request->action;
         $ad->start_date = $request->start_date;
         $ad->end_date = $request->end_date;
-        $ad->location = new Point($request->lat, $request->lng);
-        $ad->view_km = $request->view_km;
+        if($request->filled('lat') && $request->filled('lng')){
+            $ad->location = new Point($request->lat, $request->lng);
+        } else {
+            $ad->location = null;
+        }
+        $ad->view_km = $request->input('view_km', 10.0);
+        $ad->is_app_open = $request->boolean('is_app_open');
         $ad->slug = Str::slug($request->title);
         if($request->hasFile('image')){
             File::delete(public_path('ads/'.$ad->image));

@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('quotes',\App\Http\Controllers\Admin\QuoteController::class);
         Route::resource('feeds', \App\Http\Controllers\Admin\FeedController::class);
         Route::resource('deals', \App\Http\Controllers\Admin\DealController::class);
+        Route::resource('category-deals', \App\Http\Controllers\Admin\CategoryDealController::class);
         Route::get('deals-export', [\App\Http\Controllers\Admin\DealController::class,'export']);
         Route::get('export-nearby-shops/{id}', [\App\Http\Controllers\Admin\DealController::class,'exportNearBuyers']);
         Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);

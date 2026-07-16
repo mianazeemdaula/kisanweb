@@ -2,13 +2,9 @@
 @section('content')
     <div class="w-full">
         <div class="flex items-center justify-between">
-            <h5 class="">Advertisement</h5>
-            <a href="{{ route('admin.ads.create') }}">
-                <div class="px-4 bg-green-700 text-white rounded-xl">
-                    Add Ad
-                </div>
-            </a>
+            <h5 class="">Category Deals</h5>
         </div>
+
         <div class="bg-white">
             <div class="overflow-x-auto mt-6 ">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -19,71 +15,49 @@
                                 ID</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Title</th>
-                                <th scope="col"
+                                Username</th>
+                            <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Action</th>
-                                <th scope="col"
+                                Category & Subcategory</th>
+                            <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Link</th>
-
-                                <th scope="col"
+                                Demand</th>
+                            <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Expire On</th>
-                                <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                App Open</th>
-                                <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Active</th>
+                                Qty</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Action
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200 " id="chatlist">
-                        @foreach ($ads as $item)
+                    <tbody class="bg-white divide-y divide-gray-200" id="chatlist">
+                        @foreach ($deals as $item)
                             <tr>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                                     {{ $item->id }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ $item->title }}
+                                    {{ $item->user->name ?? 'N/A' }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ $item->action }}
+                                    {{ $item->subcategory->category->name ?? 'N/A' }} - {{ $item->subcategory->name ?? 'N/A' }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    @if($item->action == 'whatsapp')
-                                        <a href="https://wa.me/{{ $item->link }}" target="_blank">{{ $item->link }}</a>
-                                        @elseif($item->action == 'link')
-                                        <a href="{{ $item->link }}" target="_blank">Link</a>
-                                        @elseif($item->action == 'deal')
-                                        <a href="{{ route('deal', $item->link) }}" target="_blank">Deal</a>
-                                        @elseif($item->action == 'shop')
-                                        <a href="{{ route('shop', $item->link) }}" target="_blank">Shop</a>
-                                    @endif
+                                    Rs.{{ $item->demand }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ \Carbon\Carbon::parse($item->end_date)->diffForHumans() }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ $item->is_app_open ? 'Yes' : 'No' }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ $item->active ? 'Active' : 'inactive' }}
+                                    {{ $item->qty }} {{ $item->weight->name ?? '' }}
                                 </td>
                                 <td>
                                     <div class="flex space-x-3">
-
-                                        <a href="{{ route('admin.ads.show', $item->id) }}">
+                                        <a href="{{ route('admin.category-deals.show', $item->id) }}" target="_blank">
                                             <span class="bi bi-eye"></span>
                                         </a>
-                                        <a href="{{ route('admin.ads.edit', $item->id) }}">
+                                        <a href="{{ route('admin.category-deals.edit', $item->id) }}">
                                             <span class="bi bi-pencil"></span>
                                         </a>
-                                        <form action="{{ route('admin.ads.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('admin.category-deals.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit"><span class="bi bi-trash"></span></button>
@@ -97,7 +71,7 @@
             </div>
         </div>
         <div class="mt-4">
-            <x-web-pagination :paginator="$ads" />
+            <x-web-pagination :paginator="$deals" />
         </div>
     </div>
 @endsection

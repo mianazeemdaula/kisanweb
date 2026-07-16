@@ -22,6 +22,7 @@ class Advertisement extends Model
         'link',
         'active',
         'is_featured',
+        'is_app_open',
         'action',
         'action_text',
         'start_date',
@@ -37,6 +38,7 @@ class Advertisement extends Model
         'location' => Point::class,
         'active' => 'boolean',
         'is_featured' => 'boolean',
+        'is_app_open' => 'boolean',
         'clicks' => 'integer',
         'impressions' => 'integer',
         'position' => 'integer',
@@ -68,6 +70,11 @@ class Advertisement extends Model
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', true);
+    }
+
+    public function scopeAppOpen($query)
+    {
+        return $query->where('is_app_open', true);
     }
 
     public function scopeNotExpire($query)

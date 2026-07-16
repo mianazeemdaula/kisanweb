@@ -137,4 +137,26 @@ class AdsController extends Controller
     {
         //
     }
+
+    public function appOpenAd()
+    {
+        $ad = Advertisement::query()
+            ->active()
+            ->appOpen()
+            ->where(function ($q) {
+                $q->whereNull('start_date')->orWhere('start_date', '<=', date('Y-m-d'));
+            })
+            ->where(function ($q) {
+                $q->whereNull('end_date')->orWhere('end_date', '>=', date('Y-m-d'));
+            })
+            ->latest()
+            ->first();
+
+        if ($ad) {
+            $ad->increment('impressions');
+            return response()->json($ad, 200);
+        }
+
+        return response()->json(null, 200);
+    }
 }

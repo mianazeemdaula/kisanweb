@@ -28,6 +28,7 @@
                 <x-menu-item title="Quotes" icon="bi-quote" active="false" url="{{ route('admin.quotes.index') }}" />
                 <x-menu-item title="Feeds" icon="bi-bookshelf" active="false" url="{{ route('admin.feeds.index') }}" />
                 <x-menu-item title="Deals" icon="bi-cart2" active="false" url="{{ route('admin.deals.index') }}" />
+                <x-menu-item title="Category Deals" icon="bi-cart" active="false" url="{{ route('admin.category-deals.index') }}" />
                 <x-menu-item title="Rate Reports" icon="bi-graph-up" active="false"
                     url="{{ url('admin/rate-reports') }}" />
                 <x-menu-item title="User Settings" icon="bi-gear" active="false"

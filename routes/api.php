@@ -75,6 +75,7 @@ Route::resource('crop.type', CropTypeController::class);
 
 Route::resource('media', MediaController::class);
 Route::get('/cities',[CityController::class, 'index']);
+Route::get('/app-open-ad', [AdsController::class, 'appOpenAd']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     

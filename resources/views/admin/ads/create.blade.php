@@ -84,6 +84,10 @@
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="flex items-center pb-2">
+                    <input type="checkbox" name="is_app_open" id="is_app_open" value="1" {{ old('is_app_open') ? 'checked' : '' }} class="mr-2 h-5 w-5 text-blue-600">
+                    <label for="is_app_open" class="font-bold text-gray-700">App Open Ad</label>
+                </div>
                 <div>
                     <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
