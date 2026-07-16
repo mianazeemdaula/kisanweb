@@ -19,10 +19,10 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 h-full flex flex-col overflow-hidden">
+<body class="bg-slate-50 text-slate-800 h-full flex flex-col overflow-hidden text-xs">
     <div class="flex h-full overflow-hidden">
         <!-- Sidebar -->
-        <div class="w-80 hidden lg:block h-full flex-shrink-0">
+        <div class="w-64 hidden lg:block h-full flex-shrink-0">
             @include('partials.side-menu')
         </div>
         <!-- Main Content Area -->
@@ -30,7 +30,7 @@
             <!-- Top Menu -->
             @include('partials.top-menu')
             <!-- Page Content -->
-            <div class="p-6 md:p-8 flex-1">
+            <div class="p-4 md:p-6 flex-1">
                 @yield('content')
             </div>
         </div>
