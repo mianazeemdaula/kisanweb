@@ -32,6 +32,7 @@
                 <x-menu-item title="DEO Rates" icon="bi-check2-circle" url="{{ route('admin.deorates.index') }}" />
                 <x-menu-item title="Crops" icon="bi-flower3" url="{{ route('admin.crop.index') }}" />
                 <x-menu-item title="Crop Types" icon="bi-list-ul" url="{{ route('admin.croptype.index') }}" />
+                <x-menu-item title="Units" icon="bi-rulers" url="{{ route('admin.units.index') }}" />
                 
                 <div class="border-t border-slate-800 my-4"></div>
 
