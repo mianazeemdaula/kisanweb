@@ -6,9 +6,9 @@
         class="sidebar top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
         p-4 overflow-y-auto bg-slate-950 shadow-2xl h-screen overflow-x-hidden border-r border-slate-800 scrollbar-thin w-full">
         <div class="text-gray-100 text-xl">
-            <div class="p-2.5 mt-1 flex items-center rounded-md justify-start mb-6">
-                <i class="bi bi-app-indicator px-2.5 py-2 bg-gradient-to-br from-emerald-400 to-green-600 text-white rounded-xl shadow-md text-lg"></i>
-                <h1 class="text-[17px] ml-3.5 text-slate-100 font-bold tracking-tight">Kisan Stock</h1>
+            <div class="p-1.5 mt-1 flex items-center rounded-md justify-start mb-3">
+                <i class="bi bi-app-indicator px-2 py-1.5 bg-gradient-to-br from-emerald-400 to-green-600 text-white rounded-lg shadow-md text-sm"></i>
+                <h1 class="text-sm ml-2.5 text-slate-105 font-bold tracking-tight">Kisan Stock</h1>
                 <i class="bi bi-x ml-auto cursor-pointer lg:hidden" onclick="Openbar()"></i>
             </div>
             
@@ -33,13 +33,13 @@
                 <x-menu-item title="Crops" icon="bi-flower3" url="{{ route('admin.crop.index') }}" />
                 <x-menu-item title="Crop Types" icon="bi-list-ul" url="{{ route('admin.croptype.index') }}" />
                 
-                <div class="border-t border-slate-800 my-4"></div>
+                <div class="border-t border-slate-800 my-2"></div>
 
                 <div
-                    class="p-2.5 mt-3 flex items-center rounded-xl px-4 duration-300 cursor-pointer text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all"
+                    class="p-1.5 mt-1.5 flex items-center rounded-lg px-3 duration-300 cursor-pointer text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="bi bi-box-arrow-in-right text-lg"></i>
-                    <span class="text-sm ml-3.5">Logout</span>
+                    <i class="bi bi-box-arrow-in-right text-sm"></i>
+                    <span class="text-xs ml-2.5">Logout</span>
                 </div>
                 <form id="logout-form" action="{{ route('login') }}" method="POST" class="hidden">
                     @csrf
