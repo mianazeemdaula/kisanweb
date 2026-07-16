@@ -15,7 +15,7 @@
                 @if($deal->media && $deal->media->isNotEmpty())
                     <div class="flex gap-2 mt-2">
                         @foreach ($deal->media as $img)
-                            <img src="{{ $img->path }}" class="w-40" alt="Deal Image">
+                            <img src="{{ str_replace('http://127.0.0.1:8000', 'https://kisanstock.com', $img->path) }}" class="w-40" alt="Deal Image">
                         @endforeach
                     </div>
                 @endif

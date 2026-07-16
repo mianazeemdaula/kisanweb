@@ -13,13 +13,22 @@ class DealController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $deals = Deal::with(['bids' => function($q){
-            $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
-        ->whereHas('seller')->latest()->paginate();
-        return view('guest.deals.index', compact('deals'));
+        $tab = $request->get('tab', 'crop');
+        
+        if ($tab === 'category') {
+            $deals = \App\Models\CategoryDeal::with(['bids' => function($q){
+                $q->with(['buyer']);
+            }, 'user', 'packing', 'weight', 'media', 'subcategory.category'])
+            ->whereHas('user')->latest()->paginate();
+        } else {
+            $deals = Deal::with(['bids' => function($q){
+                $q->with(['buyer']);
+            }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+            ->whereHas('seller')->latest()->paginate();
+        }
+        return view('guest.deals.index', compact('deals', 'tab'));
     }
 
     /**
@@ -49,8 +58,15 @@ class DealController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        if ($request->get('type') === 'category') {
+            $deal = \App\Models\CategoryDeal::with(['bids' => function($q){
+                $q->with(['buyer']);
+            }, 'user', 'packing', 'weight', 'media', 'subcategory.category'])
+            ->findOrFail($id);
+            return view('guest.deals.show_category', compact('deal'));
+        }
         
         $deal = Deal::with(['bids' => function($q){
             $q->with(['buyer']);

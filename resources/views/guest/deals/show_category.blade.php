@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('title')
-    {{ $deal->type->crop->name }} for sale of Rs. {{ $deal->demand }} / {{ $deal->weight->name }} at {{ $deal->address }}
+    {{ $deal->subcategory->name ?? 'Category Deal' }} for sale of Rs. {{ $deal->demand }} / {{ $deal->weight->name ?? '' }} at {{ $deal->address }}
 @endsection
 @section('body')
     <div class="bg-mesh min-h-screen py-10">
@@ -9,9 +9,9 @@
             <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6">
                 <a href="{{ url('/') }}" class="hover:text-green-600 transition-base">Home</a>
                 <span class="bi bi-chevron-right text-xs"></span>
-                <a href="{{ url('deals') }}" class="hover:text-green-600 transition-base">Deals</a>
+                <a href="{{ url('deals?tab=category') }}" class="hover:text-green-600 transition-base">Deals</a>
                 <span class="bi bi-chevron-right text-xs"></span>
-                <span class="text-gray-700 font-medium">{{ $deal->type->crop->name }}</span>
+                <span class="text-gray-700 font-medium">{{ $deal->subcategory->name ?? 'Category Deal' }}</span>
             </nav>
 
             <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
@@ -32,12 +32,12 @@
                         <div class="flex items-center gap-2 mb-4">
                             <span
                                 class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-xs font-bold px-3 py-1.5 rounded-full">
-                                <span class="bi bi-flower2"></span> {{ $deal->type->name }}
+                                <span class="bi bi-tag"></span> {{ $deal->subcategory->category->name ?? 'Category' }}
                             </span>
                             <span class="text-xs text-gray-400">{{ $deal->created_at->diffForHumans() }}</span>
                         </div>
                         <h1 class="font-display text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">
-                            {{ $deal->type->crop->name }}</h1>
+                            {{ $deal->subcategory->name ?? 'Category Deal' }}</h1>
 
                         <!-- Price highlight -->
                         <div
@@ -45,7 +45,7 @@
                             <div class="text-sm text-green-700 font-medium">Asking Price</div>
                             <div class="text-3xl font-extrabold text-green-700">
                                 Rs. {{ $deal->demand }}<span
-                                    class="text-base font-semibold text-green-600/70">/{{ $deal->weight->name }}</span>
+                                    class="text-base font-semibold text-green-600/70">/{{ $deal->weight->name ?? '' }}</span>
                             </div>
                         </div>
 
@@ -84,20 +84,20 @@
                         <!-- Seller card -->
                         <div class="rounded-2xl border border-gray-100 p-5 mb-6">
                             <div class="flex items-center gap-3 mb-4">
-                                <img src="{{ $deal->seller->image }}"
+                                <img src="{{ $deal->user->image ?? asset('default-avatar.png') }}"
                                     class="w-12 h-12 rounded-full object-cover border-2 border-green-100" alt="">
                                 <div>
-                                    <div class="font-bold text-gray-900">{{ $deal->seller->name }}</div>
+                                    <div class="font-bold text-gray-900">{{ $deal->user->name ?? 'N/A' }}</div>
                                     <div class="text-xs text-gray-400">Seller</div>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <a href="tel:{{ $deal->seller->mobile }}"
+                                <a href="tel:{{ $deal->user->mobile ?? '' }}"
                                     class="flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-base">
                                     <span class="bi bi-telephone"></span> Call Seller
                                 </a>
-                                @if ($deal->seller->whatsapp)
-                                    <a href="https://wa.me/{{ $deal->seller->whatsapp }}" target="_blank" rel="noopener"
+                                @if ($deal->user && $deal->user->whatsapp)
+                                    <a href="https://wa.me/{{ $deal->user->whatsapp }}" target="_blank" rel="noopener"
                                         class="flex items-center justify-center gap-2 px-4 py-3 bg-green-50 text-green-700 font-semibold rounded-xl hover:bg-green-100 transition-base">
                                         <span class="bi bi-whatsapp"></span> WhatsApp
                                     </a>
@@ -113,10 +113,10 @@
                                     @foreach ($deal->bids as $bid)
                                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
                                             <div class="flex items-center gap-3">
-                                                <img src="{{ $bid->buyer->image }}" alt=""
+                                                <img src="{{ $bid->buyer->image ?? asset('default-avatar.png') }}" alt=""
                                                     class="w-9 h-9 rounded-full object-cover border-2 border-green-100">
                                                 <span
-                                                    class="font-medium text-gray-900">{{ $bid->buyer->name }}</span>
+                                                    class="font-medium text-gray-900">{{ $bid->buyer->name ?? 'N/A' }}</span>
                                             </div>
                                             <span class="font-bold text-green-600">Rs. {{ $bid->bid_price }}</span>
                                         </div>
