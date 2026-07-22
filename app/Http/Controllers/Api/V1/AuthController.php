@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\SocialAccount;
-use \Hash;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Image;
 use Laravel\Socialite\Facades\Socialite;
@@ -20,7 +21,7 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
             'password' => 'required|string',
         ]);
@@ -40,6 +41,7 @@ class AuthController extends Controller
             $user->save();
         }
         $token = $user->createToken('login')->plainTextToken;
+        $data = [];
         $data['token'] = $token;
         $data['user'] = $user;
         $data['addresses'] = $user->addresses;
@@ -48,7 +50,7 @@ class AuthController extends Controller
 
     public function signup(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6',
         ]);
@@ -61,6 +63,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         $token = $user->createToken('login')->plainTextToken;
+        $data = [];
         $data['token'] = $token;
         $data['user'] = $user;
         $data['addresses'] = $user->addresses;
@@ -70,7 +73,7 @@ class AuthController extends Controller
     
     public function loginPhone(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'mobile' => 'required',
             'firebase_uid' => 'required',
         ]);
@@ -92,6 +95,7 @@ class AuthController extends Controller
             $user->save();
         }
         $token = $user->createToken('login')->plainTextToken;
+        $data = [];
         $data['token'] = $token;
         $data['user'] = $user;
         $data['addresses'] = $user->addresses;
@@ -100,7 +104,7 @@ class AuthController extends Controller
 
     public function phoneSignup(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'mobile' => 'required|unique:users',
             // 'cnic' => 'sometimes|unique:users|min:13',
@@ -147,6 +151,7 @@ class AuthController extends Controller
             $address->save();
         }
         $token = $user->createToken('login')->plainTextToken;
+        $data = [];
         $data['token'] = $token;
         $data['user'] = $user;
         $data['addresses'] = $user->addresses;
@@ -155,7 +160,7 @@ class AuthController extends Controller
 
     public function loginFromSocial(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'token' => 'required',
             'provider' => 'required',
         ]);
@@ -201,6 +206,7 @@ class AuthController extends Controller
             // }
             // $social->user_id = $user->id;
             // $social->save();
+            $data = [];
             $data['token'] = $user->createToken('login')->plainTextToken;
             $data['user'] = $user;
             $data['addresses'] = $user->addresses;
@@ -233,7 +239,7 @@ class AuthController extends Controller
 
     public function whatsapp(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'mobile' => 'required',
         ]);
         if ($validator->fails()) {
