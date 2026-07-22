@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
     <div class="bg-white rounded-lg">
-        <form action="{{ route('quotes.store') }}" method="post" class="">
+        <form action="{{ route('admin.feeds.store') }}" method="post" class="">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-1 p-2 gap-2 md:p-4 items-end">
                 <div>
-                    <h3 class="p-1">Quote</h3>
-                    <textarea placeholder="Quote" name="quote" value="{{ old('quote') }}" class="" cols="100"></textarea>
-                    @error('quote')
+                    <h3 class="p-1">Feed Content</h3>
+                    <textarea placeholder="Feed Content" name="content" class="" cols="100">{{ old('content') }}</textarea>
+                    @error('content')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>

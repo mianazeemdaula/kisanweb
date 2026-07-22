@@ -38,11 +38,12 @@ class FeedController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'quote' => 'required',
+            'content' => 'required',
         ]);
-        $quote = new Quote;
-        $quote->quote = $request->quote;
-        $quote->save();
+        $feed = new Feed;
+        $feed->content = $request->content;
+        $feed->user_id = auth()->id(); // Set the user id to the admin
+        $feed->save();
         return redirect()->route('admin.feeds.index');
     }
 
@@ -81,9 +82,9 @@ class FeedController extends Controller
         $request->validate([
             'content' => 'required',
         ]);
-        $quote = Feed::findOrFail($id);
-        $quote->content = $request->content;
-        $quote->save();
+        $feed = Feed::findOrFail($id);
+        $feed->content = $request->content;
+        $feed->save();
         return redirect()->route('admin.feeds.index');
     }
 
@@ -95,8 +96,8 @@ class FeedController extends Controller
      */
     public function destroy($id)
     {
-        $qutoe = Feed::findOrFail($id);
-        $qutoe->delete();
+        $feed = Feed::findOrFail($id);
+        $feed->delete();
         return redirect()->back();
     }
 }

@@ -8,7 +8,7 @@
                 <div>
                     <h3 class="p-1">Feed Content</h3>
                     <textarea placeholder="Feed Content" name="content" cols="100">{{ $feed->content }}</textarea>
-                    @error('quote')
+                    @error('content')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
