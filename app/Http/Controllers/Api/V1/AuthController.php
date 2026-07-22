@@ -20,17 +20,20 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
             'password' => 'required|string',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
         $email = $request->email;
         $user = User::where('email', $email)->first();
         if (! $user) {
-            return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
+            return response()->json(['message' => 'The provided credentials are incorrect.'], 422); 
         }
         if (! Hash::check($request->password, $user->password)) {
-            return response()->json(['email' => 'The provided credentials are incorrect.'], 204); 
+            return response()->json(['message' => 'The provided credentials are incorrect.'], 422); 
         }
         if($request->has('fcm_token')){
             $user->fcm_token = $request->fcm_token;
@@ -45,10 +48,13 @@ class AuthController extends Controller
 
     public function signup(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
         $user = new User();
         $user->name = "ABC";
         $user->email = $request->email;
@@ -64,10 +70,13 @@ class AuthController extends Controller
     
     public function loginPhone(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'mobile' => 'required',
             'firebase_uid' => 'required',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
         $mobile = $request->mobile;
         if(substr($mobile, 0, 2) == '03'){
             $mobile = substr($mobile, 1);
@@ -91,7 +100,7 @@ class AuthController extends Controller
 
     public function phoneSignup(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'name' => 'required',
             'mobile' => 'required|unique:users',
             // 'cnic' => 'sometimes|unique:users|min:13',
@@ -102,6 +111,9 @@ class AuthController extends Controller
             'firebase_uid' => 'required',
             'type' => 'required',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
         $mobile = $request->mobile;
         $user = new User();
         $user->name = $request->name;
@@ -143,11 +155,14 @@ class AuthController extends Controller
 
     public function loginFromSocial(Request $request)
     {
+        $validator = \Validator::make($request->all(), [
+            'token' => 'required',
+            'provider' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
         try {
-            $request->validate([
-                'token' => 'required',
-                'provider' => 'required',
-            ]);
             $provider = $request->provider;
             $token = $request->token;
             $email = $request->email;
@@ -192,7 +207,7 @@ class AuthController extends Controller
             return response()->json($data, 200);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return response()->json(['error' => 'Invalid token or provider'], 204);
+            return response()->json(['message' => 'Invalid token or provider'], 422);
         }
     }
 
@@ -218,9 +233,12 @@ class AuthController extends Controller
 
     public function whatsapp(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'mobile' => 'required',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
         $mobile = str_replace('+', '', $request->mobile);
         $code = rand(100000,999999);
         $waresponse = \App\Helper\WhatsApp::sendOtp($mobile,$code);
