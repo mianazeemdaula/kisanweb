@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cats = Category::whereNull('parent_id')->with(['categories'])->paginate();
+        $cats = Category::with(['categories'])->paginate();
         return view('admin.category.index', compact('cats'));
     }
 
