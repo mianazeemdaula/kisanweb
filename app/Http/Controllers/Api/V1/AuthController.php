@@ -175,16 +175,16 @@ class AuthController extends Controller
             $name = $request->name;
 
             $user = null;
-            $socialAccount = SocialAccount::where('provider', $provider)
-                ->where('uid', $token)
-                ->first();
+            // $socialAccount = SocialAccount::where('provider', $provider)
+            //     ->where('uid', $token)
+            //     ->first();
 
-            if ($socialAccount && $socialAccount->user) {
-                $user = $socialAccount->user;
-            } else {
-                if ($email) {
-                    $user = User::where('email', $email)->first();
-                }
+            // if ($socialAccount && $socialAccount->user) {
+            //     $user = $socialAccount->user;
+            // } else {
+            //     if ($email) {
+            //         $user = User::where('email', $email)->first();
+            //     }
                 if (!$user) {
                     $user = new User();
                     $user->name = $name;
@@ -194,11 +194,11 @@ class AuthController extends Controller
                     $user->save();
                 }
 
-                SocialAccount::updateOrCreate(
-                    ['provider' => $provider, 'uid' => $token],
-                    ['user_id' => $user->id]
-                );
-            }
+                // SocialAccount::updateOrCreate(
+                //     ['provider' => $provider, 'uid' => $token],
+                //     ['user_id' => $user->id]
+                // );
+            // }
 
             $data = [];
             $data['token'] = $user->createToken('login')->plainTextToken;
