@@ -173,39 +173,33 @@ class AuthController extends Controller
             $email = $request->email;
             $avatar = $request->avatar;
             $name = $request->name;
-            $user = User::where('email', $email)->first();
-            if(!$user){
-                $user = new User();
-                $user->name = $name;
-                $user->email = $email;
-                $user->image = $avatar;
-                $user->email_verified_at = Carbon::now();
-                $user->save();
+
+            $user = null;
+            $socialAccount = SocialAccount::where('provider', $provider)
+                ->where('uid', $token)
+                ->first();
+
+            if ($socialAccount && $socialAccount->user) {
+                $user = $socialAccount->user;
+            } else {
+                if ($email) {
+                    $user = User::where('email', $email)->first();
+                }
+                if (!$user) {
+                    $user = new User();
+                    $user->name = $name;
+                    $user->email = $email;
+                    $user->image = $avatar;
+                    $user->email_verified_at = Carbon::now();
+                    $user->save();
+                }
+
+                SocialAccount::updateOrCreate(
+                    ['provider' => $provider, 'uid' => $token],
+                    ['user_id' => $user->id]
+                );
             }
-            // $socialUser = Socialite::driver($provider)->userFromToken($token);
-            // $social = SocialAccount::updateOrCreate([
-            //     'provider' => $provider,
-            //     'uid' => $socialUser->getId(),
-            // ]);
-            // if(!$social->user){
-            //     // $request->request->add(['email' => $socialUser->getEmail()]);
-            //     // $request->validate([
-            //     //     'email' => 'required|unique:users|email',
-            //     // ]);
-            //     $user= User::where('email', $socialUser->getEmail())->first();
-            //     if(!$user){
-            //         $user = new User();
-            //         $user->name = $socialUser->name;
-            //         $user->email = $socialUser->getEmail();
-            //         $user->image = $socialUser->getAvatar();
-            //         $user->email_verified_at = Carbon::now();
-            //         $user->save();
-            //     }
-            // }else{
-            //     $user = $social->user;
-            // }
-            // $social->user_id = $user->id;
-            // $social->save();
+
             $data = [];
             $data['token'] = $user->createToken('login')->plainTextToken;
             $data['user'] = $user;

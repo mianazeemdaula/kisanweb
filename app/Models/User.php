@@ -80,9 +80,9 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function socails(): HasMany
+    public function socials(): HasMany
     {
-        return $this->hasMany(SocailAccount::class);
+        return $this->hasMany(SocialAccount::class);
     }
 
     public function addresses(): HasMany
