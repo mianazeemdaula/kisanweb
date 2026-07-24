@@ -160,45 +160,20 @@ class AuthController extends Controller
 
     public function loginFromSocial(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'token' => 'required',
-            'provider' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['message' => $validator->errors()->first()], 422);
-        }
         try {
-            $provider = $request->provider;
-            $token = $request->token;
             $email = $request->email;
             $avatar = $request->avatar;
             $name = $request->name;
 
             $user = null;
-            // $socialAccount = SocialAccount::where('provider', $provider)
-            //     ->where('uid', $token)
-            //     ->first();
-
-            // if ($socialAccount && $socialAccount->user) {
-            //     $user = $socialAccount->user;
-            // } else {
-            //     if ($email) {
-            //         $user = User::where('email', $email)->first();
-            //     }
-                if (!$user) {
-                    $user = new User();
-                    $user->name = $name;
-                    $user->email = $email;
-                    $user->image = $avatar;
-                    $user->email_verified_at = Carbon::now();
-                    $user->save();
-                }
-
-                // SocialAccount::updateOrCreate(
-                //     ['provider' => $provider, 'uid' => $token],
-                //     ['user_id' => $user->id]
-                // );
-            // }
+            if (!$user) {
+                $user = new User();
+                $user->name = $name;
+                $user->email = $email;
+                $user->image = $avatar;
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+            }
 
             $data = [];
             $data['token'] = $user->createToken('login')->plainTextToken;
@@ -244,5 +219,64 @@ class AuthController extends Controller
         $waresponse = \App\Helper\WhatsApp::sendOtp($mobile,$code);
         // Log::info($waresponse);
         return response()->json(['code' => $code], 200);
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
+
+        $email = $request->email;
+        $code = rand(100000, 999999);
+
+        \App\Models\PasswordReset::where('email', $email)->delete();
+
+        \App\Models\PasswordReset::insert([
+            'email' => $email,
+            'token' => $code,
+            'created_at' => now(),
+        ]);
+
+        $user = User::where('email', $email)->first();
+        \Illuminate\Support\Facades\Mail::to($user)->send(new \App\Mail\VerifyApiEmail($code));
+
+        return response()->json(['message' => 'Reset code sent successfully'], 200);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+            'code' => 'required|string',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 422);
+        }
+
+        $email = $request->email;
+        $code = $request->code;
+
+        $data = \App\Models\PasswordReset::where('email', $email)->first();
+        if (!$data || $data->token !== $code) {
+            return response()->json(['message' => 'Invalid or incorrect code'], 422);
+        }
+
+        if (Carbon::parse($data->created_at)->addMinutes(15)->isPast()) {
+            \App\Models\PasswordReset::where('email', $email)->delete();
+            return response()->json(['message' => 'Code has expired'], 422);
+        }
+
+        $user = User::where('email', $email)->first();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        \App\Models\PasswordReset::where('email', $email)->delete();
+
+        return response()->json(['message' => 'Password reset successfully'], 200);
     }
 }

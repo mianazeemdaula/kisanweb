@@ -26,6 +26,7 @@
         "mll-lab/laravel-graphiql": "^3.1",
         "nuwave/lighthouse": "^6.16",
         "pusher/pusher-php-server": "^7.2",
+        "resend/resend-laravel": "*",
         "spatie/browsershot": "^3.58",
         "spatie/laravel-analytics": "^5.0",
         "spatie/laravel-sitemap": "^6.3",
@@ -75,7 +76,9 @@
     },
     "config": {
         "optimize-autoloader": true,
-        "preferred-install": "dist",
+        "preferred-install": {
+            "google/apiclient-services": "source"
+        },
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
