@@ -63,7 +63,11 @@ class UserController extends Controller
                 $user->whatsapp_verified_at = null;
             }
             if($request->has('lat') && $request->has('lng')){
-                if(count($user->addresses) == 0){
+                // Count via the query builder, not the relation: reading
+                // $user->addresses here would cache an empty collection and the
+                // response below would then report no addresses on the very
+                // request that creates the first one.
+                if($user->addresses()->count() == 0){
                     $address = new Address();
                     $address->user_id = $user->id;
                     $address->name = 'Default';
@@ -91,6 +95,7 @@ class UserController extends Controller
                 $user->image = $path;
             }
             $user->save();
+            $user->load('addresses');
             $data['user'] = $user;
             $data['user']['points'] = $user->points()->sum('points');
             $data['addresses'] = $user->addresses;
