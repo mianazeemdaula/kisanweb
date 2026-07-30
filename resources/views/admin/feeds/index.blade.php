@@ -43,15 +43,17 @@
                                     {{ $item->content }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                    <div class="flex items-center gap-3">
-                                        <a href="{{ route('admin.feeds.edit', $item->id) }}" class="w-8 h-8 rounded-lg flex items-center justify-center border border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-slate-50 transition-all" title="Edit Feed">
-                                            <span class="bi bi-pencil"></span>
+                                    <div class="flex items-center gap-2">
+                                        <a href="{{ route('admin.feeds.edit', $item->id) }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition-all border border-slate-200" title="Edit Feed">
+                                            <i class="bi bi-pencil-square"></i>
+                                            <span>Edit</span>
                                         </a>
                                         <form action="{{ route('admin.feeds.destroy', $item->id) }}" method="post" class="inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="w-8 h-8 rounded-lg flex items-center justify-center border border-red-100 text-red-500 hover:text-red-700 hover:bg-red-50 transition-all" title="Delete Feed" onclick="return confirm('Are you sure you want to delete this feed?')">
-                                                <span class="bi bi-trash"></span>
+                                            <button type="submit" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 font-semibold text-xs rounded-lg transition-all border border-red-200" title="Delete Feed" onclick="return confirm('Are you sure you want to delete this feed?')">
+                                                <i class="bi bi-trash"></i>
+                                                <span>Delete</span>
                                             </button>
                                         </form>
                                     </div>
