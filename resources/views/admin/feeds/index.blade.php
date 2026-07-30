@@ -16,16 +16,16 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
                                 ID</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40">
                                 Username</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Content</th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-44">
                                 Action
                             </th>
                         </tr>
@@ -33,14 +33,14 @@
                     <tbody class="bg-white divide-y divide-gray-200 " id="chatlist">
                         @foreach ($feeds as $item)
                             <tr>
-                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $item->id }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $item->user->name ?? 'Admin' }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                                    {{ $item->content }}
+                                <td class="px-6 py-4 text-sm text-gray-500 max-w-md break-words" title="{{ $item->content }}">
+                                    {{ \Illuminate\Support\Str::limit($item->content, 120) }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                                     <div class="flex items-center gap-2">
