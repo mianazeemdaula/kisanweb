@@ -20,7 +20,7 @@ class CategoryDealController extends Controller
      */
     public function index()
     {
-        $deals = CategoryDeal::whereNull('parent_id')->latest()->paginate();
+        $deals = CategoryDeal::with(['user', 'subcategory.category', 'weight'])->latest()->paginate();
         return view('admin.category_deals.index', compact('deals'));
     }
 
