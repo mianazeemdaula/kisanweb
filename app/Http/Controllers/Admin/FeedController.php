@@ -15,7 +15,7 @@ class FeedController extends Controller
      */
     public function index()
     {
-        $feeds = Feed::latest()->paginate();
+        $feeds = Feed::with('user')->latest()->paginate();
         return view('admin.feeds.index', compact('feeds'));
     }
 
