@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <form action="{{ url('admin/report/cropdays') }}" method="post" class="max-w-lg mx-auto">
+    <form action="{{ url('reports/rates') }}" method="post" target="_blank" class="max-w-lg mx-auto bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
         @csrf
         <div class="mb-4">
             <label for="date" class="block text-gray-700 font-bold mb-2">Date</label>

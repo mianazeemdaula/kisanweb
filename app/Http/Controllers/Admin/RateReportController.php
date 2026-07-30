@@ -14,6 +14,16 @@ class RateReportController extends Controller
     }
 
     function cropTypeLastDays(Request $request)  {
+        if (!$request->expectsJson() && !$request->wantsJson() && !$request->ajax()) {
+            $filterDate = \Carbon\Carbon::parse($request->date ?? now());
+            $typeId = $request->type_id ?? 60;
+            $rates = CropRate::where('crop_type_id', $typeId)
+                ->with(['city'])
+                ->whereDate('rate_date', $filterDate)->get();
+            $type = \App\Models\CropType::with('crop')->find($typeId);
+            return view('reports.pdf.crop_rates', compact('rates', 'filterDate', 'type'));
+        }
+
         $datesQuery = CropRate::select('rate_date');
 
         if ($request->filled('date')) {
