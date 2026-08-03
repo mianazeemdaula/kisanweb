@@ -122,6 +122,15 @@ class FCM {
                 'message' => $message,
             ]);
 
+            if (isset($message['token'])) {
+                $status = $response->status();
+                $bodyStr = $response->body();
+                if ($status === 404 || str_contains($bodyStr, 'UNREGISTERED') || str_contains($bodyStr, 'NotRegistered')) {
+                    User::where('fcm_token', $message['token'])->update(['fcm_token' => null]);
+                    Log::info('Cleared unregistered FCM token from database', ['token' => $message['token']]);
+                }
+            }
+
             return [
                 'success' => false,
                 'status' => $response->status(),
