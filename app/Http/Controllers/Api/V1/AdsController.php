@@ -18,15 +18,25 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $user  = auth()->user();
-        if($user){
-            $address = $user->addresses()->whereDefault(true)->first();
-            $ads = Advertisement::query()->active()
-            ->where('start_date', '<=', date('Y-m-d'))->where('end_date', '>=', date('Y-m-d'))
-            ->viewRange($address->location->latitude, $address->location->longitude)
-            ->orderBy('position', 'asc')->take(5)->get();
-            // increase the impression of ads by 1 in bulk
-            Advertisement::whereIn('id', $ads->pluck('id'))->increment('impressions', 1);
+        $user = auth()->user();
+        if ($user) {
+            $address = $user->addresses()->whereDefault(true)->first() ?? $user->addresses()->first();
+
+            $query = Advertisement::query()->active()
+                ->where('start_date', '<=', date('Y-m-d'))
+                ->where('end_date', '>=', date('Y-m-d'));
+
+            if ($address && $address->location) {
+                $query->viewRange($address->location->latitude, $address->location->longitude);
+            }
+
+            $ads = $query->orderBy('position', 'asc')->take(5)->get();
+
+            if ($ads->isNotEmpty()) {
+                // increase the impression of ads by 1 in bulk
+                Advertisement::whereIn('id', $ads->pluck('id'))->increment('impressions', 1);
+            }
+
             return response()->json($ads, 200);
         }
         return response()->json([]);
