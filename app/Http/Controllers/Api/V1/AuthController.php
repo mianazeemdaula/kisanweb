@@ -161,19 +161,44 @@ class AuthController extends Controller
     public function loginFromSocial(Request $request)
     {
         try {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['message' => $validator->errors()->first()], 422);
+            }
+
             $email = $request->email;
             $avatar = $request->avatar;
             $name = $request->name;
 
-            $user = null;
-            if (!$user) {
+            $user = User::withTrashed()->where('email', $email)->first();
+            if ($user) {
+                if ($user->trashed()) {
+                    $user->restore();
+                }
+                if ($avatar && (empty($user->image) || \Illuminate\Support\Str::contains($user->image, 'ui-avatars.com'))) {
+                    $user->image = $avatar;
+                }
+                if ($name && (empty($user->name) || $user->name === 'ABC' || $user->name === 'User')) {
+                    $user->name = $name;
+                }
+                if (is_null($user->email_verified_at)) {
+                    $user->email_verified_at = Carbon::now();
+                }
+            } else {
                 $user = new User();
-                $user->name = $name;
+                $user->name = $name ?? 'User';
                 $user->email = $email;
                 $user->image = $avatar;
                 $user->email_verified_at = Carbon::now();
-                $user->save();
             }
+
+            if ($request->has('fcm_token')) {
+                $user->fcm_token = $request->fcm_token;
+            }
+
+            $user->save();
 
             $data = [];
             $data['token'] = $user->createToken('login')->plainTextToken;
