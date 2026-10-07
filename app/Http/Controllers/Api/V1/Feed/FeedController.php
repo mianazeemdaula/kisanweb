@@ -10,6 +10,7 @@ use App\Models\Media;
 use App\Models\Feed;
 use App\Events\FeedUpdateEvent;
 use App\Jobs\SendFeedNotificationJob;
+use Illuminate\Support\Facades\Cache;
 
 
 class FeedController extends Controller
@@ -70,8 +71,24 @@ class FeedController extends Controller
                 Media::find($imgId)->delete();
             }
         }else{
+            // Duplicate guard: the same user posting the same content within
+            // 10s (double tap / retry on a slow network) gets the existing post
+            // back instead of creating another one.
+            $userId = auth()->user()->id;
+            $lock = Cache::lock('feed-post:'.$userId.':'.sha1($validatedData['content']), 10);
+            if (!$lock->get()) {
+                $recent = Feed::where('user_id', $userId)
+                    ->where('content', $validatedData['content'])
+                    ->where('created_at', '>=', now()->subSeconds(10))
+                    ->latest()
+                    ->first();
+                if ($recent) {
+                    return response()->json($recent, 200);
+                }
+                return response()->json(['message' => 'Your post is already being submitted.'], 409);
+            }
             $feed = new Feed;
-            $feed->user_id = auth()->user()->id;
+            $feed->user_id = $userId;
 
         }
         $feed->type = $validatedData['type'];
