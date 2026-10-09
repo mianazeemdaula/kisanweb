@@ -101,6 +101,12 @@ class BidController extends Controller
             'deal_id' => 'required'
         ]);
         $bid = Deal::find($request->deal_id);
+        if (!$bid || !$this->isOwnerOrAdmin($bid->seller_id)) {
+            return $this->forbidden();
+        }
+        if (!Bid::where('id', $id)->where('deal_id', $bid->id)->exists()) {
+            return response()->json(['message' => 'Invalid bid for this deal'], 422);
+        }
         if($bid->accept_bid_id != null){
             return response()->json(['message'=>'You have already accepted'], 409);
         }
@@ -120,6 +126,9 @@ class BidController extends Controller
     public function destroy($id)
     {
         $bid = Bid::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($bid->buyer_id, Deal::find($bid->deal_id)?->seller_id)) {
+            return $this->forbidden();
+        }
         $bid->delete();
         return response()->json(['message' => 'deleted', 'status' => true], 200);
     }

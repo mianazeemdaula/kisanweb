@@ -147,14 +147,17 @@ class FeedController extends Controller
             'type' => 'required|string',
             'content' => 'required|string',
         ]);
-        $feed = Feed::find($id);
+        $feed = Feed::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($feed->user_id)) {
+            return $this->forbidden();
+        }
         $feed->type = $validatedData['type'];
         $feed->content = $validatedData['content'];
         $medias = array();
         $feed->save();
         $oldImages = json_decode($request->oldimages ?? "[]");
-        foreach ($imgId as $oldImages) {
-            Media::find($imgId)->delete();
+        foreach ((array) $oldImages as $imgId) {
+            $feed->media()->find($imgId)?->delete();
         }
         if($request->has('images')){
             foreach ($request->file('images') as $key => $file) {
@@ -175,7 +178,11 @@ class FeedController extends Controller
      */
     public function destroy($id)
     {
-        $feed = Feed::findOrFail($id)->delete();
+        $feed = Feed::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($feed->user_id)) {
+            return $this->forbidden();
+        }
+        $feed = $feed->delete();
         return response()->json($feed, 200);
     }
 }

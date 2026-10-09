@@ -23,8 +23,6 @@
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "^3.1",
         "matanyadaev/laravel-eloquent-spatial": "^3.2",
-        "mll-lab/laravel-graphiql": "^3.1",
-        "nuwave/lighthouse": "^6.16",
         "pusher/pusher-php-server": "^7.2",
         "resend/resend-laravel": "*",
         "spatie/browsershot": "^3.58",
@@ -55,6 +53,7 @@
         }
     },
     "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -72,7 +71,10 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        }
+        },
+        "google/apiclient-services": [
+            "FirebaseCloudMessaging"
+        ]
     },
     "config": {
         "optimize-autoloader": true,

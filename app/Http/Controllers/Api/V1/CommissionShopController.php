@@ -164,6 +164,9 @@ class CommissionShopController extends Controller
             'about' => 'required',
         ]);
         $shop = CommissionShop::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($shop->user_id)) {
+            return $this->forbidden();
+        }
         $shop->name = $request->name;
         $shop->about = $request->about;
         $shop->shop_number = $request->shop_number;

@@ -37,7 +37,7 @@ class FCM {
             return $cachedToken;
         }
 
-        $credentialsPath = storage_path(env('GOOGLE_CREDENTIALS'));
+        $credentialsPath = storage_path(config('fcm_config.credentials'));
         if (!is_file($credentialsPath)) {
             return null;
         }
@@ -45,6 +45,14 @@ class FCM {
         $serviceAccount = json_decode(file_get_contents($credentialsPath), true);
         if (!is_array($serviceAccount)) {
             throw new \RuntimeException('Invalid FCM service account JSON.');
+        }
+
+        $projectId = config('fcm_config.project_id');
+        if (($serviceAccount['project_id'] ?? null) !== $projectId) {
+            Log::error('FCM service account project does not match FCM_PROJECT_ID', [
+                'service_account_project_id' => $serviceAccount['project_id'] ?? null,
+                'fcm_project_id' => $projectId,
+            ]);
         }
 
         $oauth = new OAuth2([
@@ -101,7 +109,7 @@ class FCM {
 
     static private function sendMessage(array $message): array
     {
-        $projectId = env('FCM_PROJECT_ID');
+        $projectId = config('fcm_config.project_id');
         $url = "https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send";
         $accessToken = FCM::getAccessToken();
 
@@ -116,18 +124,32 @@ class FCM {
             ]);
 
         if ($response->failed()) {
-            Log::warning('FCM send failed', [
-                'status' => $response->status(),
-                'body' => $response->body(),
-                'message' => $message,
-            ]);
+            $errorCode = collect($response->json('error.details', []))->pluck('errorCode')->filter()->first();
+
+            if ($errorCode === 'SENDER_ID_MISMATCH') {
+                // Token was issued by a different Firebase project than FCM_PROJECT_ID.
+                // Every token fails the same way, so log once per 10 minutes instead of per send.
+                if (Cache::add('fcm_sender_id_mismatch_logged', true, now()->addMinutes(10))) {
+                    Log::error('FCM SENDER_ID_MISMATCH: device tokens belong to a different Firebase project than FCM_PROJECT_ID. Use the service account of the project in the mobile app google-services.json.', [
+                        'fcm_project_id' => $projectId,
+                        'token_prefix' => isset($message['token']) ? substr($message['token'], 0, 20) : null,
+                    ]);
+                }
+            } else {
+                Log::warning('FCM send failed', [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                    'message' => $message,
+                ]);
+            }
 
             if (isset($message['token'])) {
                 $status = $response->status();
                 $bodyStr = $response->body();
-                if ($status === 404 || str_contains($bodyStr, 'UNREGISTERED') || str_contains($bodyStr, 'NotRegistered')) {
+                if ($status === 404 || $errorCode === 'SENDER_ID_MISMATCH' || str_contains($bodyStr, 'UNREGISTERED') || str_contains($bodyStr, 'NotRegistered')) {
+                    // SENDER_ID_MISMATCH tokens come from the old Firebase project and can never succeed
                     User::where('fcm_token', $message['token'])->update(['fcm_token' => null]);
-                    Log::info('Cleared unregistered FCM token from database', ['token' => $message['token']]);
+                    Log::info('Cleared invalid FCM token from database', ['token' => $message['token'], 'error' => $errorCode]);
                 }
             }
 

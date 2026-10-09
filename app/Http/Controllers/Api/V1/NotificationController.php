@@ -73,7 +73,10 @@ class NotificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $noti = Notification::find($id);
+        $noti = Notification::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($noti->user_id)) {
+            return $this->forbidden();
+        }
         $noti->is_read = true;
         $noti->save();
         return response()->json($noti, 200);

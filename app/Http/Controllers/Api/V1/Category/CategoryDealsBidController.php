@@ -87,6 +87,12 @@ class CategoryDealsBidController extends Controller
             'deal_id' => 'required'
         ]);
         $deal = CategoryDeal::find($request->deal_id);
+        if (!$deal || !$this->isOwnerOrAdmin($deal->user_id)) {
+            return $this->forbidden();
+        }
+        if (!CategoryDealBid::where('id', $id)->where('category_deal_id', $deal->id)->exists()) {
+            return response()->json(['message' => 'Invalid bid for this deal'], 422);
+        }
         if($deal->accept_bid_id != null){
             return response()->json(['message'=>'You have already accepted'], 409);
         }
@@ -103,6 +109,9 @@ class CategoryDealsBidController extends Controller
     public function destroy(string $id)
     {
         $bid = CategoryDealBid::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($bid->buyer_id, CategoryDeal::find($bid->category_deal_id)?->user_id)) {
+            return $this->forbidden();
+        }
         $bid->delete();
         return response()->json(['message' => 'deleted', 'status' => true], 200);
     }

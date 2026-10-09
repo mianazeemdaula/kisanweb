@@ -15,9 +15,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Run Queue Worker
-        $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping();
-        
         // Delete temp old files daily from storage folder
         $schedule->command('app:delete-old-files')->dailyAt('00:00');
         $schedule->command('app:expire-deal-after-time')->dailyAt('00:05');

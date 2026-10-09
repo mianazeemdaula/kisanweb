@@ -156,6 +156,10 @@ class DealController extends Controller
         try {
             DB::beginTransaction();
             $deal =  Deal::findOrFail($id);
+            if (!$this->isOwnerOrAdmin($deal->seller_id)) {
+                DB::rollBack();
+                return $this->forbidden();
+            }
             $deal->packing_id = $request->packing_id;
             $deal->demand = $request->demand;
             $deal->weight_type_id = $request->weight_type_id;
@@ -168,7 +172,7 @@ class DealController extends Controller
                 $oldImages = [];
             }
             foreach ($oldImages as $imgId) {
-                $media = Media::find($imgId);
+                $media = $deal->media()->find($imgId);
                 if ($media) {
                     $media->delete();
                 }
@@ -200,7 +204,11 @@ class DealController extends Controller
      */
     public function destroy($id)
     {
-        Deal::find($id)->delete();
+        $deal = Deal::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($deal->seller_id)) {
+            return $this->forbidden();
+        }
+        $deal->delete();
         return response()->json(['message'=>'deleted', 'status'=>true], 200, []);
     }
 

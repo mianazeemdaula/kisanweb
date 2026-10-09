@@ -40,6 +40,9 @@ class CategoryController extends Controller
             'sort' => 'nullable|integer',
         ]);
 
+        if (!$this->isOwnerOrAdmin()) {
+            return $this->forbidden();
+        }
         $category = new Category();
         $category->name = $request->name;
         $category->name_ur = $request->name_ur;
@@ -83,6 +86,9 @@ class CategoryController extends Controller
             'sort' => 'nullable|integer',
         ]);
 
+        if (!$this->isOwnerOrAdmin()) {
+            return $this->forbidden();
+        }
         $category = Category::findOrFail($id);
         if ($request->has('name')) $category->name = $request->name;
         if ($request->has('name_ur')) $category->name_ur = $request->name_ur;
@@ -100,6 +106,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
+        if (!$this->isOwnerOrAdmin()) {
+            return $this->forbidden();
+        }
         $category = Category::findOrFail($id);
         $category->delete();
         return response()->json(['message' => 'Category deleted successfully', 'status' => true], 200);

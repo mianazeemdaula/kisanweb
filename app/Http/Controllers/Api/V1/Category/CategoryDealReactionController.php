@@ -83,6 +83,9 @@ class CategoryDealReactionController extends Controller
     public function destroy(string $id)
     {
         $reaction = CategoryDealReaction::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($reaction->user_id)) {
+            return $this->forbidden();
+        }
         $reaction->delete();
         return response()->json(['message' => 'deleted', 'status' => true], 200);
     }

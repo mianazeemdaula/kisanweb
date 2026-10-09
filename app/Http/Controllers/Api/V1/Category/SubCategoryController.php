@@ -38,6 +38,9 @@ class SubCategoryController extends Controller
             'icon' => 'nullable|string',
         ]);
 
+        if (!$this->isOwnerOrAdmin()) {
+            return $this->forbidden();
+        }
         $subcat = new SubCategory();
         $subcat->category_id = $request->category_id;
         $subcat->name = $request->name;
@@ -79,6 +82,9 @@ class SubCategoryController extends Controller
             'icon' => 'nullable|string',
         ]);
 
+        if (!$this->isOwnerOrAdmin()) {
+            return $this->forbidden();
+        }
         $subcat = SubCategory::findOrFail($id);
         if ($request->has('category_id')) $subcat->category_id = $request->category_id;
         if ($request->has('name')) $subcat->name = $request->name;
@@ -95,6 +101,9 @@ class SubCategoryController extends Controller
      */
     public function destroy(string $id)
     {
+        if (!$this->isOwnerOrAdmin()) {
+            return $this->forbidden();
+        }
         $subcat = SubCategory::findOrFail($id);
         $subcat->delete();
         return response()->json(['message' => 'Subcategory deleted successfully', 'status' => true], 200);

@@ -105,6 +105,9 @@ class ReactionController extends Controller
     public function destroy($id)
     {
         $reaction = Reaction::findOrFail($id);
+        if (!$this->isOwnerOrAdmin($reaction->user_id)) {
+            return $this->forbidden();
+        }
         $reaction->delete();
         return response()->json(['message' => 'deleted', 'status' => true], 200);
     }

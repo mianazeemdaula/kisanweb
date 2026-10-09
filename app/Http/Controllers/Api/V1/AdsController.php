@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -121,7 +121,10 @@ class AdsController extends Controller
             'lng' => 'required',
             'view_km' => 'required',
         ]);
-        $ad = Advertisement::find($id);
+        if (!$this->isOwnerOrAdmin()) {
+            return $this->forbidden();
+        }
+        $ad = Advertisement::findOrFail($id);
         $ad->title = $request->title;
         $ad->title_ur = $request->title_ur;
         $ad->slug = Str::slug($request->title);
