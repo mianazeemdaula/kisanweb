@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Support\ApiCache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -18,12 +19,24 @@ class HomeController extends Controller
 {
     public function crops()
     {
-        $data = Crop::with('types')->has('types')->where('active', true)
-        ->orderBy('sort')->get();
-        return response()->json($data, 200);
+        return ApiCache::json('crops', 'with_types', 86400, function () {
+            return Crop::with('types')->has('types')->where('active', true)
+            ->orderBy('sort')->get();
+        });
     }
 
     public function popular(Request $reqeust)
+    {
+        // Free-text searches are one-offs; everything else is the same list
+        // for every user, so it is served from the cache.
+        if(!$reqeust->text){
+            $key = 'popular:'.ApiCache::key($reqeust, ['crop', 'lat', 'lng', 'sortype', 'page']);
+            return ApiCache::json('deals', $key, 60, fn () => $this->popularDeals($reqeust));
+        }
+        return response()->json($this->popularDeals($reqeust), 200);
+    }
+
+    private function popularDeals(Request $reqeust)
     {
         $query = Deal::query();
         if($reqeust->crop){
@@ -33,7 +46,7 @@ class HomeController extends Controller
         }
         if($reqeust->lat && $reqeust->lng){
             $point = new Point($reqeust->lat, $reqeust->lng, 4326);
-            $query->whereDistance('location', $point , '<', 10)->count();
+            $query->whereDistance('location', $point , '<', 10);
         }
 
         if($reqeust->text){
@@ -66,14 +79,23 @@ class HomeController extends Controller
         }
         $data = $query->with(['bids' => function($q){
             $q->with(['buyer'])->whereHas('buyer');
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reactions'])
         ->whereHas('seller')
         ->whereNotIn('status',['accepted','expired'])
         ->paginate();
-        return response()->json($data, 200);
+        return $data;
     }
 
     public function catdeals(Request $reqeust)
+    {
+        if(!$reqeust->text){
+            $key = 'list:'.ApiCache::key($reqeust, ['subcat', 'category_id', 'sortype', 'page']);
+            return ApiCache::json('cat_deals', $key, 60, fn () => $this->categoryDeals($reqeust));
+        }
+        return response()->json($this->categoryDeals($reqeust), 200);
+    }
+
+    private function categoryDeals(Request $reqeust)
     {
         $query = CategoryDeal::query();
 
@@ -119,11 +141,11 @@ class HomeController extends Controller
         }
         $data = $query->with(['bids' => function($q){
             $q->with(['buyer'])->whereHas('buyer');
-        }, 'user', 'media', 'subcategory.category', 'packing', 'weight'])
+        }, 'user', 'media', 'subcategory.category', 'packing', 'weight', 'reactions'])
         ->whereHas('user')
         ->whereNotIn('status',['accepted','expired'])
         ->paginate();
-        return response()->json($data, 200);
+        return $data;
     }
 
     public function userDeals(Request $request)
@@ -189,8 +211,9 @@ class HomeController extends Controller
 
     public function subcats($id)
     {
-        $data = Category::with(['subcategories'])->where('parent_id', $id)->get();
-        return response()->json($data, 200);
+        return ApiCache::json('categories', 'subcats:'.(int) $id, 86400, function () use ($id) {
+            return Category::with(['subcategories'])->where('parent_id', $id)->get();
+        });
     }
 
     public function wamessage(Request $request)

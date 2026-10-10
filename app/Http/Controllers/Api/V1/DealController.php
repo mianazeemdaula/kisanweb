@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Support\ApiCache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,11 +27,13 @@ class DealController extends Controller
      */
     public function index()
     {
-        $data = Deal::with(['bids' => function($q){
-            $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
-        ->whereHas('seller')->paginate();
-        return response()->json($data, 200);
+        $page = (int) request('page', 1);
+        return ApiCache::json('deals', 'index:'.$page, 60, function () {
+            return Deal::with(['bids' => function($q){
+                $q->with(['buyer']);
+            }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reactions'])
+            ->whereHas('seller')->paginate();
+        });
     }
 
     /**
@@ -230,10 +233,12 @@ class DealController extends Controller
 
     public function homeDeals()
     {
+        return ApiCache::json('deals', 'home', 60, function () {
         $data = Deal::with(['bids' => function($q){
             $q->with(['buyer']);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reactions'])
         ->whereHas('seller')->latest()->take(5)->get();
-        return response()->json($data, 200);
+        return $data;
+        });
     }
 }

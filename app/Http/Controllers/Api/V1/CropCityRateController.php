@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Support\ApiCache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -57,12 +58,14 @@ class CropCityRateController extends Controller
 
     public function show($id)
     {
-            $rates  = CropRate::cityWiseRate()
-            ->with(['city'])
-            ->where('cr.crop_type_id',$id)
-            ->orderBy('cities.name','asc')
-            ->paginate();
-            return response()->json($rates, 200,[]);
+            $page = (int) request('page', 1);
+            return ApiCache::json('rates', 'city:'.(int) $id.':'.$page, 300, function () use ($id) {
+                return CropRate::cityWiseRate()
+                ->with(['city'])
+                ->where('cr.crop_type_id',$id)
+                ->orderBy('cities.name','asc')
+                ->paginate();
+            });
     }
 
     public function edit($id)

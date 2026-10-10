@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Support\ApiCache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class CityController extends Controller
 {
     public function index()
     {
-        $data = City::orderBy('name')->select(['id','name', 'name_ur'])->get();
-        return response()->json($data, 200);
+        return ApiCache::json('cities', 'all', 86400, function () {
+            return City::orderBy('name')->select(['id','name', 'name_ur'])->get();
+        });
     }
 }

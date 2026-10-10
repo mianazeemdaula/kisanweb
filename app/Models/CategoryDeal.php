@@ -14,6 +14,10 @@ class CategoryDeal extends Model
 
     protected $appends = ['reactionsIds'];
 
+    // Loaded only to build reactionsIds without a query per deal; the API
+    // exposes the ids, not the rows.
+    protected $hidden = ['reactions'];
+
     protected $casts = [
         'attr' => 'array',
         'location' => Point::class,
@@ -60,6 +64,9 @@ class CategoryDeal extends Model
 
     public function getReactionsIdsAttribute()
     {
+        if($this->relationLoaded('reactions')){
+            return $this->reactions->pluck('user_id');
+        }
         return $this->reactions()->pluck('user_id');
     }
 

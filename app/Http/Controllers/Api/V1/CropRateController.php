@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Support\ApiCache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -112,7 +113,8 @@ class CropRateController extends Controller
 
     public function filter(Request $request)
     {
-        $data['rates'] = CropType::with(['rate' => function($r) use($request) {
+        // The rates are the same for everyone; only mandi_user is per user.
+        $data['rates'] = ApiCache::remember('rates', 'filter:'.(int) $request->crop, 300, fn () => CropType::with(['rate' => function($r) use($request) {
             $r->select(
                 'crop_type_id', 'rate_date',
                 DB::raw('cast(min(min_price) as float) as min_rate'),
@@ -123,13 +125,22 @@ class CropRateController extends Controller
             ->whereIn('rate_date', function($q){
                 $q->select(\DB::raw('max(rate_date)'))->from('crop_rates')->groupBy('crop_type_id');
             });
-        }])->whereHas('rate')->where('crop_id', $request->crop)->get();
+        }])->whereHas('rate')->where('crop_id', $request->crop)->get()->toArray());
         $people = array("mazeemrehan@gmail.com", "kisanstock@gmail.com", "kissanzone369@gmail.com", "jhonhill267@gmail.com");
         $data['mandi_user'] = (bool) in_array($request->user()->email, $people);
         return response()->json($data, 200);
     }
 
     public function getRates(Request $request)
+    {
+        if(in_array($request->type, ['crops', 'today', 'mycities'])){
+            $key = 'get:'.ApiCache::key($request, ['type', 'crop', 'crop_id', 'cities']);
+            return ApiCache::json('rates', $key, 300, fn () => $this->ratesFor($request)->getContent());
+        }
+        return $this->ratesFor($request);
+    }
+
+    private function ratesFor(Request $request)
     {
         if($request->type == 'crops'){
             $data =  CropType::with(['rate' => function($r) use($request) {
@@ -165,6 +176,10 @@ class CropRateController extends Controller
     }
 
     function trendingCropsGraphs() {
+        return ApiCache::json('rates', 'trending', 600, fn () => $this->trendingGraphData());
+    }
+
+    private function trendingGraphData() {
         $ids =  [82,76,60];
         $data = [];
         foreach ($ids as $id) {
@@ -185,7 +200,7 @@ class CropRateController extends Controller
             $res['crop_type_name_ur'] = $type->code;
             $data[] = $res;
         }
-        return response()->json($data, 200);
+        return $data;
     }
     
 }

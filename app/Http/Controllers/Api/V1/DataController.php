@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Support\ApiCache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,10 @@ class DataController extends Controller
 {
     public function getCreateDealData()
     {
-        $data['weights'] = WeightType::all();
-        $data['packings'] = Packing::all();
-        return response()->json($data, 200);
+        return ApiCache::json('static', 'create_deal', 86400, function () {
+            $data['weights'] = WeightType::all();
+            $data['packings'] = Packing::all();
+            return $data;
+        });
     }
 }

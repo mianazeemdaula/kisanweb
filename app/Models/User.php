@@ -131,9 +131,27 @@ class User extends Authenticatable
         return $this->hasMany(CategoryDealReaction::class);
     }
 
+    /** Ratings already looked up during this request. */
+    public static array $ratings = [];
+
     public function getRatingAttribute()
     {
-        return number_format($this->reviews()->avg('rating') ?? 0, 1);
+        // Shown next to every seller and bidder in a list. Cached per user
+        // (cleared when a review changes) instead of one AVG query per row.
+        if(!$this->id){
+            return number_format(0, 1);
+        }
+        if(isset(self::$ratings[$this->id])){
+            return self::$ratings[$this->id];
+        }
+        $compute = fn () => number_format($this->reviews()->avg('rating') ?? 0, 1);
+        try {
+            $rating = \Illuminate\Support\Facades\Cache::remember('user_rating:'.$this->id, 3600, $compute);
+        } catch (\Throwable $e) {
+            // cache store unreachable: answer from the database
+            $rating = $compute();
+        }
+        return self::$ratings[$this->id] = $rating;
     }
 
     

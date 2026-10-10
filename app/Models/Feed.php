@@ -35,10 +35,19 @@ class Feed extends Model
         return $this->morphMany(Media::class, 'mediaable');
     }
 
+    /** Feed ids liked by a user, loaded once per request. */
+    public static array $likedByUser = [];
+
     public function getLikedAttribute()
     {
-        if(auth()->id())
-        return $this->likes()->where('user_id',auth()->id())->exists();
-        return false;
+        $userId = auth()->id();
+        if(!$userId){
+            return false;
+        }
+        // One query for the user's likes per request, not one per post.
+        self::$likedByUser[$userId] ??= array_flip(
+            FeedLike::where('user_id', $userId)->pluck('feed_id')->all()
+        );
+        return isset(self::$likedByUser[$userId][$this->id]);
     }
 }

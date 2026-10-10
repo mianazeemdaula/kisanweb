@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Category;
 
+use App\Support\ApiCache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -14,8 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cats = Category::with(['categories'])->whereNull('parent_id')->get();
-        return response()->json($cats);
+        return ApiCache::json('categories', 'tree', 86400, function () {
+            return Category::with(['categories'])->whereNull('parent_id')->get();
+        });
     }
 
     /**
