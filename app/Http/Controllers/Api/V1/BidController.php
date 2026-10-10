@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 
 use App\Events\DealUpdateEvent;
+use Illuminate\Support\Facades\Cache;
 // Models
 use App\Models\Bid;
 use App\Models\Deal;
@@ -47,28 +48,41 @@ class BidController extends Controller
             'bid_price' => 'required',
         ]);
         $user = $request->user();
-        $bid = Bid::where('deal_id', $request->deal_id)->where('buyer_id',$user->id)->first();
-        if(!$bid){
-            $bid = new Bid();
-            $bid->deal_id = $request->deal_id;
-            $bid->buyer_id = $user->id;
+        $dealId = $request->deal_id;
+        // One bid per buyer and deal, even if two requests arrive together
+        // (double tap, retry on a slow network).
+        $bid = Cache::lock('bid:'.$dealId.':'.$user->id, 10)->block(5, function () use ($request, $user, $dealId) {
+            $bid = Bid::where('deal_id', $dealId)->where('buyer_id', $user->id)->first();
+            if(!$bid){
+                $bid = new Bid();
+                $bid->deal_id = $dealId;
+                $bid->buyer_id = $user->id;
+            }
             $bid->bid_price = $request->bid_price;
             $bid->save();
-        }else{
-            $bid->bid_price = $request->bid_price;
-            $bid->save();
-        }
-        $deal = Deal::find($bid->deal_id);
-        if($deal){
-            $data =  [
-                'type' => 'deal',
-                'id' => $deal->id,
-                'deal_id' => $deal->id,
-            ];
-            \App\Jobs\ActivityNotificationJob::dispatch([$deal->seller_id], "Bid", "$user->name bid on your deal", $data, 3, $user->id);
-        }
-        \App\Jobs\BidNotificationJob::dispatch($bid->deal_id, $user->id);
-        DealUpdateEvent::dispatch($request->deal_id);
+            return $bid;
+        });
+        // Notifications and the live update run after the response is sent,
+        // so the buyer is not kept waiting for them.
+        $userId = $user->id;
+        $userName = $user->name;
+        app()->terminating(function () use ($dealId, $userId, $userName) {
+            try {
+                $deal = Deal::find($dealId);
+                if($deal){
+                    $data =  [
+                        'type' => 'deal',
+                        'id' => $deal->id,
+                        'deal_id' => $deal->id,
+                    ];
+                    \App\Jobs\ActivityNotificationJob::dispatch([$deal->seller_id], "Bid", "$userName bid on your deal", $data, 3, $userId);
+                }
+                \App\Jobs\BidNotificationJob::dispatch($dealId, $userId);
+                DealUpdateEvent::dispatch($dealId);
+            } catch (\Throwable $e) {
+                report($e);
+            }
+        });
         return response()->json($bid, 200);
         
         

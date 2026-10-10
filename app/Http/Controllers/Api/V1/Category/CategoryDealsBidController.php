@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Category;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use App\Events\DealUpdateEvent;
 // Models
@@ -39,28 +40,40 @@ class CategoryDealsBidController extends Controller
             'bid_price' => 'required',
         ]);
         $user = $request->user();
-        $bid = CategoryDealBid::where('category_deal_id', $request->deal_id)->where('buyer_id',$user->id)->first();
-        if(!$bid){
-            $bid = new CategoryDealBid();
-            $bid->category_deal_id = $request->deal_id;
-            $bid->buyer_id = $user->id;
+        $dealId = $request->deal_id;
+        // One bid per buyer and deal, even if two requests arrive together
+        // (double tap, retry on a slow network).
+        $bid = Cache::lock('cat-bid:'.$dealId.':'.$user->id, 10)->block(5, function () use ($request, $user, $dealId) {
+            $bid = CategoryDealBid::where('category_deal_id', $dealId)->where('buyer_id', $user->id)->first();
+            if(!$bid){
+                $bid = new CategoryDealBid();
+                $bid->category_deal_id = $dealId;
+                $bid->buyer_id = $user->id;
+            }
             $bid->bid_price = $request->bid_price;
             $bid->save();
-        }else{
-            $bid->bid_price = $request->bid_price;
-            $bid->save();
-        }
-        $deal = CategoryDeal::find($request->deal_id);
-        if($deal){
-            $data =  [
-                'type' => 'cat_deal',
-                'id' => $deal->id,
-                'deal_id' => $deal->id,
-            ];
-            \App\Jobs\ActivityNotificationJob::dispatch([$deal->user_id], "Bid", "$user->name bid on your deal", $data, 3, $user->id);
-        }
-        \App\Jobs\CategoryBidNotificationJob::dispatch($bid->category_deal_id, $user->id);
-        // DealUpdateEvent::dispatch($request->deal_id);
+            return $bid;
+        });
+        // Notifications run after the response is sent, so the buyer is not
+        // kept waiting for them.
+        $userId = $user->id;
+        $userName = $user->name;
+        app()->terminating(function () use ($dealId, $userId, $userName) {
+            try {
+                $deal = CategoryDeal::find($dealId);
+                if($deal){
+                    $data =  [
+                        'type' => 'cat_deal',
+                        'id' => $deal->id,
+                        'deal_id' => $deal->id,
+                    ];
+                    \App\Jobs\ActivityNotificationJob::dispatch([$deal->user_id], "Bid", "$userName bid on your deal", $data, 3, $userId);
+                }
+                \App\Jobs\CategoryBidNotificationJob::dispatch($dealId, $userId);
+            } catch (\Throwable $e) {
+                report($e);
+            }
+        });
         return response()->json($bid, 200);
     }
 
