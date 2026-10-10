@@ -148,65 +148,73 @@ class HomeController extends Controller
         return $data;
     }
 
+    /**
+     * The user's deal history.
+     *   type=bids : deals (crop and category) the user has bid on
+     *   type=all  : deals (crop and category) the user is selling
+     *   otherwise : crop deals the user is selling (older app builds, which
+     *               load their category deals from user-cat-deals)
+     * Every deal carries all of its bids, newest deals first.
+     */
     public function userDeals(Request $request)
     {
         $user = auth()->user();
 
         if ($request->type === 'bids') {
-            // Get crop deals where user has placed bids
-            $cropDeals = Deal::with(['bids' => function($q) use($user) {
-                $q->with(['buyer'])->where('buyer_id', $user->id);
-            }, 'seller', 'packing', 'weight', 'media', 'type.crop'])
-            ->whereHas('bids', fn($q) => $q->where('buyer_id', $user->id))
-            ->get()
-            ->map(function($deal) {
-                $deal->deal_type = 'crop';
-                return $deal;
-            });
-
-            // Get category deals where user has placed bids
-            $catDeals = CategoryDeal::with(['bids' => function($q) use($user) {
-                $q->with(['buyer'])->where('buyer_id', $user->id);
-            }, 'user', 'packing', 'weight', 'media', 'subcategory.category'])
-            ->whereHas('bids', fn($q) => $q->where('buyer_id', $user->id))
-            ->get()
-            ->map(function($deal) {
-                $deal->deal_type = 'category';
-                return $deal;
-            });
-
-            // Merge and sort by latest first
-            $merged = $cropDeals->concat($catDeals)->sortByDesc('created_at')->values();
-
-            // Manual pagination
-            $perPage = 15;
-            $page = $request->get('page', 1);
-            $total = $merged->count();
-            $items = $merged->forPage($page, $perPage)->values();
-
-            $data = new \Illuminate\Pagination\LengthAwarePaginator(
-                $items, $total, $perPage, $page,
-                ['path' => $request->url(), 'query' => $request->query()]
-            );
-
-            return response()->json($data, 200);
+            $crop = $this->cropDealsWithBids()
+                ->whereHas('bids', fn($q) => $q->where('buyer_id', $user->id))->get();
+            $category = $this->categoryDealsWithBids()
+                ->whereHas('bids', fn($q) => $q->where('buyer_id', $user->id))->get();
+            return response()->json($this->mergedDealsPage($request, $crop, $category), 200);
         }
 
-        // Default: seller's own deals
-        $data = Deal::with(['bids' => function($q) use($user) {
-            $q->with(['buyer'])->where('buyer_id', $user->id);
-        }, 'seller', 'packing', 'weight', 'media', 'type.crop'])->where('seller_id', $user->id)->paginate();
+        if ($request->type === 'all') {
+            $crop = $this->cropDealsWithBids()->where('seller_id', $user->id)->get();
+            $category = $this->categoryDealsWithBids()->where('user_id', $user->id)->get();
+            return response()->json($this->mergedDealsPage($request, $crop, $category), 200);
+        }
+
+        $data = $this->cropDealsWithBids()->where('seller_id', $user->id)
+            ->orderBy('id', 'desc')->paginate();
 
         return response()->json($data, 200);
     }
 
     public function userCatDeals()
     {
-        $user = auth()->user();
-        $data = CategoryDeal::with(['bids' => function($q) use($user) {
-            $q->with(['buyer'])->where('buyer_id', $user->id);
-        }, 'user', 'packing', 'weight' , 'media'])->where('user_id', $user->id)->paginate();
+        $data = $this->categoryDealsWithBids()->where('user_id', auth()->id())
+            ->orderBy('id', 'desc')->paginate();
         return response()->json($data, 200);
+    }
+
+    private function cropDealsWithBids()
+    {
+        return Deal::with(['bids' => function($q) {
+            $q->with(['buyer'])->whereHas('buyer');
+        }, 'seller', 'packing', 'weight', 'media', 'type.crop', 'reactions', 'reviews']);
+    }
+
+    private function categoryDealsWithBids()
+    {
+        return CategoryDeal::with(['bids' => function($q) {
+            $q->with(['buyer'])->whereHas('buyer');
+        }, 'user', 'packing', 'weight', 'media', 'subcategory.category', 'reactions']);
+    }
+
+    /** Crop and category deals as one list, newest first, 15 per page. */
+    private function mergedDealsPage(Request $request, $cropDeals, $categoryDeals)
+    {
+        $cropDeals->each(fn($deal) => $deal->deal_type = 'crop');
+        $categoryDeals->each(fn($deal) => $deal->deal_type = 'category');
+        $merged = $cropDeals->concat($categoryDeals)->sortByDesc('created_at')->values();
+
+        $perPage = 15;
+        $page = max(1, (int) $request->get('page', 1));
+
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $merged->forPage($page, $perPage)->values(), $merged->count(), $perPage, $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
     }
 
     public function subcats($id)
