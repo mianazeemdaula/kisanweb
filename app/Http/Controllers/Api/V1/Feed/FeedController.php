@@ -15,6 +15,23 @@ use Illuminate\Support\Facades\Cache;
 
 class FeedController extends Controller
 {
+    // Same limit as the app's post field.
+    const MAX_POST_LENGTH = 1000;
+
+    /**
+     * Counts what the user sees as one character (an Urdu letter with its
+     * diacritics, an emoji), the way the app's counter does, so a post the
+     * app accepts is never rejected here.
+     */
+    private function maxPostLength()
+    {
+        return function ($attribute, $value, $fail) {
+            if (is_string($value) && preg_match_all('/\X/u', $value) > self::MAX_POST_LENGTH) {
+                $fail('The post may not be longer than '.self::MAX_POST_LENGTH.' characters.');
+            }
+        };
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,7 +78,7 @@ class FeedController extends Controller
     {
         $validatedData = $request->validate([
             'type' => 'required|string',
-            'content' => 'required|string',
+            'content' => ['required', 'string', $this->maxPostLength()],
         ]);
         $feed = null;
         if($request->has('id')){
@@ -104,7 +121,7 @@ class FeedController extends Controller
             }
         }
         FeedUpdateEvent::dispatch($feed->id);
-        SendFeedNotificationJob::dispatch(auth()->user()->name." added post", $validatedData['content'], ['type' => 'feed'], auth()->id())->delay(now()->addSeconds(30));
+        SendFeedNotificationJob::dispatch(auth()->user()->name." added post", \Illuminate\Support\Str::limit($validatedData['content'], 150), ['type' => 'feed'], auth()->id())->delay(now()->addSeconds(30));
         // \App\Helper\FCM::sendToSetting(4,auth()->user()->name." added post", substr($validatedData['content'],0,30), ['type' => 'feed']);
         return response()->json($feed, 200);
     }
@@ -145,7 +162,7 @@ class FeedController extends Controller
     {
         $validatedData = $request->validate([
             'type' => 'required|string',
-            'content' => 'required|string',
+            'content' => ['required', 'string', $this->maxPostLength()],
         ]);
         $feed = Feed::findOrFail($id);
         if (!$this->isOwnerOrAdmin($feed->user_id)) {
