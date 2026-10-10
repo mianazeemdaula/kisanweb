@@ -26,6 +26,6 @@ class GenerateSitemapCommand extends Command
      */
     public function handle()
     {
-        SitemapGenerator::create('https://kisanstock.com')->writeToFile("sitemap.xml");
+        SitemapGenerator::create('https://digitalmandi.online')->writeToFile("sitemap.xml");
     }
 }

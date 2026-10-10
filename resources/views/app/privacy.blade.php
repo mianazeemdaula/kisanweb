@@ -8,9 +8,9 @@
     </head>
     <body>
     <strong>Privacy Policy</strong> <p>
-                  Kisan Stock built the Kisan Stock app as
+                  Digital Mandi built the Digital Mandi app as
                   a Free app. This SERVICE is provided by
-                  Kisan Stock at no cost and is intended for use as
+                  Digital Mandi at no cost and is intended for use as
                   is.
                 </p> <p>
                   This page is used to inform visitors regarding our
@@ -25,7 +25,7 @@
                 </p> <p>
                   The terms used in this Privacy Policy have the same meanings
                   as in our Terms and Conditions, which are accessible at
-                  Kisan Stock unless otherwise defined in this Privacy Policy.
+                  Digital Mandi unless otherwise defined in this Privacy Policy.
                 </p> <p><strong>Information Collection and Use</strong></p> <p>
                   For a better experience, while using our Service, we
                   may require you to provide us with certain personally

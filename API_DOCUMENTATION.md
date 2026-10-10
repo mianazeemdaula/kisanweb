@@ -1,8 +1,8 @@
-# KisanStock Mobile API Documentation
+# Digital Mandi Mobile API Documentation
 
 ## Base URL
 ```
-https://kisanstock.com/api
+https://digitalmandi.online/api
 ```
 
 ## Authentication

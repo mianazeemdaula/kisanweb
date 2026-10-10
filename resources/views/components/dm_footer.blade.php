@@ -56,15 +56,15 @@
             <div>
                 <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Connect</h3>
                 <div class="flex flex-wrap gap-3">
-                    <a href="https://www.facebook.com/kisanstock" target="_blank" rel="noopener" aria-label="Facebook"
+                    <a href="https://www.facebook.com/DigitalMandiApp" target="_blank" rel="noopener" aria-label="Facebook"
                         class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-green-600 text-gray-300 hover:text-white transition-base">
                         <span class="bi bi-facebook text-lg"></span>
                     </a>
-                    <a href="https://youtube.com/@kisanstock/" target="_blank" rel="noopener" aria-label="YouTube"
+                    <a href="https://www.youtube.com/@DigitalMandiApp" target="_blank" rel="noopener" aria-label="YouTube"
                         class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-green-600 text-gray-300 hover:text-white transition-base">
                         <span class="bi bi-youtube text-lg"></span>
                     </a>
-                    <a href="https://tiktok.com/@kisanstock" target="_blank" rel="noopener" aria-label="TikTok"
+                    <a href="https://www.tiktok.com/@digitalmandi.app" target="_blank" rel="noopener" aria-label="TikTok"
                         class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-green-600 text-gray-300 hover:text-white transition-base">
                         <span class="bi bi-tiktok text-lg"></span>
                     </a>

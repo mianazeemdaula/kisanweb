@@ -50,12 +50,15 @@ class CategoryDealsBidController extends Controller
             $bid->bid_price = $request->bid_price;
             $bid->save();
         }
-        $fcmToken = CategoryDeal::find($request->deal_id)->user->fcm_token;
-        $data =  [
-            'type' => 'cat_deal',
-            'deal_id' => $request->deal_id,
-        ];
-        FCM::send([$fcmToken],"Bid", "$user->name bid on your deal", $data);
+        $deal = CategoryDeal::find($request->deal_id);
+        if($deal){
+            $data =  [
+                'type' => 'cat_deal',
+                'id' => $deal->id,
+                'deal_id' => $deal->id,
+            ];
+            \App\Jobs\ActivityNotificationJob::dispatch([$deal->user_id], "Bid", "$user->name bid on your deal", $data, 3, $user->id);
+        }
         \App\Jobs\CategoryBidNotificationJob::dispatch($bid->category_deal_id, $user->id);
         // DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($bid, 200);

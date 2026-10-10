@@ -46,6 +46,15 @@ class FeedLikeController extends Controller
             $like->user_id = $userId;
             $like->feed_id = $id;
             $like->save();
+            $feed = Feed::find($id);
+            if($feed){
+                // type 'comment' opens the post in the app
+                $data = [
+                    'type' => 'comment',
+                    'feed_id' => $feed->id,
+                ];
+                \App\Jobs\ActivityNotificationJob::dispatch([$feed->user_id], "Like", $request->user()->name . " liked your post", $data, 5, $userId);
+            }
         }else{
             $like->delete();
         }

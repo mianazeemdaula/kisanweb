@@ -250,6 +250,39 @@ class FCM {
         return $res;
     }
 
+    /**
+     * Notify specific users about an activity (reaction, bid, like, comment):
+     * saves it to their in-app notification list and pushes it to their device.
+     * The actor and users who turned the setting off are skipped.
+     */
+    static public function notifyUsers(array $userIds, $title, $body, Array $data = [], ?int $settingId = null, ?int $actorId = null)
+    {
+        $ids = array_values(array_unique(array_filter($userIds)));
+        if($actorId){
+            $ids = array_values(array_diff($ids, [$actorId]));
+        }
+        if($settingId && count($ids) > 0){
+            $notIds = UserSetting::where('setting_id', $settingId)
+            ->where('value', '0')
+            ->whereIn('user_id', $ids)
+            ->pluck('user_id')->toArray();
+            $ids = FCM::cleanIds($notIds, $ids);
+        }
+        $res = array();
+        foreach (User::whereIn('id', $ids)->get(['id', 'fcm_token']) as $user) {
+            Notification::create([
+                'user_id' => $user->id,
+                'title' => $title,
+                'body' => \Illuminate\Support\Str::limit($body, 200),
+                'data' => $data,
+            ]);
+            if($user->fcm_token != null){
+                $res[] = FCM::send([$user->fcm_token], $title, $body, $data);
+            }
+        }
+        return $res;
+    }
+
     static public function cleanIds($notIds, $ids) : array {
         foreach ($notIds as $id) {
             $pos = array_search($id, $ids);

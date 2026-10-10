@@ -49,6 +49,7 @@ Route::group([], function() {
     });
     Route::resource('deals', \App\Http\Controllers\DealController::class);
     Route::resource('commission-shops', \App\Http\Controllers\ShopController::class);
+    Route::get('feeds/{id}', [\App\Http\Controllers\FeedController::class,'show']);
 });
 
 Route::middleware(['auth'])->group(function () {

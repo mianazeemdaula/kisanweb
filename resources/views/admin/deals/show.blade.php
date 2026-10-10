@@ -12,7 +12,7 @@
                 <p>Location: {{ $deal->address }}</p>
                 <p>Phone: {{ $deal->seller->mobile }}</p>
                 @if($deal->media->isNotEmpty())
-                    <img src="{{ str_replace('http://127.0.0.1:8000', 'https://kisanstock.com', $deal->media[0]->path) }}" class="w-40 " alt="Images">
+                    <img src="{{ str_replace('http://127.0.0.1:8000', 'https://digitalmandi.online', $deal->media[0]->path) }}" class="w-40 " alt="Images">
                 @endif
             </div>
 

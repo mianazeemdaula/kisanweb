@@ -85,9 +85,9 @@
             </table>
             <div>
                 <div style="display:flex;justify-content: space-between">
-                    <div class="text-xl">مزید فصلوں کے ریٹس دیکھنے کے لیے پلےسٹورسےکسان اسٹاک ایپ ڈاؤن لوڈ کریں۔</div>
+                    <div class="text-xl">مزید فصلوں کے ریٹس دیکھنے کے لیے پلےسٹورسےڈیجیٹل منڈی ایپ ڈاؤن لوڈ کریں۔</div>
                     <div class="text-xl">
-                        kisanstock/
+                        DigitalMandiApp/
                         <img src="{{ asset('images/facebook.png') }}" class="w-4">
                         <img src="{{ asset('images/instagram.png') }}" class="w-4">
                         <img src="{{ asset('images/tik-tok.png') }}" class="w-4">

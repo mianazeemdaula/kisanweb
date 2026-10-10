@@ -56,7 +56,9 @@ class FeedCommentController extends Controller
             'type' => 'comment',
             'feed_id' => $feed->id,
         ];
-        \App\Jobs\SendSettingNotificationJob::dispatch(5, "Comment", auth()->user()->name . " comment on post", $data);
+        $ids = FeedComment::where('feed_id', $feed->id)->pluck('user_id')->toArray();
+        array_push($ids, $feed->user_id);
+        \App\Jobs\ActivityNotificationJob::dispatch($ids, "Comment", auth()->user()->name . " comment on post", $data, 5, auth()->id());
         // FCM::send([$feed->user->fcm_token], 'Comment', auth()->user()->name." comment on your post", $data);
         return response()->json($comment, 200);
     }

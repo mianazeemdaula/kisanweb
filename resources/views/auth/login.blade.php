@@ -4,7 +4,7 @@
     <section class="min-h-screen flex flex-col">
         <nav class="flex justify-center items-center">
             <div class="px-4 py-4 font-bold text-3xl">
-                Kisan Stock
+                Digital Mandi
             </div>
         </nav>
         <div class="flex justify-center items-center">

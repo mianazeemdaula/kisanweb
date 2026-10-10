@@ -21,7 +21,7 @@
                         <div class="owl-carousel owl-theme">
                             @foreach ($deal->media as $item)
                                 <div class="aspect-square">
-                                    <img src="{{ str_replace('http://127.0.0.1:8000', 'https://kisanstock.com', $item->path) }}" class="w-full h-full object-cover" alt="Deal image">
+                                    <img src="{{ str_replace('http://127.0.0.1:8000', 'https://digitalmandi.online', $item->path) }}" class="w-full h-full object-cover" alt="Deal image">
                                 </div>
                             @endforeach
                         </div>

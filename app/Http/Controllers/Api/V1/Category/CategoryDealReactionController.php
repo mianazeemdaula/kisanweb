@@ -41,12 +41,15 @@ class CategoryDealReactionController extends Controller
             $reaction->user_id = $user->id;
             $reaction->category_deal_id = $request->deal_id;
             $reaction->save();
-            $fcmToken = CategoryDeal::find($request->deal_id)->user->fcm_token;    
-            $data =  [
-                'type' => 'deal',
-                'deal_id' => $request->deal_id,
-            ];
-            FCM::send([$fcmToken],"Reaction", "$user->name react to your deal", $data);
+            $deal = CategoryDeal::find($request->deal_id);
+            if($deal){
+                $data =  [
+                    'type' => 'cat_deal',
+                    'id' => $deal->id,
+                    'deal_id' => $deal->id,
+                ];
+                \App\Jobs\ActivityNotificationJob::dispatch([$deal->user_id], "Reaction", "$user->name react to your deal", $data, 3, $user->id);
+            }
         }
         // DealUpdateEvent::dispatch($request->deal_id);
         return response()->json($reaction, 200,);

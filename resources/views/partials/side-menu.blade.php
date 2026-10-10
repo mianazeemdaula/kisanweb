@@ -8,7 +8,7 @@
         <div>
             <div class="p-2.5 mt-1 flex items-center rounded-md justify-start mb-6">
                 <i class="bi bi-app-indicator px-2.5 py-2 bg-gradient-to-br from-emerald-400 to-green-600 text-white rounded-xl shadow-md text-lg"></i>
-                <h1 class="text-[17px] ml-3.5 text-slate-100 font-bold tracking-tight">Kisan Stock</h1>
+                <h1 class="text-[17px] ml-3.5 text-slate-100 font-bold tracking-tight">Digital Mandi</h1>
                 <i class="bi bi-x ml-auto cursor-pointer lg:hidden" onclick="Openbar()"></i>
             </div>
             
