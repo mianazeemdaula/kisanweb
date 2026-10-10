@@ -10,6 +10,11 @@
         content="Digital Mandi is a modern marketplace for farmers and agribusinesses to buy and sell agricultural products, access real-time market prices, and connect with verified buyers and commission shops across the country.">
     <meta name="keywords" content="digital mandi, mandi rates, crop rates, agriculture marketplace, farmer deals, commission shops">
     <meta name="og:title" property="og:title" content="@yield('title', 'Digital Mandi')">
+    <meta property="og:site_name" content="Digital Mandi">
+    @sectionMissing('meta')
+        <meta property="og:image" content="{{ asset('android-chrome-512x512.png') }}">
+    @endif
+    @include('partials.favicon')
     @yield('meta')
     <meta name="theme-color" content="#16a34a">
     <meta name="robots" content="index, follow">

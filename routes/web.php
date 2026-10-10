@@ -37,6 +37,12 @@ Route::get('.well-known/assetlinks.json', function () {
     ]]);
 });
 
+// Website legal pages (the app/* ones above are the bare versions the mobile app opens)
+Route::view('privacy-policy', 'guest.legal.privacy');
+Route::view('terms-and-conditions', 'guest.legal.terms');
+Route::permanentRedirect('privacy', '/privacy-policy');
+Route::permanentRedirect('terms', '/terms-and-conditions');
+
 Route::get('app/fb-delete-data', function () {
     return response()->json(['email' => 'abc@gmail.com'], 200);
 });

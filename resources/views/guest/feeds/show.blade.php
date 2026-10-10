@@ -33,7 +33,7 @@
                 </div>
 
                 @if ($feed->content)
-                    <p dir="auto" class="px-5 sm:px-6 pb-5 text-gray-800 leading-relaxed whitespace-pre-line break-words">{{ $feed->content }}</p>
+                    <p dir="auto" class="px-5 sm:px-6 pb-5 text-gray-800 leading-relaxed" style="white-space: pre-line; overflow-wrap: anywhere;">{{ $feed->content }}</p>
                 @endif
 
                 <!-- Media -->
@@ -44,9 +44,9 @@
                                 @php($src = str_replace('http://127.0.0.1:8000', 'https://digitalmandi.online', $item->path))
                                 <div>
                                     @if (strtolower($item->ext) === 'mp4')
-                                        <video src="{{ $src }}" controls class="w-full max-h-[32rem] bg-black"></video>
+                                        <video src="{{ $src }}" controls class="w-full bg-black" style="max-height: 32rem;"></video>
                                     @else
-                                        <img src="{{ $src }}" class="w-full max-h-[32rem] object-contain" alt="Post image">
+                                        <img src="{{ $src }}" class="w-full object-contain" style="max-height: 32rem;" alt="Post image">
                                     @endif
                                 </div>
                             @endforeach
@@ -75,7 +75,7 @@
                                         <div class="text-sm font-medium text-gray-900">{{ $comment->user->name }}
                                             <span class="text-xs font-normal text-gray-400">· {{ $comment->created_at->diffForHumans() }}</span>
                                         </div>
-                                        <p dir="auto" class="text-sm text-gray-700 break-words">{{ $comment->content }}</p>
+                                        <p dir="auto" class="text-sm text-gray-700" style="overflow-wrap: anywhere;">{{ $comment->content }}</p>
                                     </div>
                                 </div>
                             @endif

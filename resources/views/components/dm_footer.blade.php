@@ -43,9 +43,9 @@
             <div>
                 <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h3>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="{{ url('terms') }}" class="hover:text-green-400 transition-base">Terms &
+                    <li><a href="{{ url('terms-and-conditions') }}" class="hover:text-green-400 transition-base">Terms &
                             Conditions</a></li>
-                    <li><a href="{{ url('privacy') }}" class="hover:text-green-400 transition-base">Privacy Policy</a>
+                    <li><a href="{{ url('privacy-policy') }}" class="hover:text-green-400 transition-base">Privacy Policy</a>
                     </li>
                     <li><a href="https://play.google.com/store/apps/details?id=com.kisan.digitalmandi&hl=en" target="_blank"
                             rel="noopener" class="hover:text-green-400 transition-base">Download App</a></li>
