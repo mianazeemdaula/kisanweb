@@ -102,6 +102,9 @@ class UserController extends Controller
                 $user->image = $path;
             }
             $user->save();
+            // Return what is stored now, not this request's copy: a parallel
+            // update (e.g. the FCM token sync) must not echo stale name/city.
+            $user->refresh();
             $user->load('addresses');
             $data['user'] = $user;
             $data['user']['points'] = $user->points()->sum('points');
