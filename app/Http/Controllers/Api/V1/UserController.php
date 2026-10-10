@@ -67,14 +67,21 @@ class UserController extends Controller
                 // $user->addresses here would cache an empty collection and the
                 // response below would then report no addresses on the very
                 // request that creates the first one.
-                if($user->addresses()->count() == 0){
+                $address = $user->addresses()->where('default', true)->first()
+                    ?? $user->addresses()->first();
+                if(!$address){
                     $address = new Address();
                     $address->user_id = $user->id;
                     $address->name = 'Default';
-                    $address->address = $request->address;
-                    $address->location = new Point($request->lat, $request->lng);
-                    $address->save();
                 }
+                // Also update an existing address: a restored or half-registered
+                // account must end up with the location the user just picked.
+                $address->default = true;
+                if($request->filled('address')){
+                    $address->address = $request->address;
+                }
+                $address->location = new Point($request->lat, $request->lng);
+                $address->save();
             }
             if($request->has('name')){
                 $user->name = $request->name;
