@@ -19,6 +19,24 @@ Route::get('app/privacy-policy', function () {
     return view('app.privacy');
 });
 
+// Android App Links: must be served as application/json or Google rejects it.
+// Only reached when no static public/.well-known/assetlinks.json exists.
+Route::get('.well-known/assetlinks.json', function () {
+    return response()->json([[
+        'relation' => [
+            'delegate_permission/common.handle_all_urls',
+            'delegate_permission/common.get_login_creds',
+        ],
+        'target' => [
+            'namespace' => 'android_app',
+            'package_name' => 'com.kisan.digitalmandi',
+            'sha256_cert_fingerprints' => [
+                '11:AE:77:C8:F1:DA:77:71:1B:61:EF:95:ED:1D:8A:C1:8A:64:31:B9:76:38:B5:6C:50:66:75:96:7B:8D:EC:A4',
+            ],
+        ],
+    ]]);
+});
+
 Route::get('app/fb-delete-data', function () {
     return response()->json(['email' => 'abc@gmail.com'], 200);
 });

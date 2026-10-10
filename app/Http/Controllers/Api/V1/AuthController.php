@@ -132,6 +132,9 @@ class AuthController extends Controller
         if($request->has('email')){
             $user->email = $request->email;
         }
+        if($request->filled('city_id')){
+            $user->city_id = $request->city_id;
+        }
         if($request->has('image')){
             $file = $request->image;
             $ext = $file->getClientOriginalExtension();
