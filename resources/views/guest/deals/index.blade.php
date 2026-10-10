@@ -46,7 +46,7 @@
                                     <div class="relative aspect-video bg-gray-100 overflow-hidden">
                                         @php $media = $item->media()->first(); @endphp
                                         @if ($media)
-                                            <img src="{{ str_replace('http://127.0.0.1:8000', 'https://digitalmandi.online', $media->path) }}"
+                                            <img src="{{ str_replace('http://127.0.0.1:8000', 'https://digitalmandi.online', $media->thumb) }}" loading="lazy" decoding="async"
                                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                                 alt="{{ $item->subcategory->name ?? 'Deal' }}" loading="lazy">
                                         @else
@@ -100,7 +100,7 @@
                                     <div class="relative aspect-video bg-gray-100 overflow-hidden">
                                         @php $media = $item->media()->first(); @endphp
                                         @if ($media)
-                                            <img src="{{ str_replace('http://127.0.0.1:8000', 'https://digitalmandi.online', $media->path) }}"
+                                            <img src="{{ str_replace('http://127.0.0.1:8000', 'https://digitalmandi.online', $media->thumb) }}" loading="lazy" decoding="async"
                                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                                 alt="{{ $item->type->crop->name ?? 'Deal' }}" loading="lazy">
                                         @else
