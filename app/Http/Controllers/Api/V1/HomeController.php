@@ -12,6 +12,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 // Models
 use App\Models\Crop;
 use App\Models\Deal;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\CategoryDeal;
 
@@ -154,11 +155,16 @@ class HomeController extends Controller
      *   type=all  : deals (crop and category) the user is selling
      *   otherwise : crop deals the user is selling (older app builds, which
      *               load their category deals from user-cat-deals)
+     * With user_id the same lists are returned for that user (profile screen).
      * Every deal carries all of its bids, newest deals first.
      */
     public function userDeals(Request $request)
     {
-        $user = auth()->user();
+        // user_id lets a profile screen list another user's deals; without
+        // it the list is the signed-in user's own.
+        $user = $request->filled('user_id')
+            ? User::findOrFail($request->user_id)
+            : auth()->user();
 
         if ($request->type === 'bids') {
             $crop = $this->cropDealsWithBids()

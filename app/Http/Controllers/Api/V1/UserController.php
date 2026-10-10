@@ -122,16 +122,27 @@ class UserController extends Controller
         return response()->json(['message'=>'Account deleted successfully'], 200);
     }
 
+    /**
+     * Reviews a user has received, newest first.
+     * A review's type records who wrote it: 1 = the buyer (so the user was
+     * the seller), 0 = the seller (so the user was the buyer).
+     *   role=seller (or type 0/absent): reviews received when selling
+     *   role=buyer  (or type 1)       : reviews received when buying
+     *   role=all                      : every review received
+     */
     public function reviews(Request $request)
     {
-        $user = User::find($request->user_id);
-        $query =  Review::with(['reviewer', 'user']);
-        if($request->type && $request->type == 1){
-            $query->where('review_by', $user->id);
-        }else{
-            $query->where('user_id', $user->id);
+        $user = User::findOrFail($request->user_id);
+        $role = $request->role ?: ($request->type == 1 ? 'buyer' : 'seller');
+        $query = Review::with(['reviewer', 'user'])
+            ->where('user_id', $user->id)
+            ->whereHas('reviewer');
+        if($role === 'buyer'){
+            $query->where('type', 0);
+        }else if($role === 'seller'){
+            $query->where('type', 1);
         }
-        $data = $query->paginate();
+        $data = $query->orderBy('id', 'desc')->paginate();
         return response()->json($data, 200);
     }
 
