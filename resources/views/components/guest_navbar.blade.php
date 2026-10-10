@@ -13,16 +13,8 @@
         <div class="flex justify-between items-center h-16">
             <!-- Brand -->
             <a href="{{ url('/') }}" class="flex items-center gap-2.5 group">
-                <span
-                    class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-700 text-white shadow-md shadow-green-600/30 group-hover:scale-105 transition-transform">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9Z" />
-                        <path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9Z" />
-                        <path d="M12 13c0-3.31 2.69-6 6-6 0 3.31-2.69 6-6 6Z" />
-                        <path d="M12 13V2" />
-                    </svg>
-                </span>
+                <img src="{{ asset('images/logo.png') }}" alt="Digital Mandi" width="40" height="40"
+                    class="w-10 h-10 rounded-xl shadow-md shadow-green-600/30 group-hover:scale-105 transition-transform">
                 <span class="flex flex-col leading-none">
                     <span class="font-display text-lg sm:text-xl font-extrabold tracking-tight">
                         <span class="text-gray-900">Digital</span><span class="text-green-600">Mandi</span>

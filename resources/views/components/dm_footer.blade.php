@@ -7,16 +7,8 @@
             <!-- Brand -->
             <div class="lg:col-span-1">
                 <a href="{{ url('/') }}" class="flex items-center gap-2.5">
-                    <span
-                        class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-700 text-white shadow-lg shadow-green-600/30">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9Z" />
-                            <path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9Z" />
-                            <path d="M12 13c0-3.31 2.69-6 6-6 0 3.31-2.69 6-6 6Z" />
-                            <path d="M12 13V2" />
-                        </svg>
-                    </span>
+                    <img src="{{ asset('images/logo.png') }}" alt="Digital Mandi" width="40" height="40"
+                        class="w-10 h-10 rounded-xl shadow-lg shadow-green-600/30">
                     <span class="font-display text-xl font-extrabold tracking-tight text-white">
                         Digital<span class="text-green-400">Mandi</span>
                     </span>

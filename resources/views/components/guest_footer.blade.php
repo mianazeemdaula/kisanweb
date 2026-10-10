@@ -32,7 +32,7 @@
         href="#">
         <img
           class="w-8"
-          src="{{ asset('/images/logo.svg')}}"
+          src="{{ asset('/images/logo.png')}}"
           alt=""
           loading="lazy" />
       </a>

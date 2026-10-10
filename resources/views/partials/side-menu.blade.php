@@ -7,7 +7,7 @@
         p-4 overflow-y-auto bg-slate-900 shadow-2xl h-screen overflow-x-hidden border-r border-slate-800 scrollbar-thin w-full">
         <div>
             <div class="p-2.5 mt-1 flex items-center rounded-md justify-start mb-6">
-                <i class="bi bi-app-indicator px-2.5 py-2 bg-gradient-to-br from-emerald-400 to-green-600 text-white rounded-xl shadow-md text-lg"></i>
+                <img src="{{ asset('images/logo.png') }}" alt="Digital Mandi" width="40" height="40" class="w-10 h-10 rounded-xl shadow-md">
                 <h1 class="text-[17px] ml-3.5 text-slate-100 font-bold tracking-tight">Digital Mandi</h1>
                 <i class="bi bi-x ml-auto cursor-pointer lg:hidden" onclick="Openbar()"></i>
             </div>
