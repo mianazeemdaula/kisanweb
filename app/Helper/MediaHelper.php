@@ -21,15 +21,27 @@ class MediaHelper {
             $file->store('videos', $path);
         }else{
             $image = Image::make($file->getRealPath());
+            // Phone cameras store portrait shots sideways with a rotation
+            // flag; apply it now, the flag does not survive re-saving.
+            try {
+                $image->orientate();
+            } catch (\Throwable $e) {
+            }
             $image->save($path);
-            // Cap the size, store as JPEG and write the list thumbnail. If
-            // that fails for any reason the upload still succeeds as before.
+            // Cap the size and store as JPEG. If that fails for any reason
+            // the upload still succeeds as before.
             try {
                 $path = MediaOptimizer::optimizeFile($path);
-                MediaOptimizer::makeThumb($path);
                 $ext = pathinfo($path, PATHINFO_EXTENSION);
             } catch (\Throwable $e) {
                 \Log::warning('Media optimization failed', ['path' => $path, 'error' => $e->getMessage()]);
+            }
+            // The list thumbnail; if it cannot be written here it is created
+            // by OptimizeMediaJob the first time the photo is listed.
+            try {
+                MediaOptimizer::makeThumb($path);
+            } catch (\Throwable $e) {
+                \Log::warning('Media thumbnail failed', ['path' => $path, 'error' => $e->getMessage()]);
             }
             // $imgFile->resize(150, 150, function ($constraint) {
             //     $constraint->aspectRatio();

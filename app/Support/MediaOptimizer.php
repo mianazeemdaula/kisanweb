@@ -11,16 +11,21 @@ use Intervention\Image\Facades\Image;
 /**
  * Keeps uploaded photos light without visibly losing quality.
  *
- *  - The stored photo is capped at MAX_SIDE px and saved as a JPEG. Phone
- *    screens are at most ~1440px wide, so nothing sharper is ever displayed.
- *  - A THUMB_SIDE px copy is kept next to it in a "thumbs" folder for list
- *    cards, where the full photo was being downloaded to fill a small tile.
+ *  - The stored photo is capped at MAX_WIDTH x MAX_HEIGHT and saved as a
+ *    JPEG. Phone screens are at most ~1440px wide, so nothing sharper is ever
+ *    displayed. The height limit is looser so tall portrait photos and
+ *    screenshots keep their full width.
+ *  - A copy whose shorter side is THUMB_SIDE px is kept next to it in a
+ *    "thumbs" folder for list cards, where the full photo was being
+ *    downloaded to fill a small tile. Cards crop to fill, so it is the
+ *    shorter side that has to stay sharp.
  *
  * Both are plain files under public/, served directly by the web server.
  */
 class MediaOptimizer
 {
-    const MAX_SIDE = 1280;
+    const MAX_WIDTH = 1280;
+    const MAX_HEIGHT = 1920;
     const QUALITY = 80;
     const THUMB_SIDE = 480;
     const THUMB_QUALITY = 72;
@@ -49,12 +54,23 @@ class MediaOptimizer
         return in_array(strtolower(pathinfo($relative, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'webp']);
     }
 
-    /** Where the thumbnail of a photo lives: offers/abc.png -> offers/thumbs/abc.jpg */
+    /** Where the thumbnail of a photo lives: offers/abc.png -> offers/thumbs/abc_s.jpg */
     public static function thumbPath(string $relative): string
+    {
+        return self::thumbDir($relative).pathinfo($relative, PATHINFO_FILENAME).'_s.jpg';
+    }
+
+    /** First-version thumbnails were sized by their longer side; removed when a photo is processed. */
+    private static function legacyThumbPath(string $relative): string
+    {
+        return self::thumbDir($relative).pathinfo($relative, PATHINFO_FILENAME).'.jpg';
+    }
+
+    private static function thumbDir(string $relative): string
     {
         $dir = trim(str_replace('\\', '/', dirname($relative)), './');
 
-        return ($dir === '' ? '' : $dir.'/').'thumbs/'.pathinfo($relative, PATHINFO_FILENAME).'.jpg';
+        return ($dir === '' ? '' : $dir.'/').'thumbs/';
     }
 
     public static function hasThumb(string $relative): bool
@@ -77,7 +93,7 @@ class MediaOptimizer
         $image = Image::make($source);
         $bytes = filesize($source);
         $isJpeg = in_array(strtolower(pathinfo($relative, PATHINFO_EXTENSION)), ['jpg', 'jpeg']);
-        $tooBig = max($image->width(), $image->height()) > self::MAX_SIDE;
+        $tooBig = $image->width() > self::MAX_WIDTH || $image->height() > self::MAX_HEIGHT;
         $heavy = $bytes > $image->width() * $image->height() * self::HEAVY_BYTES_PER_PIXEL;
         if ($isJpeg && !$tooBig && !$heavy) {
             $image->destroy();
@@ -87,7 +103,7 @@ class MediaOptimizer
 
         self::upright($image);
         if ($tooBig) {
-            $image->resize(self::MAX_SIDE, self::MAX_SIDE, function ($constraint) {
+            $image->resize(self::MAX_WIDTH, self::MAX_HEIGHT, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
@@ -122,11 +138,16 @@ class MediaOptimizer
 
         $destination = public_path(self::thumbPath($relative));
         if (!is_dir(dirname($destination))) {
-            @mkdir(dirname($destination), 0755, true);
+            // group-writable: uploads (web server) and the queue worker may
+            // run as different users and both write here
+            @mkdir(dirname($destination), 0775, true);
+            @chmod(dirname($destination), 0775);
         }
         $image = Image::make($source);
         self::upright($image);
-        $image->resize(self::THUMB_SIDE, self::THUMB_SIDE, function ($constraint) {
+        // shorter side THUMB_SIDE, longer side whatever the shape gives
+        $portrait = $image->width() <= $image->height();
+        $image->resize($portrait ? self::THUMB_SIDE : null, $portrait ? null : self::THUMB_SIDE, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });
@@ -145,6 +166,7 @@ class MediaOptimizer
         }
         $optimized = self::optimizeFile($relative);
         self::makeThumb($optimized);
+        @unlink(public_path(self::legacyThumbPath($relative)));
         if ($optimized !== $relative) {
             $media->path = $optimized;
             $media->ext = 'jpg';
