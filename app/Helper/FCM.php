@@ -211,7 +211,7 @@ class FCM {
         ]);
     }
 
-    static public function sendToSetting(int $settingId, $title, $body, Array $data){
+    static public function sendToSetting(int $settingId, $title, $body, Array $data, ?int $exceptUserId = null){
         $users = User::query();
         $boolIds = [1,3,4,5,6,7,8];
         if((bool) in_array($settingId, $boolIds)){
@@ -239,6 +239,10 @@ class FCM {
         }
         if(auth()->id()){
             $users->where('id','!=',auth()->id());
+        }
+        // queue workers have no auth user, so the actor is passed in explicitly
+        if($exceptUserId){
+            $users->where('id','!=',$exceptUserId);
         }
         $tokens = $users->whereNotNull('fcm_token')->pluck('fcm_token');
         $res = array();

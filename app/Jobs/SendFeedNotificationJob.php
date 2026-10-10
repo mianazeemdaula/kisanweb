@@ -19,12 +19,18 @@ class SendFeedNotificationJob implements ShouldQueue
     public string $title;
     public string $body;
     public array $data;
+    public ?int $userId;
 
-    public function __construct(string $title, string $body, array $data)
+    // the broadcast is slow; a retry would push the same post to everyone again
+    public $tries = 1;
+    public $timeout = 600;
+
+    public function __construct(string $title, string $body, array $data, ?int $userId = null)
     {
         $this->title = $title;
         $this->body = $body;
         $this->data = $data;
+        $this->userId = $userId;
     }
 
     /**
@@ -33,6 +39,6 @@ class SendFeedNotificationJob implements ShouldQueue
     public function handle(): void
     {
         
-        \App\Helper\FCM::sendToSetting(4, $this->title, $this->body, $this->data);
+        \App\Helper\FCM::sendToSetting(4, $this->title, $this->body, $this->data, $this->userId);
     }
 }
